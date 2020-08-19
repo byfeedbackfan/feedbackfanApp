@@ -1,0 +1,7 @@
+{
+  "name": "feedbackfanApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

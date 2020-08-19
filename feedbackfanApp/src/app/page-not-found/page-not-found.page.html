@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Página No Encontrada
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="not-found-content">
+  <div class="illustration-wrapper">
+    <app-aspect-ratio [ratio]="{w: 1, h: 1}">
+      <app-image-shell [src]="'./assets/sample-images/page-not-found.svg'" [alt]="'not found page'"></app-image-shell>
+    </app-aspect-ratio>
+  </div>
+  <div class="not-found-title">404</div>
+  <div class="not-found-text">Página No Encontrada</div>
+  <ion-button class="go-home-btn" expand="block" fill="outline">Regresar a la página Principal</ion-button>
+</ion-content>
