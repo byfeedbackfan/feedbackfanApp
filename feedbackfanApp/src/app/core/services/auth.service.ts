@@ -6,7 +6,7 @@ import { ProfileModel } from '../../auth/profile/profile.model';
 import { Platform } from '@ionic/angular';
 
 import { User, auth } from 'firebase/app';
-import { cfaSignIn, cfaSignOut, mapUserToUserInfo } from 'capacitor-firebase-auth';
+import { cfaSignOut } from 'capacitor-firebase-auth';
 
 @Injectable()
 export class AuthService {
@@ -49,6 +49,40 @@ export class AuthService {
     return this.redirectResult.asObservable();
   }
 
+  // Get the currently signed-in user
+  getLoggedInUser() {
+    return this.currentUser;
+  }
+
+  signOut(): Observable<any> {
+    if (this.platform.is('capacitor')) {
+      return cfaSignOut();
+    } else {
+      return from(this.angularFire.signOut());
+    }
+  }
+
+  signInWithEmail(email: string, password: string): Promise<auth.UserCredential> {
+    return this.angularFire.signInWithEmailAndPassword(email, password);
+  }
+
+  signUpWithEmail(values: any): Promise<auth.UserCredential> {
+    return this.angularFire.createUserWithEmailAndPassword(values.email, values.matching_passwords.password);
+  }
+
+  async resetPassword(email: string): Promise<void> {
+    return await this.angularFire.sendPasswordResetEmail(email);
+  }
+
+  public getProfileStore(dataSource: Observable<ProfileModel>): DataStore<ProfileModel> {
+    // Initialize the model specifying that it is a shell model
+    const shellModel: ProfileModel = new ProfileModel();
+    this.profileDataStore = new DataStore(shellModel);
+    // Trigger the loading mechanism (with shell) in the dataStore
+    this.profileDataStore.load(dataSource);
+    return this.profileDataStore;
+  }
+
   public getProfileDataSource(): Observable<ProfileModel> {
     const userModel = new ProfileModel();
     const provierData = this.currentUser.providerData[0];
@@ -79,35 +113,5 @@ export class AuthService {
     userModel.provider = (provierData.providerId !== 'password') ? provierData.providerId : 'Credentials';
 
     return of(userModel);
-  }
-
-  // Get the currently signed-in user
-  getLoggedInUser() {
-    return this.currentUser;
-  }
-
-  signOut(): Observable<any> {
-    if (this.platform.is('capacitor')) {
-      return cfaSignOut();
-    } else {
-      return from(this.angularFire.signOut());
-    }
-  }
-
-  signInWithEmail(email: string, password: string): Promise<auth.UserCredential> {
-    return this.angularFire.signInWithEmailAndPassword(email, password);
-  }
-
-  signUpWithEmail(values: any): Promise<auth.UserCredential> {
-    return this.angularFire.createUserWithEmailAndPassword(values.email, values.matching_passwords.password);
-  }
-
-  public getProfileStore(dataSource: Observable<ProfileModel>): DataStore<ProfileModel> {
-    // Initialize the model specifying that it is a shell model
-    const shellModel: ProfileModel = new ProfileModel();
-    this.profileDataStore = new DataStore(shellModel);
-    // Trigger the loading mechanism (with shell) in the dataStore
-    this.profileDataStore.load(dataSource);
-    return this.profileDataStore;
   }
 }

@@ -11,7 +11,7 @@ import { SignInModule } from './sign-in/sign-in.module';
 import { ProfileModule } from './profile/profile.module';
 import { SignUpModule } from './sign-up/sign-up.module';
 import { CoreModule } from '../core/core.module';
-import { ShellModule } from '../shell/shell.module';
+import { ForgotPasswordModule } from './forgot-password/forgot-password.module';
 
 const routes: Routes = [
   {
@@ -25,7 +25,11 @@ const routes: Routes = [
   {
     path: 'profile',
     loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
-  }
+  },
+  {
+    path: 'forgot-password',
+    loadChildren: () => import('./forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule)
+  },
 ];
 
 @NgModule({
@@ -39,6 +43,7 @@ const routes: Routes = [
     SignInModule,
     SignUpModule,
     ProfileModule,
+    ForgotPasswordModule,
     CoreModule
   ],
   providers: [AuthService]

@@ -82,6 +82,18 @@ ion-back-button {
       }
     }
   }
+  
+  .forgot-password-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
+  }
+
+  .forgot-password-btn {
+    --color: var(--ion-color-secondary);
+    font-size: x-small;
+  }
 
   .social-auth-options {
     .options-divider {
