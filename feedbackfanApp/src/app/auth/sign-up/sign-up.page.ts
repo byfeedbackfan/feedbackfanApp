@@ -154,34 +154,32 @@ export class SignUpPage implements OnInit {
     });
   }
 
-  setUserCredentialsToIndexedDb( userData: ProfileModel ) {
-    const indexedData = JSON.stringify(userData);
-    Storage.set({key: 'userCredentials', value: indexedData});
-  }
-
   signUpWithEmail(): void {
-    this.presentLoading();
-    this.resetSubmitError();
+    let indexedData: string;
     const values = this.signupForm.value;
     const userData: ProfileModel = new ProfileModel();
+    this.presentLoading();
+    this.resetSubmitError();
     this.authService.signUpWithEmail(values)
-      .then(user => {
+      .then(async user => {
         userData.uid = user.user.uid;
         userData.email = user.user.email;
         userData.name = values.name;
         userData.role = roles.employee;
         userData.sentMessages = 0;
         userData.receivedMessages = 0;
-        this.storageService.uploadUserImg(this.imageFilePath, userData.uid).then (downloadUrl => {
+        userData.isShell = true;
+        await this.storageService.uploadUserImg(this.imageFilePath, userData.uid).then (downloadUrl => {
           userData.image = downloadUrl;
-          this.dismissLoading();
-          this.userService.createUser(userData).then( userStored => {
-            this.setUserCredentialsToIndexedDb(userData);
-            this.redirectLoggedUserToProfilePage();
-          });
+          this.userService.createUser(userData);
+          indexedData = JSON.stringify(userData);
+          Storage.set({key: 'userCredentials', value: indexedData});
         });
+        this.dismissLoading();
+        this.redirectLoggedUserToProfilePage();
       })
       .catch(error => {
+        this.dismissLoading();
         this.submitError = error.message;
       });
   }

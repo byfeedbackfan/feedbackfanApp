@@ -9,7 +9,7 @@ import { SharedModule } from '../../shared/shared.module';
 const routes: Routes = [
   {
     path: '',
-    component: SignInPage
+    component: SignInPage,
   }
 ];
 
@@ -22,6 +22,6 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule
   ],
-  declarations: [SignInPage]
+  declarations: [SignInPage],
 })
 export class SignInModule {}

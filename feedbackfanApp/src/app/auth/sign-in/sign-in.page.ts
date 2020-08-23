@@ -7,7 +7,6 @@ import { Subscription } from 'rxjs';
 
 import { HistoryHelperService } from '../../utils/history-helper.service';
 import { AuthService } from '../../core/services/auth.service';
-import { AngularFireAuth } from '@angular/fire/auth';
 
 import { Plugins } from '@capacitor/core';
 import { UserService } from '../../core/services/user.service';
@@ -26,7 +25,6 @@ export class SignInPage implements OnInit {
   submitError: string;
   redirectLoader: HTMLIonLoadingElement;
   authRedirectResult: Subscription;
-  profileData: string;
 
   // tslint:disable-next-line: variable-name
   validation_messages = {
@@ -49,7 +47,6 @@ export class SignInPage implements OnInit {
     public historyHelper: HistoryHelperService,
     private authService: AuthService,
     private userService: UserService,
-    private angularFire: AngularFireAuth,
     private ngZone: NgZone,
   ) {
 
@@ -63,35 +60,13 @@ export class SignInPage implements OnInit {
         Validators.required
       ]))
     });
-
-    // Get firebase authentication redirect result invoken when using signInWithRedirect()
-    // signInWithRedirect() is only used when client is in web but not desktop
-    this.authRedirectResult = this.authService.getRedirectResult()
-    .subscribe(result => {
-      if (result.user) {
-        this.redirectLoggedUserToProfilePage();
-      } else if (result.error) {
-        this.manageAuthWithProvidersErrors(result.error);
-      }
-    });
-
-    // Check if url contains our custom 'auth-redirect' param, then show a loader while we receive the getRedirectResult notification
-    this.route.queryParams.subscribe(params => {
-      const authProvider = params['auth-redirect'];
-      if (authProvider) {
-        this.presentLoading();
-      }
-    });
   }
 
   ngOnInit(): void {
     this.menu.enable(false);
-    this.angularFire.onAuthStateChanged((user) => {
-      if (user) {
-        // User is signed in.
-        if (Storage.get({key: 'userCredentials'})) {
-          this.redirectLoggedUserToProfilePage();
-        }
+    Storage.get({key: 'userCredentials'}).then((data) => {
+      if (data.value) {
+        this.redirectLoggedUserToProfilePage();
       }
     });
   }
@@ -99,11 +74,9 @@ export class SignInPage implements OnInit {
   // Once the auth provider finished the authentication flow, and the auth redirect completes,
   // hide the loader and redirect the user to the profile page
   redirectLoggedUserToProfilePage() {
-    this.dismissLoading();
-
     // As we are calling the Angular router navigation inside a subscribe method, the navigation will be triggered outside Angular zone.
     // That's why we need to wrap the router navigation call inside an ngZone wrapper
-    this.ngZone.run(() => {
+    this.ngZone.run(async () => {
       // Get previous URL from our custom History Helper
       // If there's no previous page, then redirect to profile
       // const previousUrl = this.historyHelper.previousUrl || 'firebase/auth/profile';
@@ -139,23 +112,18 @@ export class SignInPage implements OnInit {
     this.submitError = null;
   }
 
-  getUserData(uid: string) {
-    this.userService.getUser(uid).subscribe( userdata => {
-      this.profileData = JSON.stringify(userdata);
-    });
-  }
-
   signInWithEmail() {
     this.resetSubmitError();
     this.presentLoading();
+    let profileData: string;
     this.authService.signInWithEmail(this.loginForm.value.email, this.loginForm.value.password)
     .then(user => {
-      this.userService.getUser(user.user.uid).subscribe( userdata => {
-        this.profileData = JSON.stringify(userdata);
-        Storage.set({key: 'userCredentials', value: this.profileData}).then( () => {
-          this.dismissLoading();
-          this.redirectLoggedUserToProfilePage();
-        });
+      // navigate to user profile
+      this.userService.getUser(user.user.uid).subscribe((userdata) => {
+        profileData = JSON.stringify(userdata);
+        Storage.set({key: 'userCredentials', value: profileData});
+        this.dismissLoading();
+        this.redirectLoggedUserToProfilePage();
       });
     })
     .catch(error => {

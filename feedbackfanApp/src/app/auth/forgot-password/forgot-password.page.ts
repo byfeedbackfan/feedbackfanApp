@@ -58,7 +58,9 @@ export class ForgotPasswordPage {
     const email = this.forgotPasswordForm.value;
     this.authService.resetPassword(email.email).then(res => {
       console.log(res);
-      this.presentToast();
+      this.presentToast().then( () => {
+        this.router.navigate(['auth/sign-in'], { replaceUrl: true });
+      });
     });
     // this.router.navigate(['app/categories']);
   }

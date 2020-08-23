@@ -1,11 +1,10 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, HostBinding} from '@angular/core';
+import { Router, CanActivate } from '@angular/router';
 import { ProfileModel } from './profile.model';
 import { AuthService } from '../../core/services/auth.service';
-import { Subscription } from 'rxjs';
-import { IResolvedRouteData, ResolverHelper } from '../../utils/resolver-helper';
 
 import { Plugins } from '@capacitor/core';
+import { ProfileResolver } from './profile.resolver';
 
 const { Storage } = Plugins;
 
@@ -18,8 +17,6 @@ const { Storage } = Plugins;
   ]
 })
 export class ProfilePage implements OnInit {
-  // Gather all component subscription in one place. Can be one Subscription or multiple (chained using the Subscription.add() method)
-  subscriptions: Subscription;
   user: ProfileModel;
 
   @HostBinding('class.is-shell') get isShell() {
@@ -28,26 +25,14 @@ export class ProfilePage implements OnInit {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
-    public authService: AuthService
+    private authService: AuthService,
+    private profileResolver: ProfileResolver
   ) {}
 
   ngOnInit() {
-    // On init, the route subscription is the active subscription
-    this.subscriptions = this.route.data
-    .subscribe(
-      (resolvedRouteData: IResolvedRouteData<ProfileModel>) => {
-        // Route subscription resolved, now the active subscription is the Observable extracted from the resolved route data
-        this.subscriptions = ResolverHelper.extractData<ProfileModel>(resolvedRouteData.data, ProfileModel)
-        .subscribe(
-          (state) => {
-            this.user = state;
-          },
-          (error) => {}
-        );
-      },
-      (error) => {}
-    );
+    this.profileResolver.resolve().then((user) => {
+      this.user = user;
+    });
   }
 
   signOut() {
@@ -61,9 +46,10 @@ export class ProfilePage implements OnInit {
     });
   }
 
-  // NOTE: Ionic only calls ngOnDestroy if the page was popped (ex: when navigating back)
-  // Since ngOnDestroy might not fire when you navigate from the current page, use ionViewWillLeave to cleanup Subscriptions
-  ionViewWillLeave(): void {
-    this.subscriptions.unsubscribe();
+  async getUserDataFromStorage(): Promise<ProfileModel> {
+    let userData;
+    userData = await Storage.get({key: 'userCredentials'});
+    userData = JSON.parse(userData.value);
+    return userData;
   }
 }

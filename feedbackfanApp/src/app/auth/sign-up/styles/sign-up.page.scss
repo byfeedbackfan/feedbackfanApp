@@ -6,11 +6,20 @@
 }
 
 ion-toolbar {
-  --background: var(--app-background-toolbar);
+  --background: #3b69ff;
 }
 
 ion-back-button {
-  color: white;
+  color: black;
+}
+
+.ion-title {
+  color: black;
+  font-weight: bold;
+}
+
+.forgot-password-contain {
+  vertical-align: middle;
 }
 
 #file-input {

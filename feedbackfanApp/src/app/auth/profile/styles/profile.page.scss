@@ -27,21 +27,53 @@
 }
 
 // Note:  All the CSS variables defined below are overrides of Ionic elements CSS Custom Properties
-ion-header {
-  ion-toolbar {
-    --ion-toolbar-background: transparent;
-    --ion-toolbar-color: var(--ion-color-lightest);
-  }
+ion-toolbar {
+  --background: #3b69ff;
 }
 
-ion-content {
-  // To get the ion-content behind the ion-header
-  position: absolute;
-  top: 0;
+ion-back-button {
+  color: black;
+}
+
+.ion-title {
+  color: black;
+  font-weight: bold;
+}
+
+.css-card {
+  background-color: #3b69ff !important;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.messages-values {
+  color: white;
+  font-weight: bold;
+  margin-right: 3%;
+  text-transform: uppercase;
+  text-align: center !important; 
+  font-size: 200% !important;
+}
+
+.messages-values-titles {
+  color: white;
+  font-weight: bold;
+  margin-left: 3%;
+  text-transform: uppercase;
+  text-align: center !important; 
+  font-size: 100% !important;
 }
 
 .user-content {
   --background: var(--page-background);
+
+  .img-responsive {
+    margin-top: 10%;
+    zoom: 3.0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
   .user-details {
     position: relative;
@@ -67,36 +99,6 @@ ion-content {
       align-items: center;
     }
 
-    .user-name {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 22px;
-      margin-top: 0px;
-      margin-bottom: calc(var(--page-margin) / 2);
-      color: var(--ion-color-bright-blue);
-
-      ion-icon {
-        margin-inline-start: calc(var(--page-margin) / 2);
-        font-size: 18px;
-      }
-    }
-
-    .user-role {
-      display: block;
-      min-width: 40%;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--ion-color-medium-shade);
-    }
-
-    .user-description {
-      min-width: 100%;
-      margin-top: var(--page-margin);
-      margin-bottom: 0px;
-      font-size: 14px;
-      color: var(--ion-color-medium-tint);
-    }
   }
 
   .user-preferences-wrapper {
@@ -105,22 +107,39 @@ ion-content {
     padding: var(--page-margin);
 
     .preference-name {
-      margin: 0px 0px 5px;
-      font-size: 16px;
-      color: var(--ion-color-bright-pink);
+      margin: 0% 0% 0%;
+      text-transform: uppercase;
+      color:  #3b69ff;
+      font-weight: bold;
+      text-align: center !important; 
+    }
+
+    .font-title {
+      font-size: 84%;
+      text-align: center;
+    }
+
+    .number-title {
+      font-size: 120%;
+      text-align: center;
     }
 
     .preference-value {
-      margin: 0px 0px calc(var(--page-margin) / 2);
-      font-size: 14px;
-      line-height: 1.4;
+      margin: 0px 0px calc(var(--page-margin) / 10);
+      font-weight: bold;
       color: var(--ion-color-dark-tint);
+      text-align: center !important; 
     }
   }
 
+
+  .edit-btn {
+    margin-top: calc(var(--page-margin) /5);
+  }
+
   .sign-out-btn {
-    margin: 0px;
     margin-top: calc(var(--page-margin) * 4);
-    color: #001CFF;
+    --color: var(--ion-color-secondary);
+    font-size: small;
   }
 }

@@ -8,8 +8,8 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'auth',
-    pathMatch: 'full'
+    redirectTo: 'auth/sign-in',
+    pathMatch: 'full',
   },
   {
     path: 'page-not-found',
