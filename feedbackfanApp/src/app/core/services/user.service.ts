@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
 
-import { Observable, of, forkJoin, throwError, combineLatest } from 'rxjs';
-import { map, concatMap, first, filter } from 'rxjs/operators';
-import { DataStore, ShellModel } from '../../shell/data-store';
-import { ProfileModel } from '../../auth/profile/profile.model';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ProfileModel } from '../../profile/profile.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +17,17 @@ export class UserService {
   }
 
   public updateUser(userData: ProfileModel): Promise<void> {
-    return this.afs.collection('users').doc(userData.uid).set(userData);
+    const data = {
+      uid: userData.uid,
+      email: userData.email,
+      name: userData.name,
+      role: userData.role,
+      image: userData.image,
+      sentMessages: userData.sentMessages,
+      receivedMessages: userData.receivedMessages,
+      isShell: userData.isShell
+    };
+    return this.afs.collection('user').doc(userData.uid).set(data);
   }
 
   public getUser(uid: string): Observable<ProfileModel> {

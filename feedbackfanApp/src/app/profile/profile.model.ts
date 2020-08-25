@@ -1,4 +1,4 @@
-import { ShellModel } from '../../shell/data-store';
+import { ShellModel } from '../shell/data-store';
 
 export class ProfileModel extends ShellModel {
   uid: string;

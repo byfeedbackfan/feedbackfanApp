@@ -4,11 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { SharedModule } from '../shared/shared.module';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFireModule } from '@angular/fire';
-import { environment } from '../../environments/environment';
 import { AuthService } from '../core/services/auth.service';
 import { SignInModule } from './sign-in/sign-in.module';
-import { ProfileModule } from './profile/profile.module';
 import { SignUpModule } from './sign-up/sign-up.module';
 import { CoreModule } from '../core/core.module';
 import { ForgotPasswordModule } from './forgot-password/forgot-password.module';
@@ -23,10 +20,6 @@ const routes: Routes = [
     loadChildren: () => import('./sign-up/sign-up.module').then(m => m.SignUpModule)
   },
   {
-    path: 'profile',
-    loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
-  },
-  {
     path: 'forgot-password',
     loadChildren: () => import('./forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule)
   },
@@ -38,11 +31,9 @@ const routes: Routes = [
     IonicModule,
     SharedModule,
     RouterModule.forChild(routes),
-    AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     SignInModule,
     SignUpModule,
-    ProfileModule,
     ForgotPasswordModule,
     CoreModule
   ],

@@ -1,4 +1,4 @@
-@import "../../../../theme/mixins/ion-color.scss";
+@import "../../../theme/mixins/ion-color.scss";
 
 // Custom variables
 // Note:  These ones were added by us and have nothing to do with Ionic CSS Custom Properties
@@ -32,11 +32,11 @@ ion-toolbar {
 }
 
 ion-back-button {
-  color: black;
+  color: white;
 }
 
 .ion-title {
-  color: black;
+  color: white;
   font-weight: bold;
 }
 
@@ -75,32 +75,6 @@ ion-back-button {
     margin-right: auto;
   }
 
-  .user-details {
-    position: relative;
-    z-index: 2;
-    margin-inline-start: var(--page-margin);
-    margin-inline-end: var(--page-margin);
-    padding: var(--page-margin);
-    background-color: var(--ion-color-lightest);
-    border-radius: calc(var(--app-broad-radius) * 2);
-    text-align: center;
-    margin-top: calc(var(--page-margin) * -4);
-    // z-3
-    box-shadow: 0px 10px 20px rgba(var(--ion-color-dark-rgb), 0.15),
-                0px 3px 6px rgba(var(--ion-color-dark-rgb), 0.10);
-    // z-4
-    // box-shadow: 0px 15px 25px rgba(var(--ion-color-dark-rgb), 0.15),
-    //             0px 5px 10px rgba(var(--ion-color-dark-rgb), 0.05);
-
-    .details-wrapper {
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-  }
-
   .user-preferences-wrapper {
     --ion-grid-column-padding: 0px;
 
@@ -132,13 +106,11 @@ ion-back-button {
     }
   }
 
-
   .edit-btn {
     margin-top: calc(var(--page-margin) /5);
   }
 
   .sign-out-btn {
-    margin-top: calc(var(--page-margin) * 4);
     --color: var(--ion-color-secondary);
     font-size: small;
   }

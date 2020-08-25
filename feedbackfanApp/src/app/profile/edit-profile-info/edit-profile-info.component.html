@@ -1,0 +1,114 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title class="ion-title">Editar Información Personal</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="closeModal()">
+        <ion-icon slot="start" name="arrow-back-outline" class="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="signup-content">
+  
+  <ion-avatar class="img-responsive">
+    <app-image-shell [src]="imageFilePath || userCredentials.image" class="user-image" [display]="'cover'" animation="spinner">
+      <app-aspect-ratio [ratio]="{w:1, h:1}">
+      </app-aspect-ratio>
+    </app-image-shell>
+  </ion-avatar>
+  <br>
+  <ion-button (click)="takePhoto()" expand="block" color="primary" shape="round" size="small">
+    Modificar foto de Perfil
+  </ion-button>
+  <br>
+  <form [formGroup]="updateUserForm" (ngSubmit)="updateUser()">
+
+    <ion-list class="inputs-list" lines="full">
+      <ion-item class="input-item">
+        <ion-input [value]="userCredentials.name" placeholder="Nombre" formControlName="name" clearInput autocapitalize="off">
+        </ion-input>
+      </ion-item>
+      <div class="error-container">
+        <ng-container *ngFor="let validation of validation_messages.name">
+          <div class="error-message" *ngIf="updateUserForm.get('name').hasError(validation.type) && (updateUserForm.get('name').dirty || updateUserForm.get('name').touched)">
+            <ion-icon name="information-circle-outline"></ion-icon>
+            <span>{{ validation.message }}</span>
+          </div>
+        </ng-container>
+      </div>  
+
+      <ion-item class="input-item">
+        <ion-input type="email" [disabled]="true" [value]="userCredentials.email" placeholder="Correo" formControlName="email" clearInput autocapitalize="off" inputmode="email"></ion-input>
+      </ion-item>
+      <div class="error-container">
+        <ng-container *ngFor="let validation of validation_messages.email">
+          <div class="error-message" *ngIf="updateUserForm.get('email').hasError(validation.type) && (updateUserForm.get('email').dirty || updateUserForm.get('email').touched)">
+            <ion-icon name="information-circle-outline"></ion-icon>
+            <span>{{ validation.message }}</span>
+          </div>
+        </ng-container>
+      </div>
+
+      <ion-item class="input-item">
+        <app-show-hide-password>
+          <ion-input type="password" placeholder="Antigua Contraseña" formControlName="old_password"></ion-input>
+        </app-show-hide-password>
+      </ion-item>
+      <div class="error-container">
+        <ng-container *ngFor="let validation of validation_messages.password">
+          <div class="error-message" *ngIf="updateUserForm.get('old_password').hasError(validation.type) && (updateUserForm.get('old_password').dirty || updateUserForm.get('old_password').touched)">
+            <ion-icon name="information-circle-outline"></ion-icon>
+            <span>{{ validation.message }}</span>
+          </div>
+        </ng-container>
+      </div>
+
+      <div formGroupName="matching_passwords">
+        <ion-item class="input-item">
+          <app-show-hide-password>
+            <ion-input type="password" placeholder="Nueva Contraseña" formControlName="password"></ion-input>
+          </app-show-hide-password>
+        </ion-item>
+        <div class="error-container">
+          <ng-container *ngFor="let validation of validation_messages.password">
+            <div class="error-message" *ngIf="updateUserForm.get('matching_passwords').get('password').hasError(validation.type) && (updateUserForm.get('matching_passwords').get('password').dirty || updateUserForm.get('matching_passwords').get('password').touched)">
+              <ion-icon name="information-circle-outline"></ion-icon>
+              <span>{{ validation.message }}</span>
+            </div>
+          </ng-container>
+        </div>
+
+        <ion-item class="input-item">
+          <app-show-hide-password>
+            <ion-input type="password" placeholder="Confirmar Contraseña" formControlName="confirm_password"></ion-input>
+          </app-show-hide-password>
+        </ion-item>
+        <div class="error-container">
+          <ng-container *ngFor="let validation of validation_messages.confirm_password">
+            <div class="error-message" *ngIf="updateUserForm.get('matching_passwords').get('confirm_password').hasError(validation.type) && (updateUserForm.get('matching_passwords').get('confirm_password').dirty || updateUserForm.get('matching_passwords').get('confirm_password').touched)">
+              <ion-icon name="information-circle-outline"></ion-icon>
+              <span>{{ validation.message }}</span>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div class="error-container">
+        <ng-container *ngFor="let validation of validation_messages.matching_passwords">
+          <div class="error-message" *ngIf="updateUserForm.get('matching_passwords').hasError(validation.type) && (updateUserForm.get('matching_passwords').get('confirm_password').dirty || updateUserForm.get('matching_passwords').get('confirm_password').touched)">
+            <ion-icon name="information-circle-outline"></ion-icon>
+            <span>{{ validation.message }}</span>
+          </div>
+        </ng-container>
+      </div>
+    </ion-list>
+
+    <ion-button class="signup-btn" type="submit" expand="block" [disabled]="!imageFilePath">Actualizar</ion-button>
+    <div class="error-container" *ngIf="submitError">
+      <div class="error-message">
+        <ion-icon name="information-circle-outline"></ion-icon>
+        <span>{{ submitError }}</span>
+      </div>
+    </div>
+  </form>
+</ion-content>

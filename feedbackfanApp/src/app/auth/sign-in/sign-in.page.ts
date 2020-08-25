@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, Output } from '@angular/core';
 import { Location } from '@angular/common';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -25,6 +25,8 @@ export class SignInPage implements OnInit {
   submitError: string;
   redirectLoader: HTMLIonLoadingElement;
   authRedirectResult: Subscription;
+
+  @Output() userLogged: boolean;
 
   // tslint:disable-next-line: variable-name
   validation_messages = {
@@ -80,7 +82,7 @@ export class SignInPage implements OnInit {
       // Get previous URL from our custom History Helper
       // If there's no previous page, then redirect to profile
       // const previousUrl = this.historyHelper.previousUrl || 'firebase/auth/profile';
-      const previousUrl = 'auth/profile';
+      const previousUrl = 'profile';
 
       // No need to store in the navigation history the sign-in page with redirect params (it's justa a mandatory mid-step)
       // Navigate to profile and replace current url with profile
@@ -121,13 +123,14 @@ export class SignInPage implements OnInit {
       // navigate to user profile
       this.userService.getUser(user.user.uid).subscribe((userdata) => {
         profileData = JSON.stringify(userdata);
+        this.userLogged = true;
         Storage.set({key: 'userCredentials', value: profileData});
-        this.dismissLoading();
         this.redirectLoggedUserToProfilePage();
       });
     })
     .catch(error => {
       this.submitError = error.message;
+    }).finally(() => {
       this.dismissLoading();
     });
   }

@@ -1,39 +1,38 @@
-import { Component, OnInit, NgZone } from '@angular/core';
-import { Validators, FormGroup, FormControl } from '@angular/forms';
-import { Location } from '@angular/common';
-import { Router, ActivatedRoute } from '@angular/router';
-import { MenuController, LoadingController } from '@ionic/angular';
-import { PasswordValidator } from '../../validators/password.validator';
-import { AuthService } from '../../core/services/auth.service';
+import { Component, OnInit, Input, NgZone } from '@angular/core';
+import { ModalController, MenuController, LoadingController } from '@ionic/angular';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-
-import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
-import { UserService } from '../../core/services/user.service';
-import { ProfileModel } from '../../profile/profile.model';
-
-import { roles } from '../../../configuration/roles';
+import { Router, ActivatedRoute } from '@angular/router';
+import { UserService } from 'src/app/core/services/user.service';
+import { PasswordValidator } from 'src/app/validators/password.validator';
+import { ProfileModel } from '../profile.model';
 import { StorageService } from '../../core/services/storage.service';
+import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
+import { Location } from '@angular/common';
+import { AuthService } from '../../core/services/auth.service';
 
 const { Storage } = Plugins;
 const { Camera } = Plugins;
 
 @Component({
-  selector: 'app-sign-up',
-  templateUrl: './sign-up.page.html',
-  styleUrls: [
-    './styles/sign-up.page.scss'
-  ]
+  selector: 'app-edit-profile-info',
+  templateUrl: './edit-profile-info.component.html',
+  styleUrls: ['./edit-profile-info.component.scss'],
 })
-export class SignUpPage implements OnInit {
-  signupForm: FormGroup;
+export class EditProfileInfoComponent implements OnInit {
+  @Input() userCredentials: ProfileModel;
+
+  updateUserForm: FormGroup;
   // tslint:disable-next-line: variable-name
   matching_passwords_group: FormGroup;
   submitError: string;
   redirectLoader: HTMLIonLoadingElement;
   authRedirectResult: Subscription;
+  userData: ProfileModel = new ProfileModel();
+  userStorage: ProfileModel;
 
   imageFilePath = '../../../assets/icons/no-profile-picture.jpg';
-  imageFile: string;
+  imageFile = '';
 
   // tslint:disable-next-line: variable-name
   validation_messages = {
@@ -62,11 +61,12 @@ export class SignUpPage implements OnInit {
     public menu: MenuController,
     public loadingController: LoadingController,
     public location: Location,
-    private authService: AuthService,
+    private modalController: ModalController,
     private userService: UserService,
     private storageService: StorageService,
     private ngZone: NgZone,
-  ) {
+    private authService: AuthService
+    ) {
     this.matching_passwords_group = new FormGroup({
       password: new FormControl('', Validators.compose([
         Validators.minLength(6),
@@ -77,11 +77,15 @@ export class SignUpPage implements OnInit {
       return PasswordValidator.areNotEqual(formGroup);
     });
 
-    this.signupForm = new FormGroup({
+    this.updateUserForm = new FormGroup({
       name: new FormControl('', Validators.required),
       email: new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      ])),
+      old_password: new FormControl('', Validators.compose([
+        Validators.minLength(6),
+        Validators.required
       ])),
       matching_passwords: this.matching_passwords_group,
     });
@@ -95,9 +99,35 @@ export class SignUpPage implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.menu.enable(false);
+  ngOnInit() {
+    this.imageFilePath = this.userCredentials.image;
+    this.updateUserForm.patchValue({
+      name: this.userCredentials.name,
+      email: this.userCredentials.email,
+    });
+    this.getUserFromStorage().then(data => {
+      this.userStorage = data;
+    });
   }
+
+  async getUserFromStorage(): Promise<ProfileModel> {
+    let userStorageData: string;
+
+    await Storage.get({key: 'userCredentials'}).then ((data) => {
+      userStorageData = data.value;
+    });
+    return JSON.parse(userStorageData);
+  }
+
+  closeModal() {
+    this.modalController.dismiss();
+  }
+
+  closeModalWithData() {
+    this.modalController.dismiss({imageUrl: this.userData.image});
+  }
+
+  // -------------------------
 
   // Once the auth provider finished the authentication flow, and the auth redirect completes,
   // hide the loader and redirect the user to the profile page
@@ -133,13 +163,6 @@ export class SignUpPage implements OnInit {
     this.submitError = null;
   }
 
-  manageAuthWithProvidersErrors(errorMessage: string) {
-    this.submitError = errorMessage;
-    // remove auth-redirect param from url
-    this.location.replaceState(this.router.url.split('?')[0], '');
-    this.dismissLoading();
-  }
-
   async takePhoto() {
     const image = await Camera.getPhoto({
       quality: 90,
@@ -154,33 +177,46 @@ export class SignUpPage implements OnInit {
     });
   }
 
-  signUpWithEmail(): void {
+  async updateUser(): Promise<void> {
     let indexedData: string;
-    const values = this.signupForm.value;
-    const userData: ProfileModel = new ProfileModel();
-    this.presentLoading();
+    const values = this.updateUserForm.value;
     this.resetSubmitError();
-    this.authService.signUpWithEmail(values)
-      .then(async user => {
-        userData.uid = user.user.uid;
-        userData.email = user.user.email;
-        userData.name = values.name;
-        userData.role = roles.employee;
-        userData.sentMessages = 0;
-        userData.receivedMessages = 0;
-        userData.isShell = true;
-        await this.storageService.uploadUserImg(this.imageFilePath, userData.uid).then (downloadUrl => {
-          userData.image = downloadUrl;
-          this.userService.createUser(userData);
-          indexedData = JSON.stringify(userData);
-          Storage.set({key: 'userCredentials', value: indexedData});
-        });
-        this.dismissLoading();
-        this.redirectLoggedUserToProfilePage();
-      })
-      .catch(error => {
-        this.dismissLoading();
+    await this.presentLoading();
+
+    this.userData.uid = this.userStorage.uid;
+    this.userData.email = this.userStorage.email;
+    this.userData.name = values.name;
+    this.userData.role = this.userStorage.role;
+    this.userData.sentMessages = this.userStorage.sentMessages;
+    this.userData.receivedMessages = this.userStorage.receivedMessages;
+    this.userData.isShell = true;
+
+    if (values.old_password !== ''
+        && values.matching_passwords.password !== ''
+        && values.matching_passwords.confirm_password !== '') {
+      await this.authService.signInWithEmail(values.email, values.old_password).catch(error => {
         this.submitError = error.message;
       });
+      await this.authService.changePassword(values).catch(error => {
+        this.submitError = error.message;
+      });
+    }
+    if (this.imageFile !== '') {
+      await this.storageService.uploadUserImg(this.imageFilePath, this.userData.uid).then(downloadUrl => {
+        this.userData.image = downloadUrl;
+      });
+    } else {
+      this.userData.image = this.userStorage.image;
+    }
+    await this.userService.updateUser(this.userData).then(async () => {
+      indexedData = JSON.stringify(this.userData);
+      await Storage.set({key: 'userCredentials', value: indexedData}).then(async () => {
+        await this.dismissLoading();
+        if (!this.submitError) {
+          this.closeModalWithData();
+        }
+      });
+    });
   }
+
 }

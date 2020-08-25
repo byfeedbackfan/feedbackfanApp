@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Observable, of, Subject, from } from 'rxjs';
+import { Observable, Subject, from } from 'rxjs';
 import { DataStore } from '../../shell/data-store';
-import { ProfileModel } from '../../auth/profile/profile.model';
+import { ProfileModel } from '../../profile/profile.model';
 import { Platform } from '@ionic/angular';
 
 import { User, auth } from 'firebase/app';
@@ -74,44 +74,8 @@ export class AuthService {
     return await this.angularFire.sendPasswordResetEmail(email);
   }
 
-  public getProfileStore(dataSource: Observable<ProfileModel>): DataStore<ProfileModel> {
-    // Initialize the model specifying that it is a shell model
-    const shellModel: ProfileModel = new ProfileModel();
-    this.profileDataStore = new DataStore(shellModel);
-    // Trigger the loading mechanism (with shell) in the dataStore
-    this.profileDataStore.load(dataSource);
-    return this.profileDataStore;
+  async changePassword(values: any): Promise<void> {
+    return await (await this.angularFire.currentUser).updatePassword(values.matching_passwords.password);
   }
 
-  public getProfileDataSource(): Observable<ProfileModel> {
-    const userModel = new ProfileModel();
-    const provierData = this.currentUser.providerData[0];
-
-    const userData = this.userProviderAdditionalInfo ? this.userProviderAdditionalInfo : provierData;
-
-    // Default imgs are too small and our app needs a bigger image
-    switch (provierData.providerId) {
-      case 'facebook.com':
-        userModel.image = provierData.photoURL + '?height=400';
-        break;
-      case 'password':
-        userModel.image = 'https://s3-us-west-2.amazonaws.com/ionicthemes/otros/avatar-placeholder.png';
-        break;
-      case 'twitter.com':
-        userModel.image = provierData.photoURL.replace('_normal', '_400x400');
-        break;
-      case 'google.com':
-        userModel.image = provierData.photoURL.split('=')[0];
-        break;
-      default:
-        userModel.image = provierData.photoURL;
-    }
-
-    userModel.name = userData.name || userData.displayName || 'What\'s your name?';
-    userModel.role = 'How would you describe yourself?';
-    userModel.email = userData.email || 'Where can I send you emails?';
-    userModel.provider = (provierData.providerId !== 'password') ? provierData.providerId : 'Credentials';
-
-    return of(userModel);
-  }
 }

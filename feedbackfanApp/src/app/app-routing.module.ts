@@ -16,6 +16,10 @@ const routes: Routes = [
     loadChildren: () => import('./page-not-found/page-not-found.module').then(m => m.PageNotFoundModule)
   },
   {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
+  },
+  {
     path: '**',
     redirectTo: 'page-not-found',
   },

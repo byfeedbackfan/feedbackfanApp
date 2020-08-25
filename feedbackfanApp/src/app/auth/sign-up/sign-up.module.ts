@@ -6,8 +6,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { SignUpPage } from './sign-up.page';
 import { SharedModule } from '../../shared/shared.module';
-import { CoreModule } from '../../core/core.module';
-import { ShellModule } from '../../shell/shell.module';
 
 
 const routes: Routes = [
@@ -24,9 +22,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    SharedModule,
-    CoreModule,
-    ShellModule,
+    SharedModule
   ],
   declarations: [SignUpPage]
 })
