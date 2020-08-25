@@ -9,15 +9,15 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'auth/sign-in',
-    pathMatch: 'full',
+    pathMatch: 'full'
   },
   {
     path: 'page-not-found',
     loadChildren: () => import('./page-not-found/page-not-found.module').then(m => m.PageNotFoundModule)
   },
   {
-    path: 'profile',
-    loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
+    path: 'app',
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsModule)
   },
   {
     path: '**',

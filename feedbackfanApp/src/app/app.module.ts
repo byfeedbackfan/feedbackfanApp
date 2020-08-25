@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AngularFireModule } from '@angular/fire';
+import { TabsModule } from './tabs/tabs.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AngularFireModule } from '@angular/fire';
     AppRoutingModule,
     CoreModule,
     SharedModule,
+    TabsModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     AngularFireModule.initializeApp(environment.firebase),

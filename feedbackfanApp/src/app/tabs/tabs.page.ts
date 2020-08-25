@@ -4,17 +4,14 @@ import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tabs',
-  templateUrl: 'tabs.component.html',
+  templateUrl: 'tabs.page.html',
   styleUrls: [
-    './styles/tabs.component.scss'
+    './styles/tabs.page.scss'
   ]
 })
-export class TabsComponent {
-  userLogged: boolean;
+export class TabsPage  {
 
-  constructor(
-    public menu: MenuController,
-    ) { }
+  constructor(public menu: MenuController) { }
 
   ionViewWillEnter() {
     this.menu.enable(true);

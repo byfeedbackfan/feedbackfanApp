@@ -8,7 +8,6 @@ export class ProfileModel extends ShellModel {
   image: string;
   sentMessages: number;
   receivedMessages: number;
-  provider: string;
 
   constructor() {
     super();
