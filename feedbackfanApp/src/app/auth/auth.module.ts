@@ -9,6 +9,7 @@ import { SignInModule } from './sign-in/sign-in.module';
 import { SignUpModule } from './sign-up/sign-up.module';
 import { CoreModule } from '../core/core.module';
 import { ForgotPasswordModule } from './forgot-password/forgot-password.module';
+import { ResetPasswordModule } from './reset-password/reset-password.module';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
     path: 'forgot-password',
     loadChildren: () => import('./forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule)
   },
+  {
+    path: 'reset-password',
+    loadChildren: () => import('./reset-password/reset-password.module').then(m => m.ResetPasswordModule)
+  },
 ];
 
 @NgModule({
@@ -35,8 +40,11 @@ const routes: Routes = [
     SignInModule,
     SignUpModule,
     ForgotPasswordModule,
+    ResetPasswordModule,
     CoreModule
   ],
-  providers: [AuthService]
+  providers: [
+    AuthService
+  ],
 })
 export class FirebaseAuthModule {}

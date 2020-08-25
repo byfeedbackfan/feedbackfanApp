@@ -44,25 +44,13 @@ export class ForgotPasswordPage {
     toast.present();
   }
 
-  // Disable side menu for this page
-  ionViewDidEnter(): void {
-    this.menu.enable(false);
-  }
-
-  // Restore to default when leaving this page
-  ionViewDidLeave(): void {
-    this.menu.enable(true);
-  }
-
   recoverPassword(): void {
     const email = this.forgotPasswordForm.value;
     this.authService.resetPassword(email.email).then(res => {
-      console.log(res);
       this.presentToast().then( () => {
         this.router.navigate(['auth/sign-in'], { replaceUrl: true });
       });
     });
-    // this.router.navigate(['app/categories']);
   }
 
 }

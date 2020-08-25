@@ -78,4 +78,12 @@ export class AuthService {
     return await (await this.angularFire.currentUser).updatePassword(values.matching_passwords.password);
   }
 
+  changeForgottenPassword(code: string, newPassword: string): Promise<void> {
+    return this.angularFire.confirmPasswordReset(code, newPassword);
+  }
+
+  verifyPasswordResetCode(code: string): Promise<string> {
+    return this.angularFire.verifyPasswordResetCode(code);
+  }
+
 }

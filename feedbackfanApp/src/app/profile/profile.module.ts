@@ -8,11 +8,13 @@ import { ProfilePage } from './profile.page';
 import { ShellModule } from '../shell/shell.module';
 import { ProfileResolver } from './profile.resolver';
 import { EditProfileInfoComponent } from './edit-profile-info/edit-profile-info.component';
+import { ProfileGuard } from './profile.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: ProfilePage,
+    canActivate: [ProfileGuard],
     resolve: {
       data: ProfileResolver,
     }
@@ -35,6 +37,7 @@ const routes: Routes = [
   ],
   providers: [
     ProfileResolver,
+    ProfileGuard
   ]
 })
 export class ProfileModule {}
