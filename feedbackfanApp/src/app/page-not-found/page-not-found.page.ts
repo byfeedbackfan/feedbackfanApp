@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MenuController } from '@ionic/angular';
+import { staticText } from '../../configuration/staticText';
 
 @Component({
   selector: 'app-page-not-found',
@@ -9,6 +10,7 @@ import { MenuController } from '@ionic/angular';
   ]
 })
 export class PageNotFoundPage {
+  staticText = staticText;
 
   constructor(public menu: MenuController) { }
 

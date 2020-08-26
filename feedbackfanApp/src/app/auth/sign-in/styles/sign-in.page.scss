@@ -23,13 +23,30 @@ ion-back-button {
   --padding-bottom: var(--page-margin);
 
   .img-responsive {
-    width: 50%;
+    width: 45%;
     height: auto;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 10%;
+    margin-bottom: 5%;
     margin-top: 10%;
+  }
+
+  .logo-responsive {
+    width: 30%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0%;
+    margin-top: 20%;
+  }
+
+  .text-synergy-footer {
+    text-align: center !important;
+    margin: 0;
+    font-weight: bold;
+    font-size: 60%;
   }
 
   .auth-title {
@@ -48,6 +65,10 @@ ion-back-button {
       --padding-start: 0px;
       --padding-end: 0px;
       --inner-padding-end: 0px;
+
+      ion-icon {
+        margin-left: 2%;
+      }
     }
   }
 
@@ -67,6 +88,7 @@ ion-back-button {
 
   .login-btn {
     margin: calc(var(--page-margin) / 2) 0px;
+    margin-bottom: 10% !important;
   }
 
   .other-auth-options-row {
@@ -84,15 +106,14 @@ ion-back-button {
   }
   
   .forgot-password-row {
-    display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0px;
+    margin-bottom: -20px;
   }
 
   .forgot-password-btn {
-    --color: var(--ion-color-secondary);
-    font-size: x-small;
+    --color: #3b69ff;
+    font-size: small;
   }
 
   .social-auth-options {

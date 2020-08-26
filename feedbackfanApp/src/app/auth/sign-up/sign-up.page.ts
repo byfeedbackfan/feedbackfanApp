@@ -13,6 +13,7 @@ import { ProfileModel } from '../../profile/profile.model';
 
 import { roles } from '../../../configuration/roles';
 import { StorageService } from '../../core/services/storage.service';
+import { staticText } from '../../../configuration/staticText';
 
 const { Storage } = Plugins;
 const { Camera } = Plugins;
@@ -34,25 +35,26 @@ export class SignUpPage implements OnInit {
 
   imageFilePath = '../../../assets/icons/no-profile-picture.jpg';
   imageFile: string;
+  staticText = staticText;
 
   // tslint:disable-next-line: variable-name
   validation_messages = {
     email: [
-      { type: 'required', message: 'Necesitas agregar un correo.' },
-      { type: 'pattern', message: 'Ingresa un correo válido.' }
+      { type: 'required', message: this.staticText.validar_correo_requerido },
+      { type: 'pattern', message: this.staticText.validar_correo_regular }
     ],
     password: [
-      { type: 'required', message: 'Necesitas agregar una contraseña.' },
-      { type: 'minlength', message: 'La contraseña debe tener mínimo 6 caracteres.' }
+      { type: 'required', message: this.staticText.validar_contrasena_requerida },
+      { type: 'minlength', message: this.staticText.validar_longitud_contrasena }
     ],
     confirm_password: [
-      { type: 'required', message: 'Necesitas confirmar la contraseña.' }
+      { type: 'required', message: this.staticText.validar_confirmacion_contrasena }
     ],
     matching_passwords: [
-      { type: 'areNotEqual', message: 'La confirmación es distinta.' }
+      { type: 'areNotEqual', message: this.staticText.match_contrasena_no_valido }
     ],
     name: [
-      { type: 'required', message: 'Necesitas agregar un nombre.' }
+      { type: 'required', message: this.staticText.validar_nombre }
     ]
   };
 

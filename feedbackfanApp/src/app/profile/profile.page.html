@@ -1,12 +1,7 @@
-<ion-header class="ion-no-border">
-  <ion-toolbar>
-    <ion-title class="ion-title">Perfil</ion-title>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content class="user-content">
   <ion-row>
-    <ion-col size="12" class="ion-align-self-end">
+    <ion-col size="4" class="ion-align-self-end">
       <ion-avatar class="img-responsive">
         <app-image-shell class="user-image" [display]="'cover'" animation="spinner" [src]="user?.image" [alt]="'item image'">
           <app-aspect-ratio [ratio]="{w:1, h:1}">
@@ -14,37 +9,63 @@
         </app-image-shell>
       </ion-avatar>
     </ion-col>
-  </ion-row>
-
-  <ion-row class="user-preferences-wrapper">
-    <ion-col size="12">
+    <ion-col size="8" class=" ion-align-self-center user-preferences-wrapper ">
       <h3 class="preference-value">
         <app-text-shell [data]="user?.name"></app-text-shell>
       </h3>
-    </ion-col>
-    <ion-col size="12">
-      <p class="preference-value">
+      <p class="preference-email">
         <app-text-shell [data]="user?.email"></app-text-shell>
       </p>
-    </ion-col>
-    <ion-col size="12">
       <p class="preference-name">
         <app-text-shell [data]="user?.role"></app-text-shell>
       </p>
     </ion-col>
+  </ion-row>
+  <ion-row>
     <ion-col size="12">
-      <ion-button class="sign-out-btn" expand="block" fill="clear" (click)="signOut()">Cerrar Sesión</ion-button>
+      <ion-toolbar class="css-toolbar">
+        <ion-row>
+          <ion-col size="3">
+            <ion-buttons>
+              <ion-button size="small" class="icon-only edit-btn" fill="clear" mode="ios" (click)="presentModal()">
+                <ion-icon slot="start" class="edit-btn" name="person-sharp"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-col>
+          <ion-col size="3">
+            <ion-buttons>
+              <ion-button size="small" class="icon-only edit-btn" fill="clear" mode="ios">
+                <ion-icon slot="start" class="edit-btn" name="send-sharp"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-col>
+          <ion-col size="3">
+            <ion-buttons>
+              <ion-button size="small"  fill="clear" mode="ios">
+                <ion-icon slot="start" class="edit-btn" name="archive-sharp"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-col>
+          <ion-col size="3">
+            <ion-buttons>
+              <ion-button size="small" class="icon-only" fill="clear" mode="ios" (click)="signOut()">
+                <ion-icon slot="start" class="edit-btn" name="log-out-sharp"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-col>
+        </ion-row>
+      </ion-toolbar>
     </ion-col>
   </ion-row>
   <ion-card class="css-card">
-    <ion-card-content>
+    <ion-card-content class="css-card-content">
       <ion-row class="user-preferences-wrapper">
         <ion-col>
           <p class="messages-values">
             <app-text-shell [data]="user?.sentMessages.toString()"></app-text-shell>
           </p>
           <p class="messages-values-titles">
-            Mensajes Enviados
+            {{ this.staticText.enviados }}
           </p>
         </ion-col>
         <ion-col>
@@ -52,15 +73,10 @@
             <app-text-shell [data]="user?.receivedMessages.toString()"></app-text-shell>
           </p>
           <p class="messages-values-titles">
-            Mensajes Recibidos
+            {{ this.staticText.recibidos }}
           </p>
         </ion-col>
       </ion-row>
     </ion-card-content>
   </ion-card>
-  <ion-row>
-    <ion-col size="12">
-      <ion-button expand="block" size="small" (click)="presentModal()">Editar Perfil</ion-button>
-    </ion-col>
-  </ion-row>
 </ion-content>

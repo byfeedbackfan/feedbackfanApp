@@ -10,6 +10,7 @@ import { StorageService } from '../../core/services/storage.service';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
 import { Location } from '@angular/common';
 import { AuthService } from '../../core/services/auth.service';
+import { staticText } from '../../../configuration/staticText';
 
 const { Storage } = Plugins;
 const { Camera } = Plugins;
@@ -22,6 +23,7 @@ const { Camera } = Plugins;
 export class EditProfileInfoComponent implements OnInit {
   @Input() userCredentials: ProfileModel;
 
+  staticText = staticText;
   updateUserForm: FormGroup;
   // tslint:disable-next-line: variable-name
   matching_passwords_group: FormGroup;
@@ -37,21 +39,21 @@ export class EditProfileInfoComponent implements OnInit {
   // tslint:disable-next-line: variable-name
   validation_messages = {
     email: [
-      { type: 'required', message: 'Necesitas agregar un correo.' },
-      { type: 'pattern', message: 'Ingresa un correo válido.' }
+      { type: 'required', message: this.staticText.validar_correo_requerido },
+      { type: 'pattern', message: this.staticText.validar_correo_regular }
     ],
     password: [
-      { type: 'required', message: 'Necesitas agregar una contraseña.' },
-      { type: 'minlength', message: 'La contraseña debe tener mínimo 6 caracteres.' }
+      { type: 'required', message: this.staticText.validar_contrasena_requerida },
+      { type: 'minlength', message: this.staticText.validar_longitud_contrasena }
     ],
     confirm_password: [
-      { type: 'required', message: 'Necesitas confirmar la contraseña.' }
+      { type: 'required', message: this.staticText.validar_confirmacion_contrasena }
     ],
     matching_passwords: [
-      { type: 'areNotEqual', message: 'La confirmación es distinta.' }
+      { type: 'areNotEqual', message: this.staticText.match_contrasena_no_valido }
     ],
     name: [
-      { type: 'required', message: 'Necesitas agregar un nombre.' }
+      { type: 'required', message: this.staticText.validar_nombre }
     ]
   };
 

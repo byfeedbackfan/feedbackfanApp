@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { MenuController } from '@ionic/angular';
+import { staticText } from '../../configuration/staticText';
 
 @Component({
   selector: 'app-tabs',
@@ -10,6 +11,7 @@ import { MenuController } from '@ionic/angular';
   ]
 })
 export class TabsPage  {
+  staticText = staticText;
 
   constructor(public menu: MenuController) { }
 

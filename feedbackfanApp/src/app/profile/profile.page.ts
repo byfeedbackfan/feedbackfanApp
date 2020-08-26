@@ -10,6 +10,8 @@ import { ModalController } from '@ionic/angular';
 import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
+import { staticText } from '../../configuration/staticText';
+
 const { Storage } = Plugins;
 
 @Component({
@@ -31,6 +33,7 @@ export class ProfilePage implements OnInit {
 
   imageFilePath = '../../../assets/icons/no-profile-picture.jpg';
   imageFile: string;
+  staticText = staticText;
 
   constructor(
     private router: Router,

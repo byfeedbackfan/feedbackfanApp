@@ -3,6 +3,7 @@ import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MenuController, ToastController } from '@ionic/angular';
 import { AuthService } from '../../core/services/auth.service';
+import { staticText } from '../../../configuration/staticText';
 
 @Component({
   selector: 'app-forgot-password',
@@ -13,12 +14,13 @@ import { AuthService } from '../../core/services/auth.service';
 })
 export class ForgotPasswordPage {
   forgotPasswordForm: FormGroup;
+  staticText = staticText;
 
   // tslint:disable-next-line: variable-name
   validation_messages = {
     email: [
-      { type: 'required', message: 'Email is required.' },
-      { type: 'pattern', message: 'Enter a valid email.' }
+      { type: 'required', message: this.staticText.validar_correo_requerido },
+      { type: 'pattern', message: this.staticText.validar_correo_regular }
     ]
   };
 

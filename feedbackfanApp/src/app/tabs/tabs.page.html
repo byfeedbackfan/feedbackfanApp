@@ -1,16 +1,16 @@
 <ion-tabs>
-  <ion-tab-bar slot="bottom">
+  <ion-tab-bar slot="bottom" mode="md">
     <ion-tab-button tab="sendMessage">
-      <ion-icon name="list-outline"></ion-icon>
-      <ion-label class="tab-title">Enviar Mensaje</ion-label>
+      <ion-icon name="mail-outline"></ion-icon>
+      <ion-label class="tab-title">{{ this.staticText.enviar_mensaje }}</ion-label>
     </ion-tab-button>
     <ion-tab-button tab="search">
       <ion-icon name="search-outline"></ion-icon>
-      <ion-label class="tab-title">Buscar Persona</ion-label>
+      <ion-label class="tab-title">{{ this.staticText.buscador }}</ion-label>
     </ion-tab-button>
     <ion-tab-button tab="profile">
       <ion-icon name="notifications-outline"></ion-icon>
-      <ion-label class="person-outline">Perfil</ion-label>
+      <ion-label class="person-outline">{{ this.staticText.perfil }}</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

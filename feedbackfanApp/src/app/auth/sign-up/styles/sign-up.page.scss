@@ -15,7 +15,6 @@ ion-back-button {
 
 .ion-title {
   color: white;
-  font-weight: bold;
 }
 
 .forgot-password-contain {
@@ -33,10 +32,13 @@ ion-back-button {
 }
 
 .img-responsive {
-  zoom: 4.0;
+  zoom: 3.0;
   display: block;
+  margin-top: 0;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 0;
+  padding: 0;
 }
 
 // Note:  All the CSS variables defined below are overrides of Ionic elements CSS Custom Properties
@@ -58,6 +60,7 @@ ion-back-button {
 
   .inputs-list {
     --ion-item-background: var(--page-background);
+    padding: 0 !important;
 
     .input-item {
       --padding-start: 0px;
@@ -89,13 +92,19 @@ ion-back-button {
     align-items: center;
 
     .login-btn {
-      --color: var(--ion-color-secondary);
+      --color: #3b69ff;
       margin: 0px;
+      font-size: small;
 
       &:focus {
         outline: none;
       }
     }
+  }
+
+  .photo-values {
+    align-items: center !important;
+    text-align: center;
   }
 
 }

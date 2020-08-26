@@ -41,25 +41,36 @@ ion-back-button {
 }
 
 .css-card {
-  background-color: #3b69ff !important;
+  background-color: white !important;
+  padding: 0 !important;
+  margin-top: 2%;
   margin-left: 5%;
   margin-right: 5%;
+  margin-bottom: 2%;
+  --ion-color-shade: black !important;
+}
+
+.css-card-content {
+  padding: 0;
+  margin: 0;
 }
 
 .messages-values {
-  color: white;
+  color: black;
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
   font-weight: bold;
   margin-right: 3%;
-  text-transform: uppercase;
   text-align: center !important; 
-  font-size: 200% !important;
+  font-size: 100% !important;
 }
 
 .messages-values-titles {
-  color: white;
+  color: black;
+  padding: 0;
   font-weight: bold;
   margin-left: 3%;
-  text-transform: uppercase;
   text-align: center !important; 
   font-size: 100% !important;
 }
@@ -68,10 +79,11 @@ ion-back-button {
   --background: var(--page-background);
 
   .img-responsive {
+    width: auto;
+    height: auto;
     margin-top: 10%;
-    zoom: 3.0;
     display: block;
-    margin-left: auto;
+    margin-left: 8%;
     margin-right: auto;
   }
 
@@ -81,11 +93,19 @@ ion-back-button {
     padding: var(--page-margin);
 
     .preference-name {
+      font-size: 100%;
+      vertical-align: auto !important;
       margin: 0% 0% 0%;
-      text-transform: uppercase;
       color:  #3b69ff;
       font-weight: bold;
-      text-align: center !important; 
+      text-transform: capitalize;
+      text-align: left !important; 
+    }
+
+    .preference-email {
+      font-size: 100%;
+      margin: 0px 0px calc(var(--page-margin) / 10);
+      color: var(--ion-color-dark-tint);
     }
 
     .font-title {
@@ -99,19 +119,24 @@ ion-back-button {
     }
 
     .preference-value {
+      font-size: 100%;
       margin: 0px 0px calc(var(--page-margin) / 10);
       font-weight: bold;
       color: var(--ion-color-dark-tint);
-      text-align: center !important; 
     }
   }
 
   .edit-btn {
-    margin-top: calc(var(--page-margin) /5);
+    color: white !important;
   }
 
-  .sign-out-btn {
-    --color: var(--ion-color-secondary);
-    font-size: small;
+  .buttons-col {
+    padding: 0;
+    margin-left: 2%;
   }
+
+  .css-toolbar {
+    background-color: #3b69ff !important;
+  }
+
 }

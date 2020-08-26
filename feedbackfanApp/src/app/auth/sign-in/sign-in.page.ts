@@ -3,13 +3,15 @@ import { Location } from '@angular/common';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MenuController, LoadingController } from '@ionic/angular';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 import { HistoryHelperService } from '../../utils/history-helper.service';
 import { AuthService } from '../../core/services/auth.service';
 
 import { Plugins } from '@capacitor/core';
 import { UserService } from '../../core/services/user.service';
+
+import { staticText } from '../../../configuration/staticText';
 
 const { Storage } = Plugins;
 
@@ -25,18 +27,19 @@ export class SignInPage implements OnInit {
   submitError: string;
   redirectLoader: HTMLIonLoadingElement;
   authRedirectResult: Subscription;
+  staticText = staticText;
 
   @Output() userLogged: boolean;
 
   // tslint:disable-next-line: variable-name
   validation_messages = {
     email: [
-      { type: 'required', message: 'Email is required.' },
-      { type: 'pattern', message: 'Enter a valid email.' }
+      { type: 'required', message: this.staticText.validar_correo_requerido },
+      { type: 'pattern', message: this.staticText.validar_correo_regular }
     ],
     password: [
-      { type: 'required', message: 'Password is required.' },
-      { type: 'minlength', message: 'Password must be at least 6 characters long.' }
+      { type: 'required', message: this.staticText.validar_contrasena_requerida },
+      { type: 'minlength', message: this.staticText.validar_longitud_contrasena }
     ]
   };
 
