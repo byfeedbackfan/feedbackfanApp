@@ -2,15 +2,23 @@
   <ion-tab-bar slot="bottom" mode="md">
     <ion-tab-button tab="sendMessage">
       <ion-icon name="mail-outline"></ion-icon>
-      <ion-label class="tab-title">{{ this.staticText.enviar_mensaje }}</ion-label>
+      <ion-label class="tab-title">{{ 'nuevo' | translate}}</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="sendMessage">
+      <ion-icon name="send-outline"></ion-icon>
+      <ion-label class="tab-title">{{ 'enviados' | translate }}</ion-label>
     </ion-tab-button>
     <ion-tab-button tab="search">
       <ion-icon name="search-outline"></ion-icon>
-      <ion-label class="tab-title">{{ this.staticText.buscador }}</ion-label>
+      <ion-label class="tab-title">{{ 'buscador' | translate }}</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="sendMessage">
+      <ion-icon name="download-outline"></ion-icon>
+      <ion-label class="tab-title">{{ 'recibidos' | translate }}</ion-label>
     </ion-tab-button>
     <ion-tab-button tab="profile">
       <ion-icon name="notifications-outline"></ion-icon>
-      <ion-label class="person-outline">{{ this.staticText.perfil }}</ion-label>
+      <ion-label class="person-outline">{{ 'perfil' | translate }}</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

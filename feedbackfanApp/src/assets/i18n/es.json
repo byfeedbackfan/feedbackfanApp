@@ -18,6 +18,7 @@
   "enviar_mensaje": "Enviar mensaje",
   "buscador": "Buscador",
   "registro": "Registro",
+  "nuevo": "Nuevo",
   "agregar_foto": "Agrega tu foto de perfil",
   "nombre": "Nombre",
   "confirmar_contrasena": "Confirmar contraseña",
@@ -36,5 +37,6 @@
   "regresar_p_principal": "Regresa a la página principal",
   "error_no_econtrado": "404",
   "espere": " Espere ...",
-  "iniciando_sesion": "Iniciando sesión ..."
+  "iniciando_sesion": "Iniciando sesión ...",
+  "cerrar_sesion": "Cerrar sesión"
 }
