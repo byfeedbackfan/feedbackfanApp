@@ -22,11 +22,11 @@ export const staticText = {
   nombre: 'Nombre',
   confirmar_contrasena: 'Confirmar contraseña',
   registrarse: 'Registrarse',
-  ya_posee_cuenta: 'Ya tengo una cuenta.',
+  ya_posee_cuenta: 'Ya tengo una cuenta',
   recuperar_mensaje: 'Recuperar mensaje.',
   // tslint:disable-next-line: max-line-length
   texto_de_recuperacion: 'Por favor, ingresa tu correo electrónico. En breve recibirás un mensaje con un link para recuperar tu contraseña.',
-  recuperar_contrasena: 'Recuperar contraseña.',
+  recuperar_contrasena: 'Recuperar contraseña',
   titulo_olvidar_contrasena: '¿Olvidaste tu contraseña?',
   info_personal: 'Editar información.',
   modificar_foto: 'Cambiar foto de perfil',

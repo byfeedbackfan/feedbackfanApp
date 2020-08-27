@@ -11,7 +11,8 @@ import { AuthService } from '../../core/services/auth.service';
 import { Plugins } from '@capacitor/core';
 import { UserService } from '../../core/services/user.service';
 
-import { staticText } from '../../../configuration/staticText';
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from 'src/app/core/language/language.service';
 
 const { Storage } = Plugins;
 
@@ -27,21 +28,12 @@ export class SignInPage implements OnInit {
   submitError: string;
   redirectLoader: HTMLIonLoadingElement;
   authRedirectResult: Subscription;
-  staticText = staticText;
+  translations;
 
   @Output() userLogged: boolean;
 
   // tslint:disable-next-line: variable-name
-  validation_messages = {
-    email: [
-      { type: 'required', message: this.staticText.validar_correo_requerido },
-      { type: 'pattern', message: this.staticText.validar_correo_regular }
-    ],
-    password: [
-      { type: 'required', message: this.staticText.validar_contrasena_requerida },
-      { type: 'minlength', message: this.staticText.validar_longitud_contrasena }
-    ]
-  };
+  validation_messages;
 
   constructor(
     public router: Router,
@@ -50,12 +42,25 @@ export class SignInPage implements OnInit {
     public loadingController: LoadingController,
     public location: Location,
     public historyHelper: HistoryHelperService,
+    public translate: TranslateService,
+    public languageService: LanguageService,
     private authService: AuthService,
     private userService: UserService,
     private ngZone: NgZone,
   ) {
 
     this.menu.enable(false);
+
+    this.validation_messages = {
+      email: [
+        { type: 'required', message: this.languageService.getTerm('validar_correo_requerido') },
+        { type: 'pattern', message: this.languageService.getTerm('validar_correo_regular') }
+      ],
+      password: [
+        { type: 'required', message: this.languageService.getTerm('validar_contrasena_requerida') },
+        { type: 'minlength', message: this.languageService.getTerm('validar_longitud_contrasena') }
+      ]
+    };
 
     this.loginForm = new FormGroup({
       email: new FormControl('', Validators.compose([
@@ -71,10 +76,24 @@ export class SignInPage implements OnInit {
 
   ngOnInit(): void {
     this.menu.enable(false);
+
+    this.getTranslations();
+    this.translate.onLangChange.subscribe(() => {
+      this.getTranslations();
+    });
+
     Storage.get({key: 'userCredentials'}).then((data) => {
       if (data.value) {
         this.redirectLoggedUserToProfilePage();
       }
+    });
+  }
+
+  getTranslations() {
+    // get translations for this page to use in the Language Chooser Alert
+    this.translate.getTranslation(this.translate.currentLang)
+    .subscribe((translations) => {
+      this.translations = translations;
     });
   }
 
@@ -97,7 +116,7 @@ export class SignInPage implements OnInit {
 
   async presentLoading() {
     this.redirectLoader = await this.loadingController.create({
-      message: 'Iniciando Sesión...'
+      message: this.languageService.getTerm('iniciando_sesion')
     });
     await this.redirectLoader.present();
   }
@@ -119,9 +138,9 @@ export class SignInPage implements OnInit {
     this.submitError = null;
   }
 
-  signInWithEmail() {
+  async signInWithEmail() {
     this.resetSubmitError();
-    this.presentLoading();
+    await this.presentLoading();
     let profileData: string;
     this.authService.signInWithEmail(this.loginForm.value.email, this.loginForm.value.password)
     .then(user => {
@@ -135,8 +154,8 @@ export class SignInPage implements OnInit {
     })
     .catch(error => {
       this.submitError = error.message;
-    }).finally(() => {
-      this.dismissLoading();
+    }).finally(async () => {
+      await this.dismissLoading();
     });
   }
 }

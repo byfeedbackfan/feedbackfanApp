@@ -13,7 +13,8 @@ import { ProfileModel } from '../../profile/profile.model';
 
 import { roles } from '../../../configuration/roles';
 import { StorageService } from '../../core/services/storage.service';
-import { staticText } from '../../../configuration/staticText';
+import { LanguageService } from '../../core/language/language.service';
+import { TranslateService } from '@ngx-translate/core';
 
 const { Storage } = Plugins;
 const { Camera } = Plugins;
@@ -35,28 +36,10 @@ export class SignUpPage implements OnInit {
 
   imageFilePath = '../../../assets/icons/no-profile-picture.jpg';
   imageFile: string;
-  staticText = staticText;
 
   // tslint:disable-next-line: variable-name
-  validation_messages = {
-    email: [
-      { type: 'required', message: this.staticText.validar_correo_requerido },
-      { type: 'pattern', message: this.staticText.validar_correo_regular }
-    ],
-    password: [
-      { type: 'required', message: this.staticText.validar_contrasena_requerida },
-      { type: 'minlength', message: this.staticText.validar_longitud_contrasena }
-    ],
-    confirm_password: [
-      { type: 'required', message: this.staticText.validar_confirmacion_contrasena }
-    ],
-    matching_passwords: [
-      { type: 'areNotEqual', message: this.staticText.match_contrasena_no_valido }
-    ],
-    name: [
-      { type: 'required', message: this.staticText.validar_nombre }
-    ]
-  };
+  validation_messages;
+  translations;
 
   constructor(
     public router: Router,
@@ -64,8 +47,10 @@ export class SignUpPage implements OnInit {
     public menu: MenuController,
     public loadingController: LoadingController,
     public location: Location,
+    public translate: TranslateService,
     private authService: AuthService,
     private userService: UserService,
+    private languageService: LanguageService,
     private storageService: StorageService,
     private ngZone: NgZone,
   ) {
@@ -95,10 +80,42 @@ export class SignUpPage implements OnInit {
         this.presentLoading();
       }
     });
+
+    this.validation_messages = {
+      email: [
+        { type: 'required', message: this.languageService.getTerm('validar_correo_requerido') },
+        { type: 'pattern', message: this.languageService.getTerm('validar_correo_regular') }
+      ],
+      password: [
+        { type: 'required', message: this.languageService.getTerm('validar_contrasena_requerida') },
+        { type: 'minlength', message: this.languageService.getTerm('validar_longitud_contrasena') }
+      ],
+      confirm_password: [
+        { type: 'required', message: this.languageService.getTerm('validar_confirmacion_contrasena') }
+      ],
+      matching_passwords: [
+        { type: 'areNotEqual', message: this.languageService.getTerm('match_contrasena_no_valido') }
+      ],
+      name: [
+        { type: 'required', message: this.languageService.getTerm('validar_nombre') }
+      ]
+    };
   }
 
   ngOnInit(): void {
     this.menu.enable(false);
+    this.getTranslations();
+    this.translate.onLangChange.subscribe(() => {
+      this.getTranslations();
+    });
+  }
+
+  getTranslations() {
+    // get translations for this page to use in the Language Chooser Alert
+    this.translate.getTranslation(this.translate.currentLang)
+    .subscribe((translations) => {
+      this.translations = translations;
+    });
   }
 
   // Once the auth provider finished the authentication flow, and the auth redirect completes,

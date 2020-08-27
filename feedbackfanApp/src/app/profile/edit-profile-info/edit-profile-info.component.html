@@ -1,6 +1,6 @@
 <ion-header class="ion-no-border" mode="md">
   <ion-toolbar>
-    <ion-title class="ion-title">{{ this.staticText.info_personal }}</ion-title>
+    <ion-title class="ion-title">{{ 'info_personal' | translate }}</ion-title>
     <ion-buttons slot="start">
       <ion-button (click)="closeModal()">
         <ion-icon slot="start" name="arrow-back-outline" class="icon-only"></ion-icon>
@@ -19,14 +19,14 @@
   </ion-avatar>
   <br>
   <ion-button (click)="takePhoto()" expand="block" color="primary" shape="round" size="small">
-    {{ this.staticText.modificar_foto }}
+    {{ 'modificar_foto' | translate }}
   </ion-button>
   <br>
   <form [formGroup]="updateUserForm" (ngSubmit)="updateUser()">
 
     <ion-list class="inputs-list" lines="full">
       <ion-item class="input-item">
-        <ion-input [value]="userCredentials.name" [placeholder]="this.staticText.nombre" formControlName="name" clearInput autocapitalize="off">
+        <ion-input [value]="userCredentials.name" [placeholder]="'nombre' | translate" formControlName="name" clearInput autocapitalize="off">
         </ion-input>
       </ion-item>
       <div class="error-container">
@@ -39,7 +39,7 @@
       </div>  
 
       <ion-item class="input-item">
-        <ion-input type="email" [disabled]="true" [value]="userCredentials.email" [placeholder]="this.staticText.correo" formControlName="email" clearInput autocapitalize="off" inputmode="email"></ion-input>
+        <ion-input type="email" [disabled]="true" [value]="userCredentials.email" [placeholder]="'correo' | translate" formControlName="email" clearInput autocapitalize="off" inputmode="email"></ion-input>
       </ion-item>
       <div class="error-container">
         <ng-container *ngFor="let validation of validation_messages.email">
@@ -52,7 +52,7 @@
 
       <ion-item class="input-item">
         <app-show-hide-password>
-          <ion-input type="password" [placeholder]="this.staticText.vieja_contrasena" formControlName="old_password"></ion-input>
+          <ion-input type="password" [placeholder]="'vieja_contrasena' | translate" formControlName="old_password"></ion-input>
         </app-show-hide-password>
       </ion-item>
       <div class="error-container">
@@ -67,7 +67,7 @@
       <div formGroupName="matching_passwords">
         <ion-item class="input-item">
           <app-show-hide-password>
-            <ion-input type="password" [placeholder]="this.staticText.nueva_contrasena" formControlName="password"></ion-input>
+            <ion-input type="password" [placeholder]="'nueva_contrasena' | translate" formControlName="password"></ion-input>
           </app-show-hide-password>
         </ion-item>
         <div class="error-container">
@@ -81,7 +81,7 @@
 
         <ion-item class="input-item">
           <app-show-hide-password>
-            <ion-input type="password" [placeholder]="this.staticText.confirmar_contrasena" formControlName="confirm_password"></ion-input>
+            <ion-input type="password" [placeholder]="'confirmar_contrasena' | translate" formControlName="confirm_password"></ion-input>
           </app-show-hide-password>
         </ion-item>
         <div class="error-container">
@@ -103,7 +103,7 @@
       </div>
     </ion-list>
 
-    <ion-button class="signup-btn" type="submit" expand="block" [disabled]="!imageFilePath">{{ this.staticText.actualizar }}</ion-button>
+    <ion-button class="signup-btn" type="submit" expand="block" [disabled]="!imageFilePath">{{ 'actualizar' | translate }}</ion-button>
     <div class="error-container" *ngIf="submitError">
       <div class="error-message">
         <ion-icon name="information-circle-outline"></ion-icon>

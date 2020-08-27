@@ -4,7 +4,7 @@
       <app-image-shell [src]="'./assets/sample-images/page-not-found.svg'" [alt]="'not found page'"></app-image-shell>
     </app-aspect-ratio>
   </div>
-  <div class="not-found-title">{{ this.staticText.error_no_econtrado }}</div>
-  <div class="not-found-text">{{ this.staticText.pagina_no_encontrada }}</div>
-  <ion-button class="go-home-btn" expand="block" fill="outline" [routerLink]="['/']">{{ this.staticText.regresar_p_principal }}</ion-button>
+  <div class="not-found-title">{{ 'error_no_econtrado' | translate }}</div>
+  <div class="not-found-text">{{ 'pagina_no_encontrada' | translate }}</div>
+  <ion-button class="go-home-btn" expand="block" fill="outline" [routerLink]="['/']">{{ 'regresar_p_principal' | translate }}</ion-button>
 </ion-content>

@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { SharedModule } from '../../shared/shared.module';
 
 import { ForgotPasswordPage } from './forgot-password.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 const routes: Routes = [
   {
@@ -23,7 +24,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    SharedModule
+    SharedModule,
+    TranslateModule
   ],
   declarations: [ForgotPasswordPage]
 })

@@ -1,8 +1,8 @@
 {
   "name": "feedbackfanApp",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "Alexander Fernández",
+  "homepage": "https://github.com/byfeedbackfan/feedbackfanApp",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -29,6 +29,8 @@
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^5.0.0",
     "@ionic/pwa-elements": "^3.0.1",
+    "@ngx-translate/core": "^13.0.0",
+    "@ngx-translate/http-loader": "^6.0.0",
     "capacitor-firebase-auth": "^2.3.2",
     "cordova-plugin-screen-orientation": "^3.0.2",
     "firebase": "^7.18.0",
@@ -60,5 +62,5 @@
     "tslint": "~6.1.0",
     "typescript": "~3.8.3"
   },
-  "description": "An Ionic project"
+  "description": "Aplicación para llevar un registro de feedback entre trabajadores de una empresa"
 }

@@ -10,6 +10,7 @@ import { SignUpModule } from './sign-up/sign-up.module';
 import { CoreModule } from '../core/core.module';
 import { ForgotPasswordModule } from './forgot-password/forgot-password.module';
 import { ResetPasswordModule } from './reset-password/reset-password.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 const routes: Routes = [
   {
@@ -39,6 +40,7 @@ const routes: Routes = [
     AngularFireAuthModule,
     SignInModule,
     SignUpModule,
+    TranslateModule,
     ForgotPasswordModule,
     ResetPasswordModule,
     CoreModule

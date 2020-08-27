@@ -9,6 +9,7 @@ import { ShellModule } from '../shell/shell.module';
 import { ProfileResolver } from './profile.resolver';
 import { EditProfileInfoComponent } from './edit-profile-info/edit-profile-info.component';
 import { ProfileGuard } from './profile.guard';
+import { TranslateModule } from '@ngx-translate/core';
 
 const routes: Routes = [
   {
@@ -29,6 +30,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes),
     SharedModule,
+    TranslateModule,
     ShellModule
   ],
   declarations: [

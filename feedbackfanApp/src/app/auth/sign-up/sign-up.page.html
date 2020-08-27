@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-buttons slot="start">
     </ion-buttons>
-    <ion-title class="ion-title">{{ this.staticText.registro }}</ion-title>
+    <ion-title class="ion-title">{{ 'registro' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,7 +13,7 @@
   <br>
   <div class="photo-values">
     <ion-button (click)="takePhoto()" color="primary" shape="round" size="small">
-      {{ this.staticText.agregar_foto }}
+      {{ 'agregar_foto' | translate }}
     </ion-button>
   </div>
   <br>
@@ -21,8 +21,8 @@
 
     <ion-list class="inputs-list" lines="full">
       <ion-item class="input-item">
-        <ion-icon slot="start" name="person-outline"></ion-icon>
-        <ion-input placeholder="Nombre" formControlName="name" clearInput autocapitalize="off"></ion-input>
+        <ion-icon slot="start" [ngStyle]="{'color': 'rgb(68, 0, 146)'}" name="person-outline"></ion-icon>
+        <ion-input [placeholder]="'nombre' | translate" formControlName="name" clearInput autocapitalize="off"></ion-input>
       </ion-item>
       <div class="error-container">
         <ng-container *ngFor="let validation of validation_messages.name">
@@ -34,8 +34,8 @@
       </div>  
 
       <ion-item class="input-item">
-        <ion-icon slot="start" name="mail-outline"></ion-icon>
-        <ion-input type="email" placeholder="Correo" formControlName="email" clearInput autocapitalize="off" inputmode="email"></ion-input>
+        <ion-icon slot="start" [ngStyle]="{'color': 'rgb(68, 0, 146)'}" name="mail-outline"></ion-icon>
+        <ion-input type="email" [placeholder]="'correo' | translate" formControlName="email" clearInput autocapitalize="off" inputmode="email"></ion-input>
       </ion-item>
       <div class="error-container">
         <ng-container *ngFor="let validation of validation_messages.email">
@@ -48,9 +48,9 @@
 
       <div formGroupName="matching_passwords">
         <ion-item class="input-item">
-          <ion-icon slot="start" name="key-outline"></ion-icon>
+          <ion-icon slot="start" [ngStyle]="{'color': 'rgb(68, 0, 146)'}" name="key-outline"></ion-icon>
           <app-show-hide-password>
-            <ion-input type="password" placeholder="Contraseña" formControlName="password"></ion-input>
+            <ion-input type="password" [placeholder]="'contrasena' | translate" formControlName="password"></ion-input>
           </app-show-hide-password>
         </ion-item>
         <div class="error-container">
@@ -63,9 +63,9 @@
         </div>
 
         <ion-item class="input-item">
-          <ion-icon slot="start" name="key-outline"></ion-icon>
+          <ion-icon slot="start" [ngStyle]="{'color': 'rgb(68, 0, 146)'}" name="key-outline"></ion-icon>
           <app-show-hide-password>
-            <ion-input type="password" placeholder="Confirmar Contraseña" formControlName="confirm_password"></ion-input>
+            <ion-input type="password" [placeholder]="'confirmar_contrasena' | translate" formControlName="confirm_password"></ion-input>
           </app-show-hide-password>
         </ion-item>
         <div class="error-container">
@@ -87,7 +87,7 @@
       </div>
     </ion-list>
 
-    <ion-button class="signup-btn" size="small" type="submit" expand="block" [disabled]="!signupForm.valid || !imageFile">Registrarse</ion-button>
+    <ion-button class="signup-btn" size="small" type="submit" expand="block" [disabled]="!signupForm.valid || !imageFile">{{ 'registrarse' | translate}}</ion-button>
     <div class="error-container" *ngIf="submitError">
       <div class="error-message">
         <ion-icon name="information-circle-outline"></ion-icon>
@@ -96,7 +96,7 @@
     </div>
     <ion-row class="other-auth-options-row">
       <ion-button class="login-btn" fill="clear" [routerLink]="['/auth/sign-in']">
-        {{ this.staticText.ya_posee_cuenta }}
+        {{ 'ya_posee_cuenta' | translate }}
       </ion-button>
     </ion-row>
   </form>

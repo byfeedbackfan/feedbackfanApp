@@ -11,6 +11,7 @@ import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
 import { Location } from '@angular/common';
 import { AuthService } from '../../core/services/auth.service';
 import { staticText } from '../../../configuration/staticText';
+import { LanguageService } from '../../core/language/language.service';
 
 const { Storage } = Plugins;
 const { Camera } = Plugins;
@@ -37,25 +38,7 @@ export class EditProfileInfoComponent implements OnInit {
   imageFile = '';
 
   // tslint:disable-next-line: variable-name
-  validation_messages = {
-    email: [
-      { type: 'required', message: this.staticText.validar_correo_requerido },
-      { type: 'pattern', message: this.staticText.validar_correo_regular }
-    ],
-    password: [
-      { type: 'required', message: this.staticText.validar_contrasena_requerida },
-      { type: 'minlength', message: this.staticText.validar_longitud_contrasena }
-    ],
-    confirm_password: [
-      { type: 'required', message: this.staticText.validar_confirmacion_contrasena }
-    ],
-    matching_passwords: [
-      { type: 'areNotEqual', message: this.staticText.match_contrasena_no_valido }
-    ],
-    name: [
-      { type: 'required', message: this.staticText.validar_nombre }
-    ]
-  };
+  validation_messages;
 
   constructor(
     public router: Router,
@@ -63,6 +46,7 @@ export class EditProfileInfoComponent implements OnInit {
     public menu: MenuController,
     public loadingController: LoadingController,
     public location: Location,
+    private languageService: LanguageService,
     private modalController: ModalController,
     private userService: UserService,
     private storageService: StorageService,
@@ -99,6 +83,26 @@ export class EditProfileInfoComponent implements OnInit {
         this.presentLoading();
       }
     });
+
+    this.validation_messages = {
+      email: [
+        { type: 'required', message: this.languageService.getTerm('validar_correo_requerido') },
+        { type: 'pattern', message: this.languageService.getTerm('validar_correo_regular') }
+      ],
+      password: [
+        { type: 'required', message: this.languageService.getTerm('validar_contrasena_requerida') },
+        { type: 'minlength', message: this.languageService.getTerm('validar_longitud_contrasena') }
+      ],
+      confirm_password: [
+        { type: 'required', message: this.languageService.getTerm('validar_confirmacion_contrasena') }
+      ],
+      matching_passwords: [
+        { type: 'areNotEqual', message: this.languageService.getTerm('match_contrasena_no_valido') }
+      ],
+      name: [
+        { type: 'required', message: this.languageService.getTerm('validar_nombre') }
+      ]
+    };
   }
 
   ngOnInit() {
@@ -126,7 +130,10 @@ export class EditProfileInfoComponent implements OnInit {
   }
 
   closeModalWithData() {
-    this.modalController.dismiss({imageUrl: this.userData.image});
+    this.modalController.dismiss({
+      imageUrl: this.userData.image,
+      name: this.userData.name
+    });
   }
 
   // -------------------------
@@ -150,7 +157,7 @@ export class EditProfileInfoComponent implements OnInit {
 
   async presentLoading() {
     this.redirectLoader = await this.loadingController.create({
-      message: 'Espere ...'
+      message: this.languageService.getTerm('espere')
     });
     await this.redirectLoader.present();
   }

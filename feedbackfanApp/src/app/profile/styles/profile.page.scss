@@ -51,28 +51,43 @@ ion-back-button {
 }
 
 .css-card-content {
-  padding: 0;
-  margin: 0;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.css-card-calification {
+  padding: 0 !important;
 }
 
 .messages-values {
   color: black;
-  padding: 0;
+  padding: 0 !important;
   margin-top: 0;
   margin-bottom: 0;
-  font-weight: bold;
-  margin-right: 3%;
   text-align: center !important; 
-  font-size: 100% !important;
+}
+
+.calification-values {
+  color: rgb(68, 0, 146);
+  padding: 0 !important;
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: center !important;
+  font-size: 80% !important;
+}
+
+.vertical-align {
+  vertical-align: middle !important;
+  margin-top: 2% !important;
 }
 
 .messages-values-titles {
   color: black;
-  padding: 0;
+  padding: 0 !important;
+  margin: 0 !important;
   font-weight: bold;
-  margin-left: 3%;
   text-align: center !important; 
-  font-size: 100% !important;
 }
 
 .user-content {
@@ -93,7 +108,7 @@ ion-back-button {
     padding: var(--page-margin);
 
     .preference-name {
-      font-size: 100%;
+      font-size: 70%;
       vertical-align: auto !important;
       margin: 0% 0% 0%;
       color:  #3b69ff;
@@ -103,23 +118,13 @@ ion-back-button {
     }
 
     .preference-email {
-      font-size: 100%;
+      font-size: 80%;
       margin: 0px 0px calc(var(--page-margin) / 10);
       color: var(--ion-color-dark-tint);
     }
 
-    .font-title {
-      font-size: 84%;
-      text-align: center;
-    }
-
-    .number-title {
-      font-size: 120%;
-      text-align: center;
-    }
-
     .preference-value {
-      font-size: 100%;
+      font-size: 80%;
       margin: 0px 0px calc(var(--page-margin) / 10);
       font-weight: bold;
       color: var(--ion-color-dark-tint);
@@ -137,6 +142,20 @@ ion-back-button {
 
   .css-toolbar {
     background-color: #3b69ff !important;
+    --page-background: 0 !important;
+  }
+
+  .ion-col-values {
+    padding: 0;
+
+    ion-col {
+      align-items: center !important;
+    }
+  }
+
+  .ion-col-userdata {
+    padding: calc(var(--page-margin)/2) !important;
+    align-items: center !important;
   }
 
 }

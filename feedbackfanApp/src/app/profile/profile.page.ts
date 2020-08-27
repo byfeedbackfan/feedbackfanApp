@@ -10,7 +10,8 @@ import { ModalController } from '@ionic/angular';
 import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
-import { staticText } from '../../configuration/staticText';
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from '../core/language/language.service';
 
 const { Storage } = Plugins;
 
@@ -33,9 +34,11 @@ export class ProfilePage implements OnInit {
 
   imageFilePath = '../../../assets/icons/no-profile-picture.jpg';
   imageFile: string;
-  staticText = staticText;
+  translations;
 
   constructor(
+    public translate: TranslateService,
+    public languageService: LanguageService,
     private router: Router,
     private authService: AuthService,
     private profileResolver: ProfileResolver,
@@ -43,8 +46,20 @@ export class ProfilePage implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.getTranslations();
+    this.translate.onLangChange.subscribe(() => {
+      this.getTranslations();
+    });
     this.profileResolver.resolve().then((user) => {
       this.user = user;
+    });
+  }
+
+  getTranslations() {
+    // get translations for this page to use in the Language Chooser Alert
+    this.translate.getTranslation(this.translate.currentLang)
+    .subscribe((translations) => {
+      this.translations = translations;
     });
   }
 
@@ -70,6 +85,7 @@ export class ProfilePage implements OnInit {
 
     if (data) {
       this.user.image = data.imageUrl;
+      this.user.name = data.name;
     }
   }
 }
