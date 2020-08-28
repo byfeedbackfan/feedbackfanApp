@@ -25,7 +25,8 @@ export class UserService {
       image: userData.image,
       sentMessages: userData.sentMessages,
       receivedMessages: userData.receivedMessages,
-      isShell: userData.isShell
+      isShell: userData.isShell,
+      allMessagesPublic: userData.allMessagesPublic,
     };
     return this.afs.collection('user').doc(userData.uid).set(data);
   }

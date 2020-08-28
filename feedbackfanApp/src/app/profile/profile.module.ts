@@ -10,7 +10,7 @@ import { ProfileResolver } from './profile.resolver';
 import { EditProfileInfoComponent } from './edit-profile-info/edit-profile-info.component';
 import { ProfileGuard } from './profile.guard';
 import { TranslateModule } from '@ngx-translate/core';
-import { MessagesNavigationBarComponent } from '../shared/messages-navigation-bar/messages-navigation-bar.component';
+import { UserOptionsPopoverComponent } from './user-options-popover/user-options-popover.component';
 
 const routes: Routes = [
   {
@@ -37,6 +37,7 @@ const routes: Routes = [
   declarations: [
     ProfilePage,
     EditProfileInfoComponent,
+    UserOptionsPopoverComponent,
   ],
   providers: [
     ProfileResolver,

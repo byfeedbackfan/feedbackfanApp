@@ -95,9 +95,15 @@ ion-back-button {
   margin-bottom: 0;
   text-align: center !important;
   font-size: 90% !important;
+  width: auto;
+  height: auto;
+  display: block;
+  position: relative;
+  margin-right: auto;
 
   ion-icon {
-    margin-left: 10px !important;
+    margin-left: 20px !important;
+    margin-right: 20px !important;
   }
 }
 

@@ -18,7 +18,7 @@ import { ShortNumberSuffixPipe } from './pipes/short-number-suffix.pipe';
   exports: [
     ShowHidePasswordComponent,
     MessagesNavigationBarComponent,
-    ShortNumberSuffixPipe
+    ShortNumberSuffixPipe,
   ]
 })
 export class SharedModule { }

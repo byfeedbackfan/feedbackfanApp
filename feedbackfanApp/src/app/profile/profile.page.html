@@ -1,6 +1,11 @@
 <ion-header>
   <ion-toolbar mode="md">
     <ion-title class="ion-title" mode="md">{{'perfil' | translate}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="displayOptionsMenu($event)" color="light">
+        <ion-icon slot="icon-only" name="ellipsis-horizontal"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content class="user-content">
@@ -34,14 +39,16 @@
               <ion-row  class="user-preferences-wrapper css-card-calification">
                 <ion-col size="6" class="calification-values">
                   <p>
+                    
+                    {{180000000 || '0' | shortNumberSuffix}}
                     <ion-icon slot="start" name="thumbs-up-sharp"></ion-icon>
-                    {{125 | shortNumberSuffix}}
                   </p>
                 </ion-col>
                 <ion-col size="6" class="calification-values">
                   <p>
+                    
+                    {{125000000 || '0' | shortNumberSuffix}}
                     <ion-icon slot="start" name="thumbs-down-sharp"></ion-icon>
-                    {{125 | shortNumberSuffix}}
                   </p>
                 </ion-col>
               </ion-row>
@@ -69,14 +76,14 @@
               <ion-row  class="user-preferences-wrapper css-card-calification">
                 <ion-col size="6" class="calification-values">
                   <p>
+                    {{125000000 || '0' | shortNumberSuffix}}
                     <ion-icon slot="start" name="thumbs-up-sharp"></ion-icon>
-                    {{12500 | shortNumberSuffix}}
                   </p>
                 </ion-col>
                 <ion-col size="6" class="calification-values">
                   <p>
+                    {{150000000 || '0' | shortNumberSuffix}}
                     <ion-icon slot="start" name="thumbs-down-sharp"></ion-icon>
-                    {{1500000 | shortNumberSuffix}}
                   </p>
                 </ion-col>
               </ion-row>
@@ -104,12 +111,6 @@
       <p class="preference-name">
         <app-text-shell [data]="user?.role"></app-text-shell>
       </p>
-    </ion-col>
-    <ion-col size="5" class="center-in-col">
-      <ion-button size="small" class="icon-only edit-btn" fill="clear" mode="ios" (click)="signOut()">
-        <ion-icon class="edit-btn" slot="start" name="log-out-sharp"></ion-icon>
-        {{'cerrar_sesion' | translate}}
-      </ion-button>
     </ion-col>
   </ion-row>
 </ion-content>

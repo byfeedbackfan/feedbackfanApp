@@ -28,7 +28,7 @@
   "texto_de_recuperacion": "Por favor, ingresa tu correo electrónico. En breve recibirás un mensaje con un link para recuperar tu contraseña.",
   "recuperar_contrasena": "Recuperar contraseña",
   "titulo_olvidar_contrasena": "¿Olvidaste tu contraseña?",
-  "info_personal": "Editar información.",
+  "info_personal": "Editar información",
   "modificar_foto": "Cambiar foto de perfil",
   "vieja_contrasena": "Contraseña antigua",
   "nueva_contrasena": "Nueva Contraseña",
@@ -38,5 +38,6 @@
   "error_no_econtrado": "404",
   "espere": " Espere ...",
   "iniciando_sesion": "Iniciando sesión ...",
-  "cerrar_sesion": "Cerrar sesión"
+  "cerrar_sesion": "Cerrar sesión",
+  "mensajes_siempre_publicos": "Mensajes siempre publicables"
 }
