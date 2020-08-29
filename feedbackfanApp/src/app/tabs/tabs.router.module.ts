@@ -3,11 +3,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
 import { TabsPage } from './tabs.page';
+import { TabsGuard } from './tabsguard';
+import { TabsResolver } from './tabs.resolver';
 
 const routes: Routes = [
   {
     path: '',
     component: TabsPage,
+    canActivate: [TabsGuard],
+    resolve: {
+      data: TabsResolver,
+    },
     children: [
       {
         path: 'profile',

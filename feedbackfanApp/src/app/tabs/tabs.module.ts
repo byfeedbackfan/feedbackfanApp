@@ -9,6 +9,8 @@ import { TabsPage } from './tabs.page';
 import { TranslateModule } from '@ngx-translate/core';
 import { SendMessageModule } from '../send-message/send-message.module';
 import { SendedMessageModule } from '../sended-message/sended-message.module';
+import { TabsResolver } from './tabs.resolver';
+import { TabsGuard } from './tabsguard';
 
 @NgModule({
   imports: [
@@ -20,6 +22,10 @@ import { SendedMessageModule } from '../sended-message/sended-message.module';
     SendMessageModule,
     SendedMessageModule,
   ],
-  declarations: [ TabsPage ]
+  declarations: [ TabsPage ],
+  providers: [
+    TabsResolver,
+    TabsGuard
+  ]
 })
 export class TabsModule {}

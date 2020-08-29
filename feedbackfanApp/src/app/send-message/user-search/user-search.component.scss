@@ -6,7 +6,7 @@
 .user-name {
   text-transform: capitalize;
   font-weight: bold;
-  color: black;
+  color: black !important;
 }
 
 .user-role {
@@ -16,11 +16,15 @@
 }
 
 .user-mail {
-
+  color: black !important;
 }
 
 ion-toolbar {
   --background: #3b69ff;
+}
+
+.bg-red{
+  --background: red !important;
 }
 
 .avatar {
@@ -34,13 +38,30 @@ ion-back-button {
   color: white;
 }
 
+ion-item {
+  padding: 0 !important;
+}
+
+.profile-icon-settings {
+  color: rgb(68, 0, 146);
+  width: 25%;
+  height: 25%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 0 !important;
+  border-radius: 50%;
+  background-color:white
+}
+
 .icon-only {
   color: white;
   font-weight: bold;
 }
 
 ion-title {
-  padding: 0 !important;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
 }
 
 ion-searchbar{

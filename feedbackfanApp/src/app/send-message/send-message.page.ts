@@ -4,6 +4,10 @@ import { LanguageService } from '../core/language/language.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserSearchComponent } from './user-search/user-search.component';
 import { ModalController } from '@ionic/angular';
+import { ProfileModel } from '../profile/profile.model';
+import { SendMessageModel } from './send-message-model';
+import { TabsResolver } from '../tabs/tabs.resolver';
+import { MessageService } from '../core/services/message.service';
 
 @Component({
   selector: 'app-send-message',
@@ -20,23 +24,24 @@ export class SendMessagePage implements OnInit {
   validation_messages;
   translations;
   submitError: string;
+  usersSelected: ProfileModel[] = [];
+  user: ProfileModel;
+  isPublishable: boolean;
 
   constructor(
     public translate: TranslateService,
     private modalController: ModalController,
     private languageService: LanguageService,
+    private tabsResolver: TabsResolver,
+    private messageService: MessageService,
   ) {
 
     this.sendMessageForm = new FormGroup({
-      user: new FormControl('', Validators.required),
       title: new FormControl('', Validators.required),
       info: new FormControl('', Validators.required),
     });
 
     this.validation_messages = {
-      user: [
-        { type: 'required', message: this.languageService.getTerm('validar_mensaje_usuarios') },
-      ],
       title: [
         { type: 'required', message: this.languageService.getTerm('validar_contrasena_requerida') },
       ],
@@ -50,6 +55,10 @@ export class SendMessagePage implements OnInit {
     this.getTranslations();
     this.translate.onLangChange.subscribe(() => {
       this.getTranslations();
+    });
+    await this.tabsResolver.resolve().then((user) => {
+      this.user = user;
+      this.isPublishable = user.allMessagesPublic;
     });
   }
 
@@ -66,14 +75,56 @@ export class SendMessagePage implements OnInit {
   }
 
   sendMessage() {
-    console.log(this.sendMessageForm.get('info').value);
+    this.usersSelected.forEach(user => {
+      const newMessage: SendMessageModel = new SendMessageModel();
+      newMessage.from = this.user.email;
+      newMessage.to = user.email;
+      newMessage.date = new Date();
+      newMessage.title = this.sendMessageForm.get('title').value;
+      newMessage.message = this.sendMessageForm.get('info').value;
+      newMessage.likes = 0;
+      newMessage.dislikes = 0;
+      newMessage.isPublishableSender = this.isPublishable;
+      newMessage.isPublishableReceiver = false;
+      newMessage.isShell = true;
+      this.messageService.createSenderMessage(newMessage, this.user.uid).then( res => {
+        console.log(res);
+      }).catch(err => {
+        console.log(err);
+      });
+    });
+
+    this.usersSelected.forEach(user => {
+      const newMessage: SendMessageModel = new SendMessageModel();
+      newMessage.from = this.user.email;
+      newMessage.to = user.email;
+      newMessage.date = new Date();
+      newMessage.title = this.sendMessageForm.get('title').value;
+      newMessage.message = this.sendMessageForm.get('info').value;
+      newMessage.likes = 0;
+      newMessage.dislikes = 0;
+      newMessage.isPublishableSender = this.isPublishable;
+      newMessage.isPublishableReceiver = false;
+      newMessage.isShell = true;
+      this.messageService.createReceiverMessage(newMessage, user.uid).then( res => {
+        console.log(res);
+      }).catch(err => {
+        console.log(err);
+      });
+    });
   }
 
   async searchUser() {
     const modal = await this.modalController.create({
       component: UserSearchComponent,
     });
-    return await modal.present();
+    await modal.present();
+
+    const { data } = await modal.onDidDismiss();
+
+    if (data) {
+      this.usersSelected = data.users;
+    }
   }
 
 }

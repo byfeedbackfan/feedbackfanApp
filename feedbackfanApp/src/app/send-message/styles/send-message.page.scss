@@ -3,6 +3,24 @@
   --page-background: var(--app-background-shade);
 }
 
+.chip-img {
+  width: 24px !important;
+  height: 24px !important;
+}
+
+.label-size {
+  margin-left: 27% !important;
+}
+
+.toggle-options {
+  --background: #7c7c7c;
+  --background-checked: #678bff;
+  --handle-background: #b4b3b3;
+  --handle-background-checked: white;
+  --handle-spacing: 0px !important;
+  padding: 0 !important;
+}
+
 .send-message-content {
   --background: var(--page-background);
   --padding-start: var(--page-margin);

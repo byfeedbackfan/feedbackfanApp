@@ -47,7 +47,7 @@ const routes: Routes = [
   ],
   declarations: [
     SendMessagePage,
-    UserSearchComponent
-  ]
+    UserSearchComponent,
+  ],
 })
 export class SendMessageModule {}

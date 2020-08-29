@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from './services/auth.service';
 import { UserService } from './services/user.service';
 import { LanguageService } from './language/language.service';
+import { MessageService } from './services/message.service';
 
 
 
@@ -14,7 +15,8 @@ import { LanguageService } from './language/language.service';
   providers: [
     AuthService,
     UserService,
-    LanguageService
+    LanguageService,
+    MessageService
   ],
 })
 export class CoreModule { }

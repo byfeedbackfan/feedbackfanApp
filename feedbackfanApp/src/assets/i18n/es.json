@@ -47,5 +47,6 @@
   "para": "Para: ",
   "validar_mensaje_usuarios": "Tienes que agregar un usuario.",
   "enviar": "Enviar",
-  "buscar": "Buscar"
+  "buscar": "Buscar",
+  "valido_para_publicar": "Mensaje publicable"
 }

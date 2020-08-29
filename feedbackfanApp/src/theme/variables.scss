@@ -88,6 +88,29 @@
   /** darkest **/
   --ion-color-darkest: #000000;
   --ion-color-darkest-rgb: 0,0,0;
+
+  --ion-color-darkest: #69bb7b;
+  --ion-color-darkest-rgb: 105,187,123;
+  --ion-color-darkest-contrast: #ffffff;
+  --ion-color-darkest-contrast-rgb: 255,255,255;
+  --ion-color-darkest-shade: #5ca56c;
+  --ion-color-darkest-tint: #78c288;
+
+  /** custom 1**/
+  --ion-color-clicked: #cecece;
+  --ion-color-clicked-rgb: #cecece;
+  --ion-color-clicked-contrast: #cecece;
+  --ion-color-clicked-contrast-rgb: #cecece;
+  --ion-color-clicked-shade: #cecece;
+  --ion-color-clicked-tint:#cecece;
+
+  /** custom 2**/
+  --ion-color-unclicked: #ffffff;
+  --ion-color-unclicked-rgb: #ffffff;
+  --ion-color-unclicked-contrast: #ffffff;
+  --ion-color-unclicked-contrast-rgb: #ffffff;
+  --ion-color-unclicked-shade: #ffffff;
+  --ion-color-unclicked-tint: #ffffff;
 }
 
 :root {
@@ -115,4 +138,22 @@ html.ios {
 
 html.md {
   --app-header-height: 56px;
+}
+
+.ion-color-clicked{
+  --ion-color-base: var(--ion-color-clicked);
+  --ion-color-base-rgb: var(--ion-color-clicked-rgb);
+  --ion-color-contrast: var(--ion-color-clicked-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-clicked-contrast-rgb);
+  --ion-color-shade: var(--ion-color-clicked-shade);
+  --ion-color-tint: var(--ion-color-clicked-tint);
+}
+
+.ion-color-unclicked {
+  --ion-color-base: var(--ion-color-unclicked);
+  --ion-color-base-rgb: var(--ion-color-unclicked-rgb);
+  --ion-color-contrast: var(--ion-color-unclicked-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-unclicked-rgb);
+  --ion-color-shade: var(--ion-color-unclicked-shade);
+  --ion-color-tint: var(--ion-color-unclicked-tint);
 }
