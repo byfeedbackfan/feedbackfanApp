@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MenuController, LoadingController } from '@ionic/angular';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 import { HistoryHelperService } from '../../utils/history-helper.service';
 import { AuthService } from '../../core/services/auth.service';
@@ -84,7 +84,7 @@ export class SignInPage implements OnInit {
 
     Storage.get({key: 'userCredentials'}).then((data) => {
       if (data.value) {
-        this.redirectLoggedUserToProfilePage();
+        this.redirectLoggedUserToReceiverMessagePage();
       }
     });
   }
@@ -99,14 +99,14 @@ export class SignInPage implements OnInit {
 
   // Once the auth provider finished the authentication flow, and the auth redirect completes,
   // hide the loader and redirect the user to the profile page
-  redirectLoggedUserToProfilePage() {
+  redirectLoggedUserToReceiverMessagePage() {
     // As we are calling the Angular router navigation inside a subscribe method, the navigation will be triggered outside Angular zone.
     // That's why we need to wrap the router navigation call inside an ngZone wrapper
     this.ngZone.run(async () => {
       // Get previous URL from our custom History Helper
       // If there's no previous page, then redirect to profile
       // const previousUrl = this.historyHelper.previousUrl || 'firebase/auth/profile';
-      const previousUrl = 'app/profile';
+      const previousUrl = 'app/received-message';
 
       // No need to store in the navigation history the sign-in page with redirect params (it's justa a mandatory mid-step)
       // Navigate to profile and replace current url with profile
@@ -149,7 +149,7 @@ export class SignInPage implements OnInit {
         profileData = JSON.stringify(userdata);
         this.userLogged = true;
         Storage.set({key: 'userCredentials', value: profileData});
-        this.redirectLoggedUserToProfilePage();
+        this.redirectLoggedUserToReceiverMessagePage();
       });
     })
     .catch(error => {

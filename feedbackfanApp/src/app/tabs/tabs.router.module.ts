@@ -12,7 +12,23 @@ const routes: Routes = [
       {
         path: 'profile',
         loadChildren: () => import('../profile/profile.module').then(m => m.ProfileModule)
-      }
+      },
+      {
+        path: 'send-message',
+        loadChildren: () => import('../send-message/send-message.module').then(m => m.SendMessageModule)
+      },
+      {
+        path: 'sended-message',
+        loadChildren: () => import('../sended-message/sended-message.module').then(m => m.SendedMessageModule)
+      },
+      {
+        path: 'received-message',
+        loadChildren: () => import('../received-message/received-message.module').then(m => m.ReceivedMessageModule)
+      },
+      {
+        path: 'user-finder',
+        loadChildren: () => import('../user-finder/user-finder.module').then(m => m.UserFinderModule)
+      },
     ],
   }
 ];

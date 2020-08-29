@@ -39,5 +39,13 @@
   "espere": " Espere ...",
   "iniciando_sesion": "Iniciando sesión ...",
   "cerrar_sesion": "Cerrar sesión",
-  "mensajes_siempre_publicos": "Mensajes siempre publicables"
+  "mensajes_siempre_publicos": "Mensajes siempre publicables",
+  "nuevo_mensaje": "Enviar mensaje",
+  "buscar_personas": "Buscar personas",
+  "titulo": "Título: ",
+  "inserta_el_titulo": "Inserta un título",
+  "para": "Para: ",
+  "validar_mensaje_usuarios": "Tienes que agregar un usuario.",
+  "enviar": "Enviar",
+  "buscar": "Buscar"
 }

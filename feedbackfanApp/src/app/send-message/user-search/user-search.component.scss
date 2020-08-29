@@ -1,0 +1,51 @@
+:root {
+  --ion-safe-area-top: 20px;
+  --ion-safe-area-bottom: 22px;
+}
+
+.user-name {
+  text-transform: capitalize;
+  font-weight: bold;
+  color: black;
+}
+
+.user-role {
+  text-transform: capitalize;
+  font-weight: bold;
+  color: #3b69ff;
+}
+
+.user-mail {
+
+}
+
+ion-toolbar {
+  --background: #3b69ff;
+}
+
+.avatar {
+  margin-right: 10px;
+  display: block;
+  width: 60px;
+  height: 60px;
+}
+
+ion-back-button {
+  color: white;
+}
+
+.icon-only {
+  color: white;
+  font-weight: bold;
+}
+
+ion-title {
+  padding: 0 !important;
+}
+
+ion-searchbar{
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  padding-left: 0 !important;
+  --icon-color: rgb(68, 0, 146) !important;
+}

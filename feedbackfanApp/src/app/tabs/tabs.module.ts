@@ -7,6 +7,8 @@ import { TabsRoutingModule } from './tabs.router.module';
 
 import { TabsPage } from './tabs.page';
 import { TranslateModule } from '@ngx-translate/core';
+import { SendMessageModule } from '../send-message/send-message.module';
+import { SendedMessageModule } from '../sended-message/sended-message.module';
 
 @NgModule({
   imports: [
@@ -14,7 +16,9 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
     FormsModule,
     TabsRoutingModule,
-    TranslateModule
+    TranslateModule,
+    SendMessageModule,
+    SendedMessageModule,
   ],
   declarations: [ TabsPage ]
 })

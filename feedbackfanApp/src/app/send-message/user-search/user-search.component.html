@@ -1,0 +1,39 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="closeModal()">
+        <ion-icon slot="start" name="arrow-back-outline" class="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      <ion-searchbar mode="ios" color="light" class="seachbar"
+                   [placeholder]="'buscar' | translate" type="decimal" 
+                   [debounce]="250"
+                   (ionChange)="searchUser($event)">
+      </ion-searchbar>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list lines="none">
+    <ion-item *ngFor="let user of usersData" button="true">
+      <ion-avatar class="avatar">
+        <app-image-shell class="user-image" [display]="'cover'" animation="spinner" [src]="user.image" alt="item image">
+          <app-aspect-ratio [ratio]="{w:1, h:1}">
+          </app-aspect-ratio>
+        </app-image-shell>
+      </ion-avatar>
+      <ion-label>
+        <h2 class="user-name">
+          <app-text-shell [data]="user.name"></app-text-shell>
+        </h2>
+        <h3 class="user-mail">
+          <app-text-shell [data]="user.email"></app-text-shell>
+        </h3>
+        <h3 class="user-role">
+          <app-text-shell [data]="user.role"></app-text-shell>
+        </h3>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

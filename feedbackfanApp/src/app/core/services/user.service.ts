@@ -40,4 +40,15 @@ export class UserService {
       })
     );
   }
+
+  public getUsers(uid: string): Observable<ProfileModel[]> {
+    return this.afs.collection(`user`)
+    .snapshotChanges()
+    .pipe(
+      map( actions => actions.map( a => {
+        const usersData = a.payload.doc.data();
+        return usersData as ProfileModel;
+      }))
+    );
+  }
 }

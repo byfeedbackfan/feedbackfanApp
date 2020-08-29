@@ -4,12 +4,14 @@ import { ShowHidePasswordComponent } from './show-hide-password/show-hide-passwo
 import { IonicModule } from '@ionic/angular';
 import { MessagesNavigationBarComponent } from './messages-navigation-bar/messages-navigation-bar.component';
 import { ShortNumberSuffixPipe } from './pipes/short-number-suffix.pipe';
+import { FilterSearchUsersPipe } from './pipes/filter-search-users.pipe';
 
 @NgModule({
   declarations: [
     ShowHidePasswordComponent,
     MessagesNavigationBarComponent,
     ShortNumberSuffixPipe,
+    FilterSearchUsersPipe,
   ],
   imports: [
     CommonModule,
@@ -19,6 +21,7 @@ import { ShortNumberSuffixPipe } from './pipes/short-number-suffix.pipe';
     ShowHidePasswordComponent,
     MessagesNavigationBarComponent,
     ShortNumberSuffixPipe,
+    FilterSearchUsersPipe,
   ]
 })
 export class SharedModule { }

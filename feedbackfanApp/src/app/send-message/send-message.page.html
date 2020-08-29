@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar mode="md">
+    <ion-title class="ion-title" mode="md">{{'nuevo_mensaje' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="send-message-content">
+  <form [formGroup]="sendMessageForm" (ngSubmit)="sendMessage()" >
+    <ion-list class="inputs-list" lines="full">
+      <ion-item class="input-item">
+        <ion-icon slot="start" class="icon-style" name="people-sharp"></ion-icon>
+        <ion-input type="text" (click)="searchUser()" [placeholder]="'buscar_personas' | translate" formControlName="user">
+        </ion-input>
+      </ion-item>
+      <div class="error-container">
+        <ng-container *ngFor="let validation of validation_messages.user">
+          <div class="error-message" *ngIf="sendMessageForm.get('user').hasError(validation.type) && (sendMessageForm.get('user').dirty || sendMessageForm.get('user').touched)">
+            <ion-icon name="information-circle-outline"></ion-icon>
+            <span>{{ validation.message }}</span>
+          </div>
+        </ng-container>
+      </div>
+      <ion-item class="input-item">
+        <ion-icon slot="start" class="icon-style" name="text-sharp"></ion-icon>
+        <ion-input type="text" [placeholder]="'inserta_el_titulo' | translate" formControlName="title"></ion-input>
+      </ion-item>
+      <div class="error-container">
+        <ng-container *ngFor="let validation of validation_messages.title">
+          <div class="error-message" *ngIf="sendMessageForm.get('title').hasError(validation.type) && (sendMessageForm.get('title').dirty || sendMessageForm.get('title').touched)">
+            <ion-icon name="information-circle-outline"></ion-icon>
+            <span>{{ validation.message }}</span>
+          </div>
+        </ng-container>
+      </div>
+    </ion-list>
+    <ion-row>
+      <ion-col size="12">
+        <quill-editor formControlName="info"></quill-editor>
+      </ion-col>
+    </ion-row>
+    <div class="error-container">
+      <ng-container *ngFor="let validation of validation_messages.info">
+        <div class="error-message" *ngIf="sendMessageForm.get('info').hasError(validation.type) && (sendMessageForm.get('info').dirty || sendMessageForm.get('info').untouched)">
+          <ion-icon name="information-circle-outline"></ion-icon>
+          <span>{{ validation.message }}</span>
+        </div>
+      </ng-container>
+    </div>
+
+    <ion-button class="signup-btn" type="submit" expand="block" [disabled]="!sendMessageForm.get('user').value || !sendMessageForm.get('title').value || !sendMessageForm.get('info').value ">
+      {{ 'enviar' | translate }}
+    </ion-button>
+    <div class="error-container" *ngIf="submitError">
+      <div class="error-message">
+        <ion-icon name="information-circle-outline"></ion-icon>
+        <span>{{ submitError }}</span>
+      </div>
+    </div>
+  </form>
+</ion-content>
