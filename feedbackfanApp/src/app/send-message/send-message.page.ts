@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../core/language/language.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserSearchComponent } from './user-search/user-search.component';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { ProfileModel } from '../profile/profile.model';
 import { SendMessageModel } from './send-message-model';
 import { TabsResolver } from '../tabs/tabs.resolver';
 import { MessageService } from '../core/services/message.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-send-message',
@@ -34,6 +35,9 @@ export class SendMessagePage implements OnInit {
     private languageService: LanguageService,
     private tabsResolver: TabsResolver,
     private messageService: MessageService,
+    private router: Router,
+    private ngZone: NgZone,
+    private toastController: ToastController,
   ) {
 
     this.sendMessageForm = new FormGroup({
@@ -74,7 +78,29 @@ export class SendMessagePage implements OnInit {
     this.submitError = null;
   }
 
+  goToMessagesSendedPage() {
+    this.ngZone.run(async () => {
+      // Get previous URL from our custom History Helper
+      // If there's no previous page, then redirect to profile
+      // const previousUrl = this.historyHelper.previousUrl || 'firebase/auth/profile';
+      const previousUrl = 'app/sended-message';
+
+      // No need to store in the navigation history the sign-in page with redirect params (it's justa a mandatory mid-step)
+      // Navigate to profile and replace current url with profile
+      this.router.navigate([previousUrl], { replaceUrl: true });
+    });
+  }
+
+  async presentSuccessfulMessage() {
+    const toast = await this.toastController.create({
+      message: this.languageService.getTerm('mensaje_enviado_exitosamente'),
+      duration: 2000
+    });
+    toast.present();
+  }
+
   sendMessage() {
+    this.resetSubmitError();
     this.usersSelected.forEach(user => {
       const newMessage: SendMessageModel = new SendMessageModel();
       newMessage.from = this.user.email;
@@ -87,10 +113,9 @@ export class SendMessagePage implements OnInit {
       newMessage.isPublishableSender = this.isPublishable;
       newMessage.isPublishableReceiver = false;
       newMessage.isShell = true;
-      this.messageService.createSenderMessage(newMessage, this.user.uid).then( res => {
-        console.log(res);
+      this.messageService.createSenderMessage(newMessage, this.user.uid).then( () => {
       }).catch(err => {
-        console.log(err);
+        this.submitError = err;
       });
     });
 
@@ -106,10 +131,12 @@ export class SendMessagePage implements OnInit {
       newMessage.isPublishableSender = this.isPublishable;
       newMessage.isPublishableReceiver = false;
       newMessage.isShell = true;
-      this.messageService.createReceiverMessage(newMessage, user.uid).then( res => {
-        console.log(res);
+      this.messageService.createReceiverMessage(newMessage, user.uid).then( () => {
+        this.sendMessageForm.reset();
+        this.presentSuccessfulMessage();
+        this.goToMessagesSendedPage();
       }).catch(err => {
-        console.log(err);
+        this.submitError = err;
       });
     });
   }

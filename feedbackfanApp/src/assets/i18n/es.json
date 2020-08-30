@@ -48,5 +48,6 @@
   "validar_mensaje_usuarios": "Tienes que agregar un usuario.",
   "enviar": "Enviar",
   "buscar": "Buscar",
-  "valido_para_publicar": "Mensaje publicable"
+  "valido_para_publicar": "Mensaje publicable",
+  "mensaje_enviado_exitosamente": "El mensaje ha sido enviado."
 }
