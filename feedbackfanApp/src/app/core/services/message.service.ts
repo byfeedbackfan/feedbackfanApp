@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
-
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { ProfileModel } from '../../profile/profile.model';
+import { AngularFirestore, DocumentReference, QueryDocumentSnapshot, DocumentData, QuerySnapshot } from '@angular/fire/firestore';
 import { SendMessageModel } from '../../send-message/send-message-model';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -13,35 +12,68 @@ export class MessageService {
 
   constructor(private afs: AngularFirestore) { }
 
-  public createSenderMessage(message: SendMessageModel, uidSender: string): Promise<DocumentReference> {
-    console.log(uidSender);
+  public createMessage(message: SendMessageModel): Promise<void> {
+    const idMessage = this.afs.createId();
     const data = {
+      id: idMessage,
       from: message.from,
       to: message.to,
+      uidSender: message.uidSender,
+      uidReceiver: message.uidReceiver,
       date: message.date,
       title: message.title,
       message: message.message,
       likes: message.likes,
       dislikes: message.dislikes,
+      usersLike: message.usersLike,
+      usersDislike: message.usersDislike,
       isPublishableSender: message.isPublishableSender,
       isPublishableReceiver: message.isPublishableReceiver,
+      readed: message.readed,
     };
-    return this.afs.doc(`user/${uidSender}`).collection('sentMessage').add(data);
+    return this.afs.collection('message').doc(idMessage).set(data);
   }
 
-  public createReceiverMessage(message: SendMessageModel, uidReceiver: string): Promise<DocumentReference> {
-    console.log(uidReceiver);
+  getSentMessages(uid: string): Observable<SendMessageModel[]> {
+    return this.afs.collection('message', ref => ref.where('uidSender', '==', uid))
+    .get().pipe(map(a => {
+      const messages: SendMessageModel[] = [];
+      a.forEach(message => {
+        messages.push(message.data() as SendMessageModel);
+      });
+      return messages;
+    }));
+  }
+
+  getReceivedMessages(uid: string): Observable<SendMessageModel[]> {
+    return this.afs.collection('message', ref => ref.where('uidReceiver', '==', uid))
+    .get().pipe(map(a => {
+      const messages: SendMessageModel[] = [];
+      a.forEach(message => {
+        messages.push(message.data() as SendMessageModel);
+      });
+      return messages;
+    }));
+  }
+
+  updateMessage(message: SendMessageModel) {
     const data = {
+      id: message.id,
       from: message.from,
       to: message.to,
+      uidSender: message.uidSender,
+      uidReceiver: message.uidReceiver,
       date: message.date,
       title: message.title,
       message: message.message,
       likes: message.likes,
       dislikes: message.dislikes,
+      usersLike: message.usersLike,
+      usersDislike: message.usersDislike,
       isPublishableSender: message.isPublishableSender,
       isPublishableReceiver: message.isPublishableReceiver,
+      readed: message.readed,
     };
-    return this.afs.doc(`user/${uidReceiver}`).collection('receivedMessage').add(data);
+    return this.afs.collection('message').doc(message.id).update(data);
   }
 }

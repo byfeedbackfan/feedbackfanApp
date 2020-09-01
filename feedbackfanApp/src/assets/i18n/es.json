@@ -49,5 +49,14 @@
   "enviar": "Enviar",
   "buscar": "Buscar",
   "valido_para_publicar": "Mensaje publicable",
-  "mensaje_enviado_exitosamente": "El mensaje ha sido enviado."
+  "mensaje_enviado_exitosamente": "El mensaje ha sido enviado.",
+  "fecha":"Fecha: ",
+  "publicable": "Publicable",
+  "no_publicable": "No publicable",
+  "detalle_mensaje": "Detalle del mensaje",
+  "de": "De: ",
+  "me_gusta": "Me gusta",
+  "no_me_gusta": "No me gusta",
+  "no_calificado": "No calificado",
+  "no_hay_mensajes": "No tienes ningún mensaje"
 }

@@ -1,0 +1,40 @@
+ion-toolbar {
+  --background: #3b69ff;
+}
+
+.icon-style {
+  color: rgb(68, 0, 146);
+}
+
+.ion-title {
+  color: white;
+  font-weight: bold;
+}
+
+ion-searchbar{
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  --icon-color: rgb(68, 0, 146) !important;
+}
+
+.item-not-messages {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0 !important;
+
+  p {
+    ion-icon {
+      width: 200px !important;
+      height: 150px !important;
+      color: lightgrey !important;
+    }
+  }
+}
+
+.text-not-messages {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: gray;
+}

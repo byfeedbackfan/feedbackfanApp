@@ -9,6 +9,11 @@ import { SendMessageModel } from './send-message-model';
 import { TabsResolver } from '../tabs/tabs.resolver';
 import { MessageService } from '../core/services/message.service';
 import { Router } from '@angular/router';
+import { UserService } from '../core/services/user.service';
+import * as dayjs from 'dayjs';
+import { Plugins } from '@capacitor/core';
+
+const { Storage } = Plugins;
 
 @Component({
   selector: 'app-send-message',
@@ -28,6 +33,7 @@ export class SendMessagePage implements OnInit {
   usersSelected: ProfileModel[] = [];
   user: ProfileModel;
   isPublishable: boolean;
+  messagesToStorage = [];
 
   constructor(
     public translate: TranslateService,
@@ -35,6 +41,7 @@ export class SendMessagePage implements OnInit {
     private languageService: LanguageService,
     private tabsResolver: TabsResolver,
     private messageService: MessageService,
+    private userService: UserService,
     private router: Router,
     private ngZone: NgZone,
     private toastController: ToastController,
@@ -53,6 +60,18 @@ export class SendMessagePage implements OnInit {
         { type: 'required', message: 'El mensaje no puede estar vacío' },
       ]
     };
+  }
+
+  ionViewWillEnter() {
+    Storage.get({key: 'userCredentials'}).then(data => {
+      this.user = JSON.parse(data.value);
+    });
+    Storage.get({key: 'sentMessages'}).then(data => {
+      if (data.value !== null) {
+        this.messagesToStorage = JSON.parse(data.value);
+      }
+    });
+    this.isPublishable = this.user.allMessagesPublic;
   }
 
   async ngOnInit() {
@@ -99,46 +118,63 @@ export class SendMessagePage implements OnInit {
     toast.present();
   }
 
-  sendMessage() {
-    this.resetSubmitError();
-    this.usersSelected.forEach(user => {
-      const newMessage: SendMessageModel = new SendMessageModel();
-      newMessage.from = this.user.email;
-      newMessage.to = user.email;
-      newMessage.date = new Date();
-      newMessage.title = this.sendMessageForm.get('title').value;
-      newMessage.message = this.sendMessageForm.get('info').value;
-      newMessage.likes = 0;
-      newMessage.dislikes = 0;
-      newMessage.isPublishableSender = this.isPublishable;
-      newMessage.isPublishableReceiver = false;
-      newMessage.isShell = true;
-      this.messageService.createSenderMessage(newMessage, this.user.uid).then( () => {
-      }).catch(err => {
-        this.submitError = err;
-      });
+  async setMessagesToStorage() {
+    this.messagesToStorage.forEach(message => {
+      message.date = dayjs(message.date).format('DD/MM/YYYY h:m:a');
     });
+    const messages = JSON.stringify(this.messagesToStorage);
+    await Storage.set({key: 'sentMessages', value: messages});
+  }
 
-    this.usersSelected.forEach(user => {
+  async sendedMessage() {
+    this.usersSelected.forEach(async (user) => {
       const newMessage: SendMessageModel = new SendMessageModel();
       newMessage.from = this.user.email;
       newMessage.to = user.email;
+      newMessage.uidSender = this.user.uid;
+      newMessage.uidReceiver = user.uid;
       newMessage.date = new Date();
       newMessage.title = this.sendMessageForm.get('title').value;
       newMessage.message = this.sendMessageForm.get('info').value;
       newMessage.likes = 0;
       newMessage.dislikes = 0;
+      newMessage.usersLike = [];
+      newMessage.usersDislike = [];
       newMessage.isPublishableSender = this.isPublishable;
       newMessage.isPublishableReceiver = false;
       newMessage.isShell = true;
-      this.messageService.createReceiverMessage(newMessage, user.uid).then( () => {
-        this.sendMessageForm.reset();
-        this.presentSuccessfulMessage();
-        this.goToMessagesSendedPage();
-      }).catch(err => {
+      newMessage.readed = false;
+      const message = newMessage;
+      this.messagesToStorage.push(newMessage);
+      await this.messageService.createMessage(newMessage).then(async () => {
+        await this.userService.addOneToReceivedmessages(user).then( async () => {
+          await this.addQuantityToSentMessages(1);
+        }).catch(err => {
+          this.submitError = err;
+        });
+      })
+      .catch(err => {
         this.submitError = err;
       });
     });
+    await this.setMessagesToStorage();
+    await this.presentSuccessfulMessage();
+    this.goToMessagesSendedPage();
+  }
+
+  async addQuantityToSentMessages(sendedMessagesQuantity: number) {
+    await this.userService.addQuantityToSentMessages(this.user.uid, sendedMessagesQuantity).then(async () => {
+      this.user.sentMessages =  this.user.sentMessages + sendedMessagesQuantity;
+      const userStorage = JSON.stringify(this.user);
+      Storage.set({key: 'userCredentials', value: userStorage});
+    }).catch( err => {
+      this.submitError = err;
+    });
+  }
+
+  sendMessage() {
+    this.submitError = '';
+    this.sendedMessage();
   }
 
   async searchUser() {

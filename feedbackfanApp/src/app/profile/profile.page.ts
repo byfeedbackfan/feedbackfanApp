@@ -54,6 +54,12 @@ export class ProfilePage implements OnInit {
     });
   }
 
+  ionViewWillEnter() {
+    Storage.get({key: 'userCredentials'}).then(data => {
+      this.user = JSON.parse(data.value);
+    });
+  }
+
   getTranslations() {
     // get translations for this page to use in the Language Chooser Alert
     this.translate.getTranslation(this.translate.currentLang)

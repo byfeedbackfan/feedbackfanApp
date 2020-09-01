@@ -4,6 +4,7 @@ import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ProfileModel } from '../../profile/profile.model';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -50,5 +51,15 @@ export class UserService {
         return usersData as ProfileModel;
       }))
     );
+  }
+
+  public addQuantityToSentMessages(uid: string, quantity: number): Promise<void> {
+    const increment = firebase.firestore.FieldValue.increment(quantity);
+    return this.afs.collection(`user`).doc(uid).update({sentMessages: increment});
+  }
+
+  public addOneToReceivedmessages(user: ProfileModel): Promise<void> {
+    const increment = firebase.firestore.FieldValue.increment(1);
+    return this.afs.collection(`user`).doc(user.uid).update({receivedMessages: increment});
   }
 }

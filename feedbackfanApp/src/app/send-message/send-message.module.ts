@@ -10,6 +10,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { QuillModule } from 'ngx-quill';
 import { UserSearchComponent } from './user-search/user-search.component';
 import { ShellModule } from '../shell/shell.module';
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   {
@@ -44,6 +45,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     IonicModule,
     TranslateModule,
+    SharedModule,
   ],
   declarations: [
     SendMessagePage,

@@ -21,6 +21,8 @@ export class UserSearchComponent implements OnInit {
   isClicked: boolean;
   usersToSendMessage: ProfileModel[] = [];
   changeColor = false;
+  userSearch = '';
+  users = [];
 
   constructor(
     private userService: UserService,
@@ -37,7 +39,19 @@ export class UserSearchComponent implements OnInit {
   deleteUserLoggedFromArray(users: ProfileModel[]) {
     users.forEach( userr => {
       if (userr.uid !== this.userStorage.uid ) {
-        this.usersData.push(userr);
+        const user = {
+          uid: userr.uid,
+          email: userr.email,
+          name: userr.name,
+          role: userr.role,
+          image: userr.image,
+          sentMessages: userr.sentMessages,
+          receivedMessages: userr.receivedMessages,
+          allMessagesPublic: userr.allMessagesPublic,
+          isShell: userr.isShell,
+          isSelected: false,
+        };
+        this.users.push(user);
       }
     });
   }
@@ -45,7 +59,8 @@ export class UserSearchComponent implements OnInit {
   async ngOnInit() {
   }
 
-  searchUser() {
+  searchUser( event ) {
+    this.userSearch = event.detail.value;
   }
 
   closeModalWithData() {
@@ -54,8 +69,8 @@ export class UserSearchComponent implements OnInit {
     });
   }
 
-  pressed(user: ProfileModel) {
-    this.isClicked = !this.isClicked;
+  pressed( user ) {
+    user.isSelected = !user.isSelected;
     this.changeColor = true;
     this.setUserIntoArray(user);
   }
@@ -77,16 +92,12 @@ export class UserSearchComponent implements OnInit {
   }
 
   setUserIntoArray(user: ProfileModel) {
-    console.log(user);
     const arraySearch = this.searchIfUserExistsInArray(user);
     if ( arraySearch[0] ) {
-      console.log(' esta');
       this.usersToSendMessage.splice(arraySearch[1]);
     } else {
-      console.log(' no esta');
       this.usersToSendMessage.push(user);
     }
-    console.log(this.usersToSendMessage);
   }
 
   closeModal() {

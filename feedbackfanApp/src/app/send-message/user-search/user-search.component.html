@@ -1,4 +1,4 @@
-<ion-header class="ion-no-border">
+<ion-header class="ion-no-border" #header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button (click)="closeModal()">
@@ -14,16 +14,16 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content scrollEvents="true" appHideHeader [header]="header">
   <ion-list lines="none">
-    <ion-item *ngFor="let user of usersData" 
-              [color]="!isClicked ? 'unclicked': 'clicked'" 
+    <ion-item *ngFor="let user of users | filterSearch: userSearch: 'name' : 'email'" 
+              [color]="!user.isSelected ? 'unclicked': 'clicked'" 
               button="true" 
               (click)="pressed(user)">
       <ion-avatar class="avatar">
         <app-image-shell class="user-image" [display]="'cover'" animation="spinner" [src]="user.image" alt="item image">
           <app-aspect-ratio [ratio]="{w:1, h:1}">
-            <ion-icon *ngIf="isClicked" class="profile-icon-settings" name="checkmark-circle">
+            <ion-icon *ngIf="user.isSelected" class="profile-icon-settings" name="checkmark-circle">
             </ion-icon>
           </app-aspect-ratio>
         </app-image-shell>

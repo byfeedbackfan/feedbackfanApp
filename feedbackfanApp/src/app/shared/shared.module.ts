@@ -4,24 +4,38 @@ import { ShowHidePasswordComponent } from './show-hide-password/show-hide-passwo
 import { IonicModule } from '@ionic/angular';
 import { MessagesNavigationBarComponent } from './messages-navigation-bar/messages-navigation-bar.component';
 import { ShortNumberSuffixPipe } from './pipes/short-number-suffix.pipe';
-import { FilterSearchUsersPipe } from './pipes/filter-search-users.pipe';
+import { FilterSearchPipe } from './pipes/filter-search.pipe';
+import { HideHeaderDirective } from './directives/hide-header.directive';
+import { FilterMessagePublishablePipe } from './pipes/filter-message-publishable';
+import { MessageDetailComponent } from './message-detail/message-detail.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 
 @NgModule({
   declarations: [
     ShowHidePasswordComponent,
     MessagesNavigationBarComponent,
     ShortNumberSuffixPipe,
-    FilterSearchUsersPipe,
+    FilterSearchPipe,
+    HideHeaderDirective,
+    FilterMessagePublishablePipe,
+    MessageDetailComponent,
+    SafeHtmlPipe,
   ],
   imports: [
     CommonModule,
+    TranslateModule,
     IonicModule.forRoot()
   ],
   exports: [
     ShowHidePasswordComponent,
     MessagesNavigationBarComponent,
+    MessageDetailComponent,
     ShortNumberSuffixPipe,
-    FilterSearchUsersPipe,
+    FilterSearchPipe,
+    FilterMessagePublishablePipe,
+    HideHeaderDirective,
+    SafeHtmlPipe,
   ]
 })
 export class SharedModule { }

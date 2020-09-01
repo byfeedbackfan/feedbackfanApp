@@ -6,6 +6,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { ReceivedMessagePage } from './received-message.page';
 import { Routes, RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   {
@@ -19,6 +21,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    TranslateModule,
+    SharedModule,
     RouterModule.forChild(routes)
   ],
   declarations: [ReceivedMessagePage]
