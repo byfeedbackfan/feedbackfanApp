@@ -3,7 +3,10 @@ import { SendMessageModel } from '../../send-message/send-message-model';
 import { TranslateService } from '@ngx-translate/core';
 import { ModalController } from '@ionic/angular';
 import { ProfileModel } from '../../profile/profile.model';
+import { MessageService } from '../../core/services/message.service';
+import { Plugins } from '@capacitor/core';
 
+const { Storage } = Plugins;
 
 @Component({
   selector: 'app-message-detail',
@@ -14,12 +17,14 @@ export class MessageDetailComponent implements OnInit {
 
   @Input() messageDetail: SendMessageModel;
   @Input() userLogged: ProfileModel;
+  @Input() messages: SendMessageModel[];
 
   translations;
 
   constructor(
     public translate: TranslateService,
     public modalController: ModalController,
+    public messageService: MessageService,
   ) { }
 
   async ngOnInit() {
@@ -38,7 +43,9 @@ export class MessageDetailComponent implements OnInit {
   }
 
   closeModal() {
-    this.modalController.dismiss();
+    this.modalController.dismiss({
+      newMessages: this.messages
+    });
   }
 
   shearchUserInLikesArray(message: SendMessageModel): boolean {
@@ -59,6 +66,35 @@ export class MessageDetailComponent implements OnInit {
       }
     });
     return userAlreadyUnliked;
+  }
+
+  changePublishableMessage() {
+    this.messageDetail.isPublishableReceiver = !this.messageDetail.isPublishableReceiver;
+    this.messageService.updateMessage(this.messageDetail);
+    this.setUpdateMessageToStorage(this.messageDetail);
+    this.setUpdateMessage(this.messageDetail);
+  }
+
+  async setUpdateMessageToStorage(message: SendMessageModel) {
+    let receivedMsg: SendMessageModel[];
+    await Storage.get({key: 'receivedMessages'}).then( messages => {
+      receivedMsg = JSON.parse(messages.value);
+    });
+    receivedMsg.forEach((element, i) => {
+      if (element.id === message.id) {
+        receivedMsg.splice(i, 1, message);
+      }
+    });
+    const receivedMsgStr = JSON.stringify(receivedMsg);
+    Storage.set({key: 'receivedMessages', value: receivedMsgStr});
+  }
+
+  setUpdateMessage(message: SendMessageModel) {
+    this.messages.forEach((element, i) => {
+      if (element.id === message.id) {
+        this.messages.splice(i, 1, message);
+      }
+    });
   }
 
 }

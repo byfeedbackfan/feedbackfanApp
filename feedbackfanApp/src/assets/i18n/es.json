@@ -53,10 +53,17 @@
   "fecha":"Fecha: ",
   "publicable": "Publicable",
   "no_publicable": "No publicable",
+  "publicado": "Publicado",
+  "no_publicado": "No publicado",
   "detalle_mensaje": "Detalle del mensaje",
   "de": "De: ",
   "me_gusta": "Me gusta",
   "no_me_gusta": "No me gusta",
   "no_calificado": "No calificado",
-  "no_hay_mensajes": "No tienes ningún mensaje"
+  "no_hay_mensajes": "No tienes ningún mensaje",
+  "no_leidos": "No leídos",
+  "leidos": "Leídos",
+  "emisor": "Emisor:",
+  "receptor": "Receptor:",
+  "no_hay_mensajes_perfil": "No tienes ningún mensaje publicado"
 }

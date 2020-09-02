@@ -13,13 +13,17 @@ const { Storage } = Plugins;
 @Component({
   selector: 'app-received-message',
   templateUrl: './received-message.page.html',
-  styleUrls: ['./styles/received-message.page.scss'],
+  styleUrls: [
+    './styles/received-message.page.scss',
+    './styles/received-message.shell.scss'
+  ],
 })
 export class ReceivedMessagePage implements OnInit {
 
   receivedMessagesStorage: SendMessageModel[] = [];
   userLogged: ProfileModel;
   receivedMessages = [];
+  messages = [];
   translations;
   messageSearch = '';
 
@@ -38,10 +42,25 @@ export class ReceivedMessagePage implements OnInit {
     await Storage.get({key: 'userCredentials'}).then(data => {
       this.userLogged = JSON.parse(data.value);
     });
+    this.messageService.getReceivedMessages(this.userLogged.uid).subscribe(messages => {
+      let receivedMsg: string;
+      this.receivedMessages = messages;
+      this.messages = messages;
+      receivedMsg = JSON.stringify(messages);
+      Storage.set({key: 'receivedMessages', value: receivedMsg});
+      console.log(this.receivedMessages);
+      this.receivedMessages.forEach( element => {
+        element.date = dayjs.unix(element.date.seconds).format('DD/MM/YYYY h:m:a');
+      });
+    });
   }
 
-  async ionViewWillEnter() {
-    
+  ionViewWillEnter() {
+    Storage.get({key: 'receivedMessages'}).then( message => {
+      if (message) {
+        this.receivedMessages = JSON.parse(message.value);
+      }
+    });
   }
 
   getTranslations() {
@@ -104,6 +123,7 @@ export class ReceivedMessagePage implements OnInit {
       message.likes = message.likes + 1;
       message.usersLike.push(this.userLogged.uid);
       await this.messageService.updateMessage(message);
+      this.setUpdateMessageToStorage(message);
     }
   }
 
@@ -117,19 +137,56 @@ export class ReceivedMessagePage implements OnInit {
       message.dislikes = message.dislikes + 1;
       message.usersDislike.push(this.userLogged.uid);
       await this.messageService.updateMessage(message);
+      this.setUpdateMessageToStorage(message);
+    }
+  }
+
+  async updateMessage(message: SendMessageModel) {
+    if (message.readed === false) {
+      let index;
+      this.messages.forEach((elem, i) => {
+        if (elem.id === message.id) {
+          index = i;
+          this.receivedMessages[i].readed = true;
+          this.messages[i].readed = true;
+        }
+      });
+      await this.messageService.updateMessage(this.messages[index]);
     }
   }
 
   async openMessage(message: SendMessageModel) {
+    this.updateMessage(message);
     const messageDetail = await this.modalController.create({
       component: MessageDetailComponent,
       componentProps: {
+        messages: this.receivedMessages,
         messageDetail: message,
         userLogged: this.userLogged,
       }
     });
 
     await messageDetail.present();
+
+    const { data } = await messageDetail.onDidDismiss();
+
+    if (data) {
+      this.receivedMessages = data.newMessages;
+    }
+  }
+
+  async setUpdateMessageToStorage(message: SendMessageModel) {
+    let receivedMsg: SendMessageModel[];
+    await Storage.get({key: 'receivedMessages'}).then( messages => {
+      receivedMsg = JSON.parse(messages.value);
+    });
+    receivedMsg.forEach((element, i) => {
+      if (element.id === message.id) {
+        receivedMsg.splice(i, 1, message);
+      }
+    });
+    const receivedMsgStr = JSON.stringify(receivedMsg);
+    Storage.set({key: 'receivedMessages', value: receivedMsgStr});
   }
 
 }

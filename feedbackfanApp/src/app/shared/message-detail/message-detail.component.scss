@@ -22,6 +22,19 @@ ion-toolbar {
   color: rgb(68, 0, 146);
 }
 
+.label-size {
+  margin-left: 27% !important;
+}
+
+.toggle-options {
+  --background: #7c7c7c;
+  --background-checked: #678bff;
+  --handle-background: #b4b3b3;
+  --handle-background-checked: #144afa;
+  --handle-spacing: 0px !important;
+  padding: 0 !important;
+}
+
 .inputs-list {
   --ion-item-background: var(--page-background);
 
@@ -92,6 +105,10 @@ ion-toolbar {
 
 .text-values {
   width: 68px !important;
+}
+
+.margin-chip {
+  padding-top: 0 !important;
 }
 
 .calification-values {

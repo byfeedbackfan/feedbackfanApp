@@ -10,6 +10,7 @@ import { FilterMessagePublishablePipe } from './pipes/filter-message-publishable
 import { MessageDetailComponent } from './message-detail/message-detail.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
   imports: [
     CommonModule,
     TranslateModule,
+    FormsModule,
     IonicModule.forRoot()
   ],
   exports: [

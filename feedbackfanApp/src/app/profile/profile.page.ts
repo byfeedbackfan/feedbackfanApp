@@ -4,13 +4,16 @@ import { ProfileModel } from './profile.model';
 import { Plugins } from '@capacitor/core';
 import { ProfileResolver } from './profile.resolver';
 import { EditProfileInfoComponent } from './edit-profile-info/edit-profile-info.component';
-import { ModalController, PopoverController } from '@ionic/angular';
+import { ModalController, PopoverController, IonItemSliding } from '@ionic/angular';
 import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../core/language/language.service';
 import { UserOptionsPopoverComponent } from './user-options-popover/user-options-popover.component';
+import { MessageService } from '../core/services/message.service';
+import { SendMessageModel } from '../send-message/send-message-model';
+import { MessageDetailComponent } from '../shared/message-detail/message-detail.component';
 
 const { Storage } = Plugins;
 
@@ -35,28 +38,46 @@ export class ProfilePage implements OnInit {
   imageFilePath = '../../../assets/icons/no-profile-picture.jpg';
   imageFile: string;
   translations;
+  publicMessages: SendMessageModel[] = [];
 
   constructor(
     public translate: TranslateService,
     public languageService: LanguageService,
     private profileResolver: ProfileResolver,
     private popoverController: PopoverController,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private messageService: MessageService,
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.getTranslations();
     this.translate.onLangChange.subscribe(() => {
       this.getTranslations();
     });
-    this.profileResolver.resolve().then((user) => {
+    await this.profileResolver.resolve().then((user) => {
       this.user = user;
+    }).catch(err => {
+      this.submitError = err;
+    });
+
+    this.messageService.getReceivedMessages(this.user.uid).subscribe(message => {
+      this.publicMessages = message;
+      console.log(this.publicMessages);
     });
   }
 
   ionViewWillEnter() {
     Storage.get({key: 'userCredentials'}).then(data => {
       this.user = JSON.parse(data.value);
+    }).catch(err => {
+      this.submitError = err;
+    });
+    Storage.get({key: 'receivedMessages'}).then( message => {
+      if (message) {
+        this.publicMessages = JSON.parse(message.value);
+      }
+    }).catch(err => {
+      this.submitError = err;
     });
   }
 
@@ -94,5 +115,104 @@ export class ProfilePage implements OnInit {
       mode: 'md',
     });
     return await popover.present();
+  }
+
+  async openMessage(message: SendMessageModel) {
+    const messageDetail = await this.modalController.create({
+      component: MessageDetailComponent,
+      componentProps: {
+        messages: this.publicMessages,
+        messageDetail: message,
+        userLogged: this.user,
+      }
+    });
+
+    await messageDetail.present();
+
+    const { data } = await messageDetail.onDidDismiss();
+
+    if (data) {
+      this.publicMessages = data.newMessages;
+    }
+  }
+
+  shearchUserInLikesArray(message: SendMessageModel): boolean {
+    let userAlreadyLiked = false;
+    message.usersLike.forEach( uid => {
+      if (this.user.uid === uid) {
+        userAlreadyLiked = true;
+      }
+    });
+    return userAlreadyLiked;
+  }
+
+  shearchUserDislikesArray(message: SendMessageModel): boolean {
+    let userAlreadyUnliked = false;
+    message.usersDislike.forEach( uid => {
+      if (this.user.uid === uid) {
+        userAlreadyUnliked = true;
+      }
+    });
+    return userAlreadyUnliked;
+  }
+
+  removeUserInLikesArray(message: SendMessageModel): SendMessageModel {
+    message.usersLike.forEach((uid, index) => {
+      if (uid === this.user.uid) {
+        message.usersLike.splice(index);
+      }
+    });
+    return message;
+  }
+
+  removeUserInDislikesArray(message: SendMessageModel): SendMessageModel {
+    message.usersDislike.forEach((uid, index) => {
+      if (uid === this.user.uid) {
+        message.usersDislike.splice(index);
+      }
+    });
+    return message;
+  }
+
+  async likeMessage(slidingItem: IonItemSliding, message: SendMessageModel){
+    slidingItem.close();
+    if (!this.shearchUserInLikesArray(message)) {
+      if (this.shearchUserDislikesArray(message)) {
+        message = this.removeUserInDislikesArray(message);
+        message.dislikes = message.dislikes - 1;
+      }
+      message.likes = message.likes + 1;
+      message.usersLike.push(this.user.uid);
+      await this.messageService.updateMessage(message);
+      this.setUpdateMessageToStorage(message);
+    }
+  }
+
+  async setUpdateMessageToStorage(message: SendMessageModel) {
+    let receivedMsg: SendMessageModel[];
+    await Storage.get({key: 'receivedMessages'}).then( messages => {
+      receivedMsg = JSON.parse(messages.value);
+    });
+    receivedMsg.forEach((element, i) => {
+      if (element.id === message.id) {
+        receivedMsg.splice(i, 1, message);
+      }
+    });
+    const receivedMsgStr = JSON.stringify(receivedMsg);
+    Storage.set({key: 'receivedMessages', value: receivedMsgStr});
+  }
+
+  async unlikeMessage(slidingItem: IonItemSliding, message: SendMessageModel) {
+    slidingItem.close();
+    if (!this.shearchUserDislikesArray(message)) {
+      if (this.shearchUserInLikesArray(message)) {
+        message = this.removeUserInLikesArray(message);
+        message.likes = message.likes - 1;
+      }
+      message.dislikes = message.dislikes + 1;
+      message.usersDislike.push(this.user.uid);
+      await this.messageService.updateMessage(message);
+      this.setUpdateMessageToStorage(message);
+    }
   }
 }
