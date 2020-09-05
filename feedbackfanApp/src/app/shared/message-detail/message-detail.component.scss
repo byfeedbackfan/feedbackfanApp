@@ -22,10 +22,6 @@ ion-toolbar {
   color: rgb(68, 0, 146);
 }
 
-.label-size {
-  margin-left: 27% !important;
-}
-
 .toggle-options {
   --background: #7c7c7c;
   --background-checked: #678bff;
@@ -111,8 +107,11 @@ ion-toolbar {
   padding-top: 0 !important;
 }
 
+.col-califications {
+  padding: 0 !important;
+}
+
 .calification-values {
-  color: rgb(68, 0, 146);
   padding: 0 !important;
   margin-top: 5px;
   margin-bottom: 0;
@@ -126,9 +125,44 @@ ion-toolbar {
 
   .p1 {
     vertical-align: super !important;
-    padding-left: 9px !important;
+    padding-left: 0px !important;
+    color: black;
   }
   .p2 {
-    padding-right: 9px !important;
+    padding-right: 0px !important;
+    color: black;
   }
+}
+
+.label-size {
+  margin-left: 15% !important;
+  color: black;
+}
+
+.toggle-options {
+  --background: #7c7c7c !important;
+  --background-checked: #678bff !important;
+  --handle-background: #b4b3b3 !important;
+  --handle-background-checked: #144afa !important;
+  --handle-spacing: 0px !important;
+  padding: 0 !important;
+  padding-left: 2px !important;
+}
+
+.publishable-values {
+  --inner-padding-start: 10px !important;
+
+  p {
+    font-size: small !important;
+  }
+
+  ion-toggle {
+    padding-right: 12px !important;
+    height: 25px !important;
+    width: 45px !important;
+  }
+}
+
+.div-toggle {
+  display: inline-flex;
 }

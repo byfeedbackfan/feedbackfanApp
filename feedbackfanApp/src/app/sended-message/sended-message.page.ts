@@ -3,10 +3,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from '../core/services/message.service';
 import { ProfileModel } from '../profile/profile.model';
 import { Plugins } from '@capacitor/core';
-import * as dayjs from 'dayjs';
 import { SendMessageModel } from '../send-message/send-message-model';
 import { IonItemSliding, ModalController } from '@ionic/angular';
 import { MessageDetailComponent } from '../shared/message-detail/message-detail.component';
+import { icons } from '../../configuration/icons';
 
 const { Storage } = Plugins;
 
@@ -25,6 +25,7 @@ export class SendedMessagePage implements OnInit {
   sentMessages = [];
   translations;
   messageSearch = '';
+  icons = icons;
 
   constructor(
     public translate: TranslateService,
@@ -65,9 +66,6 @@ export class SendedMessagePage implements OnInit {
     .subscribe(messages => {
       this.sentMessages = messages;
       this.sentMessages.concat(this.sentMessagesStorage);
-      this.sentMessages.forEach(element => {
-        element.date = dayjs.unix(element.date.seconds).format('DD/MM/YYYY h:m:a');
-      });
       const messagesString = JSON.stringify(this.sentMessages);
       Storage.set({key: 'sentMessages', value: messagesString});
     });
@@ -148,6 +146,16 @@ export class SendedMessagePage implements OnInit {
 
   searchMessage(event: any) {
     this.messageSearch = event.detail.value;
+  }
+
+  checkifLiked(message: SendMessageModel): boolean {
+    let isLiked: boolean;
+    message.usersLike.forEach(user => {
+      if (user === this.userLogged.uid) {
+        isLiked = true;
+      }
+    });
+    return isLiked;
   }
 
   async openMessage(message: SendMessageModel) {

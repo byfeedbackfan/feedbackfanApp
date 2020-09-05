@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ModalController } from '@ionic/angular';
 import { ProfileModel } from '../../profile/profile.model';
 import { MessageService } from '../../core/services/message.service';
+import { icons } from '../../../configuration/icons';
 import { Plugins } from '@capacitor/core';
 
 const { Storage } = Plugins;
@@ -15,11 +16,13 @@ const { Storage } = Plugins;
 })
 export class MessageDetailComponent implements OnInit {
 
-  @Input() messageDetail: SendMessageModel;
+  @Input() messageDetail;
   @Input() userLogged: ProfileModel;
   @Input() messages: SendMessageModel[];
+  @Input() index: number;
 
   translations;
+  icons = icons;
 
   constructor(
     public translate: TranslateService,
@@ -95,6 +98,26 @@ export class MessageDetailComponent implements OnInit {
         this.messages.splice(i, 1, message);
       }
     });
+  }
+
+  checkifLiked(message: SendMessageModel): boolean {
+    let isLiked: boolean;
+    message.usersLike.forEach(user => {
+      if (user === this.userLogged.uid) {
+        isLiked = true;
+      }
+    });
+    return isLiked;
+  }
+
+  checkifDisliked(message: SendMessageModel): boolean {
+    let isDisliked: boolean;
+    message.usersDislike.forEach(user => {
+      if (user === this.userLogged.uid) {
+        isDisliked = true;
+      }
+    });
+    return isDisliked;
   }
 
 }

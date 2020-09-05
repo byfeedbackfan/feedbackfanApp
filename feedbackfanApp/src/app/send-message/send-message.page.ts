@@ -10,7 +10,7 @@ import { TabsResolver } from '../tabs/tabs.resolver';
 import { MessageService } from '../core/services/message.service';
 import { Router } from '@angular/router';
 import { UserService } from '../core/services/user.service';
-import * as dayjs from 'dayjs';
+import { icons } from '../../configuration/icons';
 import { Plugins } from '@capacitor/core';
 
 const { Storage } = Plugins;
@@ -34,6 +34,7 @@ export class SendMessagePage implements OnInit {
   user: ProfileModel;
   isPublishable: boolean;
   messagesToStorage = [];
+  icons = icons;
 
   constructor(
     public translate: TranslateService,
@@ -119,9 +120,6 @@ export class SendMessagePage implements OnInit {
   }
 
   async setMessagesToStorage() {
-    this.messagesToStorage.forEach(message => {
-      message.date = dayjs(message.date).format('DD/MM/YYYY h:m:a');
-    });
     const messages = JSON.stringify(this.messagesToStorage);
     await Storage.set({key: 'sentMessages', value: messages});
   }
@@ -144,8 +142,7 @@ export class SendMessagePage implements OnInit {
       newMessage.isPublishableReceiver = false;
       newMessage.isShell = true;
       newMessage.readed = false;
-      const message = newMessage;
-      this.messagesToStorage.push(newMessage);
+      this.pushMessage(newMessage);
       await this.messageService.createMessage(newMessage).then(async () => {
         await this.userService.addOneToReceivedmessages(user).then( async () => {
           await this.addQuantityToSentMessages(1);
@@ -160,6 +157,29 @@ export class SendMessagePage implements OnInit {
     await this.setMessagesToStorage();
     await this.presentSuccessfulMessage();
     this.goToMessagesSendedPage();
+  }
+
+  pushMessage(newMessage: SendMessageModel){
+    const message = {
+      id: newMessage.id,
+      from: newMessage.from,
+      to: newMessage.to,
+      uidSender: newMessage.uidSender,
+      uidReceiver: newMessage.uidReceiver,
+      date: {seconds: newMessage.date.getTime() / 1000,  nanoseconds: newMessage.date.getTime() * 10000},
+      title: newMessage.title,
+      message: newMessage.message,
+      likes: newMessage.likes,
+      dislikes: newMessage.dislikes,
+      usersLike: newMessage.usersLike,
+      usersDislike: newMessage.usersDislike,
+      isPublishableSender: newMessage.isPublishableSender,
+      isPublishableReceiver: newMessage.isPublishableReceiver,
+      readed: newMessage.readed,
+      isShell: newMessage.isShell,
+    };
+
+    this.messagesToStorage.unshift(message);
   }
 
   async addQuantityToSentMessages(sendedMessagesQuantity: number) {

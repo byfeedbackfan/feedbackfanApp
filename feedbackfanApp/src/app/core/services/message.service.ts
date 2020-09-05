@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Query, QueryList } from '@angular/core';
 import { AngularFirestore, DocumentReference, QueryDocumentSnapshot, DocumentData, QuerySnapshot } from '@angular/fire/firestore';
 import { SendMessageModel } from '../../send-message/send-message-model';
 import { map } from 'rxjs/operators';
@@ -35,7 +35,7 @@ export class MessageService {
   }
 
   getSentMessages(uid: string): Observable<SendMessageModel[]> {
-    return this.afs.collection('message', ref => ref.where('uidSender', '==', uid))
+    return this.afs.collection('message', ref => ref.where('uidSender', '==', uid).orderBy('date', 'desc').orderBy('readed', 'asc'))
     .get().pipe(map(a => {
       const messages: SendMessageModel[] = [];
       a.forEach(message => {
@@ -46,7 +46,7 @@ export class MessageService {
   }
 
   getReceivedMessages(uid: string): Observable<SendMessageModel[]> {
-    return this.afs.collection('message', ref => ref.where('uidReceiver', '==', uid))
+    return this.afs.collection('message', ref => ref.where('uidReceiver', '==', uid).orderBy('readed', 'asc').orderBy('date', 'asc'))
     .get().pipe(map(a => {
       const messages: SendMessageModel[] = [];
       a.forEach(message => {

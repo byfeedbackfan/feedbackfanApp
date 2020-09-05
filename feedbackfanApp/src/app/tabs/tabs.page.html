@@ -1,23 +1,23 @@
 <ion-tabs>
   <ion-tab-bar slot="bottom" mode="md">
     <ion-tab-button tab="send-message">
-      <ion-icon name="mail-outline"></ion-icon>
+      <ion-icon [name]="icons.send_message"></ion-icon>
       <ion-label class="tab-title">{{ 'nuevo' | translate}}</ion-label>
     </ion-tab-button>
     <ion-tab-button tab="sended-message">
-      <ion-icon name="send-outline"></ion-icon>
+      <ion-icon [src]="svgIcons.sended"></ion-icon>
       <ion-label class="tab-title">{{ 'enviados' | translate }}</ion-label>
     </ion-tab-button>
     <ion-tab-button tab="user-finder">
-      <ion-icon name="search-outline"></ion-icon>
+      <ion-icon [name]="icons.search"></ion-icon>
       <ion-label class="tab-title">{{ 'buscador' | translate }}</ion-label>
     </ion-tab-button>
     <ion-tab-button tab="received-message">
-      <ion-icon name="download-outline"></ion-icon>
+      <ion-icon [src]="svgIcons.received"></ion-icon>
       <ion-label class="tab-title">{{ 'recibidos' | translate }}</ion-label>
     </ion-tab-button>
     <ion-tab-button tab="profile">
-      <ion-icon name="notifications-outline"></ion-icon>
+      <ion-icon [name]="icons.profile"></ion-icon>
       <ion-label class="person-outline">{{ 'perfil' | translate }}</ion-label>
     </ion-tab-button>
   </ion-tab-bar>

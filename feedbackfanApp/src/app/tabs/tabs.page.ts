@@ -4,6 +4,7 @@ import { MenuController } from '@ionic/angular';
 import { staticText } from '../../configuration/staticText';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../core/language/language.service';
+import { icons, svgIcons } from '../../configuration/icons';
 
 @Component({
   selector: 'app-tabs',
@@ -15,6 +16,8 @@ import { LanguageService } from '../core/language/language.service';
 export class TabsPage implements OnInit {
   staticText = staticText;
   translations;
+  icons = icons;
+  svgIcons = svgIcons;
 
   constructor(
     public menu: MenuController,

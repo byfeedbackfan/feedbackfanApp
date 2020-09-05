@@ -97,12 +97,12 @@
   --ion-color-darkest-tint: #78c288;
 
   /** custom 1**/
-  --ion-color-clicked: #cecece;
-  --ion-color-clicked-rgb: #cecece;
-  --ion-color-clicked-contrast: #cecece;
-  --ion-color-clicked-contrast-rgb: #cecece;
-  --ion-color-clicked-shade: #cecece;
-  --ion-color-clicked-tint:#cecece;
+  --ion-color-clicked: #e0dede;
+  --ion-color-clicked-rgb: #e0dede;
+  --ion-color-clicked-contrast: #e0dede;
+  --ion-color-clicked-contrast-rgb: #e0dede;
+  --ion-color-clicked-shade: #e0dede;
+  --ion-color-clicked-tint:#e0dede;
 
   /** custom 2**/
   --ion-color-unclicked: #ffffff;
@@ -111,6 +111,14 @@
   --ion-color-unclicked-contrast-rgb: #ffffff;
   --ion-color-unclicked-shade: #ffffff;
   --ion-color-unclicked-tint: #ffffff;
+
+  /** custom 3**/
+  --ion-color-bgi: #e5e4fa;
+  --ion-color-bgi-rgb: #e5e4fa;
+  --ion-color-bgi-contrast: #e5e4fa;
+  --ion-color-bgi-contrast-rgb: #e5e4fa;
+  --ion-color-bgi-shade: #e5e4fa;
+  --ion-color-bgi-tint: #e5e4fa;
 }
 
 :root {
@@ -156,4 +164,14 @@ html.md {
   --ion-color-contrast-rgb: var(--ion-color-unclicked-rgb);
   --ion-color-shade: var(--ion-color-unclicked-shade);
   --ion-color-tint: var(--ion-color-unclicked-tint);
+}
+
+
+.ion-color-bgi {
+  --ion-color-base: var(--ion-color-bgi);
+  --ion-color-base-rgb: var(--ion-color-bgi-rgb);
+  --ion-color-contrast: var(--ion-color-bgi-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-bgi-rgb);
+  --ion-color-shade: var(--ion-color-bgi-shade);
+  --ion-color-tint: var(--ion-color-bgi-tint);
 }

@@ -3,6 +3,7 @@ import { UserService } from '../../core/services/user.service';
 import { ProfileModel } from '../../profile/profile.model';
 import { ModalController } from '@ionic/angular';
 import { Plugins } from '@capacitor/core';
+import { icons } from '../../../configuration/icons';
 
 
 const { Storage } = Plugins;
@@ -23,6 +24,7 @@ export class UserSearchComponent implements OnInit {
   changeColor = false;
   userSearch = '';
   users = [];
+  icons = icons;
 
   constructor(
     private userService: UserService,

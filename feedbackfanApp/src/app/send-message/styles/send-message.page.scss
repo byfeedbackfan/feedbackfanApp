@@ -1,7 +1,3 @@
-:host {
-  --page-margin: var(--app-broad-margin);
-  --page-background: var(--app-background-shade);
-}
 
 .chip-img {
   width: 24px !important;
@@ -21,6 +17,46 @@
   padding: 0 !important;
 }
 
+.search {
+  color: gray !important;
+}
+
+.publishable-values {
+  --inner-padding-start: 70px !important;
+
+  p {
+    font-size: small !important;
+  }
+
+  ion-toggle {
+    padding-right: 12px !important;
+    height: 25px !important;
+    width: 45px !important;
+  }
+}
+
+.editor-values-col {
+  padding: 0 !important;
+
+  div {
+    padding: 0 !important;
+  }
+}
+
+.signup-btn {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+.ql-editor {
+  -webkit-user-select: auto !important;
+  -khtml-user-select: auto !important;
+  -moz-user-select: auto !important;
+  -ms-user-select: auto !important;
+  -o-user-select: auto !important;
+  user-select: auto !important;
+}
+
 .send-message-content {
   --background: var(--page-background);
   --padding-start: var(--page-margin);
@@ -32,6 +68,8 @@
     --ion-item-background: var(--page-background);
   
     .input-item {
+      padding-left: 20px !important;
+      padding-right: 20px !important;
       --padding-start: 0px;
       --padding-end: 0px;
       --inner-padding-end: 0px;
@@ -44,6 +82,8 @@
   
   .error-container {
     .error-message {
+      padding-left: 20px !important;
+      padding-right: 20px !important;
       margin: calc(var(--page-margin) / 2) 0px;
       align-items: center;
       color: var(--ion-color-danger);

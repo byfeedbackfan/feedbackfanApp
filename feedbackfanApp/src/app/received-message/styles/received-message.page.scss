@@ -36,7 +36,7 @@ ion-searchbar{
   display: flex;
   align-items: center;
   justify-content: center;
-  color: gray;
+  color: rgb(90, 89, 89);
 }
 
 .text-margin {
@@ -46,14 +46,15 @@ ion-searchbar{
 .col-name-values {
   padding: 0 !important;
   
-  h3 {
-    font-weight: bold;
-    color: gray;
+  p {
+    font-size: small;
+    color: rgb(90, 89, 89);
   }
 }
 
 .ion-item-options-values {
-  background-color: rgb(68, 0, 146);
+  color: white;
+  background-color: #3b69ff;
 }
 
 .col-role-values {
@@ -75,7 +76,7 @@ ion-searchbar{
     padding-right: 3px !important;
     background-color: #3b69ff; 
     margin-right: 0 !important; 
-    height: 21px !important;
+    height: 25px !important;
     width: 75px !important;
 
     p {
@@ -91,22 +92,39 @@ ion-searchbar{
 }
 
 .col-data-values {
-  padding-left: 0 !important;
-  padding-top: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .title-values {
   font-weight: bold !important;
-  text-transform: capitalize;
+  line-height: 1.5em;
+  height: 3em;
+  overflow: hidden;
+  white-space: initial;
+  margin: 0 !important;
+  color: black !important;
+}
+
+.color-one {
+  --ion-background-color:#fff;
+}
+
+.color-two {
+  --ion-background-color:#8ba6fd;
+}
+.from-values {
+  color: rgb(90, 89, 89);
 }
 
 .date-values {
-  color: gray !important; 
+  color: rgb(90, 89, 89); 
   padding-top: 2px !important;
 }
 
 .text-values {
   width: 68px !important;
+  margin: 0 !important;
 }
 
 .list-header-values {
@@ -114,12 +132,11 @@ ion-searchbar{
 }
 
 .calification-values {
-  color: rgb(68, 0, 146);
   padding: 0 !important;
   margin-top: 5px;
   margin-bottom: 0;
   text-align: center !important;
-  font-size: 90% !important;
+  font-size: 100% !important;
   width: auto;
   height: auto;
   display: block;
@@ -127,10 +144,14 @@ ion-searchbar{
   margin-right: auto;
 
   .p1 {
-    padding-left: 9px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    color: black;
   }
   .p2 {
-    padding-right: 9px !important;
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+    color: black;
   }
 }
 
@@ -144,7 +165,7 @@ ion-searchbar{
     ion-icon {
       width: 200px !important;
       height: 150px !important;
-      color: lightgrey !important;
+      color: rgb(90, 89, 89);
     }
   }
 }
@@ -153,5 +174,23 @@ ion-searchbar{
   display: flex;
   align-items: center;
   justify-content: center;
-  color: gray;
+  color: rgb(90, 89, 89);
+}
+
+.col-chip-values {
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+.not-readed-values {
+  color: rgb(221, 0, 0);
+  padding: 10px;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
 }

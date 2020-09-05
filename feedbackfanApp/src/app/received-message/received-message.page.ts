@@ -3,10 +3,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { ModalController, IonItemSliding } from '@ionic/angular';
 import { MessageService } from '../core/services/message.service';
 import { Plugins } from '@capacitor/core';
-import * as dayjs from 'dayjs';
 import { SendMessageModel } from '../send-message/send-message-model';
 import { ProfileModel } from '../profile/profile.model';
 import { MessageDetailComponent } from '../shared/message-detail/message-detail.component';
+import { icons } from '../../configuration/icons';
 
 const { Storage } = Plugins;
 
@@ -23,16 +23,16 @@ export class ReceivedMessagePage implements OnInit {
   receivedMessagesStorage: SendMessageModel[] = [];
   userLogged: ProfileModel;
   receivedMessages = [];
-  messages = [];
+  isLiked: boolean;
   translations;
   messageSearch = '';
+  icons = icons;
 
   constructor(
     public translate: TranslateService,
     public modalController: ModalController,
     private messageService: MessageService,
   ) { }
-
 
   async ngOnInit() {
     this.getTranslations();
@@ -45,13 +45,8 @@ export class ReceivedMessagePage implements OnInit {
     this.messageService.getReceivedMessages(this.userLogged.uid).subscribe(messages => {
       let receivedMsg: string;
       this.receivedMessages = messages;
-      this.messages = messages;
       receivedMsg = JSON.stringify(messages);
       Storage.set({key: 'receivedMessages', value: receivedMsg});
-      console.log(this.receivedMessages);
-      this.receivedMessages.forEach( element => {
-        element.date = dayjs.unix(element.date.seconds).format('DD/MM/YYYY h:m:a');
-      });
     });
   }
 
@@ -61,6 +56,26 @@ export class ReceivedMessagePage implements OnInit {
         this.receivedMessages = JSON.parse(message.value);
       }
     });
+  }
+
+  checkifLiked(message: SendMessageModel): boolean {
+    let isLiked: boolean;
+    message.usersLike.forEach(user => {
+      if (user === this.userLogged.uid) {
+        isLiked = true;
+      }
+    });
+    return isLiked;
+  }
+
+  checkifDisliked(message: SendMessageModel): boolean {
+    let isDisliked: boolean;
+    message.usersDislike.forEach(user => {
+      if (user === this.userLogged.uid) {
+        isDisliked = true;
+      }
+    });
+    return isDisliked;
   }
 
   getTranslations() {
@@ -144,14 +159,15 @@ export class ReceivedMessagePage implements OnInit {
   async updateMessage(message: SendMessageModel) {
     if (message.readed === false) {
       let index;
-      this.messages.forEach((elem, i) => {
+      this.receivedMessages.forEach((elem, i) => {
         if (elem.id === message.id) {
           index = i;
           this.receivedMessages[i].readed = true;
-          this.messages[i].readed = true;
+          const rm = JSON.stringify(this.receivedMessages);
+          Storage.set({key: 'receivedMessages', value: rm});
         }
       });
-      await this.messageService.updateMessage(this.messages[index]);
+      await this.messageService.updateMessage(this.receivedMessages[index]);
     }
   }
 

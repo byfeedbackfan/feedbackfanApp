@@ -21,92 +21,48 @@
       <ion-item class="input-item">
         <ion-label >
           <p class="date-values">
-            {{ messageDetail.date }}
+            {{ messageDetail.date.seconds * 1000 | date : 'short' }}
           </p>
           <h4 class="from-values">
-            {{ 'de' | translate }}{{ messageDetail.from }}
+            <ion-icon slot="start" class="locker-color" [name]="icons.lock_closed_sharp" *ngIf="messageDetail.isPublishableSender === false">
+            </ion-icon>
+            <ion-icon slot="start" [name]="icons.lock_open_sharp" *ngIf="messageDetail.isPublishableSender === true">
+            </ion-icon>
+            {{ messageDetail.from }}
           </h4>
           <h4 class="to-values">
-            {{'para' | translate}}{{ messageDetail.to }}
+            <ion-icon slot="start" class="locker-color" [name]="icons.lock_closed_sharp" *ngIf="messageDetail.isPublishableReceiver === false">
+            </ion-icon>
+            <ion-icon slot="start" [name]="icons.lock_open_sharp" *ngIf="messageDetail.isPublishableReceiver === true">
+            </ion-icon>
+            {{ messageDetail.to }}
           </h4>
         </ion-label>
       </ion-item>
-    </ion-list>
-    <ion-card>
-      <ion-card-content>
+      <ion-item  class="publishable-values">
+          <ion-row>
+            <ion-col size="6" class="calification-values">
+              <p class="p1">
+                <ion-icon slot="start" [name]="icons.happy" [style.color]="checkifLiked(messageDetail) ? 'blue' : 'rgb(90, 89, 89)'"></ion-icon>
+                {{messageDetail.likes || '0' | shortNumberSuffix}}   
+              </p>
+            </ion-col>
+            <ion-col size="6" class="calification-values">
+              <p class="p2">
+                <ion-icon slot="start" [name]="icons.sad" [style.color]="checkifDisliked(messageDetail) ? 'blue' : 'rgb(90, 89, 89)'"></ion-icon>
+                {{messageDetail.dislikes || '0' | shortNumberSuffix}}
+              </p>
+            </ion-col>
+          </ion-row>
+          <ion-label (click)="changePublishableMessage()" class="div-toggle">
+            <p class="label-size" *ngIf="messageDetail.uidReceiver === userLogged.uid"> {{ 'valido_para_publicar' | translate}} </p>
+            <ion-toggle class="toggle-options" mode="ios" slot="end" [(ngModel)]="messageDetail.isPublishableReceiver" *ngIf="messageDetail.uidReceiver === userLogged.uid">
+            </ion-toggle>
+          </ion-label>
+      </ion-item>
+      <ion-item>
         <div [innerHTML]="messageDetail.message | safeHtml">
         </div>
-      </ion-card-content>
-    </ion-card>
-    <ion-row>
-      <ion-col size="4" class="col-role-values">
-        <ion-chip color="dark" mode="ios" outline="true">
-          <p class="text-values" *ngIf="messageDetail | filterMessagePublishable">
-            {{ 'publicado' | translate }}
-          </p>
-          <p class="text-values" *ngIf="!(messageDetail | filterMessagePublishable)">
-            {{ 'no_publicado' | translate }}
-          </p>
-        </ion-chip> 
-      </ion-col>
-      <ion-col size="4"  class="col-role-values likes">
-        <ion-chip color="dark" mode="ios" outline="true">
-          <p class="text-values" *ngIf="shearchUserInLikesArray(messageDetail)">
-            {{ 'me_gusta' | translate }}
-          </p>
-          <p class="text-values" *ngIf="shearchUserDislikesArray(messageDetail)">
-            {{ 'no_me_gusta' | translate }}
-          </p>
-          <p class="text-values" *ngIf="!shearchUserDislikesArray(messageDetail) && !shearchUserInLikesArray(messageDetail)">
-            {{ 'no_calificado' | translate }}
-          </p>
-        </ion-chip>
-      </ion-col>
-      <ion-col size="4">
-        <ion-row>
-          <ion-col size="6" class="calification-values">
-            <p class="p1">
-              {{messageDetail.likes || '0' | shortNumberSuffix}}
-              <ion-icon slot="start" name="thumbs-up-sharp"></ion-icon>
-            </p>
-          </ion-col>
-          <ion-col size="6" class="calification-values">
-            <p class="p2">
-              {{messageDetail.dislikes || '0' | shortNumberSuffix}}
-              <ion-icon slot="start" name="thumbs-down-sharp"></ion-icon>
-            </p>
-          </ion-col>
-        </ion-row>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="4" class="col-role-values margin-chip">
-        <ion-chip color="dark" mode="ios" outline="true">
-          <p class="text-values" *ngIf="messageDetail.isPublishableSender">
-            {{ 'emisor' | translate}} {{ 'publicable' | translate }}
-          </p>
-          <p class="text-values" *ngIf="!messageDetail.isPublishableSender">
-            {{ 'emisor' | translate}} {{ 'no_publicable' | translate }}
-          </p>
-        </ion-chip>
-      </ion-col>
-      <ion-col size="4" class="col-role-values margin-chip likes">
-        <ion-chip color="dark" mode="ios" outline="true">
-          <p class="text-values" *ngIf="messageDetail.isPublishableReceiver">
-            {{ 'receptor' | translate}} {{ 'publicable' | translate }}
-          </p>
-          <p class="text-values" *ngIf="!messageDetail.isPublishableReceiver">
-            {{ 'receptor' | translate}} {{ 'no_publicable' | translate }}
-          </p>
-        </ion-chip>
-      </ion-col>
-    </ion-row>
-    <ion-row *ngIf="userLogged.email === messageDetail.to">
-      <ion-col size="12">
-        <ion-item lines="none" (click)="changePublishableMessage()">
-          <p class="label-size"> {{ 'valido_para_publicar' | translate}}</p>
-          <ion-toggle class="toggle-options" slot="end" [ngModel]="messageDetail.isPublishableReceiver"></ion-toggle>
-        </ion-item>
-      </ion-col>
-    </ion-row>
+      </ion-item>
+  </ion-list>
 </ion-content>

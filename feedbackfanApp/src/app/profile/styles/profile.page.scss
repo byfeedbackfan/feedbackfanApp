@@ -57,12 +57,21 @@ ion-back-button {
 
 .css-card-calification {
   padding: 0 !important;
-  font-size: 80% !important;
+  font-size: 75% !important;
+  margin-right: 5px !important;
+
+  p {
+    ion-icon {
+      margin-left: 5px !important;
+      width: 12px !important;
+      height: 12px !important;
+      margin-right: 0px !important;
+    }
+  }
 }
 
 .css-card-calification-col {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
+  padding: 0 !important;
 }
 
 .css-static-text-information {
@@ -85,16 +94,20 @@ ion-back-button {
   padding: 0 !important;
   margin-top: 0;
   margin-bottom: 0;
-  text-align: center !important; 
+  text-align: center !important;
+
+  img {
+    
+  }
 }
 
 .calification-values-messages {
-  color: rgb(68, 0, 146);
+  color: blue;
   padding: 0 !important;
   margin-top: 0;
   margin-bottom: 0;
   text-align: center !important;
-  font-size: 90% !important;
+  font-size: 100% !important;
   width: auto;
   height: auto;
   display: block;
@@ -128,7 +141,7 @@ ion-back-button {
 }
 
 .profile-icon-settings {
-  color: rgb(68, 0, 146);
+  color: blue;
   width: 25%;
   height: 25%;
   position: absolute;
@@ -198,7 +211,7 @@ ion-back-button {
   }
 
   .edit-btn {
-    color: rgb(68, 0, 146) !important;
+    color: blue !important;
   }
 
   .buttons-col {
@@ -281,7 +294,7 @@ ion-back-button {
 }
 
 .ion-item-options-values {
-  background-color: rgb(68, 0, 146);
+  background-color: blue;
 }
 
 .col-role-values {
@@ -338,13 +351,13 @@ ion-back-button {
 }
 
 .list-header-values {
-  color: rgb(68, 0, 146);
+  color: blue;
 }
 
 .calification-values {
-  color: rgb(68, 0, 146);
+  color: blue;
   padding: 0 !important;
-  margin-top: 5px;
+  margin-top: 0px;
   margin-bottom: 0;
   text-align: center !important;
   font-size: 90% !important;
@@ -375,4 +388,157 @@ ion-back-button {
       color: lightgrey !important;
     }
   }
+}
+
+.text-not-messages {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(90, 89, 89);
+}
+
+.text-margin {
+  margin: 0 !important;
+}
+
+.col-name-values {
+  padding: 0 !important;
+  
+  p {
+    font-size: small;
+    color: rgb(90, 89, 89);
+  }
+}
+
+.ion-item-options-values {
+  color: white;
+  background-color: #3b69ff;
+}
+
+.col-role-values {
+  padding: 0; 
+  align-items: center !important; 
+  position: relative; 
+  text-align: center;
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: center;
+
+  ion-chip {
+    display: block;
+    align-items: center !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    padding-left: 3px !important;
+    padding-right: 3px !important;
+    background-color: #3b69ff; 
+    margin-right: 0 !important; 
+    height: 25px !important;
+    width: 75px !important;
+
+    p {
+      margin-top: 3px !important;
+      color: white; 
+      font-weight: bold; 
+      font-size: x-small; 
+      padding: 0 !important;
+      vertical-align: middle !important;
+    }
+
+  }
+}
+
+.col-data-values {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.title-values {
+  font-weight: bold !important;
+  line-height: 1.5em;
+  height: 3em;
+  overflow: hidden;
+  white-space: initial;
+  margin: 0 !important;
+  color: black !important;
+}
+
+.color-one {
+  --ion-background-color:#fff;
+}
+
+.color-two {
+  --ion-background-color:#8ba6fd;
+}
+.from-values {
+  color: rgb(90, 89, 89);
+}
+
+.date-values {
+  color: rgb(90, 89, 89); 
+  padding-top: 2px !important;
+}
+
+.text-values {
+  width: 68px !important;
+  margin: 0 !important;
+}
+
+.list-header-values {
+  color: blue;
+}
+
+.calification-values {
+  padding: 0 !important;
+  margin-top: 5px;
+  margin-bottom: 0;
+  text-align: center !important;
+  font-size: 100% !important;
+  width: auto;
+  height: auto;
+  display: block;
+  position: relative;
+  margin-right: auto;
+
+  .p1 {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    color: black;
+  }
+  .p2 {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+    color: black;
+  }
+}
+
+.item-not-messages {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0 !important;
+
+  p {
+    ion-icon {
+      width: 200px !important;
+      height: 150px !important;
+      color: rgb(90, 89, 89);
+    }
+  }
+}
+
+.text-not-messages {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(90, 89, 89);
+}
+
+.col-chip-values {
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
 }

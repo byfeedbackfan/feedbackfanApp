@@ -23,7 +23,7 @@
       <ion-avatar class="avatar">
         <app-image-shell class="user-image" [display]="'cover'" animation="spinner" [src]="user.image" alt="item image">
           <app-aspect-ratio [ratio]="{w:1, h:1}">
-            <ion-icon *ngIf="user.isSelected" class="profile-icon-settings" name="checkmark-circle">
+            <ion-icon *ngIf="user.isSelected" class="profile-icon-settings" [name]="icons.checkmark_circle">
             </ion-icon>
           </app-aspect-ratio>
         </app-image-shell>
@@ -43,7 +43,7 @@
   </ion-list>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="usersToSendMessage.length != 0">
     <ion-fab-button (click)="closeModalWithData()">
-      <ion-icon name="send"></ion-icon>
+      <ion-icon [name]="icons.send"></ion-icon>
     </ion-fab-button>
   </ion-fab>  
 </ion-content>

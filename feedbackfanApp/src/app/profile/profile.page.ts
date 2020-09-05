@@ -14,6 +14,7 @@ import { UserOptionsPopoverComponent } from './user-options-popover/user-options
 import { MessageService } from '../core/services/message.service';
 import { SendMessageModel } from '../send-message/send-message-model';
 import { MessageDetailComponent } from '../shared/message-detail/message-detail.component';
+import { icons, svgIcons } from '../../configuration/icons'; 
 
 const { Storage } = Plugins;
 
@@ -38,7 +39,9 @@ export class ProfilePage implements OnInit {
   imageFilePath = '../../../assets/icons/no-profile-picture.jpg';
   imageFile: string;
   translations;
-  publicMessages: SendMessageModel[] = [];
+  publicMessages = [];
+  icons = icons;
+  svgIcons = svgIcons;
 
   constructor(
     public translate: TranslateService,
@@ -62,7 +65,6 @@ export class ProfilePage implements OnInit {
 
     this.messageService.getReceivedMessages(this.user.uid).subscribe(message => {
       this.publicMessages = message;
-      console.log(this.publicMessages);
     });
   }
 
@@ -214,5 +216,25 @@ export class ProfilePage implements OnInit {
       await this.messageService.updateMessage(message);
       this.setUpdateMessageToStorage(message);
     }
+  }
+
+  checkifLiked(message: SendMessageModel): boolean {
+    let isLiked: boolean;
+    message.usersLike.forEach(user => {
+      if (user === this.user.uid) {
+        isLiked = true;
+      }
+    });
+    return isLiked;
+  }
+
+  checkifDisliked(message: SendMessageModel): boolean {
+    let isDisliked: boolean;
+    message.usersDislike.forEach(user => {
+      if (user === this.user.uid) {
+        isDisliked = true;
+      }
+    });
+    return isDisliked;
   }
 }
