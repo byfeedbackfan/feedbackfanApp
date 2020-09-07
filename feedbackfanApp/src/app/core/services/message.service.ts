@@ -3,7 +3,6 @@ import { AngularFirestore, DocumentReference, QueryDocumentSnapshot, DocumentDat
 import { SendMessageModel } from '../../send-message/send-message-model';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +35,8 @@ export class MessageService {
 
   getSentMessages(uid: string): Observable<SendMessageModel[]> {
     return this.afs.collection('message', ref => ref.where('uidSender', '==', uid).orderBy('date', 'desc').orderBy('readed', 'asc'))
-    .get().pipe(map(a => {
+    .get()
+    .pipe(map(a => {
       const messages: SendMessageModel[] = [];
       a.forEach(message => {
         messages.push(message.data() as SendMessageModel);
@@ -46,11 +46,11 @@ export class MessageService {
   }
 
   getReceivedMessages(uid: string): Observable<SendMessageModel[]> {
-    return this.afs.collection('message', ref => ref.where('uidReceiver', '==', uid).orderBy('readed', 'asc').orderBy('date', 'asc'))
-    .get().pipe(map(a => {
+    return this.afs.collection('message', ref => ref.where('uidReceiver', '==', uid).orderBy('readed', 'asc').orderBy('date', 'desc'))
+    .snapshotChanges().pipe(map(a => {
       const messages: SendMessageModel[] = [];
       a.forEach(message => {
-        messages.push(message.data() as SendMessageModel);
+        messages.push(message.payload.doc.data() as SendMessageModel);
       });
       return messages;
     }));

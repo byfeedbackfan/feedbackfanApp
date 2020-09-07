@@ -5,6 +5,11 @@ import { staticText } from '../../configuration/staticText';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../core/language/language.service';
 import { icons, svgIcons } from '../../configuration/icons';
+import { roles } from '../../configuration/roles';
+import { TabsResolver } from './tabs.resolver';
+import { ProfileModel } from '../profile/profile.model';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from '../core/services/user.service';
 
 @Component({
   selector: 'app-tabs',
@@ -18,12 +23,22 @@ export class TabsPage implements OnInit {
   translations;
   icons = icons;
   svgIcons = svgIcons;
+  roles = roles;
+  user: ProfileModel;
 
   constructor(
     public menu: MenuController,
     public translate: TranslateService,
     public languaService: LanguageService,
-  ) { }
+    public resolver: TabsResolver,
+    public router: Router,
+    private userService: UserService,
+  ) {
+    this.resolver.resolve().then( (user) => {
+      this.user = user;
+      this.userService.setUserProfile(user);
+    });
+  }
 
   ngOnInit() {
     this.getTranslations();
@@ -42,5 +57,9 @@ export class TabsPage implements OnInit {
 
   ionViewWillEnter() {
     this.menu.enable(true);
+  }
+
+  navigateTo(path: string) {
+    this.router.navigate([path], { replaceUrl: true });
   }
 }

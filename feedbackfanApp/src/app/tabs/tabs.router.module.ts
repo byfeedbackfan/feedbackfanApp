@@ -33,8 +33,16 @@ const routes: Routes = [
       },
       {
         path: 'user-finder',
-        loadChildren: () => import('../user-finder/user-finder.module').then(m => m.UserFinderModule)
+        loadChildren: () => import('../user-finder/user-finder.module').then(m => m.UserFinderModule),
       },
+      {
+        path: 'change-jobs',
+        loadChildren: () => import('../change-jobs/change-jobs.module').then(m => m.ChangeJobsModule)
+      },
+      {
+        path: 'user',
+        loadChildren: () => import('../user-found/user-found.module').then(m => m.UserFoundModule)
+      }
     ],
   }
 ];

@@ -3,6 +3,22 @@
   --ion-safe-area-bottom: 22px;
 }
 
+app-image-shell.user-image {
+  --image-shell-loading-background: rgba(var(--ion-color-bright-blue-rgb), 0.25);
+  --image-shell-spinner-color: var(--ion-color-bright-blue-tint);
+  --image-shell-border-radius: 100%;
+  --image-shell-overlay-background: linear-gradient(180deg, rgba(var(--ion-color-dark-rgb), 1) 0%, rgba(var(--ion-color-dark-rgb), 0.40) 25%, rgba(var(--ion-color-dark-rgb), 0.15) 100%);
+}
+
+ion-list-header {
+  h3 {
+    font-weight: bold;
+    ion-icon {
+      color: blue;
+    }
+  }
+}
+
 .user-name {
   text-transform: capitalize;
   font-weight: bold;
@@ -12,7 +28,7 @@
 .user-role {
   text-transform: capitalize;
   font-weight: bold;
-  color: #3b69ff !important;
+  color: #3b69ff;
 }
 
 .user-mail {
@@ -40,18 +56,6 @@ ion-back-button {
 
 ion-item {
   padding: 0 !important;
-}
-
-.profile-icon-settings {
-  color: blue;
-  width: 25%;
-  height: 25%;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  padding: 0 !important;
-  border-radius: 50%;
-  background-color:white
 }
 
 .icon-only {

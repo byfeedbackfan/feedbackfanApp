@@ -6,7 +6,7 @@ import { Plugins } from '@capacitor/core';
 import { SendMessageModel } from '../send-message/send-message-model';
 import { ProfileModel } from '../profile/profile.model';
 import { MessageDetailComponent } from '../shared/message-detail/message-detail.component';
-import { icons } from '../../configuration/icons';
+import { icons, svgIcons } from '../../configuration/icons';
 
 const { Storage } = Plugins;
 
@@ -27,6 +27,7 @@ export class ReceivedMessagePage implements OnInit {
   translations;
   messageSearch = '';
   icons = icons;
+  svgIcons = svgIcons;
 
   constructor(
     public translate: TranslateService,

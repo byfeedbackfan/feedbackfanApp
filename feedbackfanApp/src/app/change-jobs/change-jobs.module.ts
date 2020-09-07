@@ -4,31 +4,32 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { UserFinderPage } from './user-finder.page';
+import { ChangeJobsPage } from './change-jobs.page';
 import { Routes, RouterModule } from '@angular/router';
-import { SharedModule } from '../shared/shared.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { SharedModule } from '../shared/shared.module';
 import { ShellModule } from '../shell/shell.module';
 
 const routes: Routes = [
   {
     path: '',
-    component: UserFinderPage,
+    component: ChangeJobsPage,
   },
 ];
-
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SharedModule,
     TranslateModule,
+    SharedModule,
     ShellModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
   ],
-  declarations: [UserFinderPage],
-  exports: [RouterModule]
+  declarations: [ChangeJobsPage],
+  exports: [
+    ChangeJobsPage,
+  ]
 })
-export class UserFinderModule {}
+export class ChangeJobsModule {}

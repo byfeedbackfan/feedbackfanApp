@@ -11,6 +11,8 @@ import { SendMessageModule } from '../send-message/send-message.module';
 import { SendedMessageModule } from '../sended-message/sended-message.module';
 import { TabsResolver } from './tabs.resolver';
 import { TabsGuard } from './tabsguard';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ChangeJobsModule } from '../change-jobs/change-jobs.module';
 
 @NgModule({
   imports: [
@@ -21,6 +23,8 @@ import { TabsGuard } from './tabsguard';
     TranslateModule,
     SendMessageModule,
     SendedMessageModule,
+    DragDropModule,
+    ChangeJobsModule,
   ],
   declarations: [ TabsPage ],
   providers: [

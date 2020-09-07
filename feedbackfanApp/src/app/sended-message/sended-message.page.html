@@ -11,6 +11,9 @@
 <ion-content scrollEvents="true" appHideHeader [header]="header">
   <ion-list lines="none" *ngIf="sentMessages?.length !== 0 || sentMessages?.length !== null">
       <ion-item [color]="i%2 === 0 ? 'bgi' : 'unclicked'" *ngFor="let message of sentMessages | filterSearch: messageSearch: 'title' : 'to'; let i = index" [attr.data-index]="i" button="true" (click)="openMessage(message)">
+        <ion-avatar slot="start">
+          <img [src]="svgIcons.sended_msg"/>
+        </ion-avatar>
         <ion-label>
           <ion-row>
             <ion-col size="12" class="col-data-values">
@@ -20,11 +23,11 @@
                 </p>
               </ion-text>
               <p class="text-margin from-values">
-                <ion-icon slot="start" class="locker-color" [name]="icons.lock_closed_sharp" *ngIf="message.isPublishableSender === false">
+                <ion-icon slot="start" class="locker-color" [name]="icons.lock_closed_sharp" *ngIf="message.isPublishableReceiver === false">
                 </ion-icon>
-                <ion-icon slot="start" [name]="icons.lock_open_sharp" *ngIf="message.isPublishableSender === true">
+                <ion-icon slot="start" [name]="icons.lock_open_sharp" *ngIf="message.isPublishableReceiver === true">
                 </ion-icon>
-                {{ message.from }}
+                {{ message.to }}
               </p>
             </ion-col>
           </ion-row>

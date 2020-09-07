@@ -4,31 +4,29 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { UserFinderPage } from './user-finder.page';
+import { UserFoundPage } from './user-found.page';
 import { Routes, RouterModule } from '@angular/router';
-import { SharedModule } from '../shared/shared.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { SharedModule } from '../shared/shared.module';
 import { ShellModule } from '../shell/shell.module';
 
 const routes: Routes = [
   {
     path: '',
-    component: UserFinderPage,
-  },
+    component: UserFoundPage
+  }
 ];
-
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SharedModule,
-    TranslateModule,
     ShellModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    TranslateModule,
+    SharedModule,
   ],
-  declarations: [UserFinderPage],
-  exports: [RouterModule]
+  declarations: [UserFoundPage]
 })
-export class UserFinderModule {}
+export class UserFoundModule {}

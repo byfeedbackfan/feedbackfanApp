@@ -1,11 +1,6 @@
 <ion-header #header>
   <ion-toolbar mode="md">
     <ion-title class="ion-title" mode="md">{{'perfil' | translate}}</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="displayOptionsMenu($event)" color="light">
-        <ion-icon slot="icon-only" name="ellipsis-horizontal"></ion-icon>
-      </ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content class="user-content" scrollEvents="true" appHideHeader [header]="header">
@@ -16,8 +11,6 @@
           <ion-avatar class="img-responsive">
             <app-image-shell class="user-image" [display]="'cover'" animation="spinner" [src]="user?.image" [alt]="'item image'">
               <app-aspect-ratio [ratio]="{w:1, h:1}">
-                <ion-icon (click)="presentModal()" class="profile-icon-settings" [name]="icons.icon_profile">
-                </ion-icon>
               </app-aspect-ratio>
             </app-image-shell>
           </ion-avatar>

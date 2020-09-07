@@ -11,7 +11,17 @@ import * as firebase from 'firebase';
 })
 export class UserService {
 
+  public user: ProfileModel;
+
   constructor(private afs: AngularFirestore) { }
+
+  public getUserProfile(): ProfileModel {
+    return this.user;
+  }
+
+  public setUserProfile(user: ProfileModel) {
+    this.user = user;
+  }
 
   public createUser(userData: ProfileModel): Promise<void> {
     return this.afs.collection('user').doc(userData.uid).set({...userData});
@@ -33,16 +43,16 @@ export class UserService {
   }
 
   public getUser(uid: string): Observable<ProfileModel> {
-    return this.afs.doc(`user/${uid}`).snapshotChanges()
+    return this.afs.doc(`user/${uid}`).get()
     .pipe(
       map( a => {
-        const userData = a.payload.data();
+        const userData = a.data();
         return userData as ProfileModel;
       })
     );
   }
 
-  public getUsers(uid: string): Observable<ProfileModel[]> {
+  public getUsers(): Observable<ProfileModel[]> {
     return this.afs.collection(`user`)
     .snapshotChanges()
     .pipe(

@@ -1,28 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { icons, svgIcons } from 'src/configuration/icons';
-import { ProfileModel } from '../profile/profile.model';
-import { Plugins } from '@capacitor/core';
 import { UserService } from '../core/services/user.service';
-import { Router } from '@angular/router';
+import { ProfileModel } from '../profile/profile.model';
+import { icons } from 'src/configuration/icons';
+import { svgIcons } from '../../configuration/icons';
+import { roles } from '../../configuration/roles';
+import { Plugins } from '@capacitor/core';
 
 const { Storage } = Plugins;
 
 @Component({
-  selector: 'app-user-finder',
-  templateUrl: './user-finder.page.html',
-  styleUrls: ['./styles/user-finder.page.scss'],
+  selector: 'app-change-jobs',
+  templateUrl: './change-jobs.page.html',
+  styleUrls: ['./styles/change-jobs.page.scss'],
 })
-export class UserFinderPage implements OnInit {
+export class ChangeJobsPage implements OnInit {
 
+  users: ProfileModel[] = [];
   userSearch = '';
   icons = icons;
   svgIcons = svgIcons;
+  roles = roles;
   userLogged: ProfileModel;
-  users: ProfileModel[] = [];
 
   constructor(
     private userService: UserService,
-    private router: Router
   ) {
 
     Storage.get({key: 'userCredentials'}).then( user => {
@@ -37,11 +38,6 @@ export class UserFinderPage implements OnInit {
   ngOnInit() {
   }
 
-  goToUserProfile(user: ProfileModel) {
-    this.userService.setUserProfile(user);
-    this.router.navigate(['app/user'], { replaceUrl: true });
-  }
-
   searchUser( event ) {
     this.userSearch = event.detail.value;
   }
@@ -52,6 +48,13 @@ export class UserFinderPage implements OnInit {
         this.users.splice(index, 1);
       }
     });
+  }
+
+  changeJob(user: ProfileModel, role: string) {
+    if (user.role !== role) {
+      user.role = role;
+      this.userService.updateUser(user);
+    }
   }
 
 }

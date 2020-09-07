@@ -14,7 +14,7 @@ import { UserOptionsPopoverComponent } from './user-options-popover/user-options
 import { MessageService } from '../core/services/message.service';
 import { SendMessageModel } from '../send-message/send-message-model';
 import { MessageDetailComponent } from '../shared/message-detail/message-detail.component';
-import { icons, svgIcons } from '../../configuration/icons'; 
+import { icons, svgIcons } from '../../configuration/icons';
 
 const { Storage } = Plugins;
 
@@ -40,6 +40,8 @@ export class ProfilePage implements OnInit {
   imageFile: string;
   translations;
   publicMessages = [];
+  sendedMessages = [];
+  receivedMessages = [];
   icons = icons;
   svgIcons = svgIcons;
 
@@ -50,37 +52,53 @@ export class ProfilePage implements OnInit {
     private popoverController: PopoverController,
     private modalController: ModalController,
     private messageService: MessageService,
-  ) {}
+  ) {
+    this.profileResolver.resolve().then((user) => {
+      this.user = user;
+      this.messageService.getSentMessages(this.user.uid).subscribe(message => {
+        this.sendedMessages = message;
+      });
+      this.messageService.getReceivedMessages(this.user.uid).subscribe(message => {
+        this.receivedMessages = message;
+        this.mergeReceivedAndSendedMessages(this.receivedMessages, this.sendedMessages);
+      });
+    }).catch(err => {
+      this.submitError = err;
+    });
+  }
 
   async ngOnInit() {
     this.getTranslations();
     this.translate.onLangChange.subscribe(() => {
       this.getTranslations();
     });
-    await this.profileResolver.resolve().then((user) => {
-      this.user = user;
-    }).catch(err => {
-      this.submitError = err;
-    });
-
-    this.messageService.getReceivedMessages(this.user.uid).subscribe(message => {
-      this.publicMessages = message;
-    });
   }
 
-  ionViewWillEnter() {
-    Storage.get({key: 'userCredentials'}).then(data => {
+  async ionViewWillEnter() {
+    await Storage.get({key: 'userCredentials'}).then(data => {
       this.user = JSON.parse(data.value);
     }).catch(err => {
       this.submitError = err;
     });
-    Storage.get({key: 'receivedMessages'}).then( message => {
+    await Storage.get({key: 'receivedMessages'}).then( message => {
       if (message) {
-        this.publicMessages = JSON.parse(message.value);
+        this.receivedMessages = JSON.parse(message.value);
       }
     }).catch(err => {
       this.submitError = err;
     });
+    await Storage.get({key: 'sentMessages'}).then( message => {
+      if (message) {
+        this.sendedMessages = JSON.parse(message.value);
+      }
+    }).catch(err => {
+      this.submitError = err;
+    });
+    this.mergeReceivedAndSendedMessages(this.receivedMessages, this.sendedMessages);
+    this.addSentLikes();
+    this.andSentDislikes();
+    this.addReceivedLikes();
+    this.addReceivedDislikes();
   }
 
   getTranslations() {
@@ -236,5 +254,65 @@ export class ProfilePage implements OnInit {
       }
     });
     return isDisliked;
+  }
+
+  mergeReceivedAndSendedMessages(receivedMessages, sendedMessages) {
+    this.publicMessages = [];
+    let Irec = 0;
+    let Isend = 0;
+    let i = 0;
+
+    while (Irec < receivedMessages?.length && Isend < sendedMessages?.length) {
+      if ( receivedMessages[Irec].date.seconds > sendedMessages[Isend].date.seconds ) {
+        this.publicMessages[i++] = receivedMessages[Irec++];
+
+      } else if ( receivedMessages[Irec].date.seconds < sendedMessages[Isend].date.seconds ) {
+        this.publicMessages[i++] = sendedMessages[Isend++];
+      } else if ( receivedMessages[Irec].date.seconds === sendedMessages[Isend].date.seconds ) {
+        this.publicMessages[i++] = sendedMessages[Isend++];
+        this.publicMessages[i++] = receivedMessages[Irec++];
+      }
+    }
+
+    while (Irec < receivedMessages?.length) {
+      this.publicMessages[i++] = receivedMessages[Irec++];
+    }
+
+    while (Isend < sendedMessages?.length) {
+      this.publicMessages[i++] = sendedMessages[Isend++];
+    }
+
+  }
+
+  addSentLikes(): number {
+    let likes = 0;
+    this.sendedMessages?.forEach( element => {
+      likes = likes + element.likes;
+    });
+    return likes;
+  }
+
+  andSentDislikes(): number {
+    let dislikes = 0;
+    this.sendedMessages?.forEach( element => {
+      dislikes = dislikes + element.dislikes;
+    });
+    return dislikes;
+  }
+
+  addReceivedLikes(): number {
+    let likes = 0;
+    this.receivedMessages?.forEach( element => {
+      likes = likes + element.likes;
+    });
+    return likes;
+  }
+
+  addReceivedDislikes(): number {
+    let dislikes = 0;
+    this.receivedMessages?.forEach( element => {
+      dislikes = dislikes + element.dislikes;
+    });
+    return dislikes;
   }
 }

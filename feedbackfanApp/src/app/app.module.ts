@@ -18,6 +18,7 @@ import { TabsModule } from './tabs/tabs.module';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -49,6 +50,7 @@ export function createTranslateLoader(http: HttpClient) {
       }
     }),
     AngularFireModule.initializeApp(environment.firebase),
+    BrowserAnimationsModule,
   ],
   providers: [
     StatusBar,

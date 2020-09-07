@@ -1,3 +1,19 @@
+<ion-fab class="fab-margin" vertical="bottom" horizontal="end" slot="fixed" cdkDrag *ngIf="user?.role === roles.supervisor || user?.role === roles.admin">
+  <ion-fab-button mode="md" class="ion-fab-values">
+    <ion-icon [name]="icons.admin_supervisor_button"></ion-icon>
+  </ion-fab-button>
+  <ion-fab-list side="start">
+    <ion-fab-button class="ion-fab-values" *ngIf="user?.role === roles.supervisor">
+      <ion-icon [name]="icons.asigned_worker"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button class="ion-fab-values" (click)="navigateTo('app/change-jobs')" *ngIf="user?.role === roles.admin">
+      <ion-icon [name]="icons.change_jobs"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button class="ion-fab-values" *ngIf="user?.role === roles.admin">
+      <ion-icon class="icon-supervisor" [src]="svgIcons.supervisor_to_worker"></ion-icon>
+    </ion-fab-button>
+  </ion-fab-list>
+</ion-fab>
 <ion-tabs>
   <ion-tab-bar slot="bottom" mode="md">
     <ion-tab-button tab="send-message">

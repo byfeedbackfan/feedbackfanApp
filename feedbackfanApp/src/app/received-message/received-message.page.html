@@ -12,6 +12,9 @@
   <ion-list lines="full" *ngIf="receivedMessages?.length !== 0 || receivedMessages?.length !== null">
     <ion-item-sliding *ngFor="let message of receivedMessages | filterSearch: messageSearch: 'title' : 'to'; let i = index" [attr.data-index]="i" #slidingItem>
       <ion-item [color]="i %2 === 0 ? 'bgi' : 'unclicked'" button="true" (click)="openMessage(message)">
+        <ion-avatar slot="start">
+          <img [src]="svgIcons.received_msg" *ngIf="message.uidReceiver === userLogged.uid" />
+        </ion-avatar>
         <ion-label>
           <ion-icon *ngIf="message.readed === false" slot="icon-only" [name]="icons.message_not_readed" class="not-readed-values">
           </ion-icon>

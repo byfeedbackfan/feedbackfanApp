@@ -32,7 +32,7 @@ export class UserSearchComponent implements OnInit {
   ) {
     Storage.get({key: 'userCredentials'}).then( user => {
       this.userStorage = JSON.parse(user.value);
-      this.userService.getUsers(this.userStorage.uid).subscribe( users => {
+      this.userService.getUsers().subscribe( users => {
         this.deleteUserLoggedFromArray(users);
       });
     } );
