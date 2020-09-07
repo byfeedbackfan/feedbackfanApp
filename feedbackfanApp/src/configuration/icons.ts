@@ -17,6 +17,9 @@ export const icons = {
   buscador: 'search-outline',
   profile: 'settings-outline',
   send_message: 'mail-outline',
+  admin_supervisor_button: 'construct-sharp',
+  asigned_worker: 'people',
+  change_jobs: 'briefcase',
 };
 
 // iconos svg que no son de ionic
@@ -25,4 +28,6 @@ export const svgIcons = {
   sended_msg: '../assets/icons/sent.svg',
   sended: '../assets/icons/mail.svg',
   received: '../assets/icons/received.svg',
+  supervisor_to_worker: '../assets/icons/supervisor.svg',
+  employee: '../assets/icons/employee.svg',
 };

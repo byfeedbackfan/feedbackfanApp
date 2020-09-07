@@ -65,5 +65,7 @@
   "leidos": "Leídos",
   "emisor": "Emisor:",
   "receptor": "Receptor:",
-  "no_hay_mensajes_perfil": "No tienes ningún mensaje publicado"
+  "no_hay_mensajes_perfil": "No tienes ningún mensaje publicado",
+  "mensajes": "Mensajes",
+  "cambiar_cargos": "Cambiar cargos"
 }
