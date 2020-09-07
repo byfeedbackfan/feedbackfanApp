@@ -199,3 +199,108 @@ Se conversó sobre el flujo de trabajo y se plantearon los primeros issues para 
 3. Se agrega internacionalización i18n, por lo que se elimina de configurations el archivo staticText.ts y se crea una carpeta en assets/i18n que contendrá los archivos JSON con las traducciones.
 
     ![](./images/imagen-30.png)
+
+## 📅 FECHA - 28 de agosto del 2020
+## **Nuevas funcionalidades**
+
+1. Se realizan cambios visuales en la aplicación
+2. Se implementa la pantalla de envío de mensajes.
+
+    1.1 Para esto se utiliza la Librería de QuillJs. Se prueba en Dispositivos android y funciona correctamente.
+
+    1.2 Se crea la vista send-message, que contiene toda la lógica de creación de mensajes, así como sus archivos HTML y CSS.
+
+    ![](./images/imagen-31.png)
+
+    1.3 Se crea la carpeta "message.service.ts" con la finalidad de tener centralizacos los servicios correspondiente al manejo del os mensajes dentro de la aplicación.
+
+    ![](./images/imagen-32.png)
+
+    1.4 se implementa la navegación hacia todas las vistas (Nuevo, Enviados, Buscador, Reciibidos y Perfil).
+
+## 📅 FECHA - 29 de agosto del 2020
+## **Nuevas funcionalidades**
+
+1. Se implementa el componente para realizar envío de mensajes múltiples. Se puede seleccionar en la aplicación a varios usuarios y enviar un mismo mensaje a la vez.
+
+    1.1 Este componente se crea dentro de la vista de envío de mensaje.
+
+    ![](./images/imagen-33.png)
+
+    1.2 se crea un pipe en la carpeta shared que tendrá la funcionalidad del buscador y podrá ser implementado en varios componentes.
+
+    ![](./images/imagen-34.png)
+
+
+## 📅 FECHA - 30 de agosto del 2020
+## **Nuevas funcionalidades**
+
+1. Se implementa la vista de mensajes enviados, creando un componente "sended-message"
+
+    1.1 dentro del componente se crea una barra de navegación que utliza el pipe creado anteriormente para buscar los mensajes de los usuarios.
+
+    ![](./images/imagen-35.png)
+
+
+## 📅 FECHA - 31 de agosto del 2020
+## **Nuevas funcionalidades**
+
+1. Se implementa una funcionalidad para que en los mensajes enviados no se tengan que realizar peticiones seguidas a la base de datos.
+
+2. Se corrigen aspectos visuales en la aplicación.
+
+3. Se crea un pipe para saber si un mensaje es o no publicable.
+
+    3.1 Este pipe se coloca dentro de la carpeta shared.
+    
+    ![](./images/imagen-37.png)
+
+4. Se hace un cambio de estructura de la base de datos, con el fin de no duplicar informacion en los mensajes enviados y recibidos. En esta situación se procede a crear una única colección donde se centralizan los datos.
+
+## 📅 FECHA - 1 de septiembre del 2020
+## **Nuevas funcionalidades**
+
+1. Se implementa la vista del detalle de mensaje.
+
+    1.1 Se crea un componente compartido en la carpeta shared denominado message-detail. Este componente será utilizado tanto para el detalle de los mensajes enviados, recibidos y los mensajes del perfil del usuario.
+
+    ![](./images/imagen-38.png)
+
+2. Se implementa la vista de mensajes recibidos,
+creando un componente received-message
+
+    1.1 dentro del componente se crea una barra de navegación que utliza el pipe creado anteriormente para buscar los mensajes de los usuarios.
+
+    ![](./images/imagen-36.png)
+
+## 📅 FECHA - 2 de septiembre del 2020
+## **Cuarta reunión con el tutor empresarial**
+
+1. Se definen nuevos issues.
+2. Se corrigen cambios visuales.
+3. Se establecen funcionalidades adicionales en la aplicación.
+
+## 📅 FECHA - 3 de septiembre del 2020
+## **Nuevas funcionalidades**
+
+1. Se arregla problemas con la fecha en los mensajes enviados y recibidos.
+
+2. Se hace una investigación sobre el hosting de imágenes de firebase para no tener que hacer peticiones tan seguidas a la base de datos.
+
+3. Se crea un archivo en la carpeta configurations para centralizar los iconos de la aplicación.
+
+    ![](./images/imagen-39.png)
+
+## 📅 FECHA - 4 de septiembre del 2020
+## **Nuevas funcionalidades**
+
+1. Se implementa el conteo de votos positivos y negativos tanto de mensajes enviados como de recibidos en el perfil de usuario.
+
+## 📅 FECHA - 5 de septiembre del 2020
+## **Nuevas funcionalidades**
+
+1. Se implementa la funcionalidad de likes y dislikes de mensajes enviados y recibidos en el perfil de usuario.
+
+2. Se corrigen detalles visuales.
+
+3. Se hace el esquema del boton para supervisores y administradores, el cual contendrá las opciones o funcionalidades adicionales, que son propias de cada cargo. Este botón se puede mover por toda la pantalla y colocarlo donde sea menos incómodo para el usuario.
