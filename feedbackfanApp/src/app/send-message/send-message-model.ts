@@ -1,4 +1,5 @@
 import { ShellModel } from '../shell/data-store';
+import { ProfileModel } from '../profile/profile.model';
 
 export class SendMessageModel extends ShellModel {
   id: string;

@@ -1,0 +1,90 @@
+:root {
+  --ion-safe-area-top: 20px;
+  --ion-safe-area-bottom: 22px;
+}
+
+app-image-shell.user-image {
+  --image-shell-loading-background: rgba(var(--ion-color-bright-blue-rgb), 0.25);
+  --image-shell-spinner-color: var(--ion-color-bright-blue-tint);
+  --image-shell-border-radius: 100%;
+  --image-shell-overlay-background: linear-gradient(180deg, rgba(var(--ion-color-dark-rgb), 1) 0%, rgba(var(--ion-color-dark-rgb), 0.40) 25%, rgba(var(--ion-color-dark-rgb), 0.15) 100%);
+}
+
+.user-name {
+  text-transform: capitalize;
+  font-weight: bold;
+  color: black !important;
+}
+
+.user-role {
+  text-transform: capitalize;
+  font-weight: bold;
+  color: #3b69ff !important;
+}
+
+.user-mail {
+  color: black !important;
+}
+
+ion-toolbar {
+  --background: #3b69ff;
+}
+
+.bg-red{
+  --background: red !important;
+}
+
+.avatar {
+  margin-right: 10px;
+  display: block;
+  width: 60px;
+  height: 60px;
+}
+
+ion-back-button {
+  color: white;
+}
+
+ion-item {
+  padding: 0 !important;
+}
+
+.profile-icon-settings {
+  color: blue;
+  width: 25%;
+  height: 25%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 0 !important;
+  border-radius: 50%;
+  background-color:white
+}
+
+.icon-only {
+  color: white;
+  font-weight: bold;
+}
+
+ion-title {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+
+ion-searchbar{
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  --icon-color: rgb(68, 0, 146) !important;
+}
+
+.data-values {
+  h4 {
+    margin: 0 !important;
+  }
+
+  p {
+    margin: 0 !important;
+  }
+}

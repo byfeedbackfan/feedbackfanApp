@@ -9,7 +9,7 @@
     <ion-fab-button class="ion-fab-values" (click)="navigateTo('app/change-jobs')" *ngIf="user?.role === roles.admin">
       <ion-icon [name]="icons.change_jobs"></ion-icon>
     </ion-fab-button>
-    <ion-fab-button class="ion-fab-values" *ngIf="user?.role === roles.admin">
+    <ion-fab-button class="ion-fab-values" (click)="navigateTo('app/workers-to-supervisor')" *ngIf="user?.role === roles.admin">
       <ion-icon class="icon-supervisor" [src]="svgIcons.supervisor_to_worker"></ion-icon>
     </ion-fab-button>
   </ion-fab-list>

@@ -25,7 +25,9 @@ export class ChangeJobsPage implements OnInit {
   constructor(
     private userService: UserService,
   ) {
+  }
 
+  ngOnInit() {
     Storage.get({key: 'userCredentials'}).then( user => {
       this.userLogged = JSON.parse(user.value);
       this.userService.getUsers().subscribe(users => {
@@ -33,9 +35,6 @@ export class ChangeJobsPage implements OnInit {
         this.deleteUserLoggedFromArray();
       });
     } );
-  }
-
-  ngOnInit() {
   }
 
   searchUser( event ) {

@@ -9,6 +9,7 @@ export class ProfileModel extends ShellModel {
   sentMessages: number;
   receivedMessages: number;
   allMessagesPublic: boolean;
+  workersInCharge?: string[];
 
   constructor() {
     super();

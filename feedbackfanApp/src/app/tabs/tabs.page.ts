@@ -8,7 +8,7 @@ import { icons, svgIcons } from '../../configuration/icons';
 import { roles } from '../../configuration/roles';
 import { TabsResolver } from './tabs.resolver';
 import { ProfileModel } from '../profile/profile.model';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { UserService } from '../core/services/user.service';
 
 @Component({

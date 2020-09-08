@@ -199,6 +199,8 @@ export class EditProfileInfoComponent implements OnInit {
     this.userData.sentMessages = this.userStorage.sentMessages;
     this.userData.receivedMessages = this.userStorage.receivedMessages;
     this.userData.isShell = true;
+    this.userData.allMessagesPublic = this.userStorage.allMessagesPublic;
+    this.userData.workersInCharge = this.userStorage.workersInCharge;
 
     if (values.old_password !== ''
         && values.matching_passwords.password !== ''

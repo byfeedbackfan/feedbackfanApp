@@ -189,6 +189,7 @@ export class SignUpPage implements OnInit {
         userData.receivedMessages = 0;
         userData.isShell = true;
         userData.allMessagesPublic = true;
+        userData.workersInCharge = [];
         await this.storageService.uploadUserImg(this.imageFilePath, userData.uid).then (downloadUrl => {
           userData.image = downloadUrl;
           this.userService.createUser(userData);
