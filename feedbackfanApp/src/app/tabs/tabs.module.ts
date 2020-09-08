@@ -13,6 +13,7 @@ import { TabsResolver } from './tabs.resolver';
 import { TabsGuard } from './tabsguard';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ChangeJobsModule } from '../change-jobs/change-jobs.module';
+import { EmployeesInChargeModule } from '../employees-in-charge/employees-in-charge.module';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { ChangeJobsModule } from '../change-jobs/change-jobs.module';
     SendedMessageModule,
     DragDropModule,
     ChangeJobsModule,
+    EmployeesInChargeModule,
   ],
   declarations: [ TabsPage ],
   providers: [

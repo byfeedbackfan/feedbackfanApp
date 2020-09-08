@@ -1,40 +1,42 @@
-import { Component, OnInit } from '@angular/core';
-import { ProfileModel } from '../profile/profile.model';
-import { UserService } from '../core/services/user.service';
-import { svgIcons, icons } from '../../configuration/icons';
-import { SendMessageModel } from '../send-message/send-message-model';
-import { IonItemSliding, ModalController } from '@ionic/angular';
+import { Component, OnInit, Input } from '@angular/core';
+import { ProfileModel } from '../../profile/profile.model';
+import { ModalController, IonItemSliding } from '@ionic/angular';
+import { MessageService } from 'src/app/core/services/message.service';
+import { svgIcons, icons } from 'src/configuration/icons';
+import { MessageDetailComponent } from 'src/app/shared/message-detail/message-detail.component';
+import { SendMessageModel } from 'src/app/send-message/send-message-model';
 import { Plugins } from '@capacitor/core';
-import { MessageDetailComponent } from '../shared/message-detail/message-detail.component';
-import { MessageService } from '../core/services/message.service';
-
 
 const { Storage } = Plugins;
 
 @Component({
-  selector: 'app-user-found',
-  templateUrl: './user-found.page.html',
-  styleUrls: ['./styles/user-found.page.scss', './styles/user-found.shell.scss'],
+  selector: 'app-employee-info',
+  templateUrl: './employee-info.component.html',
+  styleUrls: ['./styles/employee-info.component.scss', './styles/employee-info.shell.scss'],
 })
-export class UserFoundPage implements OnInit {
-  user: ProfileModel;
+export class EmployeeInfoComponent implements OnInit {
+
+  @Input() user: ProfileModel;
+
   publicMessages = [];
   sendedMessages = [];
   receivedMessages = [];
   svgIcons = svgIcons;
   icons = icons;
+  userLogged: ProfileModel;
 
   constructor(
-    private userService: UserService,
     private modalController: ModalController,
     private messageService: MessageService,
-  ) {}
+  ) { }
 
   ngOnInit() {
+    Storage.get({key: 'userCredentials'}).then( user => {
+      this.userLogged = JSON.parse(user.value);
+    });
   }
 
   ionViewWillEnter() {
-    this.user = this.userService.getUserProfile();
     this.messageService.getSentMessages(this.user.uid).subscribe(message => {
       this.sendedMessages = message;
     });
@@ -54,7 +56,7 @@ export class UserFoundPage implements OnInit {
       componentProps: {
         messages: this.publicMessages,
         messageDetail: message,
-        userLogged: this.user,
+        userLogged: this.userLogged,
       }
     });
 
@@ -66,7 +68,6 @@ export class UserFoundPage implements OnInit {
       this.publicMessages = data.newMessages;
     }
   }
-
 
   addSentLikes(): number {
     let likes = 0;
@@ -210,6 +211,10 @@ export class UserFoundPage implements OnInit {
       }
     });
     return isDisliked;
+  }
+
+  closeModal() {
+    this.modalController.dismiss();
   }
 
 }

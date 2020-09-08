@@ -64,7 +64,6 @@ export class AsignWorkerComponent implements OnInit {
       };
       this.supervisor.workersInCharge.forEach( userWorkerID => {
         if (userWorkerID === userr.uid) {
-          console.log(userWorkerID);
           isSelected = true;
         }
       });
@@ -75,9 +74,6 @@ export class AsignWorkerComponent implements OnInit {
 
   setUserIntoArray(user: ProfileModel) {
     let userID = '';
-    console.log(this.workers, 'workerssss');
-    console.log(this.usersWorkers, 'uwo');
-
     if (this.supervisor.workersInCharge.length === 0) {
       this.supervisor.workersInCharge.push(user.uid);
     } else {
@@ -90,12 +86,9 @@ export class AsignWorkerComponent implements OnInit {
         }
       });
       if (userID !== '') {
-        console.log('lo mete en el supervisor');
         this.supervisor.workersInCharge.push(user.uid);
       }
     }
-
-    console.log(this.supervisor);
   }
 
   getWorkersOfUsers() {
@@ -107,8 +100,6 @@ export class AsignWorkerComponent implements OnInit {
   }
 
   setWorkers() {
-    console.log('entra');
-    console.log(this.supervisor);
     this.userService.updateWorkersAssignedToSupervisor(this.supervisor);
     this.presentToast();
   }

@@ -1,11 +1,11 @@
 <ion-header #header>
   <ion-toolbar mode="md">
-    <ion-title class="ion-title" mode="md">{{'perfil' | translate}}</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="displayOptionsMenu($event)" color="light">
-        <ion-icon slot="icon-only" name="ellipsis-horizontal"></ion-icon>
+    <ion-buttons slot="start">
+      <ion-button (click)="closeModal()">
+        <ion-icon slot="start" name="arrow-back-outline" class="icon-only"></ion-icon>
       </ion-button>
     </ion-buttons>
+    <ion-title class="ion-title" mode="md">{{'perfil' | translate}}</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content class="user-content" scrollEvents="true" appHideHeader [header]="header">
@@ -16,8 +16,6 @@
           <ion-avatar class="img-responsive">
             <app-image-shell class="user-image" [display]="'cover'" animation="spinner" [src]="user?.image" [alt]="'item image'">
               <app-aspect-ratio [ratio]="{w:1, h:1}">
-                <ion-icon (click)="presentModal()" class="profile-icon-settings" [name]="icons.icon_profile">
-                </ion-icon>
               </app-aspect-ratio>
             </app-image-shell>
           </ion-avatar>
@@ -106,7 +104,7 @@
     <ion-col size="12" class="col-data-values">
       <ion-list lines="full" *ngIf="publicMessages.length !== 0 || publicMessages.length !== null">
         <ion-item-sliding *ngFor="let message of publicMessages ; let i = index" [attr.data-index]="i" #slidingItem>
-          <ion-item [color]="i %2 === 0 ? 'bgi' : 'unclicked'" button="true" (click)="openMessage(message)" *ngIf="message.isPublishableReceiver === true && message.isPublishableSender === true">
+          <ion-item [color]="i %2 === 0 ? 'bgi' : 'unclicked'" button="true" (click)="openMessage(message)">
             <ion-avatar slot="start">
               <img [src]="svgIcons.received_msg" *ngIf="message.uidReceiver === user.uid" />
               <img [src]="svgIcons.sended_msg" *ngIf="message.uidSender === user.uid" />

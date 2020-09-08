@@ -67,5 +67,9 @@
   "receptor": "Receptor:",
   "no_hay_mensajes_perfil": "No tienes ningún mensaje publicado",
   "mensajes": "Mensajes",
-  "cambiar_cargos": "Cambiar cargos"
+  "cambiar_cargos": "Cambiar cargos",
+  "selecciona_supervisor": "Selecciona un supervisor",
+  "asigna_trabajador": "Asigna o elimina trabajadores",
+  "trabajadores_asignados": "Los trabajadores han sido asignados.",
+  "trabajadores_de_supervisor": "Trabajadores asignados"
 }

@@ -46,6 +46,10 @@ const routes: Routes = [
       {
         path: 'workers-to-supervisor',
         loadChildren: () => import('../workers-to-supervisors/workers-to-supervisors.module').then(m => m.WorkersToSupervisorsModule)
+      },
+      {
+        path: 'employees-in-charge',
+        loadChildren: () => import('../employees-in-charge/employees-in-charge.module').then(m => m.EmployeesInChargeModule)
       }
     ],
   }

@@ -168,19 +168,5 @@
         </ion-item-sliding>
       </ion-list>
     </ion-col>
-    <ion-row *ngIf="publicMessages.length === 0">
-      <ion-col size="12">
-        <ion-item lines="none" >
-          <ion-label class="item-not-messages">
-            <p>
-              <ion-icon slot="icon-only" name="mail"></ion-icon>
-            </p>
-          </ion-label>
-        </ion-item>
-        <h6 class="text-not-messages" lines="none">
-          {{ 'no_hay_mensajes_perfil' | translate }}
-        </h6>
-      </ion-col>
-    </ion-row>
   </ion-row>
 </ion-content>
