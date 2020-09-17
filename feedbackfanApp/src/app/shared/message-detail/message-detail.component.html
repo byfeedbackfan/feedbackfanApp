@@ -43,13 +43,13 @@
           <ion-row>
             <ion-col size="6" class="calification-values">
               <p class="p1">
-                <ion-icon slot="start" [name]="icons.happy" [style.color]="checkifLiked(messageDetail) ? 'blue' : 'rgb(90, 89, 89)'"></ion-icon>
+                <ion-icon slot="start" [name]="icons.happy" [style.color]="checkifLiked(messageDetail) ? 'rgb(206, 3, 3)' : 'rgb(90, 89, 89)'"></ion-icon>
                 {{messageDetail.likes || '0' | shortNumberSuffix}}   
               </p>
             </ion-col>
             <ion-col size="6" class="calification-values">
               <p class="p2">
-                <ion-icon slot="start" [name]="icons.sad" [style.color]="checkifDisliked(messageDetail) ? 'blue' : 'rgb(90, 89, 89)'"></ion-icon>
+                <ion-icon slot="start" [name]="icons.sad" [style.color]="checkifDisliked(messageDetail) ? 'rgb(206, 3, 3)' : 'rgb(90, 89, 89)'"></ion-icon>
                 {{messageDetail.dislikes || '0' | shortNumberSuffix}}
               </p>
             </ion-col>

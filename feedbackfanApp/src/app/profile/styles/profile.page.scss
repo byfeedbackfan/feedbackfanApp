@@ -98,7 +98,7 @@ ion-back-button {
 }
 
 .calification-values-messages {
-  color: blue;
+  color: rgb(206, 3, 3);
   padding: 0 !important;
   margin-top: 0;
   margin-bottom: 0;
@@ -355,7 +355,7 @@ ion-back-button {
 }
 
 .calification-values {
-  color: blue;
+  
   padding: 0 !important;
   margin-top: 0px;
   margin-bottom: 0;
@@ -368,10 +368,12 @@ ion-back-button {
   margin-right: auto;
 
   .p1 {
+    color: black;
     padding-left: 3px !important;
     margin: 0 !important;
   }
   .p2 {
+    color: black;
     padding-right: 3px !important;
     margin: 0 !important;
   }

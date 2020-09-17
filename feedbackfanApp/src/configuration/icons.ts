@@ -4,8 +4,8 @@
 export const icons = {
   lock_open_sharp: 'lock-open-sharp', // publishable icon
   lock_closed_sharp: 'lock-closed-sharp', // not publishable icon
-  happy: 'happy', // like icon
-  sad: 'sad', // dislike icon
+  happy: 'heart', // like icon
+  sad: 'heart-dislike', // dislike icon
   mail: 'mail', // new message icon
   search: 'search',
   information_circle_outline: 'information-circle-outline', // error message icon

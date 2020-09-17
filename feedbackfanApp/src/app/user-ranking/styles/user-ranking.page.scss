@@ -1,0 +1,62 @@
+ion-toolbar {
+  --background: #3b69ff;
+}
+
+.ion-title {
+  color: white;
+  font-weight: bold;
+}
+
+.sended-icon {
+  color: #b08315;
+  width: 20px !important;
+  height: 20px !important;
+}
+.like-icon {
+  width: 20px !important;
+  height: 20px !important;
+}
+.dislike-icon {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+.user-image {
+  width: 35px !important;
+  height: 35px !important;
+  padding-left: 2px !important;
+  margin-bottom: 8px !important;
+
+  img {
+    width: 35px !important;
+    height: 35px !important;
+  }
+}
+
+.like-icon {
+  color:rgb(206, 3, 3);
+  border-radius: 50px;
+}
+
+.dislike-icon {
+  color: rgb(206, 3, 3);
+  border-radius: 50px;
+}
+
+.text {
+  position: absolute;
+  top: 36px;
+  left: 9px;
+  margin-top: 1px !important;
+  margin-bottom: 0;
+  font-size: xx-small;
+  height: auto;
+  width: auto !important;
+  background: #3b69ff;
+  color: white;
+  padding-left: 4px !important;
+  padding-right: 4px !important;
+  right: auto;
+  padding-bottom: 3px !important;
+  padding-top: 3px !important;
+}

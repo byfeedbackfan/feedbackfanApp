@@ -71,5 +71,6 @@
   "selecciona_supervisor": "Selecciona un supervisor",
   "asigna_trabajador": "Asigna o elimina trabajadores",
   "trabajadores_asignados": "Los trabajadores han sido asignados.",
-  "trabajadores_de_supervisor": "Trabajadores asignados"
+  "trabajadores_de_supervisor": "Trabajadores asignados",
+  "ranking": "Ranking"
 }

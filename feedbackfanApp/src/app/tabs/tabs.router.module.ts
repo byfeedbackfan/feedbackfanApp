@@ -50,7 +50,11 @@ const routes: Routes = [
       {
         path: 'employees-in-charge',
         loadChildren: () => import('../employees-in-charge/employees-in-charge.module').then(m => m.EmployeesInChargeModule)
-      }
+      },
+      {
+        path: 'user-ranking',
+        loadChildren: () => import('../user-ranking/user-ranking.module').then( m => m.UserRankingModule)
+      },
     ],
   }
 ];

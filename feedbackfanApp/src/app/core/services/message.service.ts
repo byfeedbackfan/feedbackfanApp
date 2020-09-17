@@ -76,4 +76,16 @@ export class MessageService {
     };
     return this.afs.collection('message').doc(message.id).update(data);
   }
+
+  getMessages(): Observable<SendMessageModel[]> {
+    return this.afs.collection('message')
+      .get()
+      .pipe(map (a => {
+        const messages: SendMessageModel[] = [];
+        a.forEach(message => {
+          messages.push(message.data() as SendMessageModel);
+        });
+        return messages;
+      }));
+  }
 }

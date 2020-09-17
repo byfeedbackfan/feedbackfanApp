@@ -34,6 +34,7 @@
     "@ionic/pwa-elements": "^3.0.1",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
+    "@swimlane/ngx-datatable": "^17.1.0",
     "capacitor-firebase-auth": "^2.3.2",
     "cordova-plugin-screen-orientation": "^3.0.2",
     "dayjs": "^1.8.34",

@@ -29,6 +29,50 @@
 @import '~quill/dist/quill.bubble.css';
 @import '~quill/dist/quill.snow.css';
 
+/* data-table ngx themes */
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/material.scss';
+@import '~@swimlane/ngx-datatable/themes/bootstrap.scss';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
+
 .ql-container {
   height: 170px !important;
+}
+
+.messages-quantity {
+  color: rgb(1, 103, 255) !important;
+  display: inline;
+  font-weight: bold;
+  align-items: center !important;
+  text-align: center !important;
+  font-size: 12px;
+  padding: 0 !important;
+}
+
+.rating-quantity-likes {
+  color: rgb(11, 117, 16);
+  font-size: 11px;
+  display: inline;
+  align-items: center !important;
+  text-align: center !important;
+  padding: 0 !important;
+}
+
+.rating-quantity-dislikes {
+  color: rgb(117, 2, 2);
+  font-size: 11px;
+  display: inline;
+  align-items: center !important;
+  text-align: center !important;
+  padding: 0 !important;
+}
+
+.user-image-values {
+  padding: 0px !important;
+  width: auto !important;
+  padding-left: 1px !important;
+}
+
+.content {
+  position: relative !important;
 }
