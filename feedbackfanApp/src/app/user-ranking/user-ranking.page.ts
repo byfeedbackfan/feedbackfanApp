@@ -27,44 +27,29 @@ export class UserRankingPage implements OnInit {
 
   sortList = [
     {
-      prop: 'enviados',
+      prop: 'sentMessages',
       dir: 'desc'
     },
     {
-      prop: 'recibidos',
+      prop: 'receivedMessages',
       dir: 'desc'
     },
     {
-      prop: 'elikes',
+      prop: 'sentMessagesLikes',
       dir: 'desc'
     },
     {
-      prop: 'rlikes',
+      prop: 'receivedMessagesLikes',
       dir: 'desc'
     },
     {
-      prop: 'rdislikes',
+      prop: 'receivedMessagesDislikes',
       dir: 'asc'
     },
     {
-      prop: 'edislikes',
+      prop: 'sentMessagesDislikes',
       dir: 'asc'
     },
-  ];
-
-  rows = [
-    { usuario: 'Austin', enviados: 100500000, elikes: 400500000, edislikes: 300500000, recibidos: 100500000, rlikes: 400500000, rdislikes: 100500000},
-    { usuario: 'Austin', enviados: 10, elikes: 5, edislikes: 5, recibidos: 10, rlikes: 5, rdislikes: 5},
-    { usuario: 'Austin', enviados: 10, elikes: 5, edislikes: 5, recibidos: 10, rlikes: 5, rdislikes: 5},
-    { usuario: 'Austin', enviados: 100500000, elikes: 400500000, edislikes: 300500000, recibidos: 100500000, rlikes: 400500000, rdislikes: 100500000},
-    { usuario: 'Austin', enviados: 10, elikes: 5, edislikes: 5, recibidos: 10, rlikes: 5, rdislikes: 5},
-    { usuario: 'Austin', enviados: 10, elikes: 5, edislikes: 5, recibidos: 10, rlikes: 5, rdislikes: 5},
-    { usuario: 'Austin', enviados: 10, elikes: 5, edislikes: 5, recibidos: 10, rlikes: 5, rdislikes: 5},
-    { usuario: 'Austin', enviados: 10, elikes: 5, edislikes: 5, recibidos: 10, rlikes: 5, rdislikes: 5},
-    { usuario: 'Austin', enviados: 10, elikes: 5, edislikes: 5, recibidos: 10, rlikes: 5, rdislikes: 5},
-    { usuario: 'Austin', enviados: 10, elikes: 5, edislikes: 5, recibidos: 10, rlikes: 5, rdislikes: 5},
-    { usuario: 'Austin', enviados: 10, elikes: 5, edislikes: 5, recibidos: 10, rlikes: 5, rdislikes: 5},
-    { usuario: 'Austin', enviados: 10, elikes: 5, edislikes: 5, recibidos: 10, rlikes: 5, rdislikes: 5},
   ];
 
   constructor(
@@ -76,9 +61,6 @@ export class UserRankingPage implements OnInit {
   ngOnInit() {
     Storage.get({key: 'userCredentials'}).then(user => {
       this.userLogged = JSON.parse(user.value);
-      this.rows.forEach(row => {
-        row.usuario = this.userLogged.image;
-      });
     });
     this.messageService.getMessages().subscribe(messages => {
       this.allMessages = messages;
@@ -86,9 +68,7 @@ export class UserRankingPage implements OnInit {
     this.userService.getUsers().subscribe(users => {
       this.allUsers = users;
       this.setUserRanking();
-      console.log(this.usersRanking);
     });
-    console.log(this.usersRanking);
   }
 
   goToProfile(event) {
