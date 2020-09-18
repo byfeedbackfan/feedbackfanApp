@@ -37,7 +37,7 @@ ion-back-button {
 
 .ion-title {
   color: white;
-  font-weight: bold;
+  padding: 0;
 }
 
 .icon-only {
@@ -194,7 +194,6 @@ ion-back-button {
       margin: 0% 0% 0%;
       color:  #3b69ff;
       font-weight: bold;
-      text-transform: capitalize;
       text-align: left !important; 
       margin-left: 5%;
     }
@@ -343,7 +342,6 @@ ion-back-button {
 
 .title-values {
   font-weight: bold !important;
-  text-transform: capitalize;
 }
 
 .date-values {
@@ -359,8 +357,13 @@ ion-back-button {
   color: blue;
 }
 
+.item {
+  --padding-start: 10px;
+  --inner-padding-end: 0px;
+}
+
 .calification-values {
-  color: blue;
+  color: rgb(206, 3, 3) !important;
   padding: 0 !important;
   margin-top: 0px;
   margin-bottom: 0;
@@ -375,10 +378,12 @@ ion-back-button {
   .p1 {
     padding-left: 3px !important;
     margin: 0 !important;
+    color: black;
   }
   .p2 {
     padding-right: 3px !important;
     margin: 0 !important;
+    color: black;
   }
 }
 

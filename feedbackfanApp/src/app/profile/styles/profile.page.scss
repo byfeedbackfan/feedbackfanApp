@@ -37,7 +37,11 @@ ion-back-button {
 
 .ion-title {
   color: white;
-  font-weight: bold;
+}
+
+.item {
+  --padding-start: 10px;
+  --inner-padding-end: 0px;
 }
 
 .css-card {

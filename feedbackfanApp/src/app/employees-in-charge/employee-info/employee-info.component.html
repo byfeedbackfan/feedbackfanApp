@@ -1,5 +1,5 @@
 <ion-header #header>
-  <ion-toolbar mode="md">
+  <ion-toolbar mode="ios">
     <ion-buttons slot="start">
       <ion-button (click)="closeModal()">
         <ion-icon slot="start" name="arrow-back-outline" class="icon-only"></ion-icon>
@@ -37,13 +37,13 @@
               <ion-row  class="user-preferences-wrapper css-card-calification">
                 <ion-col size="6" class="calification-values">
                   <p class="p1">
-                    <ion-icon slot="start" [name]="icons.happy"></ion-icon>
+                    <ion-icon style="color: rgb(206, 3, 3) !important" slot="start" [name]="icons.happy"></ion-icon>
                     {{addSentLikes() || '0' | shortNumberSuffix}}
                   </p>
                 </ion-col>
                 <ion-col size="6" class="calification-values">
                   <p class="p2">
-                    <ion-icon slot="start" [name]="icons.sad"></ion-icon>
+                    <ion-icon style="color: rgb(206, 3, 3) !important" slot="start" [name]="icons.sad"></ion-icon>
                     {{andSentDislikes() || '0' | shortNumberSuffix}}
                   </p>
                 </ion-col>
@@ -66,13 +66,13 @@
               <ion-row  class="user-preferences-wrapper css-card-calification">
                 <ion-col size="6" class="calification-values">
                   <p class="p1">
-                    <ion-icon slot="start" [name]="icons.happy"></ion-icon>
+                    <ion-icon style="color: rgb(206, 3, 3) !important" slot="start" [name]="icons.happy"></ion-icon>
                     {{addReceivedLikes() || '0' | shortNumberSuffix}}
                   </p>
                 </ion-col>
                 <ion-col size="6" class="calification-values">
                   <p class="p2">
-                    <ion-icon slot="start" [name]="icons.sad"></ion-icon>
+                    <ion-icon style="color: rgb(206, 3, 3) !important" slot="start" [name]="icons.sad"></ion-icon>
                     {{addReceivedDislikes() || '0' | shortNumberSuffix}}
                   </p>
                 </ion-col>
@@ -104,7 +104,7 @@
     <ion-col size="12" class="col-data-values">
       <ion-list lines="full" *ngIf="publicMessages.length !== 0 || publicMessages.length !== null">
         <ion-item-sliding *ngFor="let message of publicMessages ; let i = index" [attr.data-index]="i" #slidingItem>
-          <ion-item [color]="i %2 === 0 ? 'bgi' : 'unclicked'" button="true" (click)="openMessage(message)">
+          <ion-item class="item" [color]="i %2 === 0 ? 'bgi' : 'unclicked'" button="true" (click)="openMessage(message)">
             <ion-avatar slot="start">
               <img [src]="svgIcons.received_msg" *ngIf="message.uidReceiver === user.uid" />
               <img [src]="svgIcons.sended_msg" *ngIf="message.uidSender === user.uid" />
@@ -145,13 +145,13 @@
                   <ion-row  class="user-preferences-wrapper css-card-calification">
                     <ion-col size="6" class="calification-values">
                       <p class="p1">
-                        <ion-icon slot="start" [name]="icons.happy" [style.color]="checkifLiked(message) ? 'blue' : 'rgb(90, 89, 89)'"></ion-icon>
+                        <ion-icon slot="start" [name]="icons.happy" [style.color]="checkifLiked(message) ? 'rgb(206, 3, 3)' : 'rgb(90, 89, 89)'"></ion-icon>
                         {{message.likes || '0' | shortNumberSuffix}}   
                       </p>
                     </ion-col>
                     <ion-col size="6" class="calification-values">
                       <p class="p2">
-                        <ion-icon slot="start" [name]="icons.sad" [style.color]="checkifDisliked(message) ? 'blue' : 'rgb(90, 89, 89)'"></ion-icon>
+                        <ion-icon slot="start" [name]="icons.sad" [style.color]="checkifDisliked(message) ? 'rgb(206, 3, 3)' : 'rgb(90, 89, 89)'"></ion-icon>
                         {{message.dislikes || '0' | shortNumberSuffix}}
                       </p>
                     </ion-col>

@@ -1,22 +1,17 @@
-<ion-header class="ion-no-border" #header>
-  <ion-toolbar>
-    <ion-title>
-      <ion-searchbar mode="ios" color="light" class="seachbar"
+<ion-header class="ion-no-border" mode="ios">
+  <ion-toolbar #header>
+    <ion-title mode="md">
+      {{'cambiar_cargos' | translate}}
+    </ion-title>
+  </ion-toolbar>
+  <ion-searchbar mode="ios" color="light" class="seachbar"
                    [placeholder]="'buscar' | translate" type="decimal" 
                    [debounce]="250"
                    (ionChange)="searchUser($event)">
-      </ion-searchbar>
-    </ion-title>
-  </ion-toolbar>
+  </ion-searchbar>
 </ion-header>
 <ion-content scrollEvents="true" appHideHeader [header]="header">
   <ion-list lines="none">
-    <ion-list-header>
-      <h3>
-        <ion-icon slot="start" name="build"></ion-icon>
-        {{'cambiar_cargos' | translate}}
-      </h3>
-    </ion-list-header>
     <ion-item-sliding *ngFor="let user of users | filterSearch: userSearch: 'name' : 'email'">
       <ion-item  button="true">
         <ion-avatar class="avatar">

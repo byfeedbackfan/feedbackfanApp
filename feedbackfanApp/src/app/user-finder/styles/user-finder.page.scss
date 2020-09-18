@@ -33,10 +33,17 @@ ion-list-header {
 
 .user-mail {
   color: black !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 ion-toolbar {
   --background: #3b69ff;
+}
+
+.ion-title {
+  color: white;
+  
 }
 
 .bg-red{
@@ -61,18 +68,6 @@ ion-item {
 .icon-only {
   color: white;
   font-weight: bold;
-}
-
-ion-title {
-  padding-left: 10px !important;
-  padding-right: 10px !important;
-}
-
-ion-searchbar{
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-  padding-left: 0 !important;
-  --icon-color: rgb(68, 0, 146) !important;
 }
 
 .data-values {

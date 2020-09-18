@@ -1,20 +1,18 @@
-<ion-header class="ion-no-border" #header>
-  <ion-toolbar>
-    <ion-title>
-      <ion-searchbar mode="ios" color="light"
+<ion-header class="ion-no-border" mode="ios">
+  <ion-toolbar #header>
+    <ion-title mode="md">
+      {{'selecciona_supervisor' | translate}}
+    </ion-title>
+  </ion-toolbar>
+  <ion-searchbar mode="ios" color="light"
                    [placeholder]="'buscar' | translate" type="decimal" 
                    [debounce]="250"
                    (ionChange)="searchUser($event)">
-      </ion-searchbar>
-    </ion-title>
-  </ion-toolbar>
+  </ion-searchbar>
 </ion-header>
 
 <ion-content scrollEvents="true" appHideHeader [header]="header">
   <ion-list lines="none">
-    <ion-list-header>
-      <h3>{{'selecciona_supervisor' | translate}}</h3>
-    </ion-list-header>
     <ion-item *ngFor="let user of supervisors | filterSearch: userSearch: 'name' : 'email'" 
               button="true" 
               (click)="goToSetWorkers(user)">

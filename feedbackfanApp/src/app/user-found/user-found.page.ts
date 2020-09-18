@@ -34,6 +34,9 @@ export class UserFoundPage implements OnInit {
   }
 
   ionViewWillEnter() {
+    this.publicMessages = [];
+    this.receivedMessages = [];
+    this.sendedMessages = [];
     this.user = this.userService.getUserProfile();
     this.messageService.getSentMessages(this.user.uid).subscribe(message => {
       this.sendedMessages = message;

@@ -1,14 +1,14 @@
-<ion-header #header>
-  <ion-toolbar mode="md">
+<ion-header>
+  <ion-toolbar mode="ios">
     <ion-title class="ion-title" mode="md">{{'nuevo_mensaje' | translate}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="send-message-content" scrollEvents="true" appHideHeader [header]="header">
+<ion-content class="send-message-content">
   <form [formGroup]="sendMessageForm" (ngSubmit)="sendMessage()" >
     <ion-list class="inputs-list" lines="full">
       <ion-item class="input-item" (click)="searchUser()">
-        <ion-icon slot="start" class="icon-style" [name]="icons.search"></ion-icon>
+        <ion-icon slot="start" class="icon-style" [name]="icons.asigned_worker"></ion-icon>
         <ion-label class="search" *ngIf="usersSelected.length === 0">{{'buscar_personas' | translate}}</ion-label>
         <ion-chip color="primary" mode="ios" outline="true" *ngFor="let user of usersSelected">
           <ion-label>{{ user.name }}</ion-label>
@@ -34,12 +34,10 @@
   </ion-item>
   <form [formGroup]="sendMessageForm" (ngSubmit)="sendMessage()" >
     <ion-row>
-      <ion-col size="12" class="editor-values-col">
         <div contenteditable="true" data-gramm="false" class="ql-editor" text>
           <quill-editor formControlName="info" contenteditable="true" data-gramm="false" class="ql-editor" text>
           </quill-editor>
         </div>
-      </ion-col>
     </ion-row>
     <div class="error-container">
       <ng-container *ngFor="let validation of validation_messages.info">

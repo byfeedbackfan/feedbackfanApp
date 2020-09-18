@@ -1,16 +1,17 @@
-<ion-header class="ion-no-border" #header>
-  <ion-toolbar>
-    <ion-searchbar mode="ios" color="light" class="seachbar"
+<ion-header class="ion-no-border" >
+  <ion-toolbar #header mode="ios">
+    <ion-title class="ion-title" mode="md">{{ 'mensajes_enviados' | translate }}</ion-title>
+  </ion-toolbar>
+  <ion-searchbar mode="ios" color="light" class="seachbar"
                   [placeholder]="'buscar' | translate" type="decimal" 
                   [debounce]="250"
                   (ionChange)="searchMessage($event)">
-    </ion-searchbar>
-  </ion-toolbar>
+  </ion-searchbar>
 </ion-header>
 
 <ion-content scrollEvents="true" appHideHeader [header]="header">
   <ion-list lines="none" *ngIf="sentMessages?.length !== 0 || sentMessages?.length !== null">
-      <ion-item [color]="i%2 === 0 ? 'bgi' : 'unclicked'" *ngFor="let message of sentMessages | filterSearch: messageSearch: 'title' : 'to'; let i = index" [attr.data-index]="i" button="true" (click)="openMessage(message)">
+      <ion-item class="item" [color]="i%2 === 0 ? 'bgi' : 'unclicked'" *ngFor="let message of sentMessages | filterSearch: messageSearch: 'title' : 'to'; let i = index" [attr.data-index]="i" button="true" (click)="openMessage(message)">
         <ion-avatar slot="start">
           <img [src]="svgIcons.sended_msg"/>
         </ion-avatar>

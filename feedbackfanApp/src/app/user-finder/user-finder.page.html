@@ -1,13 +1,12 @@
-<ion-header class="ion-no-border" #header>
-  <ion-toolbar>
-    <ion-title>
-      <ion-searchbar mode="ios" color="light" class="seachbar"
-                   [placeholder]="'buscar' | translate" type="decimal" 
-                   [debounce]="250"
-                   (ionChange)="searchUser($event)">
-      </ion-searchbar>
-    </ion-title>
+<ion-header class="ion-no-border">
+  <ion-toolbar #header mode="ios">
+    <ion-title class="ion-title" mode="md">{{ 'buscar_personas' | translate }}</ion-title>
   </ion-toolbar>
+  <ion-searchbar mode="ios" color="light" class="seachbar"
+                [placeholder]="'buscar' | translate" type="decimal" 
+                [debounce]="250"
+                (ionChange)="searchUser($event)">
+  </ion-searchbar>
 </ion-header>
 
 <ion-content scrollEvents="true" appHideHeader [header]="header">

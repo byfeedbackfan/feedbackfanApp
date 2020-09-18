@@ -52,25 +52,32 @@ export class ProfilePage implements OnInit {
     private popoverController: PopoverController,
     private modalController: ModalController,
     private messageService: MessageService,
-  ) {
-    this.profileResolver.resolve().then((user) => {
-      this.user = user;
-      this.messageService.getSentMessages(this.user.uid).subscribe(message => {
-        this.sendedMessages = message;
-      });
-      this.messageService.getReceivedMessages(this.user.uid).subscribe(message => {
-        this.receivedMessages = message;
-        this.mergeReceivedAndSendedMessages(this.receivedMessages, this.sendedMessages);
-      });
-    }).catch(err => {
-      this.submitError = err;
-    });
-  }
+  ) {}
 
   async ngOnInit() {
     this.getTranslations();
     this.translate.onLangChange.subscribe(() => {
       this.getTranslations();
+    });
+    this.profileResolver.resolve().then((user) => {
+      this.user = user;
+      let sentMessages;
+      let receivedMessages;
+      if (this.receivedMessages.length === 0 || this.sendedMessages.length === 0) {
+        this.messageService.getSentMessages(this.user.uid).subscribe(message => {
+          this.sendedMessages = message;
+          sentMessages = JSON.stringify(this.sendedMessages);
+          this.messageService.getReceivedMessages(this.user.uid).subscribe( message2 => {
+            this.receivedMessages = message2;
+            receivedMessages = JSON.stringify(this.receivedMessages);
+            this.mergeReceivedAndSendedMessages(this.receivedMessages, this.sendedMessages);
+            Storage.set({key: 'sentMessages', value: sentMessages});
+            Storage.set({key: 'receivedMessages', value: receivedMessages});
+          });
+        });
+      }
+    }).catch(err => {
+      this.submitError = err;
     });
   }
 

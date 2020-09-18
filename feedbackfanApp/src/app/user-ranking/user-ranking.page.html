@@ -1,11 +1,11 @@
 <ion-header>
-  <ion-toolbar mode="md">
+  <ion-toolbar mode="ios">
     <ion-title class="ion-title" mode="md">{{'ranking' | translate}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ngx-datatable class="fullscreen" [ngClass]="'bootstrap'"
+  <ngx-datatable [ngClass]="'bootstrap fullscreen'"
                                     [rows]="usersRanking"
                                     [sortType]="'multi'"
                                     [reorderable]="'false'"

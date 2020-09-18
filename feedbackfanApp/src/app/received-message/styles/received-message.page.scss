@@ -8,13 +8,17 @@ ion-toolbar {
 
 .ion-title {
   color: white;
-  font-weight: bold;
 }
 
 ion-searchbar{
   padding-top: 0 !important;
   padding-bottom: 0 !important;
   --icon-color: rgb(68, 0, 146) !important;
+}
+
+.item {
+  --padding-start: 10px;
+  --inner-padding-end: 0px;
 }
 
 .item-not-messages {

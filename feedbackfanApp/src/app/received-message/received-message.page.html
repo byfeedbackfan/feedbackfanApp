@@ -1,17 +1,18 @@
-<ion-header class="ion-no-border" #header>
-  <ion-toolbar>
-    <ion-searchbar mode="ios" color="light" class="seachbar"
-                  [placeholder]="'buscar' | translate" type="decimal" 
-                  [debounce]="250"
-                  (ionChange)="searchMessage($event)">
-    </ion-searchbar>
+<ion-header class="ion-no-border">
+  <ion-toolbar #header mode="ios">
+    <ion-title class="ion-title" mode="md">{{ 'mensajes_recibidos' | translate }}</ion-title>
   </ion-toolbar>
+  <ion-searchbar mode="ios" color="light" class="seachbar"
+                [placeholder]="'buscar' | translate" type="decimal" 
+                [debounce]="250"
+                (ionChange)="searchMessage($event)">
+  </ion-searchbar>
 </ion-header>
 
 <ion-content scrollEvents="true" appHideHeader [header]="header">
   <ion-list lines="full" *ngIf="receivedMessages?.length !== 0 || receivedMessages?.length !== null">
     <ion-item-sliding *ngFor="let message of receivedMessages | filterSearch: messageSearch: 'title' : 'to'; let i = index" [attr.data-index]="i" #slidingItem>
-      <ion-item [color]="i %2 === 0 ? 'bgi' : 'unclicked'" button="true" (click)="openMessage(message)">
+      <ion-item class="item" [color]="i %2 === 0 ? 'bgi' : 'unclicked'" button="true" (click)="openMessage(message)">
         <ion-avatar slot="start">
           <img [src]="svgIcons.received_msg" *ngIf="message.uidReceiver === userLogged.uid" />
         </ion-avatar>

@@ -8,7 +8,6 @@ ion-toolbar {
 
 .ion-title {
   color: white;
-  font-weight: bold;
 }
 
 ion-searchbar{
@@ -182,4 +181,9 @@ ion-searchbar{
   align-items: center;
   justify-content: center;
   vertical-align: middle;
+}
+
+.item {
+  --padding-start: 10px;
+  --inner-padding-end: 0px;
 }

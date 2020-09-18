@@ -26,6 +26,7 @@
 
   p {
     font-size: small !important;
+    margin-bottom: 0 !important;
   }
 
   ion-toggle {
@@ -55,6 +56,12 @@
   -ms-user-select: auto !important;
   -o-user-select: auto !important;
   user-select: auto !important;
+  --background: #7c7c7c;
+  --background-checked: #678bff;
+  --handle-background: #b4b3b3;
+  --handle-background-checked: #144afa;
+  --handle-spacing: 0px !important;
+  padding: 0 !important;
 }
 
 .send-message-content {
@@ -106,6 +113,5 @@ ion-toolbar {
 
 .ion-title {
   color: white;
-  font-weight: bold;
 }
 
