@@ -16,7 +16,7 @@
       </ion-item>
       <ion-item class="input-item">
         <ion-icon slot="start" class="icon-style" [name]="icons.text_sharp"></ion-icon>
-        <ion-input type="text" [placeholder]="'inserta_el_titulo' | translate" formControlName="title"></ion-input>
+        <ion-input type="text" [placeholder]="'titulo' | translate" formControlName="title"></ion-input>
       </ion-item>
       <div class="error-container">
         <ng-container *ngFor="let validation of validation_messages.title">

@@ -55,7 +55,7 @@ export class SendMessagePage implements OnInit {
 
     this.validation_messages = {
       title: [
-        { type: 'required', message: this.languageService.getTerm('validar_contrasena_requerida') },
+        { type: 'required', message: this.languageService.getTerm('inserta_el_titulo') },
       ],
       info: [
         { type: 'required', message: 'El mensaje no puede estar vacío' },

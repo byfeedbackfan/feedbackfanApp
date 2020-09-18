@@ -95,10 +95,18 @@ ion-back-button {
 
 .messages-values {
   color: black;
-  padding: 0 !important;
+  padding-right: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  padding-left: 5px !important;
   margin-top: 0;
   margin-bottom: 0;
   text-align: center !important;
+
+  ion-item {
+    width: 100px;
+    height: 150px;
+  }
 }
 
 .calification-values-messages {
@@ -232,7 +240,9 @@ ion-back-button {
   }
 
   .ion-col-userdata {
-    padding: calc(var(--page-margin)/2) !important;
+    padding-left: 5px !important;
+    padding-right: 0;
+    padding-bottom: 0;
     align-items: center !important;
     position: relative;
     justify-content: center !important;
@@ -528,7 +538,21 @@ ion-back-button {
 }
 
 .message-text {
-  padding-top: 0 !important;
   padding-bottom: 0 !important;
-  font-weight: bold;
+  font-size: larger;
+  font-weight: bolder;
+  text-decoration: underline;
+}
+
+.row-content {
+  margin-bottom: 10px;
+}
+
+.card-content {
+  margin: 0;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  background-color: 'bgi';
 }
