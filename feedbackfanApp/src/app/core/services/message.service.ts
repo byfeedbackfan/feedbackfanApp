@@ -46,7 +46,7 @@ export class MessageService {
   }
 
   getReceivedMessages(uid: string): Observable<SendMessageModel[]> {
-    return this.afs.collection('message', ref => ref.where('uidReceiver', '==', uid).orderBy('readed', 'asc').orderBy('date', 'desc'))
+    return this.afs.collection('message', ref => ref.where('uidReceiver', '==', uid).orderBy('date', 'desc').orderBy('readed', 'asc'))
     .snapshotChanges().pipe(map(a => {
       const messages: SendMessageModel[] = [];
       a.forEach(message => {

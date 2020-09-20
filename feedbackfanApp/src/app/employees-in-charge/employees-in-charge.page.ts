@@ -21,15 +21,17 @@ export class EmployeesInChargePage implements OnInit {
   svgIcons = svgIcons;
   userLogged: ProfileModel;
   users: ProfileModel[] = [];
+  usersInCharge: ProfileModel[] = [];
 
   constructor(
     private userService: UserService,
-    private router: Router,
     private modalController: ModalController,
   ) {
   }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ionViewWillEnter() {
     Storage.get({key: 'userCredentials'}).then( user => {
       this.userLogged = JSON.parse(user.value);
       this.userService.getUsers().subscribe(users => {
@@ -44,21 +46,19 @@ export class EmployeesInChargePage implements OnInit {
   }
 
   deleteUserLoggedFromArray() {
+    this.usersInCharge = [];
     this.users.forEach( (user, index) => {
       if (user.uid === this.userLogged.uid ) {
         this.users.splice(index, 1);
       }
     });
-    this.users.forEach( (user, index) => {
-      let InWorkers = false;
-      this.userLogged.workersInCharge.forEach((uid) => {
+
+    this.userLogged.workersInCharge.forEach(uid => {
+      this.users.forEach(user => {
         if (uid === user.uid) {
-          InWorkers = true;
+          this.usersInCharge.push(user);
         }
       });
-      if (!InWorkers) {
-        this.users.splice(index, 1);
-      }
     });
   }
 

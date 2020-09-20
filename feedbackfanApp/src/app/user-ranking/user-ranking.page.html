@@ -37,7 +37,7 @@
         </ion-icon>
       </ng-template>
       <ng-template class="content" ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-        {{(value | shortNumberSuffix) || '0'}}
+        {{(value | shortNumberSuffix)}}
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column [cellClass]="'rating-quantity-likes'" name="sentMessagesLikes">
@@ -46,7 +46,7 @@
         </ion-icon>
       </ng-template>
       <ng-template class="content" ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-        {{(value | shortNumberSuffix) || '0'}}
+        {{(value | shortNumberSuffix)}}
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column [cellClass]="'rating-quantity-dislikes'" name="sentMessagesDislikes">
@@ -55,7 +55,7 @@
         </ion-icon>
       </ng-template>
       <ng-template class="content" ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-        {{(value | shortNumberSuffix) || '0'}}
+        {{(value | shortNumberSuffix)}}
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column [cellClass]="'messages-quantity'" name="receivedMessages">
@@ -64,7 +64,7 @@
         </ion-icon>
       </ng-template>
       <ng-template class="content" ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-        {{(value | shortNumberSuffix) || '0'}}
+        {{(value | shortNumberSuffix)}}
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column [cellClass]="'rating-quantity-likes'" name="receivedMessagesLikes">
@@ -73,7 +73,7 @@
         </ion-icon>
       </ng-template>
       <ng-template class="content" ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-        {{(value | shortNumberSuffix) || '0'}}
+        {{(value | shortNumberSuffix)}}
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column [cellClass]="'rating-quantity-dislikes'" name="receivedMessagesDislikes">
@@ -82,7 +82,7 @@
         </ion-icon>
       </ng-template>
       <ng-template class="content" ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-        {{(value | shortNumberSuffix) || '0'}}
+        {{(value | shortNumberSuffix)}}
       </ng-template>
     </ngx-datatable-column>
   </ngx-datatable>

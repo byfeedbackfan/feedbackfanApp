@@ -33,21 +33,22 @@ export class EmployeeInfoComponent implements OnInit {
   ngOnInit() {
     Storage.get({key: 'userCredentials'}).then( user => {
       this.userLogged = JSON.parse(user.value);
+      this.publicMessages = [];
+      this.messageService.getSentMessages(this.user.uid).subscribe(message => {
+        this.sendedMessages = message;
+        this.messageService.getReceivedMessages(this.user.uid).subscribe(message2 => {
+          this.receivedMessages = message2;
+          this.mergeReceivedAndSendedMessages(this.receivedMessages, this.sendedMessages);
+          this.addSentLikes();
+          this.andSentDislikes();
+          this.addReceivedLikes();
+          this.addReceivedDislikes();
+        });
+      });
     });
   }
 
   ionViewWillEnter() {
-    this.messageService.getSentMessages(this.user.uid).subscribe(message => {
-      this.sendedMessages = message;
-    });
-    this.messageService.getReceivedMessages(this.user.uid).subscribe(message => {
-      this.receivedMessages = message;
-      this.mergeReceivedAndSendedMessages(this.receivedMessages, this.sendedMessages);
-      this.addSentLikes();
-      this.andSentDislikes();
-      this.addReceivedLikes();
-      this.addReceivedDislikes();
-    });
   }
 
   async openMessage(message: SendMessageModel) {

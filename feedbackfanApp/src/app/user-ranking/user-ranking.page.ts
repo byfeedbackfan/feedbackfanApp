@@ -102,8 +102,8 @@ export class UserRankingPage implements OnInit {
           userRanking.receivedMessagesDislikes = userRanking.receivedMessagesLikes + message.dislikes;
         }
         if (message.uidSender === userRanking.uid) {
-          userRanking.receivedMessagesLikes = userRanking.receivedMessagesLikes + message.likes;
-          userRanking.receivedMessagesDislikes = userRanking.receivedMessagesLikes + message.dislikes;
+          userRanking.sentMessagesLikes = userRanking.sentMessagesLikes + message.likes;
+          userRanking.sentMessagesDislikes = userRanking.sentMessagesLikes + message.dislikes;
         }
       });
       this.usersRanking.push(userRanking);

@@ -23,7 +23,7 @@
             <ion-col size="12">
               <p class="messages-values">
                 <ion-icon slot="start" [src]="svgIcons.sended_msg"></ion-icon>
-                {{ user?.sentMessages || '0' | shortNumberSuffix }}
+                {{ user?.sentMessages | shortNumberSuffix }}
               </p>
             </ion-col>
           </ion-row>
@@ -33,13 +33,13 @@
                 <ion-col size="6" class="calification-values">
                   <p class="p1">
                     <ion-icon slot="start" style="color: rgb(206, 3, 3) !important" [name]="icons.happy"></ion-icon>
-                    {{addSentLikes() || '0' | shortNumberSuffix}}
+                    {{addSentLikes() | shortNumberSuffix}}
                   </p>
                 </ion-col>
                 <ion-col size="6" class="calification-values">
                   <p class="p2">
                     <ion-icon slot="start" style="color: rgb(206, 3, 3) !important" [name]="icons.sad"></ion-icon>
-                    {{andSentDislikes() || '0' | shortNumberSuffix}}
+                    {{andSentDislikes() | shortNumberSuffix}}
                   </p>
                 </ion-col>
               </ion-row>
@@ -52,7 +52,7 @@
             <ion-col size="12">
               <p class="messages-values">
                 <ion-icon slot="start" [src]="svgIcons.received_msg"></ion-icon>
-                {{ user?.receivedMessages || '0' | shortNumberSuffix }}
+                {{ user?.receivedMessages | shortNumberSuffix }}
               </p>
             </ion-col>
           </ion-row>
@@ -62,13 +62,13 @@
                 <ion-col size="6" class="calification-values">
                   <p class="p1">
                     <ion-icon slot="start" style="color: rgb(206, 3, 3) !important" [name]="icons.happy"></ion-icon>
-                    {{addReceivedLikes() || '0' | shortNumberSuffix}}
+                    {{addReceivedLikes() | shortNumberSuffix}}
                   </p>
                 </ion-col>
                 <ion-col size="6" class="calification-values">
                   <p class="p2">
                     <ion-icon slot="start" style="color: rgb(206, 3, 3) !important" [name]="icons.sad"></ion-icon>
-                    {{addReceivedDislikes() || '0' | shortNumberSuffix}}
+                    {{addReceivedDislikes() | shortNumberSuffix}}
                   </p>
                 </ion-col>
               </ion-row>
@@ -141,13 +141,13 @@
                     <ion-col size="6" class="calification-values">
                       <p class="p1">
                         <ion-icon slot="start" [name]="icons.happy" [style.color]="checkifLiked(message) ? 'rgb(206, 3, 3)' : 'rgb(90, 89, 89)'"></ion-icon>
-                        {{message.likes || '0' | shortNumberSuffix}}   
+                        {{message.likes | shortNumberSuffix}}   
                       </p>
                     </ion-col>
                     <ion-col size="6" class="calification-values">
                       <p class="p2">
                         <ion-icon slot="start" [name]="icons.sad" [style.color]="checkifDisliked(message) ? 'rgb(206, 3, 3)' : 'rgb(90, 89, 89)'"></ion-icon>
-                        {{message.dislikes || '0' | shortNumberSuffix}}
+                        {{message.dislikes | shortNumberSuffix}}
                       </p>
                     </ion-col>
                   </ion-row>

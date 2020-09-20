@@ -174,7 +174,7 @@ export class EditProfileInfoComponent implements OnInit {
 
   async takePhoto() {
     const image = await Camera.getPhoto({
-      quality: 90,
+      quality: 20,
       allowEditing: true,
       resultType: CameraResultType.DataUrl,
       source: CameraSource.Camera,
