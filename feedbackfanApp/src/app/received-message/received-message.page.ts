@@ -43,7 +43,7 @@ export class ReceivedMessagePage implements OnInit {
     await Storage.get({key: 'userCredentials'}).then(data => {
       this.userLogged = JSON.parse(data.value);
     });
-    this.messageService.getReceivedMessages(this.userLogged.uid).subscribe(messages => {
+    this.messageService.getReceivedMessagesSnapshot(this.userLogged.uid).subscribe(messages => {
       let receivedMsg: string;
       this.receivedMessages = messages;
       receivedMsg = JSON.stringify(messages);

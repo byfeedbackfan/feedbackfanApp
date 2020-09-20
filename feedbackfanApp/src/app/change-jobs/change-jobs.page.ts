@@ -52,6 +52,9 @@ export class ChangeJobsPage implements OnInit {
   changeJob(user: ProfileModel, role: string) {
     if (user.role !== role) {
       user.role = role;
+      if (user.role === roles.employee) {
+        user.workersInCharge = [];
+      }
       this.userService.updateUser(user);
     }
   }

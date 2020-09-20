@@ -38,6 +38,7 @@ export class UserFinderPage implements OnInit {
   }
 
   goToUserProfile(user: ProfileModel) {
+    this.userService.setUserProfile({} as ProfileModel);
     this.userService.setUserProfile(user);
     this.router.navigate(['app/user'], { replaceUrl: true });
   }

@@ -61,10 +61,10 @@ export class UserService {
   }
 
   public getUser(uid: string): Observable<ProfileModel> {
-    return this.afs.doc(`user/${uid}`).get()
+    return this.afs.doc(`user/${uid}`).snapshotChanges()
     .pipe(
       map( a => {
-        const userData = a.data();
+        const userData = a.payload.data();
         return userData as ProfileModel;
       })
     );

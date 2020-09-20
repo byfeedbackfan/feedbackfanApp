@@ -45,12 +45,23 @@ export class MessageService {
     }));
   }
 
-  getReceivedMessages(uid: string): Observable<SendMessageModel[]> {
-    return this.afs.collection('message', ref => ref.where('uidReceiver', '==', uid).orderBy('date', 'desc').orderBy('readed', 'asc'))
+  getReceivedMessagesSnapshot(uid: string): Observable<SendMessageModel[]> {
+    return this.afs.collection('message', ref => ref.where('uidReceiver', '==', uid).orderBy('readed', 'asc').orderBy('date', 'desc'))
     .snapshotChanges().pipe(map(a => {
       const messages: SendMessageModel[] = [];
       a.forEach(message => {
         messages.push(message.payload.doc.data() as SendMessageModel);
+      });
+      return messages;
+    }));
+  }
+
+  getReceivedMessages(uid: string): Observable<SendMessageModel[]> {
+    return this.afs.collection('message', ref => ref.where('uidReceiver', '==', uid).orderBy('date', 'desc'))
+    .get().pipe(map(a => {
+      const messages: SendMessageModel[] = [];
+      a.forEach(message => {
+        messages.push(message.data() as SendMessageModel);
       });
       return messages;
     }));

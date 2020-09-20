@@ -28,13 +28,15 @@ export class UserFoundPage implements OnInit {
     private userService: UserService,
     private modalController: ModalController,
     private messageService: MessageService,
-  ) {}
+  ) {
+    this.user = this.userService.getUserProfile();
+
+  }
 
   ngOnInit() {
     this.publicMessages = [];
     this.receivedMessages = [];
     this.sendedMessages = [];
-    this.user = this.userService.getUserProfile();
     this.messageService.getSentMessages(this.user.uid).subscribe(message => {
       this.sendedMessages = message;
       this.messageService.getReceivedMessages(this.user.uid).subscribe(message => {
@@ -49,7 +51,21 @@ export class UserFoundPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    
+    this.user = this.userService.getUserProfile();
+    this.publicMessages = [];
+    this.receivedMessages = [];
+    this.sendedMessages = [];
+    this.messageService.getSentMessages(this.user.uid).subscribe(message => {
+      this.sendedMessages = message;
+      this.messageService.getReceivedMessages(this.user.uid).subscribe(message => {
+        this.receivedMessages = message;
+        this.mergeReceivedAndSendedMessages(this.receivedMessages, this.sendedMessages);
+        this.addSentLikes();
+        this.andSentDislikes();
+        this.addReceivedLikes();
+        this.addReceivedDislikes();
+      });
+    });
   }
 
   async openMessage(message: SendMessageModel) {

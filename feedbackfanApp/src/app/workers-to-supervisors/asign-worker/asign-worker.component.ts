@@ -100,8 +100,12 @@ export class AsignWorkerComponent implements OnInit {
   }
 
   setWorkers() {
-    this.userService.updateWorkersAssignedToSupervisor(this.supervisor);
-    this.presentToast();
+    this.userService.updateWorkersAssignedToSupervisor(this.supervisor).then(()=> {
+      this.presentToast();
+    }).catch(error => {
+      console.log(error);
+    });
+
   }
 
   async presentToast() {
