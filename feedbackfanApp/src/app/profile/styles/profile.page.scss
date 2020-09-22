@@ -102,10 +102,16 @@ ion-back-button {
   margin-top: 0;
   margin-bottom: 0;
   text-align: center !important;
+  font-size: 18px;
 
   ion-item {
     width: 100px;
     height: 150px;
+  }
+
+  ion-icon {
+    width: 28px;
+    height: 28px;
   }
 }
 
@@ -211,6 +217,15 @@ ion-back-button {
       margin: 0px 0px calc(var(--page-margin) / 10);
       margin-left: 5%;
       color: var(--ion-color-dark-tint);
+      width: auto;
+
+      p {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+      }
     }
 
     .preference-value {
@@ -373,7 +388,6 @@ ion-back-button {
   padding: 0 !important;
   margin-top: 0px;
   margin-bottom: 0;
-  text-align: center !important;
   width: auto;
   height: auto;
   font-size: 115% !important;
@@ -382,11 +396,13 @@ ion-back-button {
   margin-right: auto;
 
   .p1 {
+    text-align: end;
     color: black;
     padding-left: 3px !important;
     margin: 0 !important;
   }
   .p2 {
+    text-align: start;
     color: black;
     padding-right: 3px !important;
     margin: 0 !important;

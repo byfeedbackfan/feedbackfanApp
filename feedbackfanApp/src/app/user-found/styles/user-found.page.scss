@@ -91,10 +91,24 @@ ion-back-button {
 
 .messages-values {
   color: black;
-  padding: 0 !important;
+  padding-right: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  padding-left: 5px !important;
   margin-top: 0;
   margin-bottom: 0;
   text-align: center !important;
+  font-size: 18px;
+
+  ion-item {
+    width: 100px;
+    height: 150px;
+  }
+
+  ion-icon {
+    width: 28px;
+    height: 28px;
+  }
 }
 
 .calification-values-messages {
@@ -198,6 +212,15 @@ ion-back-button {
       margin: 0px 0px calc(var(--page-margin) / 10);
       margin-left: 5%;
       color: var(--ion-color-dark-tint);
+      width: auto;
+
+      p {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+      }
     }
 
     .preference-value {
@@ -227,7 +250,7 @@ ion-back-button {
   }
 
   .ion-col-userdata {
-    padding: calc(var(--page-margin)/2) !important;
+    padding: 0 !important;
     align-items: center !important;
     position: relative;
     justify-content: center !important;
@@ -357,7 +380,6 @@ ion-back-button {
   padding: 0 !important;
   margin-top: 0px;
   margin-bottom: 0;
-  text-align: center !important;
   width: auto;
   height: auto;
   font-size: 115% !important;
@@ -366,11 +388,13 @@ ion-back-button {
   margin-right: auto;
 
   .p1 {
+    text-align: end;
     padding-left: 3px !important;
     margin: 0 !important;
     color: black;
   }
   .p2 {
+    text-align: start;
     padding-right: 3px !important;
     margin: 0 !important;
     color: black;
@@ -522,7 +546,8 @@ ion-back-button {
 }
 
 .message-text {
-  padding-top: 0 !important;
   padding-bottom: 0 !important;
-  font-weight: bold;
+  font-size: larger;
+  font-weight: bolder;
+  text-decoration: underline;
 }
