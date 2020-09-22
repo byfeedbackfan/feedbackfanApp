@@ -15,6 +15,7 @@ import { MessageService } from '../core/services/message.service';
 import { SendMessageModel } from '../send-message/send-message-model';
 import { MessageDetailComponent } from '../shared/message-detail/message-detail.component';
 import { icons, svgIcons } from '../../configuration/icons';
+import { ActivatedRoute } from '@angular/router';
 
 const { Storage } = Plugins;
 
@@ -45,6 +46,8 @@ export class ProfilePage implements OnInit {
   icons = icons;
   svgIcons = svgIcons;
 
+  subscriptions: Subscription;
+
   constructor(
     public translate: TranslateService,
     public languageService: LanguageService,
@@ -52,9 +55,11 @@ export class ProfilePage implements OnInit {
     private popoverController: PopoverController,
     private modalController: ModalController,
     private messageService: MessageService,
+    private route: ActivatedRoute,
   ) {}
 
   async ngOnInit() {
+    this.subscriptions = this.route.data.subscribe();
     this.getTranslations();
     this.translate.onLangChange.subscribe(() => {
       this.getTranslations();
@@ -321,5 +326,10 @@ export class ProfilePage implements OnInit {
       dislikes = dislikes + element.dislikes;
     });
     return dislikes;
+  }
+
+  ionViewWillLeave(): void {
+    // console.log('TravelListingPage [ionViewWillLeave]');
+    this.subscriptions.unsubscribe();
   }
 }

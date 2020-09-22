@@ -51,8 +51,6 @@ export class UserService {
       name: userData.name,
       role: userData.role,
       image: userData.image,
-      sentMessages: userData.sentMessages,
-      receivedMessages: userData.receivedMessages,
       isShell: userData.isShell,
       allMessagesPublic: userData.allMessagesPublic,
       workersInCharge: userData.workersInCharge,
@@ -79,16 +77,6 @@ export class UserService {
         return usersData as ProfileModel;
       }))
     );
-  }
-
-  public addQuantityToSentMessages(uid: string, quantity: number): Promise<void> {
-    const increment = firebase.firestore.FieldValue.increment(quantity);
-    return this.afs.collection(`user`).doc(uid).update({sentMessages: increment});
-  }
-
-  public addOneToReceivedmessages(user: ProfileModel): Promise<void> {
-    const increment = firebase.firestore.FieldValue.increment(1);
-    return this.afs.collection(`user`).doc(user.uid).update({receivedMessages: increment});
   }
 
   public updateWorkersAssignedToSupervisor(user: ProfileModel): Promise<void> {

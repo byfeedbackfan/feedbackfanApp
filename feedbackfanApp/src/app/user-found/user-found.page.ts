@@ -7,6 +7,8 @@ import { IonItemSliding, ModalController } from '@ionic/angular';
 import { Plugins } from '@capacitor/core';
 import { MessageDetailComponent } from '../shared/message-detail/message-detail.component';
 import { MessageService } from '../core/services/message.service';
+import { Subscription } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 
 const { Storage } = Plugins;
@@ -23,17 +25,20 @@ export class UserFoundPage implements OnInit {
   receivedMessages = [];
   svgIcons = svgIcons;
   icons = icons;
+  subscriptions: Subscription;
 
   constructor(
     private userService: UserService,
     private modalController: ModalController,
     private messageService: MessageService,
+    private route: ActivatedRoute,
   ) {
     this.user = this.userService.getUserProfile();
 
   }
 
   ngOnInit() {
+    this.subscriptions = this.route.data.subscribe();
     this.publicMessages = [];
     this.receivedMessages = [];
     this.sendedMessages = [];
@@ -57,8 +62,8 @@ export class UserFoundPage implements OnInit {
     this.sendedMessages = [];
     this.messageService.getSentMessages(this.user.uid).subscribe(message => {
       this.sendedMessages = message;
-      this.messageService.getReceivedMessages(this.user.uid).subscribe(message => {
-        this.receivedMessages = message;
+      this.messageService.getReceivedMessages(this.user.uid).subscribe(message2 => {
+        this.receivedMessages = message2;
         this.mergeReceivedAndSendedMessages(this.receivedMessages, this.sendedMessages);
         this.addSentLikes();
         this.andSentDislikes();
@@ -66,6 +71,11 @@ export class UserFoundPage implements OnInit {
         this.addReceivedDislikes();
       });
     });
+  }
+
+  ionViewWillLeave(): void {
+    // console.log('TravelListingPage [ionViewWillLeave]');
+    this.subscriptions.unsubscribe();
   }
 
   async openMessage(message: SendMessageModel) {

@@ -6,6 +6,8 @@ import { ProfileModel } from '../../profile/profile.model';
 import { MessageService } from '../../core/services/message.service';
 import { icons } from '../../../configuration/icons';
 import { Plugins } from '@capacitor/core';
+import { Subscription } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 const { Storage } = Plugins;
 
@@ -23,18 +25,26 @@ export class MessageDetailComponent implements OnInit {
 
   translations;
   icons = icons;
+  subscriptions: Subscription;
 
   constructor(
     public translate: TranslateService,
     public modalController: ModalController,
     public messageService: MessageService,
+    private route: ActivatedRoute,
   ) { }
 
   async ngOnInit() {
+    this.subscriptions = this.route.data.subscribe();
     this.getTranslations();
     this.translate.onLangChange.subscribe(() => {
       this.getTranslations();
     });
+  }
+
+  ionViewWillLeave(): void {
+    // console.log('TravelListingPage [ionViewWillLeave]');
+    this.subscriptions.unsubscribe();
   }
 
   getTranslations() {

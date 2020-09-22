@@ -6,7 +6,8 @@ import { SendMessageModel } from '../send-message/send-message-model';
 import { MessageService } from '../core/services/message.service';
 import { UserService } from '../core/services/user.service';
 import { UserRankingModel } from './user-ranking.model';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 const { Storage } = Plugins;
 
@@ -24,6 +25,7 @@ export class UserRankingPage implements OnInit {
   usersToRanking;
   allUsers: ProfileModel[] = [];
   allMessages: SendMessageModel[] = [];
+  subscriptions: Subscription;
 
   sortList = [
     {
@@ -55,10 +57,12 @@ export class UserRankingPage implements OnInit {
   constructor(
     private messageService: MessageService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
+    this.subscriptions = this.route.data.subscribe();
     Storage.get({key: 'userCredentials'}).then(user => {
       this.userLogged = JSON.parse(user.value);
     });
@@ -69,6 +73,11 @@ export class UserRankingPage implements OnInit {
       this.allUsers = users;
       this.setUserRanking();
     });
+  }
+
+  ionViewWillLeave(): void {
+    // console.log('TravelListingPage [ionViewWillLeave]');
+    this.subscriptions.unsubscribe();
   }
 
   goToProfile(event) {
@@ -89,19 +98,21 @@ export class UserRankingPage implements OnInit {
       userRanking.uid = user.uid;
       userRanking.image = user.image;
       userRanking.isShell = true;
-      userRanking.receivedMessages = user.receivedMessages;
-      userRanking.sentMessages = user.sentMessages;
+      userRanking.receivedMessages = 0;
       userRanking.receivedMessagesLikes = 0;
       userRanking.receivedMessagesDislikes = 0;
+      userRanking.sentMessages = 0;
       userRanking.sentMessagesLikes = 0;
       userRanking.sentMessagesDislikes = 0;
 
       this.allMessages.forEach(message => {
         if (message.uidReceiver === userRanking.uid) {
+          userRanking.receivedMessages = userRanking.receivedMessages + 1;
           userRanking.receivedMessagesLikes = userRanking.receivedMessagesLikes + message.likes;
           userRanking.receivedMessagesDislikes = userRanking.receivedMessagesLikes + message.dislikes;
         }
         if (message.uidSender === userRanking.uid) {
+          userRanking.sentMessages = userRanking.sentMessages + 1;
           userRanking.sentMessagesLikes = userRanking.sentMessagesLikes + message.likes;
           userRanking.sentMessagesDislikes = userRanking.sentMessagesLikes + message.dislikes;
         }

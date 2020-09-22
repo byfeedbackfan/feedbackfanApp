@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileModel } from '../profile.model';
 import { AuthService } from '../../core/services/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Plugins } from '@capacitor/core';
 import { PopoverController, NavParams } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from 'src/app/core/language/language.service';
 import { UserService } from '../../core/services/user.service';
+import { Subscription } from 'rxjs';
 
 const { Storage } = Plugins;
 
@@ -19,6 +20,7 @@ export class UserOptionsPopoverComponent implements OnInit {
   user: ProfileModel = this.navParams.get('user');
   isPublicable = this.user.allMessagesPublic;
   translations;
+  subscriptions: Subscription;
 
   constructor(
     public translate: TranslateService,
@@ -28,10 +30,12 @@ export class UserOptionsPopoverComponent implements OnInit {
     private router: Router,
     private popoverController: PopoverController,
     private userService: UserService,
+    private route: ActivatedRoute,
   ) {
   }
 
   ngOnInit() {
+    this.subscriptions = this.route.data.subscribe();
     this.getTranslations();
     this.translate.onLangChange.subscribe(() => {
       this.getTranslations();
@@ -50,6 +54,7 @@ export class UserOptionsPopoverComponent implements OnInit {
     this.authService.signOut().subscribe(() => {
       Storage.clear();
       this.popoverController.dismiss();
+      this.subscriptions.unsubscribe();
       this.router.navigate(['auth/sign-in'], { replaceUrl: true });
     }, (error) => {
       console.log('signout error', error);

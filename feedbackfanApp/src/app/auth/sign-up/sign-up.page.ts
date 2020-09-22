@@ -185,8 +185,6 @@ export class SignUpPage implements OnInit {
         userData.email = user.user.email;
         userData.name = values.name;
         userData.role = roles.employee;
-        userData.sentMessages = 0;
-        userData.receivedMessages = 0;
         userData.isShell = true;
         userData.allMessagesPublic = true;
         userData.workersInCharge = [];

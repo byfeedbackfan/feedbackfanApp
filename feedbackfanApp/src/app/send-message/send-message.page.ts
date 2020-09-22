@@ -121,6 +121,7 @@ export class SendMessagePage implements OnInit {
 
   async setMessagesToStorage() {
     const messages = JSON.stringify(this.messagesToStorage);
+    console.log(this.messagesToStorage);
     await Storage.set({key: 'sentMessages', value: messages});
   }
 
@@ -143,13 +144,7 @@ export class SendMessagePage implements OnInit {
       newMessage.isShell = true;
       newMessage.readed = false;
       this.pushMessage(newMessage);
-      await this.messageService.createMessage(newMessage).then(async () => {
-        await this.userService.addOneToReceivedmessages(user).then( async () => {
-          await this.addQuantityToSentMessages(1);
-        }).catch(err => {
-          this.submitError = err;
-        });
-      })
+      await this.messageService.createMessage(newMessage)
       .catch(err => {
         this.submitError = err;
       });
@@ -178,18 +173,7 @@ export class SendMessagePage implements OnInit {
       readed: newMessage.readed,
       isShell: newMessage.isShell,
     };
-
     this.messagesToStorage.unshift(message);
-  }
-
-  async addQuantityToSentMessages(sendedMessagesQuantity: number) {
-    await this.userService.addQuantityToSentMessages(this.user.uid, sendedMessagesQuantity).then(async () => {
-      this.user.sentMessages =  this.user.sentMessages + sendedMessagesQuantity;
-      const userStorage = JSON.stringify(this.user);
-      Storage.set({key: 'userCredentials', value: userStorage});
-    }).catch( err => {
-      this.submitError = err;
-    });
   }
 
   sendMessage() {

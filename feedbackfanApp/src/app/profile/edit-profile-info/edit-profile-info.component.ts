@@ -196,8 +196,6 @@ export class EditProfileInfoComponent implements OnInit {
     this.userData.email = this.userStorage.email;
     this.userData.name = values.name;
     this.userData.role = this.userStorage.role;
-    this.userData.sentMessages = this.userStorage.sentMessages;
-    this.userData.receivedMessages = this.userStorage.receivedMessages;
     this.userData.isShell = true;
     this.userData.allMessagesPublic = this.userStorage.allMessagesPublic;
     this.userData.workersInCharge = this.userStorage.workersInCharge;

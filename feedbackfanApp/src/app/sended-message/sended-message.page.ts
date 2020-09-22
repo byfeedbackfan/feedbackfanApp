@@ -62,13 +62,13 @@ export class SendedMessagePage implements OnInit {
   mergeSentMessages() {
     Storage.get({key: 'sentMessages'}).then(data => {
       this.sentMessagesStorage = JSON.parse(data.value);
-    });
-    this.messageService.getSentMessages(this.userLogged.uid)
-    .subscribe(messages => {
-      this.sentMessages = messages;
-      this.sentMessages.concat(this.sentMessagesStorage);
-      const messagesString = JSON.stringify(this.sentMessages);
-      Storage.set({key: 'sentMessages', value: messagesString});
+      this.messageService.getSentMessages(this.userLogged.uid)
+      .subscribe(messages => {
+        this.sentMessages = messages;
+        this.sentMessages.concat(this.sentMessagesStorage);
+        const messagesString = JSON.stringify(this.sentMessages);
+        Storage.set({key: 'sentMessages', value: messagesString});
+      });
     });
   }
 

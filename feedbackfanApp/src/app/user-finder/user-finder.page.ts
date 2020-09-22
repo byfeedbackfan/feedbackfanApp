@@ -3,7 +3,8 @@ import { icons, svgIcons } from 'src/configuration/icons';
 import { ProfileModel } from '../profile/profile.model';
 import { Plugins } from '@capacitor/core';
 import { UserService } from '../core/services/user.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 const { Storage } = Plugins;
 
@@ -19,10 +20,12 @@ export class UserFinderPage implements OnInit {
   svgIcons = svgIcons;
   userLogged: ProfileModel;
   users: ProfileModel[] = [];
+  subscriptions: Subscription;
 
   constructor(
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
   ) {
 
     Storage.get({key: 'userCredentials'}).then( user => {
@@ -35,6 +38,12 @@ export class UserFinderPage implements OnInit {
   }
 
   ngOnInit() {
+    this.subscriptions = this.route.data.subscribe();
+  }
+
+  ionViewWillLeave(): void {
+    // console.log('TravelListingPage [ionViewWillLeave]');
+    this.subscriptions.unsubscribe();
   }
 
   goToUserProfile(user: ProfileModel) {

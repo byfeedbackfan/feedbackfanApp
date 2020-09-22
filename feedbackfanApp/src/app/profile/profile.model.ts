@@ -6,8 +6,6 @@ export class ProfileModel extends ShellModel {
   name: string;
   role: string;
   image: string;
-  sentMessages: number;
-  receivedMessages: number;
   allMessagesPublic: boolean;
   workersInCharge?: string[];
 

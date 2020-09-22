@@ -45,7 +45,7 @@
         <ion-col size="12">
           <p class="messages-values">
             <ion-icon slot="start" [src]="svgIcons.sended_msg"></ion-icon>
-            {{ user?.sentMessages | shortNumberSuffix }}
+            {{ sendedMessages?.length | shortNumberSuffix }}
           </p>
         </ion-col>
       </ion-row>
@@ -74,7 +74,7 @@
         <ion-col size="12">
           <p class="messages-values">
             <ion-icon slot="start" [src]="svgIcons.received_msg"></ion-icon>
-            {{ user?.receivedMessages | shortNumberSuffix }}
+            {{ receivedMessages?.length | shortNumberSuffix }}
           </p>
         </ion-col>
       </ion-row>

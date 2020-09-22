@@ -34,12 +34,12 @@ export class MessageService {
   }
 
   getSentMessages(uid: string): Observable<SendMessageModel[]> {
-    return this.afs.collection('message', ref => ref.where('uidSender', '==', uid).orderBy('date', 'desc').orderBy('readed', 'asc'))
-    .get()
+    return this.afs.collection('message', ref => ref.where('uidSender', '==', uid).orderBy('date', 'desc'))
+    .snapshotChanges()
     .pipe(map(a => {
       const messages: SendMessageModel[] = [];
       a.forEach(message => {
-        messages.push(message.data() as SendMessageModel);
+        messages.push(message.payload.doc.data() as SendMessageModel);
       });
       return messages;
     }));

@@ -56,8 +56,6 @@ export class AsignWorkerComponent implements OnInit {
         name: userr.name,
         role: userr.role,
         image: userr.image,
-        sentMessages: userr.sentMessages,
-        receivedMessages: userr.receivedMessages,
         allMessagesPublic: userr.allMessagesPublic,
         isShell: userr.isShell,
         isSelected: true,
