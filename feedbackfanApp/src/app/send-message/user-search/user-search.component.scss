@@ -12,15 +12,15 @@
 .user-role {
   text-transform: capitalize;
   font-weight: bold;
-  color: #3b69ff !important;
+  color: var(--ion-color-principal) !important;
 }
 
 .user-mail {
-  color: black !important;
+  color: gray !important;
 }
 
 ion-toolbar {
-  --background: #3b69ff;
+  --background: var(--ion-color-principal);
   ion-title {
     color: white;
   }

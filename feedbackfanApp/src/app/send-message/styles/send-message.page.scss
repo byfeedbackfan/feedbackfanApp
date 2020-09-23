@@ -47,6 +47,7 @@
 .signup-btn {
   padding-left: 20px !important;
   padding-right: 20px !important;
+  --background: var(--ion-color-principal);
 }
 
 .ql-editor {
@@ -104,11 +105,11 @@
 }
 
 ion-toolbar {
-  --background: #3b69ff;
+  --background: var(--ion-color-principal)
 }
 
 .icon-style {
-  color: rgb(68, 0, 146);
+  color: var(--ion-color-second);
 }
 
 .ion-title {

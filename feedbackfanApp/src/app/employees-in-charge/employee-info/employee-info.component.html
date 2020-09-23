@@ -106,9 +106,9 @@
       <ion-list lines="full" *ngIf="publicMessages.length !== 0 || publicMessages.length !== null">
         <ion-item-sliding *ngFor="let message of publicMessages ; let i = index" [attr.data-index]="i" #slidingItem>
           <ion-item class="item" [color]="i %2 === 0 ? 'bgi' : 'unclicked'" button="true" (click)="openMessage(message)">
-            <ion-avatar slot="start">
-              <img [src]="svgIcons.received_msg" *ngIf="message.uidReceiver === user.uid" />
-              <img [src]="svgIcons.sended_msg" *ngIf="message.uidSender === user.uid" />
+            <ion-avatar  class="img-message-css" slot="start">
+              <ion-icon [src]="svgIcons.received_msg" *ngIf="message.uidReceiver === user.uid" ></ion-icon>
+              <ion-icon [src]="svgIcons.sended_msg" *ngIf="message.uidSender === user.uid" ></ion-icon>
             </ion-avatar>
             <ion-label>
               <ion-row>

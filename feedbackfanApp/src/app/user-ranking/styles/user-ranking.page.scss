@@ -1,5 +1,5 @@
 ion-toolbar {
-  --background: #3b69ff;
+  --background: var(--ion-color-principal)
 }
 
 .ion-title {
@@ -7,7 +7,7 @@ ion-toolbar {
 }
 
 .sended-icon {
-  color: #b08315;
+  color: var(--ion-color-second);
   width: 20px !important;
   height: 20px !important;
 }
@@ -51,7 +51,7 @@ ion-toolbar {
   font-size: xx-small;
   height: auto;
   width: auto !important;
-  background: #3b69ff;
+  background: var(--ion-color-second);
   color: white;
   padding-left: 4px !important;
   padding-right: 4px !important;

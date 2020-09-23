@@ -10,7 +10,7 @@ ion-title {
 }
 
 ion-toolbar {
-  --background: #3b69ff;
+  --background: var(--ion-color-principal)
 }
 
 .icon-only {

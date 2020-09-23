@@ -1,7 +1,6 @@
 // Note:  All the CSS variables defined below are overrides of Ionic elements CSS Custom Properties
 ion-tab-button {
   --color: black;
-  --color-selected: #3b69ff;
   --width: 40px;
   --height: 40px;
   --border-radius: 50%;
@@ -15,8 +14,7 @@ ion-tab-button {
 }
 
 .ion-fab-values {
-  --background: rgb(68, 0, 146);
-
+  --background: var(--ion-color-second);
   ion-icon {
     color: white;
   }
@@ -25,4 +23,8 @@ ion-tab-button {
 .icon-supervisor {
   width: 30px !important;
   height: 30px !important;
+}
+
+.tab-button {
+  --color-selected: var(--ion-color-second);
 }

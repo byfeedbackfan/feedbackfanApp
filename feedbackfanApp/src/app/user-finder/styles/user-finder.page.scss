@@ -28,17 +28,17 @@ ion-list-header {
 .user-role {
   text-transform: capitalize;
   font-weight: bold;
-  color: #3b69ff;
+  color: var(--ion-color-principal) !important;
 }
 
 .user-mail {
-  color: black !important;
+  color: gray !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
 
 ion-toolbar {
-  --background: #3b69ff;
+  --background: var(--ion-color-principal)
 }
 
 .ion-title {

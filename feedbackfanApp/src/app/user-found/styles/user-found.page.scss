@@ -28,7 +28,7 @@
 
 // Note:  All the CSS variables defined below are overrides of Ionic elements CSS Custom Properties
 ion-toolbar {
-  --background: #3b69ff;
+  --background: var(--ion-color-principal)
 }
 
 ion-back-button {
@@ -106,8 +106,16 @@ ion-back-button {
   }
 
   ion-icon {
+    color: var(--ion-color-second);
     width: 28px;
     height: 28px;
+  }
+}
+
+.img-message-css {
+  color: var(--ion-color-second);
+  ion-icon {
+    display: contents;
   }
 }
 
@@ -150,7 +158,7 @@ ion-back-button {
 }
 
 .profile-icon-settings {
-  color: blue;
+  color: var(--ion-color-second);
   width: 25%;
   height: 25%;
   position: absolute;
@@ -200,7 +208,7 @@ ion-back-button {
       font-size: 100%;
       vertical-align: auto !important;
       margin: 0% 0% 0%;
-      color:  #3b69ff;
+      color:  var(--ion-color-principal);
       font-weight: bold;
       text-transform: capitalize;
       text-align: left !important; 
@@ -499,6 +507,9 @@ ion-back-button {
 }
 .from-values {
   color: rgb(90, 89, 89);
+  ion-icon {
+    color: var(--ion-color-principal);
+  }
 }
 
 .date-values {

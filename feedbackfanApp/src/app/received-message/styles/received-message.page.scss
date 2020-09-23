@@ -1,5 +1,5 @@
 ion-toolbar {
-  --background: #3b69ff;
+  --background: var(--ion-color-principal)
 }
 
 .icon-style {
@@ -119,6 +119,16 @@ ion-searchbar{
 }
 .from-values {
   color: rgb(90, 89, 89);
+  ion-icon {
+    color: var(--ion-color-principal);
+  }
+}
+
+.img-message-css {
+  color: var(--ion-color-second);
+  ion-icon {
+    display: contents;
+  }
 }
 
 .date-values {
