@@ -1,0 +1,20 @@
+<ion-col size="5">
+  <ion-row>
+    <ion-col size="12">
+      <ion-item>
+        <p class="laber-size"> {{ 'mensajes_siempre_publicos' | translate}}</p>
+        <ion-toggle class="toggle-options" slot="end" [(ngModel)]="isPublicable" (ionChange)="changePublishableProperty()"></ion-toggle>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12">
+      <ion-item>
+        <ion-button size="small" class="icon-only edit-btn" fill="clear" mode="ios" (click)="signOut()">
+          <ion-icon class="edit-btn" slot="start" name="log-out-sharp"></ion-icon>
+          {{'cerrar_sesion' | translate}}
+        </ion-button>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+</ion-col>

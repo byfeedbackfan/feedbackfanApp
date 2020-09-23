@@ -1,0 +1,144 @@
+// Custom variables
+// Note:  These ones were added by us and have nothing to do with Ionic CSS Custom Properties
+:host {
+  --page-margin: var(--app-broad-margin);
+  --page-background: var(--app-background-shade);
+}
+
+.forgot-password-contain {
+  vertical-align: middle;
+}
+
+#file-input {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  z-index: 999;
+}
+
+.img-responsive {
+  zoom: 3.0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Note:  All the CSS variables defined below are overrides of Ionic elements CSS Custom Properties
+.signup-content {
+  --background: var(--page-background);
+  --padding-start: var(--page-margin);
+  --padding-end: var(--page-margin);
+  --padding-top: var(--page-margin);
+  --padding-bottom: var(--page-margin);
+
+  .auth-title {
+    color: var(--ion-color-dark);
+    font-weight: bold;
+    margin-top: calc(var(--page-margin) / 2);
+    margin-bottom: calc(var(--page-margin) * (3/2));
+    letter-spacing: 0.6px;
+    text-align: center;
+  }
+
+  .inputs-list {
+    --ion-item-background: var(--page-background);
+
+    .input-item {
+      --padding-start: 0px;
+      --padding-end: 0px;
+      --inner-padding-end: 0px;
+    }
+  }
+
+  .error-container {
+    .error-message {
+      margin: calc(var(--page-margin) / 2) 0px;
+      display: flex;
+      align-items: center;
+      color: var(--ion-color-danger);
+      font-size: 14px;
+
+      ion-icon {
+        padding-inline-end: calc(var(--page-margin) / 2);
+      }
+    }
+  }
+
+  .signup-btn {
+    margin: calc(var(--page-margin) / 2) 0px;
+  }
+
+  .other-auth-options-row {
+    justify-content: flex-end;
+    align-items: center;
+
+    .login-btn {
+      --color: var(--ion-color-secondary);
+      margin: 0px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+}
+
+ion-toolbar {
+  --background: var(--ion-color-principal);
+
+  ion-icon {
+    color: white;
+    font-weight: bold;
+    margin-left: 5%;
+  }
+}
+
+.ion-title {
+  color: white;
+}
+
+app-image-shell.user-image {
+  --image-shell-loading-background: rgba(var(--ion-color-bright-blue-rgb), 0.25);
+  --image-shell-spinner-color: var(--ion-color-bright-blue-tint);
+  --image-shell-border-radius: 100%;
+  --image-shell-overlay-background: linear-gradient(180deg, rgba(var(--ion-color-dark-rgb), 1) 0%, rgba(var(--ion-color-dark-rgb), 0.40) 25%, rgba(var(--ion-color-dark-rgb), 0.15) 100%);
+}
+
+.user-name > app-text-shell {
+  --text-shell-line-height: 22px;
+  --text-shell-line-color: rgba(var(--ion-color-bright-blue-rgb), 0.20);
+  min-width: 180px;
+
+  &.text-loaded {
+    min-width: 0px;
+  }
+}
+
+.user-role > app-text-shell {
+  --text-shell-line-height: 14px;
+  --text-shell-line-color: rgba(var(--ion-color-bright-blue-rgb), 0.15);
+  max-width: 40%;
+
+  &.text-loaded {
+    max-width: inherit;
+  }
+}
+
+.user-description > app-text-shell {
+  --text-shell-line-height: 14px;
+  --text-shell-line-color: rgba(var(--ion-color-bright-blue-rgb), 0.10);
+}
+
+.preference-value > app-text-shell {
+  --text-shell-line-height: 14px;
+  --text-shell-line-color: rgba(var(--ion-color-bright-pink-rgb), 0.10);
+  max-width: 40%;
+
+  &.text-loaded {
+    max-width: inherit;
+  }
+}

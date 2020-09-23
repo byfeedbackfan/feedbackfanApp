@@ -4,6 +4,19 @@
   --page-margin: var(--app-fair-margin);
 }
 
+ion-toolbar {
+  --background: #3b69ff;
+}
+
+ion-back-button {
+  color: black;
+}
+
+.ion-title {
+  color: white;
+  font-weight: bold;
+}
+
 // Note:  All the CSS variables defined below are overrides of Ionic elements CSS Custom Properties
 .not-found-content {
   --padding-start: var(--page-margin);

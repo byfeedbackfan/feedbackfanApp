@@ -1,0 +1,63 @@
+<ion-content class="login-content">
+  <ion-img src="../../../../assets/icons/feedMe-logo.png" class="img-responsive"></ion-img>
+  <br/>
+
+  <form [formGroup]="loginForm" (ngSubmit)="signInWithEmail()">
+    <ion-list class="inputs-list" lines="full">
+      <ion-item class="input-item">
+        <ion-icon slot="start" [ngStyle]="{'color': 'var(--ion-color-second)'}" name="person-outline"></ion-icon>
+        <ion-input type="email" [placeholder]="'correo' | translate" formControlName="email" clearInput autocapitalize="off" inputmode="email"></ion-input>
+      </ion-item>
+      <div class="error-container">
+        <ng-container *ngFor="let validation of validation_messages.email">
+          <div class="error-message" *ngIf="loginForm.get('email').hasError(validation.type) && (loginForm.get('email').dirty || loginForm.get('email').touched)">
+            <ion-icon name="information-circle-outline"></ion-icon>
+            <span>{{ validation.message }}</span>
+          </div>
+        </ng-container>
+      </div>
+      <ion-item class="input-item">
+        <ion-icon slot="start" [ngStyle]="{'color': 'var(--ion-color-second)'}" name="key-outline"></ion-icon>
+        <app-show-hide-password>
+          <ion-input type="password" [placeholder]="'contrasena' | translate" formControlName="password"></ion-input>
+        </app-show-hide-password>
+      </ion-item>
+      <div class="error-container">
+        <ng-container *ngFor="let validation of validation_messages.password">
+          <div class="error-message" *ngIf="loginForm.get('password').hasError(validation.type) && (loginForm.get('password').dirty || loginForm.get('password').touched)">
+            <ion-icon name="information-circle-outline"></ion-icon>
+            <span>{{ validation.message }}</span>
+          </div>
+        </ng-container>
+      </div>
+    </ion-list>
+
+    <ion-button class="login-btn" type="submit" expand="block" mode="ios" [disabled]="!loginForm.valid">{{'iniciar_sesion' | translate}}</ion-button>
+    <div class="error-container" *ngIf="submitError">
+      <div class="error-message">
+        <ion-icon name="information-circle-outline"></ion-icon>
+        <span>{{ submitError }}</span>
+      </div>
+    </div>
+    <ion-row class="forgot-password-row">
+      <ion-button class="forgot-password-btn" fill="clear" mode="ios" [routerLink]="['/auth/sign-up']">
+        {{ 'registrate' | translate}}
+      </ion-button>
+    </ion-row>
+    <ion-row class="forgot-password-row">
+      <ion-button class="forgot-password-btn" fill="clear" mode="ios" [routerLink]="['/auth/forgot-password']">
+        {{ 'olvide_mi_contrasena' | translate }}
+      </ion-button>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-img class="logo-responsive" src="../../../../assets/icons/synergy-logo.svg"></ion-img>
+      </ion-col>
+      <ion-col size="12">
+        <ion-text>
+          <p class="text-synergy-footer">{{ 'synergy_vision' | translate }}</p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

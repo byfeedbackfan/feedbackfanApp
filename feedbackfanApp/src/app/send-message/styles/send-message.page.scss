@@ -1,0 +1,118 @@
+
+.chip-img {
+  width: 24px !important;
+  height: 24px !important;
+}
+
+.label-size {
+  margin-left: 27% !important;
+}
+
+.toggle-options {
+  --background: #7c7c7c;
+  --background-checked: #678bff;
+  --handle-background: #b4b3b3;
+  --handle-background-checked: #144afa;
+  --handle-spacing: 0px !important;
+  padding: 0 !important;
+}
+
+.search {
+  color: gray !important;
+}
+
+.publishable-values {
+  --inner-padding-start: 70px !important;
+
+  p {
+    font-size: small !important;
+    margin-bottom: 0 !important;
+  }
+
+  ion-toggle {
+    padding-right: 12px !important;
+    height: 25px !important;
+    width: 45px !important;
+  }
+}
+
+.editor-values-col {
+  padding: 0 !important;
+
+  div {
+    padding: 0 !important;
+  }
+}
+
+.signup-btn {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  --background: var(--ion-color-principal);
+}
+
+.ql-editor {
+  -webkit-user-select: auto !important;
+  -khtml-user-select: auto !important;
+  -moz-user-select: auto !important;
+  -ms-user-select: auto !important;
+  -o-user-select: auto !important;
+  user-select: auto !important;
+  --background: #7c7c7c;
+  --background-checked: #678bff;
+  --handle-background: #b4b3b3;
+  --handle-background-checked: #144afa;
+  --handle-spacing: 0px !important;
+  padding: 0 !important;
+}
+
+.send-message-content {
+  --background: var(--page-background);
+  --padding-start: var(--page-margin);
+  --padding-end: var(--page-margin);
+  --padding-top: var(--page-margin);
+  --padding-bottom: var(--page-margin);
+
+  .inputs-list {
+    --ion-item-background: var(--page-background);
+  
+    .input-item {
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+      --padding-start: 0px;
+      --padding-end: 0px;
+      --inner-padding-end: 0px;
+  
+      ion-icon {
+        margin-left: 2%;
+      }
+    }
+  }
+  
+  .error-container {
+    .error-message {
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+      margin: calc(var(--page-margin) / 2) 0px;
+      align-items: center;
+      color: var(--ion-color-danger);
+      font-size: 14px;
+  
+      ion-icon {
+        padding-inline-end: calc(var(--page-margin) / 2);
+      }
+    }
+  }
+}
+
+ion-toolbar {
+  --background: var(--ion-color-principal)
+}
+
+.icon-style {
+  color: var(--ion-color-second);
+}
+
+.ion-title {
+  color: white;
+}
+

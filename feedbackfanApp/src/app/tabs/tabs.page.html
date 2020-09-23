@@ -1,0 +1,39 @@
+<ion-fab class="fab-margin" vertical="bottom" horizontal="end" slot="fixed" cdkDrag *ngIf="user?.role === roles.supervisor || user?.role === roles.admin">
+  <ion-fab-button mode="md" class="ion-fab-values">
+    <ion-icon [name]="icons.admin_supervisor_button"></ion-icon>
+  </ion-fab-button>
+  <ion-fab-list side="start">
+    <ion-fab-button class="ion-fab-values" (click)="navigateTo('app/employees-in-charge')" *ngIf="user?.role === roles.supervisor">
+      <ion-icon [name]="icons.asigned_worker"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button class="ion-fab-values" (click)="navigateTo('app/change-jobs')" *ngIf="user?.role === roles.admin">
+      <ion-icon [name]="icons.change_jobs"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button class="ion-fab-values" (click)="navigateTo('app/workers-to-supervisor')" *ngIf="user?.role === roles.admin">
+      <ion-icon class="icon-supervisor" [src]="svgIcons.supervisor_to_worker"></ion-icon>
+    </ion-fab-button>
+  </ion-fab-list>
+</ion-fab>
+<ion-tabs>
+  <ion-tab-bar slot="bottom" mode="md">
+    <ion-tab-button class="tab-button" tab="send-message">
+      <ion-icon [name]="icons.send_message"></ion-icon>
+    </ion-tab-button>
+    <ion-tab-button class="tab-button" tab="sended-message">
+      <ion-icon [src]="svgIcons.sended"></ion-icon>
+    </ion-tab-button>
+    <ion-tab-button class="tab-button" tab="user-finder">
+      <ion-icon [name]="icons.search"></ion-icon>
+    </ion-tab-button>
+    <ion-tab-button class="tab-button" tab="user-ranking">
+      <ion-icon name="bar-chart-outline"></ion-icon>
+    </ion-tab-button>
+    <ion-tab-button class="tab-button" tab="received-message">
+      <ion-icon [src]="svgIcons.received"></ion-icon>
+    </ion-tab-button>
+    <ion-tab-button class="tab-button" tab="profile">
+      <ion-icon [name]="icons.profile"></ion-icon>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+

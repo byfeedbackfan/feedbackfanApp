@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar mode="ios">
+    <ion-title class="ion-title" mode="md">{{'nuevo_mensaje' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="send-message-content">
+  <form [formGroup]="sendMessageForm" (ngSubmit)="sendMessage()" >
+    <ion-list class="inputs-list" lines="full">
+      <ion-item class="input-item" (click)="searchUser()">
+        <ion-icon slot="start" class="icon-style" [name]="icons.asigned_worker"></ion-icon>
+        <ion-label class="search" *ngIf="usersSelected.length === 0">{{'buscar_personas' | translate}}</ion-label>
+        <ion-chip color="primary" mode="ios" outline="true" *ngFor="let user of usersSelected">
+          <ion-label>{{ user.name }}</ion-label>
+        </ion-chip>
+      </ion-item>
+      <ion-item class="input-item">
+        <ion-icon slot="start" class="icon-style" [name]="icons.text_sharp"></ion-icon>
+        <ion-input type="text" [placeholder]="'titulo' | translate" formControlName="title"></ion-input>
+      </ion-item>
+      <div class="error-container">
+        <ng-container *ngFor="let validation of validation_messages.title">
+          <div class="error-message" *ngIf="sendMessageForm.get('title').hasError(validation.type) && (sendMessageForm.get('title').dirty || sendMessageForm.get('title').touched)">
+            <ion-icon [name]="icons.information_circle_outline"></ion-icon>
+            <span>{{ validation.message }}</span>
+          </div>
+        </ng-container>
+      </div>
+    </ion-list>
+  </form>
+  <ion-item lines="none" class="publishable-values">
+    <p class="label-size"> {{ 'valido_para_publicar' | translate}}</p>
+    <ion-toggle class="toggle-options" mode="ios" slot="end" [(ngModel)]="isPublishable"></ion-toggle>
+  </ion-item>
+  <form [formGroup]="sendMessageForm" (ngSubmit)="sendMessage()" >
+    <ion-row>
+        <div contenteditable="true" data-gramm="false" class="ql-editor" text>
+          <quill-editor formControlName="info" contenteditable="true" data-gramm="false" class="ql-editor" text>
+          </quill-editor>
+        </div>
+    </ion-row>
+    <div class="error-container">
+      <ng-container *ngFor="let validation of validation_messages.info">
+        <div class="error-message" *ngIf="sendMessageForm.get('info').hasError(validation.type) && (sendMessageForm.get('info').dirty || sendMessageForm.get('info').untouched)">
+          <ion-icon [name]="icons.information_circle_outline"></ion-icon>
+          <span>{{ validation.message }}</span>
+        </div>
+      </ng-container>
+    </div>
+  </form>
+  <ion-button class="signup-btn" type="submit" (click)="sendMessage()" expand="block" [disabled]="usersSelected.length === 0 || usersSelected.length === 0 || !sendMessageForm.get('title').value || !sendMessageForm.get('info').value ">
+    {{ 'enviar' | translate }}
+  </ion-button>
+  <div class="error-container" *ngIf="submitError">
+    <div class="error-message">
+      <ion-icon [name]="icons.information_circle_outline"></ion-icon>
+      <span>{{ submitError }}</span>
+    </div>
+  </div>
+</ion-content>

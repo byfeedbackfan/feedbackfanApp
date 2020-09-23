@@ -1,0 +1,36 @@
+<ion-header class="ion-no-border" mode="ios">
+  <ion-toolbar #header>
+    <ion-title mode="md">
+      {{'trabajadores_de_supervisor' | translate}}
+    </ion-title>
+  </ion-toolbar>
+  <ion-searchbar mode="ios" color="light" class="seachbar"
+                   [placeholder]="'buscar' | translate" type="decimal" 
+                   [debounce]="250"
+                   (ionChange)="searchUser($event)">
+  </ion-searchbar>
+</ion-header>
+
+<ion-content scrollEvents="true" appHideHeader [header]="header">
+  <ion-list lines="none">
+    <ion-item (click)="goToProfileWithAllMessages(user)"  button="true" *ngFor="let user of usersInCharge | filterSearch: userSearch: 'name' : 'email'">
+      <ion-avatar class="avatar">
+        <app-image-shell class="user-image" [display]="'cover'" animation="spinner" [src]="user.image" alt="item image">
+          <app-aspect-ratio [ratio]="{w:1, h:1}">
+          </app-aspect-ratio>
+        </app-image-shell>
+      </ion-avatar>
+      <ion-label class="data-values">
+        <h4 class="user-name">
+          <app-text-shell [data]="user.name"></app-text-shell>
+        </h4>
+        <p class="user-mail">
+          <app-text-shell [data]="user.email"></app-text-shell>
+        </p>
+        <p class="user-role">
+          <app-text-shell [data]="user.role"></app-text-shell>
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

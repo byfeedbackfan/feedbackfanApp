@@ -1,0 +1,73 @@
+<ion-header class="ion-no-border" >
+  <ion-toolbar #header mode="ios">
+    <ion-title class="ion-title" mode="md">{{ 'mensajes_enviados' | translate }}</ion-title>
+  </ion-toolbar>
+  <ion-searchbar mode="ios" color="light" class="seachbar"
+                  [placeholder]="'buscar' | translate" type="decimal" 
+                  [debounce]="250"
+                  (ionChange)="searchMessage($event)">
+  </ion-searchbar>
+</ion-header>
+
+<ion-content scrollEvents="true" appHideHeader [header]="header">
+  <ion-list lines="none" *ngIf="sentMessages?.length !== 0 || sentMessages?.length !== null">
+      <ion-item class="item" [color]="i%2 === 0 ? 'bgi' : 'unclicked'" *ngFor="let message of sentMessages | filterSearch: messageSearch: 'title' : 'to'; let i = index" [attr.data-index]="i" button="true" (click)="openMessage(message)">
+        <ion-avatar slot="start" class="img-message-css">
+          <ion-icon [src]="svgIcons.sended_msg"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <ion-row>
+            <ion-col size="12" class="col-data-values">
+              <ion-text>
+                <p class="title-values">
+                  {{message.title}}
+                </p>
+              </ion-text>
+              <p class="text-margin from-values">
+                <ion-icon slot="start" class="locker-color" [name]="icons.lock_closed_sharp" *ngIf="message.isPublishableReceiver === false">
+                </ion-icon>
+                <ion-icon slot="start" [name]="icons.lock_open_sharp" *ngIf="message.isPublishableReceiver === true">
+                </ion-icon>
+                {{ message.to }}
+              </p>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="8" class="col-name-values">
+              <ion-label>
+                <p class="date-values text-margin">
+                  {{ message.date.seconds * 1000 | date : 'short' }}
+                </p>
+              </ion-label>
+            </ion-col>
+            <ion-col size="4" class="col-chip-values">
+              <ion-row  class="user-preferences-wrapper css-card-calification">
+                <ion-col size="6" class="calification-values">
+                  <p class="p1">
+                    <ion-icon slot="start" [name]="icons.happy" style="color: 'rgb(90, 89, 89)'"></ion-icon>
+                    {{message.likes || '0' | shortNumberSuffix}}   
+                  </p>
+                </ion-col>
+                <ion-col size="6" class="calification-values">
+                  <p class="p2">
+                    <ion-icon slot="start" [name]="icons.sad" style="color: 'rgb(90, 89, 89)'"></ion-icon>
+                    {{message.dislikes || '0' | shortNumberSuffix}}
+                  </p>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-label>
+      </ion-item>
+  </ion-list>
+  <ion-item *ngIf="sentMessages?.length === 0" lines="none" >
+    <ion-label class="item-not-messages">
+      <p>
+        <ion-icon slot="icon-only" [name]="icons.mail"></ion-icon>
+      </p>
+    </ion-label>
+  </ion-item>
+  <h3 class="text-not-messages" *ngIf="sentMessages?.length === 0" lines="none">
+    {{ 'no_hay_mensajes' | translate }}
+  </h3>
+</ion-content>

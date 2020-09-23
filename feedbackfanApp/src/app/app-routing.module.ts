@@ -3,12 +3,12 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.FirebaseAuthModule)
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'auth/sign-in',
     pathMatch: 'full'
   },
   {
@@ -16,9 +16,13 @@ const routes: Routes = [
     loadChildren: () => import('./page-not-found/page-not-found.module').then(m => m.PageNotFoundModule)
   },
   {
+    path: 'app',
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsModule)
+  },
+  {
     path: '**',
     redirectTo: 'page-not-found',
-  }
+  },
 ];
 
 @NgModule({

@@ -1,0 +1,20 @@
+.css-toolbar {
+  background-color: #3b69ff !important;
+  --page-background: #3b69ff !important;
+}
+
+.center-in-col {
+  align-self: center !important;
+  align-items: center !important;
+  display: flex;
+  justify-content: center;
+  padding: 0 !important;
+
+  ion-button {
+    position: relative !important;
+  }
+}
+
+.edit-btn {
+  color: white !important;
+}

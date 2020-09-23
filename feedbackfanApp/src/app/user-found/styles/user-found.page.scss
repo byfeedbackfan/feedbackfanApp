@@ -1,0 +1,564 @@
+@import "../../../theme/mixins/ion-color.scss";
+
+// Custom variables
+// Note:  These ones were added by us and have nothing to do with Ionic CSS Custom Properties
+:host {
+  --page-margin: var(--app-broad-margin);
+  --page-background: var(--app-background-shade);
+
+  // Add custom colors to use with [color] property
+  @include ion-color('bright-blue') {
+    --ion-color-bright-blue: #001CFF;
+    --ion-color-bright-blue-rgb: 0,28,255;
+    --ion-color-bright-blue-contrast: #ffffff;
+    --ion-color-bright-blue-contrast-rgb: 255,255,255;
+    --ion-color-bright-blue-shade: #0019e0;
+    --ion-color-bright-blue-tint: #1a33ff;
+  }
+
+  @include ion-color('bright-pink') {
+    --ion-color-bright-pink: #FF0DCB;
+    --ion-color-bright-pink-rgb: 255,13,203;
+    --ion-color-bright-pink-contrast: #ffffff;
+    --ion-color-bright-pink-contrast-rgb: 255,255,255;
+    --ion-color-bright-pink-shade: #e00bb3;
+    --ion-color-bright-pink-tint: #ff25d0;
+  }
+}
+
+// Note:  All the CSS variables defined below are overrides of Ionic elements CSS Custom Properties
+ion-toolbar {
+  --background: var(--ion-color-principal)
+}
+
+ion-back-button {
+  color: white;
+}
+
+.ion-title {
+  color: white;
+  font-weight: bold;
+}
+
+.css-card {
+  background-color: white !important;
+  padding: 0 !important;
+  margin-top: 2%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 2%;
+  --ion-color-shade: black !important;
+}
+
+.css-card-content {
+  padding-bottom: 0 !important;
+  position: relative !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.css-card-calification {
+  padding: 0 !important;
+  font-size: 90% !important;
+  margin-right: 5px !important;
+
+  p {
+    ion-icon {
+      margin-left: 5px !important;
+      margin-right: 0px !important;
+    }
+  }
+}
+
+.css-card-calification-col {
+  padding: 0 !important;
+}
+
+.css-static-text-information {
+  font-size: 80% !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.vertical-col-align {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 !important;
+}
+
+.messages-values {
+  color: black;
+  padding-right: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  padding-left: 5px !important;
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: center !important;
+  font-size: 18px;
+
+  ion-item {
+    width: 100px;
+    height: 150px;
+  }
+
+  ion-icon {
+    color: var(--ion-color-second);
+    width: 28px;
+    height: 28px;
+  }
+}
+
+.img-message-css {
+  color: var(--ion-color-second);
+  ion-icon {
+    display: contents;
+  }
+}
+
+.calification-values-messages {
+  padding: 0 !important;
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: center !important;
+  font-size: 100% !important;
+  width: auto;
+  height: auto;
+  display: block;
+  position: relative;
+  margin-right: auto;
+}
+
+.ion-message-item-values {
+  padding: 0 !important;
+  margin-right: 10px !important;
+}
+
+.vertical-align {
+  // vertical-align: middle !important;
+  padding: 0 !important;
+  width: auto;
+  height: auto;
+  display: block;
+  position: relative;
+  margin-right: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.messages-values-titles {
+  color: black;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-weight: bold;
+  text-align: center !important;
+}
+
+.profile-icon-settings {
+  color: var(--ion-color-second);
+  width: 25%;
+  height: 25%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 0 !important;
+  border-radius: 50%;
+  background-color:white
+}
+
+.margin {
+  margin: 2% !important;
+  padding: 2% !important;
+  border: 2% !important;
+  color: white !important;
+  background-color: white !important;
+}
+
+.ion-col-user-info-values {
+  margin-right: 10% !important;
+}
+
+.img-col {
+  padding: 0 !important;
+}
+
+.user-content {
+  --background: var(--page-background);
+
+  .img-responsive {
+    width: auto;
+    height: auto;
+    margin-top: 10%;
+    display: block;
+    margin-left: 8%;
+    margin-right: auto;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .user-preferences-wrapper {
+    --ion-grid-column-padding: 0px;
+
+    padding: var(--page-margin);
+
+    .preference-name {
+      font-size: 100%;
+      vertical-align: auto !important;
+      margin: 0% 0% 0%;
+      color:  var(--ion-color-principal);
+      font-weight: bold;
+      text-transform: capitalize;
+      text-align: left !important; 
+      margin-left: 5%;
+    }
+
+    .preference-email {
+      font-size: 100%;
+      margin: 0px 0px calc(var(--page-margin) / 10);
+      margin-left: 5%;
+      color: var(--ion-color-dark-tint);
+      width: auto;
+
+      p {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    .preference-value {
+      font-size: 100%;
+      margin: 0px 0px calc(var(--page-margin) / 10);
+      font-weight: bold;
+      margin-left: 5%;
+      color: var(--ion-color-dark-tint)ñ
+    }
+  }
+
+  .edit-btn {
+    color: blue !important;
+  }
+
+  .buttons-col {
+    padding: 0;
+    margin-left: 2%;
+  }
+
+  .ion-col-values {
+    padding: 0;
+
+    ion-col {
+      align-items: center !important;
+    }
+  }
+
+  .ion-col-userdata {
+    padding: 0 !important;
+    align-items: center !important;
+    position: relative;
+    justify-content: center !important;
+  }
+
+}
+
+.item-not-messages {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0 !important;
+
+  p {
+    ion-icon {
+      width: 150px !important;
+      height: 100px !important;
+      color: lightgrey !important;
+    }
+  }
+}
+
+.text-not-messages {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: gray;
+}
+
+.item-not-messages {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0 !important;
+
+  p {
+    ion-icon {
+      width: 200px !important;
+      height: 150px !important;
+      color: lightgrey !important;
+    }
+  }
+}
+
+.text-not-messages {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: gray;
+}
+
+.text-margin {
+  margin: 0 !important;
+}
+
+.col-name-values {
+  padding: 0 !important;
+  
+  h3 {
+    font-weight: bold;
+    color: gray;
+  }
+}
+
+.ion-item-options-values {
+  background-color: blue;
+}
+
+.col-role-values {
+  padding: 0; 
+  align-items: center !important; 
+  position: relative; 
+  text-align: center;
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: center;
+
+  ion-chip {
+    display: block;
+    align-items: center !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    padding-left: 3px !important;
+    padding-right: 3px !important;
+    background-color: #3b69ff; 
+    margin-right: 0 !important; 
+    height: 21px !important;
+    width: 75px !important;
+
+    p {
+      margin-top: 3px !important;
+      color: white; 
+      font-weight: bold; 
+      font-size: x-small; 
+      padding: 0 !important;
+      vertical-align: middle !important;
+    }
+
+  }
+}
+
+.col-data-values {
+  padding-left: 0 !important;
+  padding-top: 0 !important;
+}
+
+.title-values {
+  font-weight: bold !important;
+  text-transform: capitalize;
+}
+
+.date-values {
+  color: gray !important; 
+  padding-top: 2px !important;
+}
+
+.text-values {
+  width: 68px !important;
+}
+
+.list-header-values {
+  color: blue;
+}
+
+.calification-values {
+  padding: 0 !important;
+  margin-top: 0px;
+  margin-bottom: 0;
+  width: auto;
+  height: auto;
+  font-size: 115% !important;
+  display: block;
+  position: relative;
+  margin-right: auto;
+
+  .p1 {
+    text-align: end;
+    padding-left: 3px !important;
+    margin: 0 !important;
+    color: black;
+  }
+  .p2 {
+    text-align: start;
+    padding-right: 3px !important;
+    margin: 0 !important;
+    color: black;
+  }
+}
+
+.item-not-messages {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0 !important;
+
+  p {
+    ion-icon {
+      width: 200px !important;
+      height: 150px !important;
+      color: lightgrey !important;
+    }
+  }
+}
+
+.text-not-messages {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(90, 89, 89);
+}
+
+.text-margin {
+  margin: 0 !important;
+}
+
+.col-name-values {
+  padding: 0 !important;
+  
+  p {
+    font-size: small;
+    color: rgb(90, 89, 89);
+  }
+}
+
+.ion-item-options-values {
+  color: white;
+  background-color: #3b69ff;
+}
+
+.col-role-values {
+  padding: 0; 
+  align-items: center !important; 
+  position: relative; 
+  text-align: center;
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: center;
+
+  ion-chip {
+    display: block;
+    align-items: center !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    padding-left: 3px !important;
+    padding-right: 3px !important;
+    background-color: #3b69ff; 
+    margin-right: 0 !important; 
+    height: 25px !important;
+    width: 75px !important;
+
+    p {
+      margin-top: 3px !important;
+      color: white; 
+      font-weight: bold; 
+      font-size: x-small; 
+      padding: 0 !important;
+      vertical-align: middle !important;
+    }
+
+  }
+}
+
+.col-data-values {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.title-values {
+  font-weight: bold !important;
+  line-height: 1.5em;
+  height: 3em;
+  overflow: hidden;
+  white-space: initial;
+  margin: 0 !important;
+  color: black !important;
+}
+
+.color-one {
+  --ion-background-color:#fff;
+}
+
+.color-two {
+  --ion-background-color:#8ba6fd;
+}
+.from-values {
+  color: rgb(90, 89, 89);
+  ion-icon {
+    color: var(--ion-color-principal);
+  }
+}
+
+.date-values {
+  color: rgb(90, 89, 89); 
+  padding-top: 2px !important;
+}
+
+.text-values {
+  width: 68px !important;
+  margin: 0 !important;
+}
+
+.list-header-values {
+  color: blue;
+}
+
+.item-not-messages {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0 !important;
+
+  p {
+    ion-icon {
+      width: 200px !important;
+      height: 150px !important;
+      color: rgb(90, 89, 89);
+    }
+  }
+}
+
+.text-not-messages {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(90, 89, 89);
+}
+
+.col-chip-values {
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+.message-text {
+  padding-bottom: 0 !important;
+  font-size: larger;
+  font-weight: bolder;
+  text-decoration: underline;
+}
