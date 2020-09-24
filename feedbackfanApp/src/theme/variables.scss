@@ -113,12 +113,12 @@
   --ion-color-unclicked-tint: #ffffff;
 
   /** custom 3**/
-  --ion-color-bgi: #1966b03b;
-  --ion-color-bgi-rgb: #1966b03b;
-  --ion-color-bgi-contrast: #1966b03b;
-  --ion-color-bgi-contrast-rgb: #1966b03b;
-  --ion-color-bgi-shade: #1966b03b;
-  --ion-color-bgi-tint: #1966b03b;
+  --ion-color-bgi: #1966b010;
+  --ion-color-bgi-rgb: #1966b010;
+  --ion-color-bgi-contrast: #1966b010;
+  --ion-color-bgi-contrast-rgb: #1966b010;
+  --ion-color-bgi-shade: #1966b010;
+  --ion-color-bgi-tint: #1966b010;
 
   /** principal color **/
   --ion-color-principal: #1966B0;
@@ -155,7 +155,7 @@
 
 :root {
   /* Set the font family of the entire app */
-  --ion-font-family: 'Open Sans';
+  --ion-font-family: ;
 
   --app-background: #FFFFFF;
   --app-background-shade: var(--ion-background-color-step-50, #ffffff);

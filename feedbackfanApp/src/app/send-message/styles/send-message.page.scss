@@ -6,6 +6,7 @@
 
 .label-size {
   margin-left: 27% !important;
+  color: dimgray;
 }
 
 .toggle-options {
@@ -84,6 +85,7 @@
   
       ion-icon {
         margin-left: 2%;
+        margin-right: 5px;
       }
     }
   }
@@ -114,5 +116,5 @@ ion-toolbar {
 
 .ion-title {
   color: white;
+  padding-left: 10px !important;
 }
-

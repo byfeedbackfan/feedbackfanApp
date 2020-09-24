@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content scrollEvents="true" appHideHeader [header]="header">
-  <ion-list lines="full" *ngIf="receivedMessages?.length !== 0 || receivedMessages?.length !== null">
+  <ion-list lines="none" *ngIf="receivedMessages?.length !== 0 || receivedMessages?.length !== null">
     <ion-item-sliding *ngFor="let message of receivedMessages | filterSearch: messageSearch: 'title' : 'to'; let i = index" [attr.data-index]="i" #slidingItem>
       <ion-item class="item" [color]="i %2 === 0 ? 'bgi' : 'unclicked'" button="true" (click)="openMessage(message)">
         <ion-avatar class="img-message-css" slot="start">

@@ -41,12 +41,12 @@ ion-toolbar {
   height: 60px;
 }
 
-ion-back-button {
+.ion-title {
   color: white;
+  padding-left: 10px !important;
 }
-
 .profile-icon-settings {
-  color: blue;
+  color: var(--ion-color-second);
   width: 25%;
   height: 25%;
   position: absolute;

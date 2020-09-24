@@ -23,6 +23,7 @@ ion-toolbar {
   --background: var(--ion-color-principal);
   ion-title {
     color: white;
+    padding-left: 10px !important;
   }
 }
 
@@ -46,7 +47,7 @@ ion-item {
 }
 
 .profile-icon-settings {
-  color: blue;
+  color: var(--ion-color-second);
   width: 25%;
   height: 25%;
   position: absolute;
@@ -60,11 +61,6 @@ ion-item {
 .icon-only {
   color: white;
   font-weight: bold;
-}
-
-ion-title {
-  padding-left: 10px !important;
-  padding-right: 10px !important;
 }
 
 .data-values {

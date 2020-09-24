@@ -26,9 +26,9 @@
       </ion-col>
       <ion-col size="8" class="vertical-col-align">
         <ion-col size="12" class="user-preferences-wrapper ion-col-userdata center-in-col">
-          <h3 class="preference-value">
+          <p class="preference-value">
             <app-text-shell [data]="user?.name"></app-text-shell>
-          </h3>
+          </p>
           <div class="preference-email">
             <p>
               {{user?.email}}
@@ -51,24 +51,26 @@
           </p>
         </ion-col>
       </ion-row>
-      <ion-row>
-        <ion-col size="12" class="css-card-calification-col">
-          <ion-row  class="user-preferences-wrapper css-card-calification">
-            <ion-col size="6" class="calification-values">
-              <p class="p1">
-                <ion-icon slot="start" style="color: rgb(206, 3, 3) !important" [name]="icons.happy"></ion-icon>
-                {{addSentLikes() | shortNumberSuffix}}
-              </p>
-            </ion-col>
-            <ion-col size="6" class="calification-values">
-              <p class="p2">
-                <ion-icon slot="start" style="color: rgb(206, 3, 3) !important" [name]="icons.sad"></ion-icon>
-                {{andSentDislikes() | shortNumberSuffix}}
-              </p>
-            </ion-col>
-          </ion-row>
-        </ion-col>
-      </ion-row>
+      <ion-card class="card-msg-values">
+        <ion-row>
+          <ion-col size="12" class="css-card-calification-col">
+            <ion-row  class="user-preferences-wrapper css-card-calification">
+              <ion-col size="6" class="calification-values">
+                <p class="p1">
+                  <ion-icon slot="start" style="color: rgb(206, 3, 3) !important" [name]="icons.happy"></ion-icon>
+                  {{addSentLikes() | shortNumberSuffix}}
+                </p>
+              </ion-col>
+              <ion-col size="6" class="calification-values">
+                <p class="p2">
+                  <ion-icon slot="start" style="color: rgb(206, 3, 3) !important" [name]="icons.sad"></ion-icon>
+                  {{andSentDislikes() | shortNumberSuffix}}
+                </p>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-card>
     </ion-col>
 
     <ion-col size="6" class="vertical-align">
@@ -80,24 +82,26 @@
           </p>
         </ion-col>
       </ion-row>
-      <ion-row>
-        <ion-col size="12" class="css-card-calification-col">
-          <ion-row  class="user-preferences-wrapper css-card-calification">
-            <ion-col size="6" class="calification-values">
-              <p class="p1">
-                <ion-icon slot="start" style="color: rgb(206, 3, 3) !important" [name]="icons.happy"></ion-icon>
-                {{addReceivedLikes() | shortNumberSuffix}}
-              </p>
-            </ion-col>
-            <ion-col size="6" class="calification-values">
-              <p class="p2">
-                <ion-icon slot="start" style="color: rgb(206, 3, 3) !important" [name]="icons.sad"></ion-icon>
-                {{addReceivedDislikes() | shortNumberSuffix}}
-              </p>
-            </ion-col>
-          </ion-row>
-        </ion-col>
-      </ion-row>
+      <ion-card class="card-msg-values">
+        <ion-row>
+          <ion-col size="12" class="css-card-calification-col">
+            <ion-row  class="user-preferences-wrapper css-card-calification">
+              <ion-col size="6" class="calification-values">
+                <p class="p1">
+                  <ion-icon slot="start" style="color: rgb(206, 3, 3) !important" [name]="icons.happy"></ion-icon>
+                  {{addReceivedLikes() | shortNumberSuffix}}
+                </p>
+              </ion-col>
+              <ion-col size="6" class="calification-values">
+                <p class="p2">
+                  <ion-icon slot="start" style="color: rgb(206, 3, 3) !important" [name]="icons.sad"></ion-icon>
+                  {{addReceivedDislikes() | shortNumberSuffix}}
+                </p>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+    </ion-card>
     </ion-col>
   </ion-row>
   <ion-row>
