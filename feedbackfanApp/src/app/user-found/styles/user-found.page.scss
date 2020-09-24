@@ -591,3 +591,8 @@ ion-back-button {
   float: none;
   padding-bottom: 5px;
 }
+
+.item {
+  --padding-start: 10px;
+  --inner-padding-end: 0px;
+}
