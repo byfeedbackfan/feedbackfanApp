@@ -11,7 +11,7 @@
 
 <ion-content scrollEvents="true" appHideHeader [header]="header">
   <ion-list lines="none" *ngIf="receivedMessages?.length !== 0 || receivedMessages?.length !== null">
-    <ion-item-sliding *ngFor="let message of receivedMessages | filterSearch: messageSearch: 'title' : 'to'; let i = index" [attr.data-index]="i" #slidingItem>
+    <ion-item-sliding *ngFor="let message of receivedMessages | filterSearch: messageSearch: 'title' : 'from'; let i = index" [attr.data-index]="i" #slidingItem>
       <ion-item class="item" [color]="i %2 === 0 ? 'bgi' : 'unclicked'" button="true" (click)="openMessage(message)">
         <ion-avatar class="img-message-css" slot="start">
           <ion-icon [src]="svgIcons.received_msg" *ngIf="message.uidReceiver === userLogged.uid" ></ion-icon>
