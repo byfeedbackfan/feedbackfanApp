@@ -93,7 +93,7 @@ ion-back-button {
     align-items: center;
 
     .login-btn {
-      --color: #3b69ff;
+      --color: var(--ion-color-principal);
       margin: 0px;
       font-size: small;
 

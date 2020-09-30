@@ -78,7 +78,7 @@
         <ion-col size="12">
           <p class="messages-values">
             <ion-icon slot="start" [src]="svgIcons.received_msg"></ion-icon>
-            {{ receivedMessages.length | shortNumberSuffix }}
+            {{ receivedMessages?.length | shortNumberSuffix }}
           </p>
         </ion-col>
       </ion-row>

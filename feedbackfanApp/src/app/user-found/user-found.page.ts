@@ -38,21 +38,6 @@ export class UserFoundPage implements OnInit {
   }
 
   ngOnInit() {
-    this.subscriptions = this.route.data.subscribe();
-    this.publicMessages = [];
-    this.receivedMessages = [];
-    this.sendedMessages = [];
-    this.messageService.getSentMessages(this.user.uid).subscribe(message => {
-      this.sendedMessages = message;
-      this.messageService.getReceivedMessages(this.user.uid).subscribe(message => {
-        this.receivedMessages = message;
-        this.mergeReceivedAndSendedMessages(this.receivedMessages, this.sendedMessages);
-        this.addSentLikes();
-        this.andSentDislikes();
-        this.addReceivedLikes();
-        this.addReceivedDislikes();
-      });
-    });
   }
 
   ionViewWillEnter() {
@@ -61,8 +46,10 @@ export class UserFoundPage implements OnInit {
     this.receivedMessages = [];
     this.sendedMessages = [];
     this.messageService.getSentMessages(this.user.uid).subscribe(message => {
+      message.sort((a, b) => b.date.seconds - a.date.seconds);
       this.sendedMessages = message;
       this.messageService.getReceivedMessages(this.user.uid).subscribe(message2 => {
+        message2.sort((a, b) => b.date.seconds - a.date.seconds);
         this.receivedMessages = message2;
         this.mergeReceivedAndSendedMessages(this.receivedMessages, this.sendedMessages);
         this.addSentLikes();
@@ -74,8 +61,6 @@ export class UserFoundPage implements OnInit {
   }
 
   ionViewWillLeave(): void {
-    // console.log('TravelListingPage [ionViewWillLeave]');
-    this.subscriptions.unsubscribe();
   }
 
   async openMessage(message: SendMessageModel) {

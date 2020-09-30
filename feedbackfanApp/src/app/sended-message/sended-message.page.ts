@@ -42,7 +42,7 @@ export class SendedMessagePage implements OnInit {
     await Storage.get({key: 'userCredentials'}).then(data => {
       this.userLogged = JSON.parse(data.value);
     });
-    this.mergeSentMessages();
+    this.sentMessages = this.messageService.getSentMessagesGlobal();
   }
 
   getTranslations() {
@@ -53,23 +53,11 @@ export class SendedMessagePage implements OnInit {
     });
   }
 
-  async ionViewWillEnter() {
-    await Storage.get({key: 'sentMessages'}).then(data => {
-      this.sentMessages = JSON.parse(data.value);
-    });
-  }
-
-  mergeSentMessages() {
-    Storage.get({key: 'sentMessages'}).then(data => {
-      this.sentMessagesStorage = JSON.parse(data.value);
-      this.messageService.getSentMessages(this.userLogged.uid)
-      .subscribe(messages => {
-        this.sentMessages = messages;
-        this.sentMessages.concat(this.sentMessagesStorage);
-        const messagesString = JSON.stringify(this.sentMessages);
-        Storage.set({key: 'sentMessages', value: messagesString});
-      });
-    });
+  ionViewWillEnter() {
+    this.sentMessages = this.messageService.getSentMessagesGlobal();
+    // await Storage.get({key: 'sentMessages'}).then(data => {
+    //   this.sentMessages = JSON.parse(data.value);
+    // });
   }
 
   shearchUserInLikesArray(message: SendMessageModel): boolean {
@@ -110,10 +98,10 @@ export class SendedMessagePage implements OnInit {
     return message;
   }
 
-  updateStorage() {
-    const messages = JSON.stringify(this.sentMessages);
-    Storage.set({key: 'sentMessages', value: messages});
-  }
+  // updateStorage() {
+  //   const messages = JSON.stringify(this.sentMessages);
+  //   Storage.set({key: 'sentMessages', value: messages});
+  // }
 
   async likeMessage(slidingItem: IonItemSliding, message: SendMessageModel){
     slidingItem.close();
@@ -125,7 +113,7 @@ export class SendedMessagePage implements OnInit {
       message.likes = message.likes + 1;
       message.usersLike.push(this.userLogged.uid);
       await this.messageService.updateMessage(message).then(() => {
-        this.updateStorage();
+        // this.updateStorage();
       });
     }
   }
@@ -140,7 +128,7 @@ export class SendedMessagePage implements OnInit {
       message.dislikes = message.dislikes + 1;
       message.usersDislike.push(this.userLogged.uid);
       await this.messageService.updateMessage(message).then(() => {
-        this.updateStorage();
+        // this.updateStorage();
       });
     }
   }

@@ -10,6 +10,7 @@ import { TabsResolver } from './tabs.resolver';
 import { ProfileModel } from '../profile/profile.model';
 import { Router } from '@angular/router';
 import { UserService } from '../core/services/user.service';
+import { MessageService } from '../core/services/message.service';
 
 @Component({
   selector: 'app-tabs',
@@ -33,17 +34,18 @@ export class TabsPage implements OnInit {
     public resolver: TabsResolver,
     public router: Router,
     private userService: UserService,
+    private messageService: MessageService,
   ) {
-    this.resolver.resolve().then( (user) => {
-      this.user = user;
-      this.userService.setUserProfile(user);
-    });
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.getTranslations();
     this.translate.onLangChange.subscribe(() => {
       this.getTranslations();
+    });
+    await this.resolver.resolve().then( (user) => {
+      this.user = user;
+      this.userService.setUserProfile(user);
     });
   }
 

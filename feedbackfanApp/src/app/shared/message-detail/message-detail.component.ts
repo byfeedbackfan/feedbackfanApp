@@ -84,22 +84,7 @@ export class MessageDetailComponent implements OnInit {
   changePublishableMessage() {
     this.messageDetail.isPublishableReceiver = !this.messageDetail.isPublishableReceiver;
     this.messageService.updateMessage(this.messageDetail);
-    this.setUpdateMessageToStorage(this.messageDetail);
     this.setUpdateMessage(this.messageDetail);
-  }
-
-  async setUpdateMessageToStorage(message: SendMessageModel) {
-    let receivedMsg: SendMessageModel[];
-    await Storage.get({key: 'receivedMessages'}).then( messages => {
-      receivedMsg = JSON.parse(messages.value);
-    });
-    receivedMsg.forEach((element, i) => {
-      if (element.id === message.id) {
-        receivedMsg.splice(i, 1, message);
-      }
-    });
-    const receivedMsgStr = JSON.stringify(receivedMsg);
-    Storage.set({key: 'receivedMessages', value: receivedMsgStr});
   }
 
   setUpdateMessage(message: SendMessageModel) {
