@@ -70,34 +70,37 @@ export class UserSearchComponent implements OnInit {
   }
 
   pressed( user ) {
-    user.isSelected = !user.isSelected;
-    this.changeColor = true;
-    this.setUserIntoArray(user);
+    if (user.isSelected === true) {
+      user.isSelected = false;
+      this.usersToSendMessage.forEach((userStored, index) => {
+        if (userStored.uid === user.uid) {
+          this.usersToSendMessage.splice(index, 1);
+        }
+      });
+    } else {
+      user.isSelected = true;
+      this.usersToSendMessage.push(user);
+    }
+    console.log(this.usersToSendMessage);
   }
 
-  searchIfUserExistsInArray(user: ProfileModel): Array<any> {
-    let isAdded: boolean;
-    let position: number;
+  searchIfUserExistsInArray(user: ProfileModel) {
+    let isAdded = false;
     this.usersToSendMessage.forEach((userStored, index) => {
       if (userStored.uid === user.uid){
         isAdded = true;
-        position = index;
+        this.usersToSendMessage.splice(index);
       }
     });
-    if (isAdded) {
-      return [isAdded, position];
-    } else {
-      return [false];
+    if (!isAdded) {
+      this.usersToSendMessage.push(user);
+      console.log(this.usersToSendMessage);
     }
+
   }
 
   setUserIntoArray(user: ProfileModel) {
-    const arraySearch = this.searchIfUserExistsInArray(user);
-    if ( arraySearch[0] ) {
-      this.usersToSendMessage.splice(arraySearch[1]);
-    } else {
-      this.usersToSendMessage.push(user);
-    }
+    this.searchIfUserExistsInArray(user);
   }
 
   closeModal() {

@@ -112,7 +112,7 @@
   <ion-row >
     <ion-col size="12" class="col-data-values">
       <ion-list lines="none" *ngIf="publicMessages.length !== 0 || publicMessages.length !== null">
-        <ion-item-sliding *ngFor="let message of publicMessages ; let i = index" [attr.data-index]="i" #slidingItem>
+        <ion-item-sliding *ngFor="let message of publicMessages ; let i = index" #slidingItem>
           <ion-item class="item" [color]="(i % 2 === 0) ? 'bgi' : 'unclicked'" button="true" (click)="openMessage(message)" *ngIf="message.isPublishableReceiver === true && message.isPublishableSender === true">
             <ion-avatar class="img-message-css" slot="start">
               <ion-icon [src]="svgIcons.received_msg" *ngIf="message.uidReceiver === user.uid" ></ion-icon>
