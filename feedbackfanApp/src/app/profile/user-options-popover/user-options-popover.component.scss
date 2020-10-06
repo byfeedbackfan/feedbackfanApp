@@ -1,18 +1,25 @@
 .edit-btn {
-  color: rgb(68, 0, 146) !important;
+  color: var(--ion-color-second) !important;
+  margin: 0;
+  width: 114px;
+  height: 36px;
+
+  ion-icon {
+    position: relative;
+    left: -8px;
+  }
 }
 
 .toggle-options {
   --background: #7c7c7c;
   --background-checked: #678bff;
   --handle-background: #b4b3b3;
-  --handle-background-checked: #3b69ff;
+  --handle-background-checked: var(--ion-color-principal);
   --handle-spacing: 0px !important;
   width: 45px;
 }
 
 .label-size {
-  font-size: small !important;
-  font-weight: bold !important;
-  color: #3b69ff;
+  font-size: 14px !important;
+  margin-bottom: 0;
 }

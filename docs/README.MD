@@ -61,6 +61,21 @@ La solución es proporcionar una herramienta con las funcionalidades para soluci
 
 # 📑 Ejecutar en dispositivos móviles
 
+Antes de ejecutar la aplicación en Android o Ios, debe realizar lo siguiente
+
+1. Ejecute el siguiente comando
+
+    ![](./informe/images/imagen-40.png)
+
+2. Luego, ejecute e los siguientes comandos dependiendo si desea ejecutar la aplicación en Android o Ios (debe haber agregado las carpetas de Ios y Android como se menciona anteriormente)
+
+    ![](./informe/images/imagen-41.png)
+    ![](./informe/images/imagen-42.png)
+
+3. ejecute el siguiente comando para generar los iconos y splashScreen en sus carpetas nativas.
+
+    ![](./informe/images/imagen-43.png)
+
 ## Android
 
 1. Para correr la aplicación en dispositivos Android debes tener instalado Android Studio.
@@ -74,6 +89,9 @@ La solución es proporcionar una herramienta con las funcionalidades para soluci
 4. Conecte el dispositivo en su computador y procure que esté habilitada la depuración en el dispositivo.
 
 5. Seleccione su dispositivo en Android Studio y ejecute la aplicación.
+
+Para mayor información, consulte la guía de Josh Monroy sobre como generar la apk para hacer publicaciones en la Store
+ https://www.joshmorony.com/deploying-capacitor-applications-to-android-development-distribution/
 
 ## Ios
 
@@ -90,3 +108,7 @@ La solución es proporcionar una herramienta con las funcionalidades para soluci
 4. Conecte el dispositivo en su computador y procure que esté habilitada la depuración en el dispositivo.
 
 5. Seleccione su dispositivo en Xcode y ejecute la aplicación.
+
+Para mayor información, consulte la guía de Josh Monroy sobre como generar la apk para hacer publicaciones en la Store
+
+https://www.joshmorony.com/deploying-capacitor-applications-to-ios-development-distribution/

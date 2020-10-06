@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../core/services/user.service';
 import { icons } from '../../configuration/icons';
 import { Plugins } from '@capacitor/core';
+import { EditorChangeContent, EditorChangeSelection } from 'ngx-quill';
 
 const { Storage } = Plugins;
 
@@ -35,6 +36,8 @@ export class SendMessagePage implements OnInit {
   isPublishable: boolean;
   messagesToStorage = [];
   icons = icons;
+  blured = false
+  focused = false
 
   constructor(
     public translate: TranslateService,
@@ -157,5 +160,4 @@ export class SendMessagePage implements OnInit {
       this.usersSelected = data.users;
     }
   }
-
 }

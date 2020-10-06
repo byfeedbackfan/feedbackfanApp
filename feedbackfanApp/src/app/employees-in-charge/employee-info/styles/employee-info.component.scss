@@ -392,7 +392,8 @@ ion-back-button {
 
 .item {
   --padding-start: 10px;
-  --inner-padding-end: 0px;
+  --inner-padding-end: 0 !important;
+  --padding-end: 0 !important;
 }
 
 .calification-values {

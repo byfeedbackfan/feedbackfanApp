@@ -34,8 +34,10 @@
   </ion-item>
   <form [formGroup]="sendMessageForm" (ngSubmit)="sendMessage()" >
     <ion-row>
-        <div contenteditable="true" data-gramm="false" class="ql-editor" text>
-          <quill-editor formControlName="info" contenteditable="true" data-gramm="false" class="ql-editor" text>
+        <div >
+          <quill-editor 
+            class="ql-editor" 
+            formControlName="info">
           </quill-editor>
         </div>
     </ion-row>

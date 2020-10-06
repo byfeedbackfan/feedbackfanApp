@@ -31,6 +31,10 @@ ion-toolbar {
 
   .input-item {
 
+    ion-label{
+      margin: 0 !important;
+    }
+
     .title-values {
       margin-bottom: 0 !important;
       text-transform: capitalize;
@@ -45,6 +49,7 @@ ion-toolbar {
 
     .to-values {
       margin-top: 0 !important;
+      margin-bottom: 0 !important;
       font-size: small;
       font-weight: bold;
       color: gray;
@@ -90,8 +95,8 @@ ion-toolbar {
 }
 
 .date-values {
-  font-weight: bold;
-  font-size: small;
+  font-size: 12px;
+  margin: 0 !important;
 }
 
 .text-values {
@@ -108,29 +113,30 @@ ion-toolbar {
 
 .calification-values {
   padding: 0 !important;
-  margin-top: 5px;
-  margin-bottom: 0;
   text-align: center !important;
   font-size: 90% !important;
   width: auto;
   height: auto;
-  display: block;
   position: relative;
   margin-right: auto;
+  margin-bottom: 0 !important;
+  vertical-align: bottom !important;
 
   .p1 {
-    vertical-align: super !important;
     padding-left: 0px !important;
     color: black;
+    margin: 0 !important;
+    text-align: end;
   }
   .p2 {
     padding-right: 0px !important;
     color: black;
+    margin: 0 !important;
+    text-align: start;
   }
 }
 
 .label-size {
-  margin-left: 15% !important;
   color: black;
 }
 
@@ -138,14 +144,15 @@ ion-toolbar {
   --background: #7c7c7c !important;
   --background-checked: #678bff !important;
   --handle-background: #b4b3b3 !important;
-  --handle-background-checked: #144afa !important;
+  --handle-background-checked: var(--ion-color-principal) !important;
   --handle-spacing: 0px !important;
   padding: 0 !important;
   padding-left: 2px !important;
 }
 
 .publishable-values {
-  --inner-padding-start: 10px !important;
+  --inner-padding-start: 0px !important;
+  --inner-padding-end: 0 !important;
 
   p {
     font-size: small !important;
@@ -160,4 +167,5 @@ ion-toolbar {
 
 .div-toggle {
   display: inline-flex;
+  margin: 0 !important;
 }
