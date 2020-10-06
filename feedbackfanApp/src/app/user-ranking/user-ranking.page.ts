@@ -68,11 +68,12 @@ export class UserRankingPage implements OnInit {
     });
     this.messageService.getMessages().subscribe(messages => {
       this.allMessages = messages;
+      this.userService.getUsers().subscribe(users => {
+        this.allUsers = users;
+        this.setUserRanking();
+      });
     });
-    this.userService.getUsers().subscribe(users => {
-      this.allUsers = users;
-      this.setUserRanking();
-    });
+
   }
 
   ionViewWillLeave(): void {
@@ -106,15 +107,15 @@ export class UserRankingPage implements OnInit {
       userRanking.sentMessagesDislikes = 0;
 
       this.allMessages.forEach(message => {
-        if (message.uidReceiver === userRanking.uid) {
+        if (message.uidReceiver === user.uid) {
           userRanking.receivedMessages = userRanking.receivedMessages + 1;
           userRanking.receivedMessagesLikes = userRanking.receivedMessagesLikes + message.likes;
-          userRanking.receivedMessagesDislikes = userRanking.receivedMessagesLikes + message.dislikes;
+          userRanking.receivedMessagesDislikes = userRanking.receivedMessagesDislikes + message.dislikes;
         }
-        if (message.uidSender === userRanking.uid) {
+        if (message.uidSender === user.uid) {
           userRanking.sentMessages = userRanking.sentMessages + 1;
           userRanking.sentMessagesLikes = userRanking.sentMessagesLikes + message.likes;
-          userRanking.sentMessagesDislikes = userRanking.sentMessagesLikes + message.dislikes;
+          userRanking.sentMessagesDislikes = userRanking.sentMessagesDislikes + message.dislikes;
         }
       });
       this.usersRanking.push(userRanking);

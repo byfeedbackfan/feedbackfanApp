@@ -42,7 +42,6 @@ export class SendMessagePage implements OnInit {
     private languageService: LanguageService,
     private tabsResolver: TabsResolver,
     private messageService: MessageService,
-    private userService: UserService,
     private router: Router,
     private ngZone: NgZone,
     private toastController: ToastController,
@@ -66,11 +65,6 @@ export class SendMessagePage implements OnInit {
   ionViewWillEnter() {
     Storage.get({key: 'userCredentials'}).then(data => {
       this.user = JSON.parse(data.value);
-    });
-    Storage.get({key: 'sentMessages'}).then(data => {
-      if (data.value !== null) {
-        this.messagesToStorage = JSON.parse(data.value);
-      }
     });
     this.isPublishable = this.user.allMessagesPublic;
   }
@@ -119,12 +113,6 @@ export class SendMessagePage implements OnInit {
     toast.present();
   }
 
-  async setMessagesToStorage() {
-    const messages = JSON.stringify(this.messagesToStorage);
-    console.log(this.messagesToStorage);
-    await Storage.set({key: 'sentMessages', value: messages});
-  }
-
   async sendedMessage() {
     this.usersSelected.forEach(async (user) => {
       const newMessage: SendMessageModel = new SendMessageModel();
@@ -143,37 +131,13 @@ export class SendMessagePage implements OnInit {
       newMessage.isPublishableReceiver = false;
       newMessage.isShell = true;
       newMessage.readed = false;
-      this.pushMessage(newMessage);
       await this.messageService.createMessage(newMessage)
       .catch(err => {
         this.submitError = err;
       });
     });
-    await this.setMessagesToStorage();
     await this.presentSuccessfulMessage();
     this.goToMessagesSendedPage();
-  }
-
-  pushMessage(newMessage: SendMessageModel){
-    const message = {
-      id: newMessage.id,
-      from: newMessage.from,
-      to: newMessage.to,
-      uidSender: newMessage.uidSender,
-      uidReceiver: newMessage.uidReceiver,
-      date: {seconds: newMessage.date.getTime() / 1000,  nanoseconds: newMessage.date.getTime() * 10000},
-      title: newMessage.title,
-      message: newMessage.message,
-      likes: newMessage.likes,
-      dislikes: newMessage.dislikes,
-      usersLike: newMessage.usersLike,
-      usersDislike: newMessage.usersDislike,
-      isPublishableSender: newMessage.isPublishableSender,
-      isPublishableReceiver: newMessage.isPublishableReceiver,
-      readed: newMessage.readed,
-      isShell: newMessage.isShell,
-    };
-    this.messagesToStorage.unshift(message);
   }
 
   sendMessage() {

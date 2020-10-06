@@ -15,6 +15,7 @@ ion-back-button {
 
 .ion-title {
   color: white;
+  padding-left: 10px !important;
 }
 
 .forgot-password-contain {
@@ -92,7 +93,7 @@ ion-back-button {
     align-items: center;
 
     .login-btn {
-      --color: #3b69ff;
+      --color: var(--ion-color-principal);
       margin: 0px;
       font-size: small;
 

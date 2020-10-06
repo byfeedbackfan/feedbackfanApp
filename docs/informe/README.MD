@@ -111,7 +111,7 @@ Se conversó sobre el flujo de trabajo y se plantearon los primeros issues para 
 
 1. Se crea la carpeta auth, que contendrá todo lo relacionacio a la autenticación del usuario, olvido de contraseña, registro y reseteo de clave.
 
-    1.1 Dentro de esta carpeta se encuentra la carpeta sign-in, que contiene toda la lógica de inicio de sesión correspondiente a la página y todo el contenido HTML. Se importa estos archivos al módulo de autenticación y se hacen los respectivos ajustes para crear las rutas de navegación.
+    1.1 Dentro de esta carpeta se encuentra la carpeta sign-in, que  correspondiente a la página y todo el contenido HTML. Se importa estos archivos al módulo de autenticación y se hacen los respectivos ajustes para crear las rutas de navegación.
 
     ![](./images/imagen-17.png)
 
@@ -304,3 +304,63 @@ creando un componente received-message
 2. Se corrigen detalles visuales.
 
 3. Se hace el esquema del boton para supervisores y administradores, el cual contendrá las opciones o funcionalidades adicionales, que son propias de cada cargo. Este botón se puede mover por toda la pantalla y colocarlo donde sea menos incómodo para el usuario.
+
+## 📅 FECHA - 6 de septiembre del 2020
+## **Nuevas funcionalidades**
+
+1. Se crea el buscador.
+2. Se implementa la funcion de ladministrador para cambiar cargos de trabajadores y supervisores.
+    1.1 Se crean los servicios necesarios en la carpeta core.
+    1.2 se crea el modulo que contiene la logica del cambio de cargos de trabajadores y supervisores.
+
+## 📅 FECHA - 7 de septiembre del 2020
+## **Nuevas funcionalidades**
+
+1. Se implementa la funcion del administrador para asignar trabajadores a supervisores.
+    1.1 Se crean los servicios necesarios en la carpeta core.
+    1.2 se crea el modulo que contiene la logica para asignar trabajadores a supervisores.
+
+## 📅 FECHA - 8 de septiembre del 2020
+## **Nuevas funcionalidades**
+
+1. Se implementa la funcion del supervisor para ver sus trabajadores asignados, con todos los mensajes tanto publicos como privados y poder calificarlos.
+    1.1 Se crean los servicios necesarios en la carpeta core.
+    1.2 Se crea el modulo que contiene tola la logica para ver los trabajadores que un supervisor tiene asignado.
+
+## 📅 FECHA - 13 de septiembre del 2020
+## **Nuevas funcionalidades**
+
+1. Se implementa el ranking de trabajadores
+    1.1 Se crean los servicios necesarios en la carpeta core.
+    1.2 Se crea el modulo que contiene tola la logica del ranking de trabajadores.
+
+## 📅 FECHA - 16 de septiembre del 2020
+## **Reunión con el tutor empresarial**
+
+1. se crean nuevos issues.
+2. Se plantean cambios visuales.
+
+## 📅 FECHA - 17 de septiembre del 2020
+## **Mejoras**
+
+1. Se realizan cambios visuales en la aplicacion.
+
+## 📅 FECHA - 18 de septiembre del 2020
+## **Mejorass**
+
+1. Se realizan cambios visuales en la aplicacion.
+2. Se corrigen errores en la logica de la palicacion.
+3. Se realizan pruebas de aceptacion.
+
+## 📅 FECHA - 21 de septiembre del 2020
+## **Mejoras**
+
+1. Se realizan cambios visuales en la aplicacion.
+2. Se corrigen errores en la logica de la palicacion.
+3. Se realizan pruebas de aceptacion.
+
+## 📅 FECHA - 22 de septiembre del 2020
+## **Mejoras**
+
+1. refactorizacion en la logica de la aplicacion.
+2. pruebas de aceptacion.

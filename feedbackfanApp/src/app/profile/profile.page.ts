@@ -59,31 +59,19 @@ export class ProfilePage implements OnInit {
   ) {}
 
   async ngOnInit() {
-    this.subscriptions = this.route.data.subscribe();
-    this.getTranslations();
-    this.translate.onLangChange.subscribe(() => {
-      this.getTranslations();
-    });
-    this.profileResolver.resolve().then((user) => {
-      this.user = user;
-      let sentMessages;
-      let receivedMessages;
-      if (this.receivedMessages.length === 0 || this.sendedMessages.length === 0) {
-        this.messageService.getSentMessages(this.user.uid).subscribe(message => {
-          this.sendedMessages = message;
-          sentMessages = JSON.stringify(this.sendedMessages);
-          this.messageService.getReceivedMessages(this.user.uid).subscribe( message2 => {
-            this.receivedMessages = message2;
-            receivedMessages = JSON.stringify(this.receivedMessages);
-            this.mergeReceivedAndSendedMessages(this.receivedMessages, this.sendedMessages);
-            Storage.set({key: 'sentMessages', value: sentMessages});
-            Storage.set({key: 'receivedMessages', value: receivedMessages});
-          });
-        });
-      }
-    }).catch(err => {
-      this.submitError = err;
-    });
+    // this.subscriptions = this.route.data.subscribe();
+    // this.getTranslations();
+    // this.translate.onLangChange.subscribe(() => {
+    //   this.getTranslations();
+    // });
+    // this.profileResolver.resolve().then((user) => {
+    //   this.user = user;
+    //   this.receivedMessages = this.messageService.getReceivedMessagesGlobal();
+    //   this.sendedMessages = this.messageService.getSentMessagesGlobal();
+    //   this.mergeReceivedAndSendedMessages(this.receivedMessages, this.sendedMessages);
+    // }).catch(err => {
+    //   this.submitError = err;
+    // });
   }
 
   async ionViewWillEnter() {
@@ -92,20 +80,8 @@ export class ProfilePage implements OnInit {
     }).catch(err => {
       this.submitError = err;
     });
-    await Storage.get({key: 'receivedMessages'}).then( message => {
-      if (message) {
-        this.receivedMessages = JSON.parse(message.value);
-      }
-    }).catch(err => {
-      this.submitError = err;
-    });
-    await Storage.get({key: 'sentMessages'}).then( message => {
-      if (message) {
-        this.sendedMessages = JSON.parse(message.value);
-      }
-    }).catch(err => {
-      this.submitError = err;
-    });
+    this.receivedMessages = this.messageService.getReceivedMessagesGlobal();
+    this.sendedMessages = this.messageService.getSentMessagesGlobal();
     this.mergeReceivedAndSendedMessages(this.receivedMessages, this.sendedMessages);
     this.addSentLikes();
     this.andSentDislikes();
@@ -216,22 +192,7 @@ export class ProfilePage implements OnInit {
       message.likes = message.likes + 1;
       message.usersLike.push(this.user.uid);
       await this.messageService.updateMessage(message);
-      this.setUpdateMessageToStorage(message);
     }
-  }
-
-  async setUpdateMessageToStorage(message: SendMessageModel) {
-    let receivedMsg: SendMessageModel[];
-    await Storage.get({key: 'receivedMessages'}).then( messages => {
-      receivedMsg = JSON.parse(messages.value);
-    });
-    receivedMsg.forEach((element, i) => {
-      if (element.id === message.id) {
-        receivedMsg.splice(i, 1, message);
-      }
-    });
-    const receivedMsgStr = JSON.stringify(receivedMsg);
-    Storage.set({key: 'receivedMessages', value: receivedMsgStr});
   }
 
   async unlikeMessage(slidingItem: IonItemSliding, message: SendMessageModel) {
@@ -244,7 +205,6 @@ export class ProfilePage implements OnInit {
       message.dislikes = message.dislikes + 1;
       message.usersDislike.push(this.user.uid);
       await this.messageService.updateMessage(message);
-      this.setUpdateMessageToStorage(message);
     }
   }
 
@@ -273,6 +233,7 @@ export class ProfilePage implements OnInit {
     let Irec = 0;
     let Isend = 0;
     let i = 0;
+    const messagesPublic = [];
 
     while (Irec < receivedMessages?.length && Isend < sendedMessages?.length) {
       if ( receivedMessages[Irec].date.seconds > sendedMessages[Isend].date.seconds ) {
@@ -293,6 +254,14 @@ export class ProfilePage implements OnInit {
     while (Isend < sendedMessages?.length) {
       this.publicMessages[i++] = sendedMessages[Isend++];
     }
+
+    this.publicMessages.forEach((message, index) => {
+      if (message.isPublishableSender && message.isPublishableReceiver) {
+        messagesPublic.push(message);
+      }
+      this.publicMessages = messagesPublic;
+    });
+
 
   }
 
@@ -328,8 +297,4 @@ export class ProfilePage implements OnInit {
     return dislikes;
   }
 
-  ionViewWillLeave(): void {
-    // console.log('TravelListingPage [ionViewWillLeave]');
-    this.subscriptions.unsubscribe();
-  }
 }

@@ -21,7 +21,7 @@
 
     <ion-list class="inputs-list" lines="full">
       <ion-item class="input-item">
-        <ion-icon slot="start" [ngStyle]="{'color': 'rgb(68, 0, 146)'}" name="person-outline"></ion-icon>
+        <ion-icon slot="start" [ngStyle]="{'color': 'var(--ion-color-second)'}" name="person-outline"></ion-icon>
         <ion-input [placeholder]="'nombre' | translate" formControlName="name" clearInput autocapitalize="off"></ion-input>
       </ion-item>
       <div class="error-container">
@@ -34,7 +34,7 @@
       </div>  
 
       <ion-item class="input-item">
-        <ion-icon slot="start" [ngStyle]="{'color': 'rgb(68, 0, 146)'}" name="mail-outline"></ion-icon>
+        <ion-icon slot="start" [ngStyle]="{'color': 'var(--ion-color-second)'}" name="mail-outline"></ion-icon>
         <ion-input type="email" [placeholder]="'correo' | translate" formControlName="email" clearInput autocapitalize="off" inputmode="email"></ion-input>
       </ion-item>
       <div class="error-container">
@@ -48,7 +48,7 @@
 
       <div formGroupName="matching_passwords">
         <ion-item class="input-item">
-          <ion-icon slot="start" [ngStyle]="{'color': 'rgb(68, 0, 146)'}" name="key-outline"></ion-icon>
+          <ion-icon slot="start" [ngStyle]="{'color': 'var(--ion-color-second)'}" name="key-outline"></ion-icon>
           <app-show-hide-password>
             <ion-input type="password" [placeholder]="'contrasena' | translate" formControlName="password"></ion-input>
           </app-show-hide-password>
@@ -63,7 +63,7 @@
         </div>
 
         <ion-item class="input-item">
-          <ion-icon slot="start" [ngStyle]="{'color': 'rgb(68, 0, 146)'}" name="key-outline"></ion-icon>
+          <ion-icon slot="start" [ngStyle]="{'color': 'var(--ion-color-second)'}" name="key-outline"></ion-icon>
           <app-show-hide-password>
             <ion-input type="password" [placeholder]="'confirmar_contrasena' | translate" formControlName="confirm_password"></ion-input>
           </app-show-hide-password>

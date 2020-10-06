@@ -58,9 +58,9 @@ ion-item {
   padding: 0 !important;
 }
 
-
 ion-title {
   color: white;
+  padding-left: 10px !important;
 }
 
 
@@ -81,4 +81,9 @@ ion-title {
 .supervisor-icon{
   width: 30px !important;
   height: 60px !important;
+}
+
+.ion-item-options-values {
+  color: white;
+  background-color: var(--ion-color-second);
 }

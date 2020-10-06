@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { ModalController, IonItemSliding } from '@ionic/angular';
+import { ModalController, IonItemSliding, LoadingController } from '@ionic/angular';
 import { MessageService } from '../core/services/message.service';
 import { Plugins } from '@capacitor/core';
 import { SendMessageModel } from '../send-message/send-message-model';
 import { ProfileModel } from '../profile/profile.model';
 import { MessageDetailComponent } from '../shared/message-detail/message-detail.component';
 import { icons, svgIcons } from '../../configuration/icons';
+import { LanguageService } from '../core/language/language.service';
+import { of } from 'rxjs';
 
 const { Storage } = Plugins;
 
@@ -28,35 +30,48 @@ export class ReceivedMessagePage implements OnInit {
   messageSearch = '';
   icons = icons;
   svgIcons = svgIcons;
+  loader: HTMLIonLoadingElement;
 
   constructor(
     public translate: TranslateService,
     public modalController: ModalController,
+    public languageService: LanguageService,
     private messageService: MessageService,
-  ) { }
+    private loadingController: LoadingController,
+  ) {
+  }
 
   async ngOnInit() {
+    this.presentLoading();
     this.getTranslations();
     this.translate.onLangChange.subscribe(() => {
       this.getTranslations();
     });
     await Storage.get({key: 'userCredentials'}).then(data => {
       this.userLogged = JSON.parse(data.value);
+      this.getReceivedMessages();
     });
-    this.messageService.getReceivedMessagesSnapshot(this.userLogged.uid).subscribe(messages => {
-      let receivedMsg: string;
-      this.receivedMessages = messages;
-      receivedMsg = JSON.stringify(messages);
-      Storage.set({key: 'receivedMessages', value: receivedMsg});
+  }
+
+  getReceivedMessages() {
+    this.messageService.getReceivedMessagesSnapshot(this.userLogged.uid).subscribe(receivedMessages => {
+      receivedMessages.sort((a, b) => b.date.seconds - a.date.seconds);
+      this.messageService.setReceivedMessagesGlobal(receivedMessages);
+      this.getSentMessages();
+    });
+  }
+
+  getSentMessages() {
+    this.messageService.getSentMessages(this.userLogged.uid).subscribe(sentMessages => {
+      sentMessages.sort((a, b) => b.date.seconds - a.date.seconds);
+      this.messageService.setSentMessagesGlobal(sentMessages);
+      this.receivedMessages = this.messageService.getReceivedMessagesGlobal();
+      this.loader.dismiss();
     });
   }
 
   ionViewWillEnter() {
-    Storage.get({key: 'receivedMessages'}).then( message => {
-      if (message) {
-        this.receivedMessages = JSON.parse(message.value);
-      }
-    });
+    this.receivedMessages = this.messageService.getReceivedMessagesGlobal();
   }
 
   checkifLiked(message: SendMessageModel): boolean {
@@ -67,6 +82,11 @@ export class ReceivedMessagePage implements OnInit {
       }
     });
     return isLiked;
+  }
+
+  async presentLoading() {
+    this.loader = await this.loadingController.create({});
+    await this.loader.present();
   }
 
   checkifDisliked(message: SendMessageModel): boolean {
@@ -139,7 +159,6 @@ export class ReceivedMessagePage implements OnInit {
       message.likes = message.likes + 1;
       message.usersLike.push(this.userLogged.uid);
       await this.messageService.updateMessage(message);
-      this.setUpdateMessageToStorage(message);
     }
   }
 
@@ -153,7 +172,6 @@ export class ReceivedMessagePage implements OnInit {
       message.dislikes = message.dislikes + 1;
       message.usersDislike.push(this.userLogged.uid);
       await this.messageService.updateMessage(message);
-      this.setUpdateMessageToStorage(message);
     }
   }
 
@@ -164,8 +182,6 @@ export class ReceivedMessagePage implements OnInit {
         if (elem.id === message.id) {
           index = i;
           this.receivedMessages[i].readed = true;
-          const rm = JSON.stringify(this.receivedMessages);
-          Storage.set({key: 'receivedMessages', value: rm});
         }
       });
       await this.messageService.updateMessage(this.receivedMessages[index]);
@@ -191,19 +207,4 @@ export class ReceivedMessagePage implements OnInit {
       this.receivedMessages = data.newMessages;
     }
   }
-
-  async setUpdateMessageToStorage(message: SendMessageModel) {
-    let receivedMsg: SendMessageModel[];
-    await Storage.get({key: 'receivedMessages'}).then( messages => {
-      receivedMsg = JSON.parse(messages.value);
-    });
-    receivedMsg.forEach((element, i) => {
-      if (element.id === message.id) {
-        receivedMsg.splice(i, 1, message);
-      }
-    });
-    const receivedMsgStr = JSON.stringify(receivedMsg);
-    Storage.set({key: 'receivedMessages', value: receivedMsgStr});
-  }
-
 }

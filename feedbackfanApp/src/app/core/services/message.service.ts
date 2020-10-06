@@ -10,6 +10,26 @@ import { Observable } from 'rxjs';
 export class MessageService {
 
   constructor(private afs: AngularFirestore) { }
+  receivedMessages: SendMessageModel[];
+  sentMessages: SendMessageModel[];
+
+  getReceivedMessagesGlobal(): SendMessageModel[] {
+    return this.receivedMessages;
+  }
+
+  setReceivedMessagesGlobal(messages: SendMessageModel[]) {
+    this.receivedMessages = [];
+    this.receivedMessages = messages;
+  }
+
+  getSentMessagesGlobal(): SendMessageModel[] {
+    return this.sentMessages;
+  }
+
+  setSentMessagesGlobal(messages: SendMessageModel[]) {
+    this.sentMessages = [];
+    this.sentMessages = messages;
+  }
 
   public createMessage(message: SendMessageModel): Promise<void> {
     const idMessage = this.afs.createId();
@@ -33,7 +53,7 @@ export class MessageService {
     return this.afs.collection('message').doc(idMessage).set(data);
   }
 
-  getSentMessages(uid: string): Observable<SendMessageModel[]> {
+  getSentMessages(uid: string): Observable<any> {
     return this.afs.collection('message', ref => ref.where('uidSender', '==', uid).orderBy('date', 'desc'))
     .snapshotChanges()
     .pipe(map(a => {
@@ -45,7 +65,7 @@ export class MessageService {
     }));
   }
 
-  getReceivedMessagesSnapshot(uid: string): Observable<SendMessageModel[]> {
+  getReceivedMessagesSnapshot(uid: string): Observable<any> {
     return this.afs.collection('message', ref => ref.where('uidReceiver', '==', uid).orderBy('readed', 'asc').orderBy('date', 'desc'))
     .snapshotChanges().pipe(map(a => {
       const messages: SendMessageModel[] = [];
@@ -56,7 +76,7 @@ export class MessageService {
     }));
   }
 
-  getReceivedMessages(uid: string): Observable<SendMessageModel[]> {
+  getReceivedMessages(uid: string): Observable<any> {
     return this.afs.collection('message', ref => ref.where('uidReceiver', '==', uid).orderBy('date', 'desc'))
     .get().pipe(map(a => {
       const messages: SendMessageModel[] = [];
