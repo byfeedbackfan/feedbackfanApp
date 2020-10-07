@@ -6,6 +6,7 @@
 
 <ion-content>
   <ngx-datatable [ngClass]="'bootstrap fullscreen'"
+                                    class="values"
                                     [rows]="usersRanking"
                                     [sortType]="'multi'"
                                     [reorderable]="'false'"
@@ -28,7 +29,6 @@
             <ion-label>{{rowIndex + 1 }}</ion-label>
           </ion-chip>
         </ion-avatar>
-        
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column class="sent-messages" [cellClass]="'messages-quantity'" name="sentMessages">
