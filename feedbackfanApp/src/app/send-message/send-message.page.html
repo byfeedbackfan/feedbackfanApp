@@ -32,7 +32,7 @@
     <p class="label-size"> {{ 'valido_para_publicar' | translate}}</p>
     <ion-toggle class="toggle-options" mode="ios" slot="end" [(ngModel)]="isPublishable"></ion-toggle>
   </ion-item>
-  <form [formGroup]="sendMessageForm" (ngSubmit)="sendMessage()" >
+  <form [formGroup]="sendMessageForm" (ngSubmit)="sendMessage()" style="background-color: white !important;">
     <ion-row>
         <div >
           <quill-editor 
