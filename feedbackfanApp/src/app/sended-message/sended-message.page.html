@@ -11,7 +11,7 @@
 
 <ion-content scrollEvents="true" appHideHeader [header]="header">
   <ion-list class="list-val" lines="none" *ngIf="sentMessages?.length !== 0 || sentMessages?.length !== null">
-      <ion-item class="item" [color]="i%2 === 0 ? 'bgi' : 'unclicked'" *ngFor="let message of sentMessages | filterSearch: messageSearch: 'title' : 'to'; let i = index" [attr.data-index]="i" button="true" (click)="openMessage(message)">
+      <ion-item detail="false" class="item" [color]="i%2 === 0 ? 'bgi' : 'unclicked'" *ngFor="let message of sentMessages | filterSearch: messageSearch: 'title' : 'to'; let i = index" [attr.data-index]="i" button="true" (click)="openMessage(message)">
         <ion-avatar slot="start" class="img-message-css">
           <ion-icon [src]="svgIcons.sended_msg"></ion-icon>
         </ion-avatar>
