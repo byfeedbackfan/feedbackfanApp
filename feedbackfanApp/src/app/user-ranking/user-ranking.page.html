@@ -15,6 +15,7 @@
                                     [sorts]="sortList"
                                     [limit]="8"
                                     (activate)="goToProfile($event)"
+                                    [messages]="myMessages"
                                     >
     <ngx-datatable-column [sortable]="false" [cellClass]="'user-image-values'" name="image">
       <ng-template ngx-datatable-header-template>
