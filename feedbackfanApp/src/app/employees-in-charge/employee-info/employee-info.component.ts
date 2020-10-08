@@ -128,14 +128,6 @@ export class EmployeeInfoComponent implements OnInit {
     while (Isend < sendedMessages?.length) {
       this.publicMessages[i++] = sendedMessages[Isend++];
     }
-
-    this.publicMessages.forEach((message, index) => {
-      if (message.isPublishableSender && message.isPublishableReceiver) {
-        messagesPublic.push(message);
-      }
-      this.publicMessages = messagesPublic;
-    });
-
   }
 
   shearchUserInLikesArray(message: SendMessageModel): boolean {
