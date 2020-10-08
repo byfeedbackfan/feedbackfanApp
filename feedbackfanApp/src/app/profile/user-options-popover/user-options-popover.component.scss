@@ -7,6 +7,8 @@
   ion-icon {
     position: relative;
     left: -8px;
+    width: 24px !important;
+    height: 24px !important;
   }
 }
 
@@ -22,6 +24,11 @@
   --handle-background-checked: var(--ion-color-principal);
   --handle-spacing: 0px !important;
   width: 45px;
+}
+
+.button-values{
+  margin: 0 !important;
+  --padding-start: 0 !important;
 }
 
 .label-size {
