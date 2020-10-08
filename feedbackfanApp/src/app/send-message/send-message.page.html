@@ -50,7 +50,7 @@
       </ng-container>
     </div>
   </form>
-  <div style="background-color: white !important;">
+  <div style="background-color: white !important;" class="div-class">
     <ion-button class="signup-btn"  type="submit" (click)="sendMessage()" expand="block" [disabled]="usersSelected.length === 0 || usersSelected.length === 0 || !sendMessageForm.get('title').value || !sendMessageForm.get('info').value ">
       {{ 'enviar' | translate }}
     </ion-button>
