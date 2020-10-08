@@ -2,7 +2,7 @@
   <ion-toolbar #header mode="ios">
     <ion-title class="ion-title" mode="md">{{ 'buscar_personas' | translate }}</ion-title>
   </ion-toolbar>
-  <ion-searchbar mode="ios" color="light" class="seachbar"
+  <ion-searchbar mode="ios" color="light" class="seachbar" style="background-color: white !important;"
                 [placeholder]="'buscar' | translate" type="decimal" 
                 [debounce]="250"
                 (ionChange)="searchUser($event)">
