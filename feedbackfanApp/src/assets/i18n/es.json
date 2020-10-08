@@ -40,7 +40,7 @@
   "iniciando_sesion": "Iniciando sesión ...",
   "cerrar_sesion": "Cerrar sesión",
   "mensajes_siempre_publicos": "Mensajes siempre publicables",
-  "nuevo_mensaje": "Enviar mensaje",
+  "nuevo_mensaje": "Enviar",
   "buscar_personas": "Buscar personas",
   "titulo": "Título",
   "inserta_el_titulo": "Debes agregar un título",
@@ -73,7 +73,7 @@
   "trabajadores_asignados": "Los trabajadores han sido asignados.",
   "trabajadores_de_supervisor": "Trabajadores asignados",
   "ranking": "Ranking",
-  "mensajes_enviados": "Mensajes enviados",
-  "mensajes_recibidos": "Mensajes recibidos",
+  "mensajes_enviados": "Enviados",
+  "mensajes_recibidos": "Recibidos",
   "cargando_mensajes": "Cargando mensajes..."
 }
