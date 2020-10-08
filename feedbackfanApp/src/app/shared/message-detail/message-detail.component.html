@@ -21,22 +21,26 @@
         <ion-item class="input-item">
           <ion-label >
             <ion-row>
-              <ion-col size="8" style="padding: 0 !important;">
+              <ion-col size="7" style="padding: 0 !important;">
                 <p class="date-values">
                   {{ messageDetail.date.seconds * 1000 | date : 'short' }}
                 </p>
               </ion-col>
-              <ion-col size="2" class="calification-values" style="padding: 0 !important; margin: 0 !important;">
-                <p class="p1">
-                  <ion-icon slot="start" [name]="icons.happy" [style.color]="checkifLiked(messageDetail) ? 'rgb(206, 3, 3)' : 'rgb(90, 89, 89)'"></ion-icon>
-                  {{messageDetail.likes || '0' | shortNumberSuffix}}   
-                </p>
-              </ion-col>
-              <ion-col size="2" class="calification-values" style="padding: 0 !important; margin: 0 !important;">
-                <p class="p2">
-                  <ion-icon slot="start" [name]="icons.sad" [style.color]="checkifDisliked(messageDetail) ? 'rgb(206, 3, 3)' : 'rgb(90, 89, 89)'"></ion-icon>
-                  {{messageDetail.dislikes || '0' | shortNumberSuffix}}
-                </p>
+              <ion-col size="5" class="col-chip-values">
+                <ion-row>
+                  <ion-col size="6" class="calification-values" style="padding: 0 !important; margin: 0 !important;">
+                    <p class="p1">
+                      <ion-icon slot="start" [name]="icons.happy" [style.color]="checkifLiked(messageDetail) ? 'rgb(206, 3, 3)' : 'rgb(90, 89, 89)'"></ion-icon>
+                      {{messageDetail.likes || '0' | shortNumberSuffix}}   
+                    </p>
+                  </ion-col>
+                  <ion-col size="6" class="calification-values" style="padding: 0 !important; margin: 0 !important;">
+                    <p class="p2">
+                      <ion-icon slot="start" [name]="icons.sad" [style.color]="checkifDisliked(messageDetail) ? 'rgb(206, 3, 3)' : 'rgb(90, 89, 89)'"></ion-icon>
+                      {{messageDetail.dislikes || '0' | shortNumberSuffix}}
+                    </p>
+                  </ion-col>
+                </ion-row>
               </ion-col>
             </ion-row>
             <h4 class="from-values" style="color: gray;">
