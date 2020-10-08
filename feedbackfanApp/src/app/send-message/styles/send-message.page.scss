@@ -65,14 +65,14 @@
     --ion-item-background: var(--page-background);
   
     .input-item {
-      padding-left: 10px !important;
-      padding-right: 12px !important;
+      padding-left: 0px !important;
+      padding-right: 0px !important;
       --padding-start: 0px;
       --padding-end: 0px;
       --inner-padding-end: 0px;
   
       ion-icon {
-        margin-left: 2%;
+        margin-left: 12px;
         margin-right: 5px;
       }
     }

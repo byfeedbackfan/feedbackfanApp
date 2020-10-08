@@ -65,7 +65,6 @@ ion-back-button {
 .css-card-calification {
   padding: 0 !important;
   font-size: 90% !important;
-  margin-right: 5px !important;
 
   p {
     ion-icon {
@@ -392,8 +391,6 @@ ion-back-button {
 
 .item {
   --padding-start: 10px;
-  --inner-padding-end: 0 !important;
-  --padding-end: 0 !important;
 }
 
 .calification-values {
@@ -409,13 +406,13 @@ ion-back-button {
   margin-right: auto;
 
   .p1 {
-    text-align: end;
+    text-align: center;
     color: dimgray;
     padding-left: 1px !important;
     margin: 0 !important;
   }
   .p2 {
-    text-align: start;
+    text-align: center;
     color: dimgray;
     padding-right: 1px !important;
     margin: 0 !important;
@@ -575,8 +572,8 @@ ion-back-button {
 .col-chip-values {
   padding: 0 !important;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: end;
+  justify-content: flex-end;
   vertical-align: middle;
 }
 
@@ -593,9 +590,14 @@ ion-back-button {
   margin-top: 0;
   margin-left: 2px !important;
   margin-right: 2px !important;
-  padding-top: 20px;
+  padding-top: 24px;
   position: relative;
-  bottom: 12px;
+  bottom: 20px;
   float: none;
   padding-bottom: 5px;
+}
+
+.list-val {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
 }

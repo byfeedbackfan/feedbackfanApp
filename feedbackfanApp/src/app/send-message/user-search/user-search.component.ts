@@ -81,7 +81,6 @@ export class UserSearchComponent implements OnInit {
       user.isSelected = true;
       this.usersToSendMessage.push(user);
     }
-    console.log(this.usersToSendMessage);
   }
 
   searchIfUserExistsInArray(user: ProfileModel) {

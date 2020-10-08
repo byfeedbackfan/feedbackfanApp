@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ModalController } from '@ionic/angular';
 import { ProfileModel } from '../../profile/profile.model';
 import { MessageService } from '../../core/services/message.service';
-import { icons } from '../../../configuration/icons';
+import { icons, svgIcons } from '../../../configuration/icons';
 import { Plugins } from '@capacitor/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
@@ -25,6 +25,7 @@ export class MessageDetailComponent implements OnInit {
 
   translations;
   icons = icons;
+  svgIcons = svgIcons;
   subscriptions: Subscription;
 
   constructor(
@@ -82,17 +83,13 @@ export class MessageDetailComponent implements OnInit {
   }
 
   changePublishableMessage() {
-    this.messageDetail.isPublishableReceiver = !this.messageDetail.isPublishableReceiver;
+    if (this.messageDetail.uidReceiver === this.userLogged.uid) {
+      this.messageDetail.isPublishableReceiver = !this.messageDetail.isPublishableReceiver;
+    }
+    if (this.messageDetail.uidSender === this.userLogged.uid) {
+      this.messageDetail.isPublishableSender = !this.messageDetail.isPublishableSender;
+    }
     this.messageService.updateMessage(this.messageDetail);
-    this.setUpdateMessage(this.messageDetail);
-  }
-
-  setUpdateMessage(message: SendMessageModel) {
-    this.messages.forEach((element, i) => {
-      if (element.id === message.id) {
-        this.messages.splice(i, 1, message);
-      }
-    });
   }
 
   checkifLiked(message: SendMessageModel): boolean {

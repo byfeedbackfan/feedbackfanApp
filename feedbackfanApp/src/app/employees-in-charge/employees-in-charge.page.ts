@@ -27,6 +27,7 @@ export class EmployeesInChargePage implements OnInit {
     private userService: UserService,
     private modalController: ModalController,
   ) {
+
   }
 
   ngOnInit() {}

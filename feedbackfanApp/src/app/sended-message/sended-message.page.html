@@ -10,12 +10,12 @@
 </ion-header>
 
 <ion-content scrollEvents="true" appHideHeader [header]="header">
-  <ion-list lines="none" *ngIf="sentMessages?.length !== 0 || sentMessages?.length !== null">
+  <ion-list class="list-val" lines="none" *ngIf="sentMessages?.length !== 0 || sentMessages?.length !== null">
       <ion-item class="item" [color]="i%2 === 0 ? 'bgi' : 'unclicked'" *ngFor="let message of sentMessages | filterSearch: messageSearch: 'title' : 'to'; let i = index" [attr.data-index]="i" button="true" (click)="openMessage(message)">
         <ion-avatar slot="start" class="img-message-css">
           <ion-icon [src]="svgIcons.sended_msg"></ion-icon>
         </ion-avatar>
-        <ion-label>
+        <ion-label style="margin-top: 5px !important; margin-bottom: 5px !important;">
           <ion-row>
             <ion-col size="12" class="col-data-values">
               <ion-text>

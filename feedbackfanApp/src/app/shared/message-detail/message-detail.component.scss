@@ -27,7 +27,9 @@ ion-toolbar {
 }
 
 .inputs-list {
-  --ion-item-background: var(--page-background);
+  --ion-item-background: var(--ion-color-bgi);
+  padding-bottom: 0px !important;
+  padding-top: 0px !important;
 
   .input-item {
 
@@ -44,7 +46,6 @@ ion-toolbar {
       margin-bottom: 0 !important;
       font-size: small;
       font-weight: bold;
-      color: gray;
     }
 
     .to-values {
@@ -52,7 +53,6 @@ ion-toolbar {
       margin-bottom: 0 !important;
       font-size: small;
       font-weight: bold;
-      color: gray;
     }
   }
 }
@@ -124,15 +124,15 @@ ion-toolbar {
 
   .p1 {
     padding-left: 0px !important;
-    color: black;
+    color: gray;
     margin: 0 !important;
     text-align: end;
   }
   .p2 {
     padding-right: 0px !important;
-    color: black;
+    color: gray;
     margin: 0 !important;
-    text-align: start;
+    text-align: end;
   }
 }
 

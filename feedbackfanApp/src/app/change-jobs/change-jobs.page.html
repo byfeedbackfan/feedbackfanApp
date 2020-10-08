@@ -11,7 +11,7 @@
   </ion-searchbar>
 </ion-header>
 <ion-content scrollEvents="true" appHideHeader [header]="header">
-  <ion-list lines="none">
+  <ion-list class="list-val" lines="none">
     <ion-item-sliding *ngFor="let user of users | filterSearch: userSearch: 'name' : 'email'">
       <ion-item  button="true">
         <ion-avatar class="avatar">
