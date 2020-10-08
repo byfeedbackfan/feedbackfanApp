@@ -103,6 +103,10 @@ export class SendMessagePage implements OnInit {
     toast.present();
   }
 
+  changePublish() {
+    this.isPublishable = !this.isPublishable;
+  }
+
   async sendedMessage() {
     this.usersSelected.forEach(async (user) => {
       const newMessage: SendMessageModel = new SendMessageModel();

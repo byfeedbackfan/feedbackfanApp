@@ -90,9 +90,6 @@ export class MessageDetailComponent implements OnInit {
       this.messageDetail.isPublishableSender = !this.messageDetail.isPublishableSender;
     }
     this.messageService.updateMessage(this.messageDetail);
-    console.log('entra');
-    console.log(this.messageDetail.isPublishableSender, 'emisor')
-    console.log(this.messageDetail.isPublishableReceiver, 'receptor')
   }
 
   checkifLiked(message: SendMessageModel): boolean {

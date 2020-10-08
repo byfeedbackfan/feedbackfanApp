@@ -10,6 +10,11 @@
   }
 }
 
+.item-values {
+  --inner-padding-end: 0 !important;
+  --padding-end: 0 !important;
+}
+
 .toggle-options {
   --background: #7c7c7c;
   --background-checked: #678bff;
@@ -22,4 +27,6 @@
 .label-size {
   font-size: 14px !important;
   margin-bottom: 0;
+  text-transform: none;
+  color: gray;
 }

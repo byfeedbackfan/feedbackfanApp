@@ -29,8 +29,11 @@
     </ion-list>
   </form>
   <ion-item lines="none" class="publishable-values">
-    <p class="label-size"> {{ 'valido_para_publicar' | translate}}</p>
-    <ion-toggle class="toggle-options" mode="ios" slot="end" [(ngModel)]="isPublishable"></ion-toggle>
+    <ion-button (click)="changePublish()" expand="block" fill="clear" class="button-values" shape="round">
+      <p class="label-size"> {{ 'valido_para_publicar_emisor' | translate}}</p>
+      <ion-icon style="color: var(--ion-color-principal) !important;" [name]="isPublishable? icons.lock_open_sharp : icons.lock_closed_sharp">
+      </ion-icon>
+    </ion-button>
   </ion-item>
   <form [formGroup]="sendMessageForm" (ngSubmit)="sendMessage()" style="background-color: white !important;">
     <ion-row>

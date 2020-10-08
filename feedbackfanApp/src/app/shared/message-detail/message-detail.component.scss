@@ -151,7 +151,9 @@ ion-toolbar {
 }
 
 .label-size {
-  color: black;
+  color: gray;
+  
+  margin: 0 !important
 }
 
 .toggle-options {
@@ -182,4 +184,6 @@ ion-toolbar {
 .div-toggle {
   display: inline-flex;
   margin: 0 !important;
+  text-transform: none !important;
+  --color: gray;
 }
