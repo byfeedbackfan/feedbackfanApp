@@ -55,6 +55,12 @@ export class SendMessagePage implements OnInit {
       info: new FormControl('', Validators.required),
     });
 
+    Storage.get({key: 'userCredentials'}).then(data => {
+      this.user = JSON.parse(data.value);
+      this.isPublishable = this.user.allMessagesPublic;
+    });
+
+
     this.validation_messages = {
       title: [
         { type: 'required', message: this.languageService.getTerm('inserta_el_titulo') },
@@ -66,10 +72,7 @@ export class SendMessagePage implements OnInit {
   }
 
   ionViewWillEnter() {
-    Storage.get({key: 'userCredentials'}).then(data => {
-      this.user = JSON.parse(data.value);
-    });
-    this.isPublishable = this.user.allMessagesPublic;
+    
   }
 
   async ngOnInit() {

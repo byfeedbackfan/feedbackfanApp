@@ -30,9 +30,12 @@
   </form>
   <ion-item lines="none" class="publishable-values">
     <ion-button (click)="changePublish()" expand="block" fill="clear" class="button-values" shape="round">
-      <ion-icon style="color: var(--ion-color-principal) !important;" [name]="isPublishable? icons.lock_open_sharp : icons.lock_closed_sharp">
+      <ion-icon *ngIf="isPublishable === true" style="color: var(--ion-color-principal) !important;" [name]="icons.lock_open_sharp">
       </ion-icon>
-      <p class="label-size"> {{ 'valido_para_publicar_emisor' | translate}}</p>
+      <ion-icon *ngIf="isPublishable === false" style="color: var(--ion-color-principal) !important;" [name]="icons.lock_closed_sharp">
+      </ion-icon>
+      <p class="label-size" *ngIf="isPublishable === true"> {{ 'valido_para_publicar_emisor' | translate}}</p>
+      <p class="label-size" *ngIf="isPublishable === false"> {{ 'no_valido_para_publicar' | translate}}</p>
     </ion-button>
   </ion-item>
   <form [formGroup]="sendMessageForm" (ngSubmit)="sendMessage()" style="background-color: white !important;">
