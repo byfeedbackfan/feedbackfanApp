@@ -98,7 +98,8 @@ export class SendMessagePage implements OnInit {
   async presentSuccessfulMessage() {
     const toast = await this.toastController.create({
       message: this.languageService.getTerm('mensaje_enviado_exitosamente'),
-      duration: 2000
+      duration: 2000,
+      color: 'light'
     });
     toast.present();
   }
