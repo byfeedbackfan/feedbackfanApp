@@ -103,8 +103,7 @@ ion-toolbar {
 }
 
 .icon-values {
-  width: 20px;
-  height: 20px;
+  padding-right: 3px !important;
 }
 
 .date-values {
@@ -156,6 +155,14 @@ ion-toolbar {
   margin: 0 !important
 }
 
+.icon-buttons {
+
+} 
+
+.icon-heart {
+  padding-left: 3px !important;
+}
+
 .toggle-options {
   --background: #7c7c7c !important;
   --background-checked: #678bff !important;
@@ -186,4 +193,8 @@ ion-toolbar {
   margin: 0 !important;
   text-transform: none !important;
   --color: gray;
+
+  padding-inline-start: 0px !important;
+  position: relative;
+  left: -5px !important;
 }

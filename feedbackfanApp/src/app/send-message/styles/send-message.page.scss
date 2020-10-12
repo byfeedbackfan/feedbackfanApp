@@ -6,6 +6,7 @@
 
 .label-size {
   color: dimgray;
+  padding-left: 3px !important;
 }
 
 .toggle-options {
@@ -67,6 +68,8 @@
 
   .inputs-list {
     --ion-item-background: var(--page-background);
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
   
     .input-item {
       padding-left: 0px !important;

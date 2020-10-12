@@ -36,7 +36,7 @@
                   </ion-col>
                   <ion-col size="6" class="calification-values" style="padding: 0 !important; margin: 0 !important;">
                     <p class="p2">
-                      <ion-icon slot="start" [name]="icons.sad" [style.color]="checkifDisliked(messageDetail) ? 'rgb(206, 3, 3)' : 'rgb(90, 89, 89)'"></ion-icon>
+                      <ion-icon class="icon-heart" slot="start" [name]="icons.sad" [style.color]="checkifDisliked(messageDetail) ? 'rgb(206, 3, 3)' : 'rgb(90, 89, 89)'"></ion-icon>
                       {{messageDetail.dislikes || '0' | shortNumberSuffix}}
                     </p>
                   </ion-col>
@@ -62,7 +62,7 @@
           </ion-label>
         </ion-item>
         <ion-item  class="publishable-values" lines="full" >
-            <ion-button fill="clear" (click)="changePublishableMessage()" *ngIf="messageDetail.uidReceiver === userLogged.uid  || messageDetail.uidSender === userLogged.uid" class="div-toggle">
+            <ion-button class="icon-buttons" fill="clear" (click)="changePublishableMessage()" *ngIf="messageDetail.uidReceiver === userLogged.uid  || messageDetail.uidSender === userLogged.uid" class="div-toggle">
               <ion-icon  style="color: var(--ion-color-principal) !important;" slot="start" class="locker-color" [name]="icons.lock_closed_sharp" *ngIf="(messageDetail.isPublishableSender === false || messageDetail.isPublishableReceiver === false) && (messageDetail.uidReceiver === userLogged.uid || messageDetail.uidSender === userLogged.uid)">
               </ion-icon>
               <ion-icon style="color: var(--ion-color-principal) !important;" slot="start" [name]="icons.lock_open_sharp" *ngIf="(messageDetail.isPublishableSender === true &&  messageDetail.isPublishableReceiver === true) && (messageDetail.uidReceiver === userLogged.uid || messageDetail.uidSender === userLogged.uid)">
@@ -72,7 +72,7 @@
               <p class="label-size"*ngIf="(messageDetail.uidSender === userLogged.uid) && (messageDetail.isPublishableSender === false)"> {{ 'no_valido_para_publicar' | translate}} </p>
               <p class="label-size"*ngIf="(messageDetail.uidReceiver === userLogged.uid) && (messageDetail.isPublishableReceiver === false)"> {{ 'no_valido_para_publicar' | translate}} </p>
             </ion-button>
-            <ion-button fill="clear" *ngIf="messageDetail.uidReceiver !== userLogged.uid  && messageDetail.uidSender !== userLogged.uid" class="div-toggle">
+            <ion-button class="icon-buttons" fill="clear" *ngIf="messageDetail.uidReceiver !== userLogged.uid  && messageDetail.uidSender !== userLogged.uid" class="div-toggle">
               <ion-icon  style="color: gray !important;" slot="start" class="locker-color" [name]="icons.lock_closed_sharp" *ngIf="(messageDetail.isPublishableSender === false || messageDetail.isPublishableReceiver === false) && (messageDetail.uidReceiver !== userLogged.uid && messageDetail.uidSender !== userLogged.uid)">
               </ion-icon>
               <ion-icon style="color: gray !important;" slot="start" [name]="icons.lock_open_sharp" *ngIf="(messageDetail.isPublishableSender === true &&  messageDetail.isPublishableReceiver === true) && (messageDetail.uidReceiver !== userLogged.uid && messageDetail.uidSender !== userLogged.uid)">
