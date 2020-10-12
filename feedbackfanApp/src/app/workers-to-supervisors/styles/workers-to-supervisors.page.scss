@@ -19,7 +19,7 @@ app-image-shell.user-image {
 .user-role {
   text-transform: capitalize;
   font-weight: bold;
-  color: #3b69ff !important;
+  color: var(--ion-color-principal) !important;
 }
 
 .user-mail {

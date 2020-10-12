@@ -1,5 +1,5 @@
 <ion-header class="ion-no-border" mode="ios">
-  <ion-toolbar>
+  <ion-toolbar class="toolbar">
     <ion-title mode="md" class="ion-title">{{ 'info_personal' | translate }}</ion-title>
     <ion-buttons slot="start">
       <ion-button (click)="closeModal()">
@@ -18,7 +18,7 @@
     </app-image-shell>
   </ion-avatar>
   <br>
-  <ion-button (click)="takePhoto()" expand="block" color="primary" shape="round" size="small">
+  <ion-button class="buttonss" (click)="takePhoto()" expand="block" shape="round" size="small">
     {{ 'modificar_foto' | translate }}
   </ion-button>
   <br>

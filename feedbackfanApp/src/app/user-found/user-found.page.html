@@ -1,38 +1,40 @@
 <ion-header #header>
-  <ion-toolbar mode="md">
+  <ion-toolbar mode="ios">
     <ion-title class="ion-title" mode="md">{{'perfil' | translate}}</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content class="user-content" scrollEvents="true" appHideHeader [header]="header">
-  <ion-row>
-    <ion-col size="4" class="ion-align-self-end img-col">
-      <ion-row>
-        <ion-col class="img-col">
-          <ion-avatar class="img-responsive">
-            <app-image-shell class="user-image" [display]="'cover'" animation="spinner" [src]="user?.image" [alt]="'item image'">
-              <app-aspect-ratio [ratio]="{w:1, h:1}">
-              </app-aspect-ratio>
-            </app-image-shell>
-          </ion-avatar>
-        </ion-col>
-      </ion-row>
-    </ion-col>
-    <ion-col size="8" class="vertical-col-align">
-      <ion-col size="12" class="user-preferences-wrapper ion-col-userdata center-in-col">
-        <p class="preference-value">
-          <app-text-shell [data]="user?.name"></app-text-shell>
-        </p>
-        <div class="preference-email">
-          <p>
-            {{user?.email}}
-          </p>
-        </div>
-        <p class="preference-name">
-          <app-text-shell [data]="user?.role"></app-text-shell>
-        </p>
+  <ion-item lines="none" mode="md" class="item-profile-values">
+    <ion-row class="row-content">
+      <ion-col size="3" class="ion-align-self-end img-col">
+        <ion-row>
+          <ion-col class="img-col">
+            <ion-avatar class="img-responsive">
+              <app-image-shell class="user-image" [display]="'cover'" animation="spinner" [src]="user?.image" [alt]="'item image'">
+                <app-aspect-ratio [ratio]="{w:1, h:1}">
+                </app-aspect-ratio>
+              </app-image-shell>
+            </ion-avatar>
+          </ion-col>
+        </ion-row>
       </ion-col>
-    </ion-col>
-  </ion-row>
+      <ion-col size="9" class="vertical-col-align">
+        <ion-col size="12" class="user-preferences-wrapper ion-col-userdata center-in-col">
+          <p class="preference-value">
+            <app-text-shell [data]="user?.name"></app-text-shell>
+          </p>
+          <div class="preference-email">
+            <p>
+              {{user?.email}}
+            </p>
+          </div>
+          <p class="preference-name">
+            <app-text-shell [data]="user?.role"></app-text-shell>
+          </p>
+        </ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-item>
   <ion-row>
     <ion-col size="6" class="vertical-align">
       <ion-row class="user-preferences-wrapper css-card-content">

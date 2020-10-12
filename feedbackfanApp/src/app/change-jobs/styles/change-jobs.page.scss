@@ -28,7 +28,7 @@ ion-list-header {
 .user-role {
   text-transform: capitalize;
   font-weight: bold;
-  color: var(--ion-color-principal);
+  color: var(--ion-color-principal) !important;
 }
 
 .user-mail {
