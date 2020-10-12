@@ -12,7 +12,7 @@
 </ion-header>
 <ion-content scrollEvents="true" appHideHeader [header]="header">
   <ion-list class="list-val" lines="none">
-    <ion-item-sliding *ngFor="let user of users | filterSearch: userSearch: 'name' : 'email'; let i = index">
+    <ion-item-sliding *ngFor="let user of users | filterSearch: userSearch: 'name' : 'email'; let i = index" #slidingItem>
       <ion-item [color]="(i % 2 === 0) ? 'bgi' : 'unclicked'"  button="true">
         <ion-avatar class="avatar">
           <app-image-shell class="user-image" [display]="'cover'" animation="spinner" [src]="user.image" alt="item image">
@@ -34,11 +34,11 @@
       </ion-item>
       <ion-item-options side="end">
         <ion-item-option class="ion-item-options-values">
-          <ion-icon slot="icon-only" class="supervisor-icon" [src]="svgIcons.supervisor_to_worker" (click)="changeJob(user, roles.supervisor)">
+          <ion-icon slot="icon-only" class="supervisor-icon" [src]="svgIcons.supervisor_to_worker" (click)="changeJob(slidingItem ,user, roles.supervisor)">
           </ion-icon>
         </ion-item-option>
         <ion-item-option class="ion-item-options-values">
-          <ion-icon slot="icon-only"[src]="svgIcons.employee" (click)="changeJob(user, roles.employee)">
+          <ion-icon slot="icon-only"[src]="svgIcons.employee" (click)="changeJob(slidingItem, user, roles.employee)">
           </ion-icon>
         </ion-item-option>
       </ion-item-options>

@@ -44,65 +44,69 @@
   </ion-item>
   <ion-row>
     <ion-col size="6" class="vertical-align">
-      <ion-row class="user-preferences-wrapper css-card-content">
-        <ion-col size="12">
-          <p class="messages-values">
-            <ion-icon slot="start" [src]="svgIcons.sended_msg"></ion-icon>
-            {{ sendedMessages?.length | shortNumberSuffix }}
-          </p>
-        </ion-col>
-      </ion-row>
-      <ion-card class="card-msg-values">
-        <ion-row>
-          <ion-col size="12" class="css-card-calification-col">
-            <ion-row  class="user-preferences-wrapper css-card-calification">
-              <ion-col size="6" class="calification-values">
-                <p class="p1">
-                  <ion-icon slot="start" style="color: rgb(206, 3, 3) !important" [name]="icons.happy"></ion-icon>
-                  {{addSentLikes() | shortNumberSuffix}}
-                </p>
-              </ion-col>
-              <ion-col size="6" class="calification-values">
-                <p class="p2">
-                  <ion-icon slot="start" style="color: rgb(206, 3, 3) !important" [name]="icons.sad"></ion-icon>
-                  {{andSentDislikes() | shortNumberSuffix}}
-                </p>
-              </ion-col>
-            </ion-row>
+      <div  (click)="gotoSendMessages()">
+        <ion-row class="user-preferences-wrapper css-card-content">
+          <ion-col size="12">
+            <p class="messages-values">
+              <ion-icon slot="start" [src]="svgIcons.sended_msg"></ion-icon>
+              {{ sendedMessages?.length | shortNumberSuffix }}
+            </p>
           </ion-col>
         </ion-row>
-      </ion-card>
+        <ion-card class="card-msg-values">
+          <ion-row>
+            <ion-col size="12" class="css-card-calification-col">
+              <ion-row  class="user-preferences-wrapper css-card-calification">
+                <ion-col size="6" class="calification-values">
+                  <p class="p1">
+                    <ion-icon slot="start" style="color: rgb(206, 3, 3) !important" [name]="icons.happy"></ion-icon>
+                    {{addSentLikes() | shortNumberSuffix}}
+                  </p>
+                </ion-col>
+                <ion-col size="6" class="calification-values">
+                  <p class="p2">
+                    <ion-icon slot="start" style="color: rgb(206, 3, 3) !important" [name]="icons.sad"></ion-icon>
+                    {{andSentDislikes() | shortNumberSuffix}}
+                  </p>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </div>
     </ion-col>
 
     <ion-col size="6" class="vertical-align">
-      <ion-row class="user-preferences-wrapper css-card-content">
-        <ion-col size="12">
-          <p class="messages-values">
-            <ion-icon slot="start" [src]="svgIcons.received_msg"></ion-icon>
-            {{ receivedMessages?.length | shortNumberSuffix }}
-          </p>
-        </ion-col>
-      </ion-row>
-      <ion-card class="card-msg-values">
-        <ion-row>
-          <ion-col size="12" class="css-card-calification-col">
-            <ion-row  class="user-preferences-wrapper css-card-calification">
-              <ion-col size="6" class="calification-values">
-                <p class="p1">
-                  <ion-icon slot="start" style="color: rgb(206, 3, 3) !important" [name]="icons.happy"></ion-icon>
-                  {{addReceivedLikes() | shortNumberSuffix}}
-                </p>
-              </ion-col>
-              <ion-col size="6" class="calification-values">
-                <p class="p2">
-                  <ion-icon slot="start" style="color: rgb(206, 3, 3) !important" [name]="icons.sad"></ion-icon>
-                  {{addReceivedDislikes() | shortNumberSuffix}}
-                </p>
-              </ion-col>
-            </ion-row>
+      <div  (click)="gotoReceivedMessages()">
+        <ion-row class="user-preferences-wrapper css-card-content">
+          <ion-col size="12">
+            <p class="messages-values">
+              <ion-icon slot="start" [src]="svgIcons.received_msg"></ion-icon>
+              {{ receivedMessages?.length | shortNumberSuffix }}
+            </p>
           </ion-col>
         </ion-row>
-    </ion-card>
+        <ion-card class="card-msg-values">
+          <ion-row>
+            <ion-col size="12" class="css-card-calification-col">
+              <ion-row  class="user-preferences-wrapper css-card-calification">
+                <ion-col size="6" class="calification-values">
+                  <p class="p1">
+                    <ion-icon slot="start" style="color: rgb(206, 3, 3) !important" [name]="icons.happy"></ion-icon>
+                    {{addReceivedLikes() | shortNumberSuffix}}
+                  </p>
+                </ion-col>
+                <ion-col size="6" class="calification-values">
+                  <p class="p2">
+                    <ion-icon slot="start" style="color: rgb(206, 3, 3) !important" [name]="icons.sad"></ion-icon>
+                    {{addReceivedDislikes() | shortNumberSuffix}}
+                  </p>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+      </ion-card>
+      </div>
     </ion-col>
   </ion-row>
   <ion-row>
