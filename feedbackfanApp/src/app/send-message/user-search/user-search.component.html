@@ -17,7 +17,7 @@
 </ion-header>
 <ion-content scrollEvents="true" appHideHeader [header]="header">
   <ion-list class="list-val" lines="none">
-    <ion-item *ngFor="let user of users | filterSearch: userSearch: 'name' : 'email'; let i = index"
+    <ion-item *ngFor="let user of users | filterSearch: userSearch: 'name' : 'email': 'role'; let i = index"
               [color]="(i % 2 === 0 && !user.isSelected) ? 'bgi' : (!user.isSelected ? 'unclicked': 'clicked')"
               button="true" 
               (click)="pressed(user)">

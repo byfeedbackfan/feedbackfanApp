@@ -3,13 +3,17 @@ import { AngularFirestore, DocumentReference, QueryDocumentSnapshot, DocumentDat
 import { SendMessageModel } from '../../send-message/send-message-model';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
 
-  constructor(private afs: AngularFirestore) { }
+  constructor(
+    private afs: AngularFirestore,
+    private datePipe: DatePipe
+    ) { }
   receivedMessages: SendMessageModel[];
   sentMessages: SendMessageModel[];
 
@@ -17,7 +21,10 @@ export class MessageService {
     return this.receivedMessages;
   }
 
-  setReceivedMessagesGlobal(messages: SendMessageModel[]) {
+  setReceivedMessagesGlobal(messages) {
+    messages.forEach(element => {
+      element.dateString = this.datePipe.transform(element.date.seconds * 1000, 'M/d/yy, h:mm a');
+    });
     this.receivedMessages = [];
     this.receivedMessages = messages;
   }
@@ -26,7 +33,10 @@ export class MessageService {
     return this.sentMessages;
   }
 
-  setSentMessagesGlobal(messages: SendMessageModel[]) {
+  setSentMessagesGlobal(messages) {
+    messages.forEach(element => {
+      element.dateString = this.datePipe.transform(element.date.seconds * 1000, 'M/d/yy, h:mm a');
+    });
     this.sentMessages = [];
     this.sentMessages = messages;
   }

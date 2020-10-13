@@ -17,10 +17,10 @@ ion-back-button {
 
 .login-content {
   --background: var(--page-background);
-  --padding-start: var(--page-margin);
-  --padding-end: var(--page-margin);
-  --padding-top: var(--page-margin);
-  --padding-bottom: var(--page-margin);
+  --padding-start: 10px !important;
+  --padding-end: 10px !important;
+  --padding-top: 10px !important;
+  --padding-bottom: 10px !important;
 
   .img-responsive {
     width: 45%;
@@ -32,6 +32,27 @@ ion-back-button {
     margin-top: 10%;
   }
 
+  .forgot-btn {
+    color: var(--ion-color-principal);
+    font-size: 13px;
+    margin: 0px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .signup-btn {
+    color: var(--ion-color-principal);
+    font-size: 13px;
+    margin: 0px;
+    text-align: end;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
   .logo-responsive {
     width: 30%;
     height: auto;
@@ -39,7 +60,7 @@ ion-back-button {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0%;
-    margin-top: 20%;
+    margin-top: 0%;
   }
 
   .text-synergy-footer {
@@ -87,7 +108,7 @@ ion-back-button {
 
   .login-btn {
     margin: calc(var(--page-margin) / 2) 0px;
-    margin-bottom: 10% !important;
+    margin-bottom: 3% !important;
     --background: var(--ion-color-principal);
   }
 
@@ -97,7 +118,9 @@ ion-back-button {
 
     .signup-btn {
       --color: var(--ion-color-secondary);
+      font-size: 13px;
       margin: 0px;
+      text-align: end;
 
       &:focus {
         outline: none;
@@ -107,8 +130,8 @@ ion-back-button {
   
   .forgot-password-row {
     align-items: center;
-    justify-content: center;
-    margin-bottom: -20px;
+    justify-content: flex-end;
+    margin-bottom: -30px;
   }
 
   .forgot-password-btn {

@@ -54,9 +54,6 @@ ion-back-button {
   color: white;
 }
 
-ion-item {
-  padding: 0 !important;
-}
 
 ion-title {
   color: white;
@@ -91,4 +88,9 @@ ion-title {
 .list-val {
   padding-top: 0px !important;
   padding-bottom: 0px !important;
+}
+
+ion-item {
+  padding: 0 !important;
+  --padding-start: 10px !important;
 }

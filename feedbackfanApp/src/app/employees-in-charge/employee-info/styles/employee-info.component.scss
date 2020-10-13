@@ -223,7 +223,8 @@ ion-back-button {
       margin: 0% 0% 0%;
       color:  var(--ion-color-principal);
       font-weight: bold;
-      text-align: left !important; 
+      text-align: left !important;
+      text-transform: capitalize;
       margin-left: 5%;
     }
 
@@ -607,6 +608,11 @@ ion-back-button {
 .item-profile-values {
   --padding-start: 0;
   --padding-end: 0;
-  --inner-padding-end: 0px !important;
+  --inner-padding-end: 4px !important;
   --detail-icon-color: white;
+}
+
+.row-content {
+  margin-bottom: 10px;
+  display: contents;
 }

@@ -11,7 +11,7 @@
 
 <ion-content scrollEvents="true" appHideHeader [header]="header">
   <ion-list class="list-val" lines="none">
-    <ion-item [color]="(i % 2 === 0) ? 'bgi' : 'unclicked'" (click)="goToUserProfile(user)"  button="true" *ngFor="let user of users | filterSearch: userSearch: 'name' : 'email'; let i = index">
+    <ion-item [color]="(i % 2 === 0) ? 'bgi' : 'unclicked'" (click)="goToUserProfile(user)"  button="true" *ngFor="let user of users | filterSearch: userSearch: 'name' : 'email' : 'role'; let i = index">
       <ion-avatar class="avatar">
         <app-image-shell class="user-image" [display]="'cover'" animation="spinner" [src]="user.image" alt="item image">
           <app-aspect-ratio [ratio]="{w:1, h:1}">

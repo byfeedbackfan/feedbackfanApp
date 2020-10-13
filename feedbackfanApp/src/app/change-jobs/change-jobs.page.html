@@ -12,7 +12,7 @@
 </ion-header>
 <ion-content scrollEvents="true" appHideHeader [header]="header">
   <ion-list class="list-val" lines="none">
-    <ion-item-sliding *ngFor="let user of users | filterSearch: userSearch: 'name' : 'email'; let i = index" #slidingItem>
+    <ion-item-sliding *ngFor="let user of users | filterSearch: userSearch: 'name' : 'email' : 'role'; let i = index" #slidingItem>
       <ion-item [color]="(i % 2 === 0) ? 'bgi' : 'unclicked'"  button="true">
         <ion-avatar class="avatar">
           <app-image-shell class="user-image" [display]="'cover'" animation="spinner" [src]="user.image" alt="item image">

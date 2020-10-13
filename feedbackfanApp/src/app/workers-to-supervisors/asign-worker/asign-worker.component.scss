@@ -26,6 +26,11 @@ app-image-shell.user-image {
   color: gray !important;
 }
 
+ion-item {
+  padding: 0 !important;
+  --padding-start: 10px !important;
+}
+
 ion-toolbar {
   --background: var(--ion-color-principal)
 }

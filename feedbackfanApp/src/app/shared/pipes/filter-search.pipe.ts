@@ -6,7 +6,7 @@ import { ProfileModel } from '../../profile/profile.model';
 })
 export class FilterSearchPipe implements PipeTransform {
 
-  transform(array: ProfileModel[], text: string, columnOne: string, columnTwo): any [] {
+  transform(array: ProfileModel[], text: string, columnOne: string, columnTwo, columnThree?, columnFour?): any [] {
     if ( text === '' ) {
       return array;
     }
@@ -15,7 +15,9 @@ export class FilterSearchPipe implements PipeTransform {
 
     return array.filter( item => {
       return item[columnOne].toLowerCase().includes(text) ||
-             item[columnTwo].toLowerCase().includes(text);
+             item[columnTwo].toLowerCase().includes(text) ||
+             item[columnThree]?.toLowerCase().includes(text) ||
+             item[columnFour]?.toLowerCase().includes(text);
     });
   }
 

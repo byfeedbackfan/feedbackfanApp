@@ -1,4 +1,4 @@
-<ion-content class="login-content">
+<ion-content class="login-content" style="--overflow: hidden !important; --overflow-y: hidden !important;">
   <ion-img src="../../../../assets/icons/feedMe-logo.png" class="img-responsive"></ion-img>
   <br/>
 
@@ -39,21 +39,31 @@
         <span>{{ submitError }}</span>
       </div>
     </div>
-    <ion-row class="forgot-password-row">
-      <ion-button class="forgot-password-btn" fill="clear" mode="ios" [routerLink]="['/auth/sign-up']">
-        {{ 'registrate' | translate}}
-      </ion-button>
-    </ion-row>
-    <ion-row class="forgot-password-row">
-      <ion-button class="forgot-password-btn" fill="clear" mode="ios" [routerLink]="['/auth/forgot-password']">
-        {{ 'olvide_mi_contrasena' | translate }}
-      </ion-button>
+    <ion-row class="forgot-password-row ion-align-items-start" style="padding-bottom: 80px;">
+      <ion-col style="padding: 0px;">
+        <a class="forgot-btn"
+           fill="clear"
+           [routerLink]="['/auth/forgot-password']"
+        >
+          {{ 'titulo_olvidar_contrasena' | translate }}
+        </a>
+      </ion-col>
+      <ion-col style="padding: 0px;">
+        <p class="signup-btn">
+          {{ 'registrate' | translate}}
+          <a
+            class="signup-btn"
+            fill="clear"
+            [routerLink]="['/auth/sign-up']"
+          >
+            {{'registrate_link' | translate}}
+          </a>
+        </p>
+      </ion-col>
     </ion-row>
     <ion-row>
       <ion-col size="12">
         <ion-img class="logo-responsive" src="../../../../assets/icons/synergy-logo.svg"></ion-img>
-      </ion-col>
-      <ion-col size="12">
         <ion-text>
           <p class="text-synergy-footer">{{ 'synergy_vision' | translate }}</p>
         </ion-text>
