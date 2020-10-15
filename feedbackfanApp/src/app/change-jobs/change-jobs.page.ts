@@ -58,7 +58,20 @@ export class ChangeJobsPage implements OnInit {
         user.workersInCharge = [];
       }
       this.userService.updateUser(user);
+
+      if (role === roles.employee) {
+        this.users.forEach(element => {
+          element.workersInCharge.forEach((workerId, index) => {
+            if (workerId === user.uid) {
+              element.workersInCharge.splice(index, 1);
+              this.userService.updateUser(element);
+            }
+          });
+        });
+      }
     }
+
+
   }
 
 }
