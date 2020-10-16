@@ -1,18 +1,18 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
     <ion-buttons slot="start">
     </ion-buttons>
-    <ion-title class="ion-title">{{ 'registro' | translate }}</ion-title>
+    <ion-title class="ion-title" mode="md">{{ 'registro' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="signup-content">
+<ion-content class="signup-content" style="--overflow-y: hidden; --overflow: hidden;">
   <ion-avatar class="img-responsive">
     <ion-img [src]="imageFilePath"></ion-img>
   </ion-avatar>
   <br>
   <div class="photo-values">
-    <ion-button (click)="takePhoto()" color="primary" shape="round" size="small">
+    <ion-button style="text-transform: none;" (click)="takePhoto()" color="primary" shape="round" size="small">
       {{ 'agregar_foto' | translate }}
     </ion-button>
   </div>
@@ -21,7 +21,7 @@
 
     <ion-list class="inputs-list" lines="full">
       <ion-item class="input-item">
-        <ion-icon slot="start" [ngStyle]="{'color': 'var(--ion-color-second)'}" name="person-outline"></ion-icon>
+        <ion-icon style="margin-left: 0px !important; margin-right: 5px;" slot="start" [ngStyle]="{'color': 'var(--ion-color-second)'}" name="person-outline"></ion-icon>
         <ion-input [placeholder]="'nombre' | translate" formControlName="name" clearInput autocapitalize="off"></ion-input>
       </ion-item>
       <div class="error-container">
@@ -34,7 +34,7 @@
       </div>  
 
       <ion-item class="input-item">
-        <ion-icon slot="start" [ngStyle]="{'color': 'var(--ion-color-second)'}" name="mail-outline"></ion-icon>
+        <ion-icon style="margin-left: 0px !important; margin-right: 5px !important;" slot="start" [ngStyle]="{'color': 'var(--ion-color-second)'}" name="mail-outline"></ion-icon>
         <ion-input type="email" [placeholder]="'correo' | translate" formControlName="email" clearInput autocapitalize="off" inputmode="email"></ion-input>
       </ion-item>
       <div class="error-container">
@@ -48,7 +48,7 @@
 
       <div formGroupName="matching_passwords">
         <ion-item class="input-item">
-          <ion-icon slot="start" [ngStyle]="{'color': 'var(--ion-color-second)'}" name="key-outline"></ion-icon>
+          <ion-icon style="margin-left: 0px !important; margin-right: 5px;" slot="start" [ngStyle]="{'color': 'var(--ion-color-second)'}" name="key-outline"></ion-icon>
           <app-show-hide-password>
             <ion-input type="password" [placeholder]="'contrasena' | translate" formControlName="password"></ion-input>
           </app-show-hide-password>
@@ -56,14 +56,14 @@
         <div class="error-container">
           <ng-container *ngFor="let validation of validation_messages.password">
             <div class="error-message" *ngIf="signupForm.get('matching_passwords').get('password').hasError(validation.type) && (signupForm.get('matching_passwords').get('password').dirty || signupForm.get('matching_passwords').get('password').touched)">
-              <ion-icon name="information-circle-outline"></ion-icon>
+              <ion-icon style="margin-left: 0px !important; margin-right: 0;" name="information-circle-outline"></ion-icon>
               <span>{{ validation.message }}</span>
             </div>
           </ng-container>
         </div>
 
         <ion-item class="input-item">
-          <ion-icon slot="start" [ngStyle]="{'color': 'var(--ion-color-second)'}" name="key-outline"></ion-icon>
+          <ion-icon style="margin-left: 0px !important; margin-right: 5px;" slot="start" [ngStyle]="{'color': 'var(--ion-color-second)'}" name="key-outline"></ion-icon>
           <app-show-hide-password>
             <ion-input type="password" [placeholder]="'confirmar_contrasena' | translate" formControlName="confirm_password"></ion-input>
           </app-show-hide-password>
@@ -80,14 +80,14 @@
       <div class="error-container">
         <ng-container *ngFor="let validation of validation_messages.matching_passwords">
           <div class="error-message" *ngIf="signupForm.get('matching_passwords').hasError(validation.type) && (signupForm.get('matching_passwords').get('confirm_password').dirty || signupForm.get('matching_passwords').get('confirm_password').touched)">
-            <ion-icon name="information-circle-outline"></ion-icon>
+            <ion-icon style="margin-left: 0px !important; margin-right: 5px;" name="information-circle-outline"></ion-icon>
             <span>{{ validation.message }}</span>
           </div>
         </ng-container>
       </div>
     </ion-list>
 
-    <ion-button class="signup-btn" size="small" type="submit" expand="block" [disabled]="!signupForm.valid || !imageFile">{{ 'registrarse' | translate}}</ion-button>
+    <ion-button style="text-transform: none;" class="signup-btn" size="small" type="submit" expand="block" [disabled]="!signupForm.valid || !imageFile">{{ 'registrarse' | translate}}</ion-button>
     <div class="error-container" *ngIf="submitError">
       <div class="error-message">
         <ion-icon name="information-circle-outline"></ion-icon>
@@ -95,7 +95,7 @@
       </div>
     </div>
     <ion-row class="other-auth-options-row">
-      <ion-button class="login-btn" fill="clear" [routerLink]="['/auth/sign-in']">
+      <ion-button style="text-transform: none;" class="login-btn" fill="clear" [routerLink]="['/auth/sign-in']">
         {{ 'ya_posee_cuenta' | translate }}
       </ion-button>
     </ion-row>

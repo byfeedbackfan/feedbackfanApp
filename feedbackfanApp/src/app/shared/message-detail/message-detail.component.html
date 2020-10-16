@@ -1,68 +1,91 @@
-<ion-header class="ion-no-border" #header>
-  <ion-toolbar>
+<ion-header class="ion-no-border" mode="ios" #header>
+  <ion-toolbar mode="ios">
     <ion-buttons slot="start">
       <ion-button (click)="closeModal()">
         <ion-icon slot="start" name="arrow-back-outline" class="icon-only"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>
-      {{ 'detalle_mensaje' | translate }}
+    <ion-title mode="md" style="padding: 0 !important">
+      {{ messageDetail.title }}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="send-message-content" scrollEvents="true" appHideHeader [header]="header">
     <ion-list class="inputs-list" lines="none">
-      <ion-item class="input-item">
-        <h2 class="title-values">
-          {{ messageDetail.title }}
-        </h2>
-      </ion-item>
-      <ion-item class="input-item">
-        <ion-label >
-          <p class="date-values">
-            {{ messageDetail.date.seconds * 1000 | date : 'short' }}
-          </p>
-          <h4 class="from-values">
-            <ion-icon slot="start" class="locker-color" [name]="icons.lock_closed_sharp" *ngIf="messageDetail.isPublishableSender === false">
-            </ion-icon>
-            <ion-icon slot="start" [name]="icons.lock_open_sharp" *ngIf="messageDetail.isPublishableSender === true">
-            </ion-icon>
-            {{ messageDetail.from }}
-          </h4>
-          <h4 class="to-values">
-            <ion-icon slot="start" class="locker-color" [name]="icons.lock_closed_sharp" *ngIf="messageDetail.isPublishableReceiver === false">
-            </ion-icon>
-            <ion-icon slot="start" [name]="icons.lock_open_sharp" *ngIf="messageDetail.isPublishableReceiver === true">
-            </ion-icon>
-            {{ messageDetail.to }}
-          </h4>
-        </ion-label>
-      </ion-item>
-      <ion-item  class="publishable-values">
-          <ion-row>
-            <ion-col size="6" class="calification-values">
-              <p class="p1">
-                <ion-icon slot="start" [name]="icons.happy" [style.color]="checkifLiked(messageDetail) ? 'rgb(206, 3, 3)' : 'rgb(90, 89, 89)'"></ion-icon>
-                {{messageDetail.likes || '0' | shortNumberSuffix}}   
-              </p>
-            </ion-col>
-            <ion-col size="6" class="calification-values">
-              <p class="p2">
-                <ion-icon slot="start" [name]="icons.sad" [style.color]="checkifDisliked(messageDetail) ? 'rgb(206, 3, 3)' : 'rgb(90, 89, 89)'"></ion-icon>
-                {{messageDetail.dislikes || '0' | shortNumberSuffix}}
-              </p>
-            </ion-col>
-          </ion-row>
-          <ion-label (click)="changePublishableMessage()" class="div-toggle">
-            <p class="label-size" *ngIf="messageDetail.uidReceiver === userLogged.uid"> {{ 'valido_para_publicar' | translate}} </p>
-            <ion-toggle class="toggle-options" mode="ios" slot="end" [(ngModel)]="messageDetail.isPublishableReceiver" *ngIf="messageDetail.uidReceiver === userLogged.uid">
-            </ion-toggle>
+        <ion-item class="input-item">
+          <h2 class="title-values">
+            {{ messageDetail.title }}
+          </h2>
+        </ion-item>
+        <ion-item class="input-item">
+          <ion-label >
+            <ion-row>
+              <ion-col size="7" style="padding: 0 !important;">
+                <p class="date-values">
+                  {{ messageDetail.date.seconds * 1000 | date : 'short' }}
+                </p>
+              </ion-col>
+              <ion-col size="5" class="col-chip-values">
+                <ion-row>
+                  <ion-col size="6" class="calification-values" style="padding: 0 !important; margin: 0 !important;">
+                    <p class="p1">
+                      <ion-icon slot="start" [name]="icons.happy" [style.color]="checkifLiked(messageDetail) ? 'rgb(206, 3, 3)' : 'rgb(90, 89, 89)'"></ion-icon>
+                      {{messageDetail.likes || '0' | shortNumberSuffix}}   
+                    </p>
+                  </ion-col>
+                  <ion-col size="6" class="calification-values" style="padding: 0 !important; margin: 0 !important;">
+                    <p class="p2">
+                      <ion-icon class="icon-heart" slot="start" [name]="icons.sad" [style.color]="checkifDisliked(messageDetail) ? 'rgb(206, 3, 3)' : 'rgb(90, 89, 89)'"></ion-icon>
+                      {{messageDetail.dislikes || '0' | shortNumberSuffix}}
+                    </p>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+            <h4 class="from-values" style="color: gray;">
+              <ion-icon class="icon-values" style="color: var(--ion-color-second) !important;" [src]="svgIcons.sended_msg" ></ion-icon>
+              <ion-icon style="color: var(--ion-color-principal) !important;" slot="start" class="locker-color" [name]="icons.lock_closed_sharp" *ngIf="messageDetail.isPublishableSender === false">
+              </ion-icon>
+              <ion-icon style="color: var(--ion-color-principal) !important;" slot="start" [name]="icons.lock_open_sharp" *ngIf="messageDetail.isPublishableSender === true">
+              </ion-icon>
+              {{ messageDetail.from }}
+            </h4>
+            <h4 class="to-values" style="color: gray;">
+              <ion-icon class="icon-values" style="color: var(--ion-color-second) !important;" [src]="svgIcons.received_msg" ></ion-icon>
+              <ion-icon style="color: var(--ion-color-principal) !important;" slot="start" class="locker-color" [name]="icons.lock_closed_sharp" *ngIf="messageDetail.isPublishableReceiver === false">
+              </ion-icon>
+              <ion-icon style="color: var(--ion-color-principal) !important;" slot="start" [name]="icons.lock_open_sharp" *ngIf="messageDetail.isPublishableReceiver === true">
+              </ion-icon>
+              {{ messageDetail.to }}
+            </h4>
           </ion-label>
-      </ion-item>
-      <ion-item>
-        <div [innerHTML]="messageDetail.message | safeHtml">
-        </div>
-      </ion-item>
+        </ion-item>
+        <ion-item  class="publishable-values" lines="full" >
+            <ion-button class="icon-buttons" fill="clear" (click)="changePublishableMessage()" *ngIf="messageDetail.uidReceiver === userLogged.uid  || messageDetail.uidSender === userLogged.uid" class="div-toggle">
+              <ion-icon  style="color: var(--ion-color-principal) !important;" slot="start" class="locker-color" [name]="icons.lock_closed_sharp" *ngIf="(messageDetail.isPublishableSender === false || messageDetail.isPublishableReceiver === false) && (messageDetail.uidReceiver === userLogged.uid || messageDetail.uidSender === userLogged.uid)">
+              </ion-icon>
+              <ion-icon style="color: var(--ion-color-principal) !important;" slot="start" [name]="icons.lock_open_sharp" *ngIf="(messageDetail.isPublishableSender === true &&  messageDetail.isPublishableReceiver === true) && (messageDetail.uidReceiver === userLogged.uid || messageDetail.uidSender === userLogged.uid)">
+              </ion-icon>
+              <p class="label-size" *ngIf="(messageDetail.uidSender === userLogged.uid) && (messageDetail.isPublishableSender === true)"> {{ 'valido_para_publicar_emisor' | translate}} </p>
+              <p class="label-size" *ngIf="(messageDetail.uidReceiver === userLogged.uid) && (messageDetail.isPublishableReceiver === true)"> {{ 'valido_para_publicar_receptor' | translate}} </p>
+              <p class="label-size"*ngIf="(messageDetail.uidSender === userLogged.uid) && (messageDetail.isPublishableSender === false)"> {{ 'no_valido_para_publicar' | translate}} </p>
+              <p class="label-size"*ngIf="(messageDetail.uidReceiver === userLogged.uid) && (messageDetail.isPublishableReceiver === false)"> {{ 'no_valido_para_publicar' | translate}} </p>
+            </ion-button>
+            <ion-button class="icon-buttons" fill="clear" *ngIf="messageDetail.uidReceiver !== userLogged.uid  && messageDetail.uidSender !== userLogged.uid" class="div-toggle">
+              <ion-icon  style="color: gray !important;" slot="start" class="locker-color" [name]="icons.lock_closed_sharp" *ngIf="(messageDetail.isPublishableSender === false || messageDetail.isPublishableReceiver === false) && (messageDetail.uidReceiver !== userLogged.uid && messageDetail.uidSender !== userLogged.uid)">
+              </ion-icon>
+              <ion-icon style="color: gray !important;" slot="start" [name]="icons.lock_open_sharp" *ngIf="(messageDetail.isPublishableSender === true &&  messageDetail.isPublishableReceiver === true) && (messageDetail.uidReceiver !== userLogged.uid && messageDetail.uidSender !== userLogged.uid)">
+              </ion-icon>
+              <p class="label-size" *ngIf="(messageDetail.uidReceiver !== userLogged.uid || messageDetail.uidSender !== userLogged.uid) && (messageDetail.isPublishableReceiver === true && messageDetail.isPublishableSender === true)"> {{ 'valido_para_publicar_receptor' | translate}} </p>
+              <p class="label-size"*ngIf="(messageDetail.uidReceiver !== userLogged.uid && messageDetail.uidSender !== userLogged.uid) && (messageDetail.isPublishableSender === false || messageDetail.isPublishableReceiver === false)"> {{ 'no_valido_para_publicar' | translate}} </p>
+            </ion-button>
+        </ion-item>
+  </ion-list>
+  <ion-list lines="none">
+    <ion-item>
+      <div [innerHTML]="messageDetail.message | safeHtml">
+      </div>
+    </ion-item>
   </ion-list>
 </ion-content>

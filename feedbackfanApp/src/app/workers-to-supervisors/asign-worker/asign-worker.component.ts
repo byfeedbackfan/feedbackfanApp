@@ -40,6 +40,8 @@ export class AsignWorkerComponent implements OnInit {
   }
 
   async closeModal() {
+    this.usersWorkers = [];
+    this.workers = [];
     this.modalController.dismiss();
   }
 

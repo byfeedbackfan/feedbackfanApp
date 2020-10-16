@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../core/services/user.service';
 import { icons } from '../../configuration/icons';
 import { Plugins } from '@capacitor/core';
+import { EditorChangeContent, EditorChangeSelection } from 'ngx-quill';
 
 const { Storage } = Plugins;
 
@@ -35,6 +36,8 @@ export class SendMessagePage implements OnInit {
   isPublishable: boolean;
   messagesToStorage = [];
   icons = icons;
+  blured = false
+  focused = false
 
   constructor(
     public translate: TranslateService,
@@ -65,8 +68,8 @@ export class SendMessagePage implements OnInit {
   ionViewWillEnter() {
     Storage.get({key: 'userCredentials'}).then(data => {
       this.user = JSON.parse(data.value);
+      this.isPublishable = this.user.allMessagesPublic;
     });
-    this.isPublishable = this.user.allMessagesPublic;
   }
 
   async ngOnInit() {
@@ -92,25 +95,17 @@ export class SendMessagePage implements OnInit {
     this.submitError = null;
   }
 
-  goToMessagesSendedPage() {
-    this.ngZone.run(async () => {
-      // Get previous URL from our custom History Helper
-      // If there's no previous page, then redirect to profile
-      // const previousUrl = this.historyHelper.previousUrl || 'firebase/auth/profile';
-      const previousUrl = 'app/sended-message';
-
-      // No need to store in the navigation history the sign-in page with redirect params (it's justa a mandatory mid-step)
-      // Navigate to profile and replace current url with profile
-      this.router.navigate([previousUrl], { replaceUrl: true });
-    });
-  }
-
   async presentSuccessfulMessage() {
     const toast = await this.toastController.create({
       message: this.languageService.getTerm('mensaje_enviado_exitosamente'),
-      duration: 2000
+      duration: 2000,
+      color: 'light'
     });
     toast.present();
+  }
+
+  changePublish() {
+    this.isPublishable = !this.isPublishable;
   }
 
   async sendedMessage() {
@@ -137,7 +132,8 @@ export class SendMessagePage implements OnInit {
       });
     });
     await this.presentSuccessfulMessage();
-    this.goToMessagesSendedPage();
+    this.sendMessageForm.setValue({title: '', info: ''});
+    this.usersSelected = [];
   }
 
   sendMessage() {
@@ -157,5 +153,4 @@ export class SendMessagePage implements OnInit {
       this.usersSelected = data.users;
     }
   }
-
 }

@@ -9,7 +9,7 @@
       {{'asigna_trabajador' | translate}}
     </ion-title>
   </ion-toolbar>
-  <ion-searchbar mode="ios" color="light"
+  <ion-searchbar mode="ios" color="light" style="background-color: white !important;"
                    [placeholder]="'buscar' | translate" type="decimal" 
                    [debounce]="250"
                    (ionChange)="searchUser($event)">
@@ -17,10 +17,10 @@
 </ion-header>
 
 <ion-content scrollEvents="true" appHideHeader [header]="header">
-  <ion-list lines="none">
-    <ion-item *ngFor="let user of workers | filterSearch: userSearch: 'name' : 'email'" 
+  <ion-list class="list-val" lines="none">
+    <ion-item *ngFor="let user of workers | filterSearch: userSearch: 'name' : 'email'; let i = index" 
               button="true"
-              [color]="!user.isSelected ? 'unclicked': 'clicked'"
+              [color]="(i % 2 === 0 && !user.isSelected) ? 'bgi' : (!user.isSelected ? 'unclicked': 'clicked')"
               (click)="pressed(user)">
       <ion-avatar class="avatar">
         <app-image-shell class="user-image" [display]="'cover'" animation="spinner" [src]="user.image" alt="item image">

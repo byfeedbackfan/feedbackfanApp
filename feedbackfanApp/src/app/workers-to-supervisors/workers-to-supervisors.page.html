@@ -4,7 +4,7 @@
       {{'selecciona_supervisor' | translate}}
     </ion-title>
   </ion-toolbar>
-  <ion-searchbar mode="ios" color="light"
+  <ion-searchbar mode="ios" color="light" style="background-color: white !important;"
                    [placeholder]="'buscar' | translate" type="decimal" 
                    [debounce]="250"
                    (ionChange)="searchUser($event)">
@@ -12,10 +12,11 @@
 </ion-header>
 
 <ion-content scrollEvents="true" appHideHeader [header]="header">
-  <ion-list lines="none">
-    <ion-item *ngFor="let user of supervisors | filterSearch: userSearch: 'name' : 'email'" 
+  <ion-list class="list-val" lines="none">
+    <ion-item *ngFor="let user of supervisors | filterSearch: userSearch: 'name' : 'email'; let i = index" 
               button="true" 
-              (click)="goToSetWorkers(user)">
+              (click)="goToSetWorkers(user)"
+              [color]="(i % 2 === 0) ? 'bgi' : 'unclicked'">
       <ion-avatar class="avatar">
         <app-image-shell class="user-image" [display]="'cover'" animation="spinner" [src]="user.image" alt="item image">
           <app-aspect-ratio [ratio]="{w:1, h:1}">

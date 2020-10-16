@@ -9,16 +9,16 @@
       {{ 'buscar_personas' | translate }}
     </ion-title>
   </ion-toolbar>
-  <ion-searchbar mode="ios" color="light"
+  <ion-searchbar mode="ios" color="light" style="background-color: white !important;"
                    [placeholder]="'buscar' | translate" type="decimal" 
                    [debounce]="250"
                    (ionChange)="searchUser($event)">
   </ion-searchbar>
 </ion-header>
 <ion-content scrollEvents="true" appHideHeader [header]="header">
-  <ion-list lines="none">
-    <ion-item *ngFor="let user of users | filterSearch: userSearch: 'name' : 'email'" 
-              [color]="!user.isSelected ? 'unclicked': 'clicked'" 
+  <ion-list class="list-val" lines="none">
+    <ion-item *ngFor="let user of users | filterSearch: userSearch: 'name' : 'email': 'role'; let i = index"
+              [color]="(i % 2 === 0 && !user.isSelected) ? 'bgi' : (!user.isSelected ? 'unclicked': 'clicked')"
               button="true" 
               (click)="pressed(user)">
       <ion-avatar class="avatar">

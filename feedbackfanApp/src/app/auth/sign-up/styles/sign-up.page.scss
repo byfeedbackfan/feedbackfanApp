@@ -33,7 +33,7 @@ ion-back-button {
 }
 
 .img-responsive {
-  zoom: 3.0;
+  zoom: 2.5;
   display: block;
   margin-top: 0;
   margin-left: auto;
@@ -45,10 +45,10 @@ ion-back-button {
 // Note:  All the CSS variables defined below are overrides of Ionic elements CSS Custom Properties
 .signup-content {
   --background: var(--page-background);
-  --padding-start: var(--page-margin);
-  --padding-end: var(--page-margin);
-  --padding-top: var(--page-margin);
-  --padding-bottom: var(--page-margin);
+  --padding-start: 10px !important;
+  --padding-end: 10px !important;
+  --padding-top: 10px !important;
+  --padding-bottom: 10px !important;
 
   .auth-title {
     color: var(--ion-color-dark);

@@ -19,7 +19,12 @@ app-image-shell.user-image {
 .user-role {
   text-transform: capitalize;
   font-weight: bold;
-  color: #3b69ff !important;
+  color: var(--ion-color-principal) !important;
+}
+
+ion-item {
+  padding: 0 !important;
+  --padding-start: 10px !important;
 }
 
 .user-mail {
@@ -71,4 +76,9 @@ ion-title {
   p {
     margin: 0 !important;
   }
+}
+
+.list-val {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
 }

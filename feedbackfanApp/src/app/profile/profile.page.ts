@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { ProfileModel } from './profile.model';
 
 import { Plugins } from '@capacitor/core';
@@ -15,7 +15,7 @@ import { MessageService } from '../core/services/message.service';
 import { SendMessageModel } from '../send-message/send-message-model';
 import { MessageDetailComponent } from '../shared/message-detail/message-detail.component';
 import { icons, svgIcons } from '../../configuration/icons';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 const { Storage } = Plugins;
 
@@ -49,6 +49,7 @@ export class ProfilePage implements OnInit {
   subscriptions: Subscription;
 
   constructor(
+    public router: Router,
     public translate: TranslateService,
     public languageService: LanguageService,
     private profileResolver: ProfileResolver,
@@ -56,23 +57,36 @@ export class ProfilePage implements OnInit {
     private modalController: ModalController,
     private messageService: MessageService,
     private route: ActivatedRoute,
+    private ngZone: NgZone,
   ) {}
 
-  async ngOnInit() {
-    // this.subscriptions = this.route.data.subscribe();
-    // this.getTranslations();
-    // this.translate.onLangChange.subscribe(() => {
-    //   this.getTranslations();
-    // });
-    // this.profileResolver.resolve().then((user) => {
-    //   this.user = user;
-    //   this.receivedMessages = this.messageService.getReceivedMessagesGlobal();
-    //   this.sendedMessages = this.messageService.getSentMessagesGlobal();
-    //   this.mergeReceivedAndSendedMessages(this.receivedMessages, this.sendedMessages);
-    // }).catch(err => {
-    //   this.submitError = err;
-    // });
+  gotoSendMessages() {
+    this.ngZone.run(async () => {
+      // Get previous URL from our custom History Helper
+      // If there's no previous page, then redirect to profile
+      // const previousUrl = this.historyHelper.previousUrl || 'firebase/auth/profile';
+      const previousUrl = 'app/sended-message';
+
+      // No need to store in the navigation history the sign-in page with redirect params (it's justa a mandatory mid-step)
+      // Navigate to profile and replace current url with profile
+      this.router.navigate([previousUrl], { replaceUrl: true });
+    });
   }
+
+  gotoReceivedMessages() {
+    this.ngZone.run(async () => {
+      // Get previous URL from our custom History Helper
+      // If there's no previous page, then redirect to profile
+      // const previousUrl = this.historyHelper.previousUrl || 'firebase/auth/profile';
+      const previousUrl = 'app/received-message';
+
+      // No need to store in the navigation history the sign-in page with redirect params (it's justa a mandatory mid-step)
+      // Navigate to profile and replace current url with profile
+      this.router.navigate([previousUrl], { replaceUrl: true });
+    });
+  }
+
+  ngOnInit(){}
 
   async ionViewWillEnter() {
     await Storage.get({key: 'userCredentials'}).then(data => {

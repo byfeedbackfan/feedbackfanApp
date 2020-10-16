@@ -54,6 +54,11 @@ export class UserRankingPage implements OnInit {
     },
   ];
 
+  myMessages = {
+    emptyMessage: ' ',
+    totalMessage: 'Usuarios'
+  };
+
   constructor(
     private messageService: MessageService,
     private userService: UserService,

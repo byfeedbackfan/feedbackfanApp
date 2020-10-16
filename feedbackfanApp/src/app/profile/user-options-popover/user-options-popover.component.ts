@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from 'src/app/core/language/language.service';
 import { UserService } from '../../core/services/user.service';
 import { Subscription } from 'rxjs';
+import { icons } from '../../../configuration/icons';
 
 const { Storage } = Plugins;
 
@@ -21,6 +22,7 @@ export class UserOptionsPopoverComponent implements OnInit {
   isPublicable = this.user.allMessagesPublic;
   translations;
   subscriptions: Subscription;
+  icons = icons;
 
   constructor(
     public translate: TranslateService,
@@ -62,7 +64,7 @@ export class UserOptionsPopoverComponent implements OnInit {
   }
 
   async changePublishableProperty() {
-    this.user.allMessagesPublic = this.isPublicable;
+    this.user.allMessagesPublic = !this.user.allMessagesPublic;
     await this.userService.updateUser(this.user).then(async () => {
       await Storage.set({key: 'userCredentials', value: JSON.stringify(this.user)});
     });

@@ -4,16 +4,16 @@
       {{'cambiar_cargos' | translate}}
     </ion-title>
   </ion-toolbar>
-  <ion-searchbar mode="ios" color="light" class="seachbar"
+  <ion-searchbar mode="ios" color="light" class="seachbar" style="background-color: white !important;"
                    [placeholder]="'buscar' | translate" type="decimal" 
                    [debounce]="250"
                    (ionChange)="searchUser($event)">
   </ion-searchbar>
 </ion-header>
 <ion-content scrollEvents="true" appHideHeader [header]="header">
-  <ion-list lines="none">
-    <ion-item-sliding *ngFor="let user of users | filterSearch: userSearch: 'name' : 'email'">
-      <ion-item  button="true">
+  <ion-list class="list-val" lines="none">
+    <ion-item-sliding *ngFor="let user of users | filterSearch: userSearch: 'name' : 'email' : 'role'; let i = index" #slidingItem>
+      <ion-item [color]="(i % 2 === 0) ? 'bgi' : 'unclicked'"  button="true">
         <ion-avatar class="avatar">
           <app-image-shell class="user-image" [display]="'cover'" animation="spinner" [src]="user.image" alt="item image">
             <app-aspect-ratio [ratio]="{w:1, h:1}">
@@ -34,11 +34,11 @@
       </ion-item>
       <ion-item-options side="end">
         <ion-item-option class="ion-item-options-values">
-          <ion-icon slot="icon-only" class="supervisor-icon" [src]="svgIcons.supervisor_to_worker" (click)="changeJob(user, roles.supervisor)">
+          <ion-icon slot="icon-only" class="supervisor-icon" [src]="svgIcons.supervisor_to_worker" (click)="changeJob(slidingItem ,user, roles.supervisor)">
           </ion-icon>
         </ion-item-option>
         <ion-item-option class="ion-item-options-values">
-          <ion-icon slot="icon-only"[src]="svgIcons.employee" (click)="changeJob(user, roles.employee)">
+          <ion-icon slot="icon-only"[src]="svgIcons.employee" (click)="changeJob(slidingItem, user, roles.employee)">
           </ion-icon>
         </ion-item-option>
       </ion-item-options>

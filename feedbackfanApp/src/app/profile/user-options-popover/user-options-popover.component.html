@@ -1,20 +1,34 @@
+<div class="ion-popover">
 <ion-col size="5">
   <ion-row>
-    <ion-col size="12">
-      <ion-item>
-        <p class="laber-size"> {{ 'mensajes_siempre_publicos' | translate}}</p>
-        <ion-toggle class="toggle-options" slot="end" [(ngModel)]="isPublicable" (ionChange)="changePublishableProperty()"></ion-toggle>
+    <ion-col size="12" class="col-col-values">
+      <ion-item class="item-values" lines="none">
+        <p class="label-size"> Opciones </p>
       </ion-item>
     </ion-col>
   </ion-row>
   <ion-row>
-    <ion-col size="12">
-      <ion-item>
+    <ion-col size="12" class="col-col-values">
+      <ion-item color="bgi" class="item-values" lines="none">
+        <ion-button (click)="changePublishableProperty()" expand="block" fill="clear" class="button-values" shape="round">
+          <ion-icon style="color: var(--ion-color-principal) !important;" [name]="user.allMessagesPublic ? icons.lock_open_sharp : icons.lock_closed_sharp">
+          </ion-icon>
+        </ion-button>
+        <p class="label-size"> {{ 'mensajes_siempre_publicos' | translate}}</p>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12" class="col-col-values">
+      <ion-item class="item-values" lines="none">
         <ion-button size="small" class="icon-only edit-btn" fill="clear" mode="ios" (click)="signOut()">
           <ion-icon class="edit-btn" slot="start" name="log-out-sharp"></ion-icon>
-          {{'cerrar_sesion' | translate}}
+          <div class="div-styles">
+            {{'cerrar_sesion' | translate}}
+          </div>
         </ion-button>
       </ion-item>
     </ion-col>
   </ion-row>
 </ion-col>
+</div>

@@ -20,7 +20,7 @@
 }
 
 .img-responsive {
-  zoom: 3.0;
+  zoom: 2.5;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -69,6 +69,17 @@
 
   .signup-btn {
     margin: calc(var(--page-margin) / 2) 0px;
+    text-transform: none;
+    --background: #1967b0;
+  }
+
+  .buttonss {
+    --background: #1967b0;
+    text-transform: none;
+  }
+
+  .toolbar {
+    --background: var(--ion-color-principal)
   }
 
   .other-auth-options-row {
@@ -99,7 +110,7 @@ ion-toolbar {
 
 .ion-title {
   color: white;
-  padding: 10px !important;
+  padding: 0px !important;
 }
 
 app-image-shell.user-image {

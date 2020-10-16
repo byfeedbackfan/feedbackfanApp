@@ -1,38 +1,40 @@
 <ion-header #header>
-  <ion-toolbar mode="md">
+  <ion-toolbar mode="ios">
     <ion-title class="ion-title" mode="md">{{'perfil' | translate}}</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content class="user-content" scrollEvents="true" appHideHeader [header]="header">
-  <ion-row>
-    <ion-col size="4" class="ion-align-self-end img-col">
-      <ion-row>
-        <ion-col class="img-col">
-          <ion-avatar class="img-responsive">
-            <app-image-shell class="user-image" [display]="'cover'" animation="spinner" [src]="user?.image" [alt]="'item image'">
-              <app-aspect-ratio [ratio]="{w:1, h:1}">
-              </app-aspect-ratio>
-            </app-image-shell>
-          </ion-avatar>
-        </ion-col>
-      </ion-row>
-    </ion-col>
-    <ion-col size="8" class="vertical-col-align">
-      <ion-col size="12" class="user-preferences-wrapper ion-col-userdata center-in-col">
-        <p class="preference-value">
-          <app-text-shell [data]="user?.name"></app-text-shell>
-        </p>
-        <div class="preference-email">
-          <p>
-            {{user?.email}}
-          </p>
-        </div>
-        <p class="preference-name">
-          <app-text-shell [data]="user?.role"></app-text-shell>
-        </p>
+  <ion-item lines="none" mode="md" detail="true" class="item-profile-values">
+    <ion-row class="row-content">
+      <ion-col size="3" class="ion-align-self-end img-col">
+        <ion-row>
+          <ion-col class="img-col">
+            <ion-avatar class="img-responsive">
+              <app-image-shell class="user-image" [display]="'cover'" animation="spinner" [src]="user?.image" [alt]="'item image'">
+                <app-aspect-ratio [ratio]="{w:1, h:1}">
+                </app-aspect-ratio>
+              </app-image-shell>
+            </ion-avatar>
+          </ion-col>
+        </ion-row>
       </ion-col>
-    </ion-col>
-  </ion-row>
+      <ion-col size="9" class="vertical-col-align">
+        <ion-col size="12" class="user-preferences-wrapper ion-col-userdata center-in-col">
+          <p class="preference-value">
+            <app-text-shell [data]="user?.name"></app-text-shell>
+          </p>
+          <div class="preference-email">
+            <p>
+              {{user?.email}}
+            </p>
+          </div>
+          <p class="preference-name">
+            <app-text-shell [data]="user?.role"></app-text-shell>
+          </p>
+        </ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-item>
   <ion-row>
     <ion-col size="6" class="vertical-align">
       <ion-row class="user-preferences-wrapper css-card-content">
@@ -104,14 +106,14 @@
   </ion-row>
   <ion-row >
     <ion-col size="12" class="col-data-values">
-      <ion-list lines="full" *ngIf="publicMessages.length !== 0 || publicMessages.length !== null">
+      <ion-list class="list-val" lines="full" *ngIf="publicMessages.length !== 0 || publicMessages.length !== null">
         <ion-item-sliding *ngFor="let message of publicMessages ; let i = index" [attr.data-index]="i" #slidingItem>
-          <ion-item class="item" [color]="i %2 === 0 ? 'bgi' : 'unclicked'" button="true" (click)="openMessage(message)" *ngIf="message.isPublishableReceiver === true && message.isPublishableSender === true">
+          <ion-item detail="false" class="item" [color]="i %2 === 0 ? 'bgi' : 'unclicked'" button="true" (click)="openMessage(message)" *ngIf="message.isPublishableReceiver === true && message.isPublishableSender === true">
             <ion-avatar class="img-message-css" slot="start">
               <ion-icon [src]="svgIcons.received_msg" *ngIf="message.uidReceiver === user.uid" ></ion-icon>
               <ion-icon [src]="svgIcons.sended_msg" *ngIf="message.uidSender === user.uid" ></ion-icon>
             </ion-avatar>
-            <ion-label>
+            <ion-label style="margin-top: 5px !important; margin-bottom: 5px !important;">
               <ion-row>
                 <ion-col size="12" class="col-data-values">
                   <ion-text>

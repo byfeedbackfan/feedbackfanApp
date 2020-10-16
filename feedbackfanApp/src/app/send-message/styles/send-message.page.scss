@@ -5,15 +5,15 @@
 }
 
 .label-size {
-  margin-left: 27% !important;
   color: dimgray;
+  padding-left: 3px !important;
 }
 
 .toggle-options {
   --background: #7c7c7c;
   --background-checked: #678bff;
   --handle-background: #b4b3b3;
-  --handle-background-checked: #144afa;
+  --handle-background-checked: var(--ion-color-principal);
   --handle-spacing: 0px !important;
   padding: 0 !important;
 }
@@ -23,18 +23,21 @@
 }
 
 .publishable-values {
-  --inner-padding-start: 70px !important;
-
+  --inner-padding-start: 0px !important;
+  --padding-start: 0 !important;
   p {
     font-size: small !important;
     margin-bottom: 0 !important;
   }
 
   ion-toggle {
-    padding-right: 12px !important;
     height: 25px !important;
     width: 45px !important;
   }
+}
+
+.button-values {
+  text-transform: none !important;
 }
 
 .editor-values-col {
@@ -49,21 +52,16 @@
   padding-left: 20px !important;
   padding-right: 20px !important;
   --background: var(--ion-color-principal);
+  text-transform: none !important;
 }
 
+
 .ql-editor {
-  -webkit-user-select: auto !important;
-  -khtml-user-select: auto !important;
-  -moz-user-select: auto !important;
-  -ms-user-select: auto !important;
-  -o-user-select: auto !important;
-  user-select: auto !important;
-  --background: #7c7c7c;
-  --background-checked: #678bff;
-  --handle-background: #b4b3b3;
-  --handle-background-checked: #144afa;
-  --handle-spacing: 0px !important;
   padding: 0 !important;
+
+  .ql-container{
+    height: 125px !important;
+  }
 }
 
 .send-message-content {
@@ -75,16 +73,18 @@
 
   .inputs-list {
     --ion-item-background: var(--page-background);
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
   
     .input-item {
-      padding-left: 20px !important;
-      padding-right: 20px !important;
+      padding-left: 0px !important;
+      padding-right: 0px !important;
       --padding-start: 0px;
       --padding-end: 0px;
       --inner-padding-end: 0px;
   
       ion-icon {
-        margin-left: 2%;
+        margin-left: 12px;
         margin-right: 5px;
       }
     }
@@ -117,4 +117,10 @@ ion-toolbar {
 .ion-title {
   color: white;
   padding-left: 10px !important;
+}
+
+.div-class {
+  position: relative;
+  display: grid;
+  top: 12px;
 }

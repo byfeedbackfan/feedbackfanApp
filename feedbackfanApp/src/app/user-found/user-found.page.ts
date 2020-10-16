@@ -20,6 +20,7 @@ const { Storage } = Plugins;
 })
 export class UserFoundPage implements OnInit {
   user: ProfileModel;
+  userLogged: ProfileModel;
   publicMessages = [];
   sendedMessages = [];
   receivedMessages = [];
@@ -34,6 +35,9 @@ export class UserFoundPage implements OnInit {
     private route: ActivatedRoute,
   ) {
     this.user = this.userService.getUserProfile();
+    Storage.get({key: 'userCredentials'}).then(user => {
+      this.userLogged = JSON.parse(user.value);
+    });
 
   }
 
@@ -69,7 +73,7 @@ export class UserFoundPage implements OnInit {
       componentProps: {
         messages: this.publicMessages,
         messageDetail: message,
-        userLogged: this.user,
+        userLogged: this.userLogged,
       }
     });
 
@@ -120,6 +124,7 @@ export class UserFoundPage implements OnInit {
     let Irec = 0;
     let Isend = 0;
     let i = 0;
+    const messagesPublic = [];
 
     while (Irec < receivedMessages?.length && Isend < sendedMessages?.length) {
       if ( receivedMessages[Irec].date.seconds > sendedMessages[Isend].date.seconds ) {
@@ -140,6 +145,13 @@ export class UserFoundPage implements OnInit {
     while (Isend < sendedMessages?.length) {
       this.publicMessages[i++] = sendedMessages[Isend++];
     }
+
+    this.publicMessages.forEach((message, index) => {
+      if (message.isPublishableSender && message.isPublishableReceiver) {
+        messagesPublic.push(message);
+      }
+      this.publicMessages = messagesPublic;
+    });
 
   }
 

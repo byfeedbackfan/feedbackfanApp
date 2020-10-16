@@ -63,6 +63,7 @@ ion-back-button {
 
 ion-item {
   padding: 0 !important;
+  --padding-start: 10px !important;
 }
 
 .icon-only {
@@ -78,4 +79,9 @@ ion-item {
   p {
     margin: 0 !important;
   }
+}
+
+.list-val {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
 }

@@ -60,7 +60,6 @@ ion-back-button {
 .css-card-calification {
   padding: 0 !important;
   font-size: 90% !important;
-  margin-right: 5px !important;
 
   p {
     ion-icon {
@@ -244,7 +243,7 @@ ion-back-button {
       margin: 0px 0px calc(var(--page-margin) / 10);
       font-weight: bold;
       margin-left: 5%;
-      color: dimgray;
+      color: dimgrey;
     }
   }
 
@@ -266,7 +265,10 @@ ion-back-button {
   }
 
   .ion-col-userdata {
-    padding: 0 !important;
+    padding-left: 5px !important;
+    padding-top: 9px !important;
+    padding-right: 0;
+    padding-bottom: 0;
     align-items: center !important;
     position: relative;
     justify-content: center !important;
@@ -401,18 +403,46 @@ ion-back-button {
   margin-right: auto;
 
   .p1 {
-    text-align: end;
+    text-align: center;
     color: dimgray;
     padding-left: 1px !important;
     margin: 0 !important;
   }
   .p2 {
-    text-align: start;
+    text-align: center;
     color: dimgray;
     padding-right: 1px !important;
     margin: 0 !important;
   }
 }
+
+.cv {
+  
+  padding: 0 !important;
+  margin-top: 0px;
+  margin-bottom: 0;
+  width: auto;
+  height: auto;
+  font-size: 115% !important;
+  display: block;
+  position: relative;
+  margin-right: auto;
+
+  .p3 {
+    text-align: end;
+    color: dimgray;
+    padding-left: 1px !important;
+    margin: 0 !important;
+  }
+  .p4 {
+    text-align: end;
+    color: dimgray;
+    padding-right: 1px !important;
+    margin: 0 !important;
+  }
+}
+
+
 
 .item-not-messages {
   display: flex;
@@ -567,8 +597,8 @@ ion-back-button {
 .col-chip-values {
   padding: 0 !important;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: end;
+  justify-content: flex-end;
   vertical-align: middle;
 }
 
@@ -585,14 +615,31 @@ ion-back-button {
   margin-top: 0;
   margin-left: 2px !important;
   margin-right: 2px !important;
-  padding-top: 20px;
+  margin-bottom: 0px !important;
+  padding-top: 24px;
   position: relative;
-  bottom: 12px;
+  bottom: 20px;
   float: none;
   padding-bottom: 5px;
 }
 
 .item {
   --padding-start: 10px;
-  --inner-padding-end: 0px;
+}
+
+.list-val {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+.item-profile-values {
+  --padding-start: 0;
+  --padding-end: 0;
+  --inner-padding-end: 4px !important;
+  --detail-icon-color: white;
+}
+
+.row-content {
+  margin-bottom: 10px;
+  display: contents;
 }

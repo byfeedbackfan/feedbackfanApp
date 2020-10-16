@@ -174,11 +174,13 @@ ion-searchbar{
     padding-left: 0px !important;
     padding-right: 5px !important;
     color: dimgray;
+    margin: 0 !important;
   }
   .p2 {
     padding-right: 0px !important;
     padding-left: 0px !important;
     color: dimgray;
+    margin: 0 !important;
   }
 }
 
@@ -207,8 +209,8 @@ ion-searchbar{
 .col-chip-values {
   padding: 0 !important;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: end;
+  justify-content: flex-end;
   vertical-align: middle;
 }
 
@@ -220,4 +222,9 @@ ion-searchbar{
   position: absolute;
   right: 0px;
   top: 0px;
+}
+
+.list-val {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
 }

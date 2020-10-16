@@ -8,6 +8,7 @@ export class SendMessageModel extends ShellModel {
   uidSender: string;
   uidReceiver: string;
   date: Date;
+  dateString?: Date;
   title: string;
   message: string;
   likes: number;

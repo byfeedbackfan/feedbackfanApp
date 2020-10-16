@@ -107,6 +107,7 @@ export class EmployeeInfoComponent implements OnInit {
     let Irec = 0;
     let Isend = 0;
     let i = 0;
+    const messagesPublic = [];
 
     while (Irec < receivedMessages?.length && Isend < sendedMessages?.length) {
       if ( receivedMessages[Irec].date.seconds > sendedMessages[Isend].date.seconds ) {
@@ -127,7 +128,6 @@ export class EmployeeInfoComponent implements OnInit {
     while (Isend < sendedMessages?.length) {
       this.publicMessages[i++] = sendedMessages[Isend++];
     }
-
   }
 
   shearchUserInLikesArray(message: SendMessageModel): boolean {
