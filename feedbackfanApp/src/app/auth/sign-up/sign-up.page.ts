@@ -127,7 +127,7 @@ export class SignUpPage implements OnInit {
       // Get previous URL from our custom History Helper
       // If there's no previous page, then redirect to profile
       // const previousUrl = this.historyHelper.previousUrl || 'firebase/auth/profile';
-      const previousUrl = 'app/profile';
+      const previousUrl = 'app/received-message';
 
       // No need to store in the navigation history the sign-in page with redirect params (it's justa a mandatory mid-step)
       // Navigate to profile and replace current url with profile
