@@ -110,7 +110,10 @@ export class SignInPage implements OnInit {
 
       // No need to store in the navigation history the sign-in page with redirect params (it's justa a mandatory mid-step)
       // Navigate to profile and replace current url with profile
-      this.router.navigate([previousUrl], { replaceUrl: true });
+      if (this.router.url === '/auth/sign-in') {
+        this.router.navigate([previousUrl], { replaceUrl: true });
+      }
+
     });
   }
 
